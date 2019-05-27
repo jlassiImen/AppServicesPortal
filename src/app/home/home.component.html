@@ -1,4 +1,10 @@
 <h4 *ngIf="auth.isAuthenticated()">
+  <button id="qsLoginBtn"
+    class="btn btn-primary my-2 my-sm-0"
+
+    (click)="getCityName()" type="button">
+      get City Name
+  </button>
   <h1>Meteo d'aujourd'hui!!</h1>
   <p>{{temperature}} , your longitude is {{longitude}} and your latitude is {{latitude}}, your city is {{city}}</p>
 </h4>

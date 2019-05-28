@@ -10,7 +10,7 @@ import { HomeComponent } from './home/home.component';
 
 import { ROUTES } from './app.routes';
 
-import { AuthService } from './auth/auth.service';
+import { AuthService } from './services/auth/auth.service';
 import { CallbackComponent } from './callback/callback.component';
 
 @NgModule({

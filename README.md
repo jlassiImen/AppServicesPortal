@@ -25,6 +25,8 @@ npm start
 
 L'application sera servie à `http://localhost:3000`.
 
+Le diagramme d'activité relative à l'application City Meteo se trouve dans le lien suivant :
+https://drive.google.com/open?id=15Rds_LE7ZeN_fsUnjxIQ5Lb13zlJVqu-
 
 ## Qu'est-ce que Auth0?
 Auth0 vous aide à:

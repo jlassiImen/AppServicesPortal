@@ -9,7 +9,7 @@ app.use(express.static(__dirname + '/dist/cityMeteo'));
 
 app.get('*', function (req, res) {
   const index = path.join(__dirname, '/dist/cityMeteo/index.html');
-  res.sendFile(index);
+  //res.sendFile(index);
 });
 
 // Start the app by listening on the default Heroku port

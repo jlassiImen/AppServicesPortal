@@ -23,7 +23,7 @@ Le serveur de développement fourni avec la CLI angular peut être utilisé pour
 npm start
 ```
 
-L'application sera servie à `http://localhost:3000`.
+L'application sera servie à `http://localhost:8080`.
 
 Le diagramme d'activité relative à l'application City Meteo se trouve dans le lien suivant :
 

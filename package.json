@@ -4,11 +4,16 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0 --port 3000",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "heroku-postbuild": "ng build --prod"
+  },
+  "engines": {
+    "node": "10.15.3",
+    "npm": "6.9.0"
   },
   "private": true,
   "dependencies": {
@@ -25,11 +30,14 @@
     "auth0-js": "^9.4.1",
     "bootstrap": "^3.3.7",
     "core-js": "^2.6.9",
+    "express": "^4.17.1",
     "jquery": "^3.4.1",
+    "path": "^0.12.7",
     "rxjs": "^6.5.2",
     "rxjs-compat": "^6.0.0-rc.0",
     "service": "^0.1.4",
     "tslib": "^1.9.0",
+    "typescript": "3.2.4",
     "zone.js": "^0.8.20"
   },
   "devDependencies": {
@@ -44,6 +52,7 @@
     "@types/node": "~6.0.60",
     "ajv": "^6.1.1",
     "codelyzer": "^4.0.1",
+    "enhanced-resolve": "^3.3.0",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
     "karma": "^3.1.3",

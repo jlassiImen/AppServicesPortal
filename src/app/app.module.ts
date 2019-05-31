@@ -12,12 +12,14 @@ import { ROUTES } from './app.routes';
 
 import { AuthService } from './services/auth/auth.service';
 import { CallbackComponent } from './callback/callback.component';
+import { MeteoComponent } from './meteo/meteo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CallbackComponent
+    CallbackComponent,
+    MeteoComponent
   ],
   imports: [
     BrowserModule,

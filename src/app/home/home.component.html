@@ -1,8 +1,33 @@
-<h4 *ngIf="auth.isAuthenticated()">
-  <h1>Meteo d'aujourd'hui!!</h1>
-  <p>Température  de {{cityName}},{{countryCode}} est {{temperature}} !!</p>
+
+<section class="login-block" style="background-image: url('../../assets/img/back.png');">
+    <div class="container" style="
+    width: 50%;">
+	<div class="row">
+		<div class="col-md-4 login-sec" style="
+    width: 100%;">
+		    <h2 class="text-center">Meteo App</h2>
+		    <form class="login-form">
+
+  <div class="form-group">
+    <label class="text-uppercase"> You are not logged in!</label>
+  </div>
   
-</h4>
-<h4 *ngIf="!auth.isAuthenticated()">
-  You are not logged in! Please <a (click)="auth.login()">Log In</a> to continue.
-</h4>
+  
+    <div class="form-check">
+    <label class="form-check-label">
+    </label>
+     <button id="qsLoginBtn"
+          class="btn btn-login float-right"
+          *ngIf="!auth.isAuthenticated()"
+          (click)="auth.login()" type="button">
+            Log In
+        </button>
+  </div>
+  
+</form>
+
+		</div>
+
+</div></div>
+</section>
+

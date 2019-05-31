@@ -25,6 +25,7 @@
     "auth0-js": "^9.4.1",
     "bootstrap": "^3.3.7",
     "core-js": "^2.6.9",
+    "jquery": "^3.4.1",
     "rxjs": "^6.5.2",
     "rxjs-compat": "^6.0.0-rc.0",
     "service": "^0.1.4",

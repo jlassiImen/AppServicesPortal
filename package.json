@@ -1,7 +1,7 @@
 {
-  "name": "login",
-  "version": "0.0.0",
-  "license": "MIT",
+  "name": "cityMeteo",
+  "version": "1.0.0",
+  "license": "",
   "scripts": {
     "ng": "ng",
     "start": "node server.js",

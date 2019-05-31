@@ -5,7 +5,7 @@ const path = require('path');
 const app = express();
 
 // Serve only the static files form the dist directory
-app.use(express.static(__dirname + '/cityMeteo/dist'));
+app.use(express.static(__dirname + '/dist/cityMeteo'));
 
 app.get('*', function (req, res) {
   const index = path.join(__dirname, '/dist/cityMeteo/index.html');

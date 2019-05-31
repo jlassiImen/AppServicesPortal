@@ -9,7 +9,6 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "preinstall": "npm install -g @angular/cli @angular/compiler-cli typescript",
     "postinstall": "ng build --prod"
   },
   "private": true,
@@ -24,6 +23,8 @@
     "@angular/platform-browser": "^7.2.15",
     "@angular/platform-browser-dynamic": "^7.2.15",
     "@angular/router": "^7.2.15",
+    "@angular/cli": "^7.3.9",
+    "@angular/compiler-cli": "^7.2.15",
     "auth0-js": "^9.4.1",
     "bootstrap": "^3.3.7",
     "core-js": "^2.6.9",
@@ -34,7 +35,8 @@
     "rxjs-compat": "^6.0.0-rc.0",
     "service": "^0.1.4",
     "tslib": "^1.9.0",
-    "zone.js": "^0.8.20"
+    "zone.js": "^0.8.20",
+    "typescript": "3.2.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",

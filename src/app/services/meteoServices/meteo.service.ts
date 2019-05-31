@@ -11,12 +11,11 @@ import 'rxjs/add/operator/catch';
 })
 export class MeteoService {
   
-
-  
   constructor(public http:HttpClient) { }
 
   key="AIzaSyDGkAfGhqQ8kJxAeGpVerRgNn6TRFeylt0";
 
+ // detecter la position du client à l'aide du navigateur
   detectLocation(callback): void  {
     if (window.navigator.geolocation) {
         window.navigator.geolocation.getCurrentPosition((position)=>{
@@ -26,7 +25,9 @@ export class MeteoService {
        alert("No support for geolocation")
     }
   }
-    getAddressObject(request) :any{
+
+  //analyser la réponse de l'api geocoding de google afin d'extraite les information relatives au region et pays 
+  getAddressObject(request) :any{
     var address_components=request.results[0].address_components;
       var ShouldBeComponent = {
         home: ["street_number"],
@@ -74,21 +75,22 @@ export class MeteoService {
       return address ;
     }
 
+// appler l'api reverse geocoding de google avec la longitude et la latitude afin d'obtenir le pays et la region associé
   getPositionDetailsFromGoogleAPI(longitude:string,latitude:string):Observable<any> {
     const latLang = latitude+","+longitude;
     var geocodeURL='https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latLang+'&key='+this.key;
     return this.http.get(geocodeURL).map(response => {
-     console.log("eeeeeeee    "+JSON.stringify(response));
+    // console.log("eeeeeeee    "+JSON.stringify(response));
       return response;  
       });
   }
 
 
-
+// appler l'api meteo avec le pays et la region afin d'obtenir les informations relative à la meteo
   getCityMeteo(address) :Observable<any> {
     var meteoURL="https://api.openweathermap.org/data/2.5/weather?q="+address.region+","+address.country+"&appid=c21a75b667d6f7abb81f118dcf8d4611&units=metric";
      return this.http.get(meteoURL).map(data => {
-    // console.log("sssssssssssssssssssss    "+JSON.stringify(data));
+     //console.log("sssssssssssssssssssss    "+JSON.stringify(data));
       return data;  
       });
   }

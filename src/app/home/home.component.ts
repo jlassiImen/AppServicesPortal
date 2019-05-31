@@ -10,6 +10,7 @@ import { MeteoService } from '../services/meteoServices/meteo.service';
 
 })
 export class HomeComponent implements OnInit {
+
   
   
   constructor(public auth: AuthService) { }
@@ -18,3 +19,4 @@ export class HomeComponent implements OnInit {
    
   }
 }
+

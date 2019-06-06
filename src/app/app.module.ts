@@ -13,20 +13,27 @@ import { ROUTES } from './app.routes';
 import { AuthService } from './services/auth/auth.service';
 import { CallbackComponent } from './callback/callback.component';
 import { MeteoComponent } from './meteo/meteo.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+
+import { OwlModule } from 'ngx-owl-carousel'
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CallbackComponent,
-    MeteoComponent
+    MeteoComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    OwlModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

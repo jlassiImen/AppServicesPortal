@@ -1,0 +1,95 @@
+<!-- <section class="login-block" style="background-image: url('../../assets/img/back.png');">
+    <div class="container" style="
+    width: 50%;">
+	<div class="row">
+		<div class="col-md-4 login-sec" style="
+    width: 100%;">
+		    <h2 class="text-center">Meteo Apppppppppppppp</h2>
+		    <form class="login-form">
+
+  <div class="form-group">
+    <label class="text-uppercase"> You are not logged in!</label>
+  </div>
+  
+    <div class="form-check">
+    <label class="form-check-label">
+    </label>
+     <button id="qsLoginBtn"
+          class="btn btn-login float-right"
+          *ngIf="!auth.isAuthenticated()"
+          (click)="auth.login()" type="button">
+            Log In
+        </button>
+  </div>
+  
+</form>
+
+		</div>
+
+</div></div>
+</section>
+
+
+***** Contact Us Area Start ***** -->
+    <section class="footer-contact-area section_padding_100 clearfix" id="contact" style="
+    margin-top: 5%;
+    width: 100%;
+">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Heading Text  -->
+                    <div class="section-heading">
+                        <h2>Auth2 Authentification</h2>
+                        <div class="line-shape"></div>
+                    </div>
+                    <div class="footer-text">
+                        <div class="col-12">
+                                        <button type="submit" (click)="auth.login()" class="btn submit-btn">Sign In</button>
+                                    </div>
+                    </div>
+                    
+                   
+                   
+                </div>
+                <div class="col-md-6">
+                    <!-- Form Start-->
+                    <div class="contact_from">
+                        <form action="#" method="post">
+                            <!-- Message Input Area Start -->
+                            <div class="contact_input_area">
+                                <div class="row">
+                                  
+                                    <!-- Single Input Area Start -->
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" name="email" id="email" placeholder="Your E-mail" required>
+                                        </div>
+                                    </div>
+                                    <!-- Single Input Area Start -->
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                          <input type="password" name="password" class="form-control" id="password" placeholder="Your password" required>
+                                        </div>
+                                    </div>
+                                    <!-- Single Input Area Start -->
+                                    <div class="col-12">
+                                        <button type="submit" class="btn submit-btn">Sign In</button>
+                                    </div>
+                                    <div class="col-12">
+                                      <p>Not a member yet?</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn submit-btn" (click)="router.navigate(['/register']);">Sign Up Now</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Message Input Area End -->
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Contact Us Area End ***** -->

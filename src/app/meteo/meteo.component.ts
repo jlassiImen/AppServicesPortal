@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../services/auth/auth.service';
 import { MeteoService } from '../services/meteoServices/meteo.service';
 import {formatDate} from '@angular/common';
-
+import { SimpleLoginService } from './../services/auth/simple-login.service';
 
 import { Observable, Subject } from 'rxjs';
 @Component({
@@ -26,7 +26,7 @@ export class MeteoComponent implements OnInit {
         country: ""
       };
 
-  constructor(public meteo: MeteoService, public auth: AuthService) { }
+  constructor(public meteo: MeteoService, public auth: AuthService,public simpleLogin: SimpleLoginService) { }
 
   ngOnInit() {
     this.meteo.detectLocation(position => this.getCityName(position));
@@ -36,9 +36,8 @@ export class MeteoComponent implements OnInit {
   getCityName (position) {
   	this.meteo.getPositionDetailsFromLocationIQAPI(position.longitude,position.latitude)
     .subscribe((response: any) => {
-
-    		this.address.region=response.adress.town;
-        this.address.country=response.adress.country_code;
+    		this.address.region=response.address.city;
+        this.address.country=response.address.country_code;
       	 
         this.meteo.getCityMeteo(this.address).subscribe((meteoDetails: any) => {
 			this.meteoDetails.temperature=meteoDetails.main.temp;

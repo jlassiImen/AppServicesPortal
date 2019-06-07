@@ -17,6 +17,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 import { OwlModule } from 'ngx-owl-carousel'
+import { SimpleLoginService } from './services/auth/simple-login.service';
+import { FormBuilder, FormGroup, Validators, FormControl,ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,11 +33,12 @@ import { OwlModule } from 'ngx-owl-carousel'
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES),
     OwlModule
   ],
-  providers: [AuthService],
+  providers: [AuthService,SimpleLoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

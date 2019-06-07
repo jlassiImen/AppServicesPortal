@@ -1,37 +1,4 @@
-<!-- <section class="login-block" style="background-image: url('../../assets/img/back.png');">
-    <div class="container" style="
-    width: 50%;">
-	<div class="row">
-		<div class="col-md-4 login-sec" style="
-    width: 100%;">
-		    <h2 class="text-center">Meteo Apppppppppppppp</h2>
-		    <form class="login-form">
-
-  <div class="form-group">
-    <label class="text-uppercase"> You are not logged in!</label>
-  </div>
-  
-    <div class="form-check">
-    <label class="form-check-label">
-    </label>
-     <button id="qsLoginBtn"
-          class="btn btn-login float-right"
-          *ngIf="!auth.isAuthenticated()"
-          (click)="auth.login()" type="button">
-            Log In
-        </button>
-  </div>
-  
-</form>
-
-		</div>
-
-</div></div>
-</section>
-
-
-***** Contact Us Area Start ***** -->
-    <section class="footer-contact-area section_padding_100 clearfix" id="contact" style="
+<section class="footer-contact-area section_padding_100 clearfix" id="contact" style="
     margin-top: 5%;
     width: 100%;
 ">
@@ -59,36 +26,56 @@
                 <div class="col-md-6">
                     <!-- Form Start-->
                     <div class="contact_from">
-                        <form action="#" method="post">
+                        <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)">
                             <!-- Message Input Area Start -->
                             <div class="contact_input_area">
                                 <div class="row">
                                     <!-- Single Input Area Start -->
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" required>
+                                            <div class="form-group">
+                                            <div  *ngFor="let validation of validation_messages.firstName" >
+                <label for="" class="bmd-label-floating" style="margin: -9% 21%;color: red;position: absolute;width: 100%;" *ngIf="userDetailsForm.get('firstName').hasError(validation.type) && (userDetailsForm.get('firstName').dirty || userDetailsForm.get('firstName').touched)">{{validation.message}}
+                  </label>
+                </div>
+                                            <input type="text" class="form-control" name="firstName" id="firstName" placeholder="Your first Name" formControlName="firstName" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <!-- Single Input Area Start -->
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div  *ngFor="let validation of validation_messages.lastName" >
+                <label for="" class="bmd-label-floating" style="margin: -9% 21%;color: red;position: absolute;width: 100%;" *ngIf="userDetailsForm.get('lastName').hasError(validation.type) && (userDetailsForm.get('lastName').dirty || userDetailsForm.get('lastName').touched)">{{validation.message}}
+                  </label>
+                </div>
+                                            <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Your last Name" formControlName="lastName"  required>
                                         </div>
                                     </div>
                                     <!-- Single Input Area Start -->
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="email" class="form-control" name="email" id="email" placeholder="Your E-mail" required>
+                                            <div  *ngFor="let validation of validation_messages.email" >
+                  <label for="email" class="bmd-label-floating" style="margin: -5% 21%;color: red;"  *ngIf="userDetailsForm.get('email').hasError(validation.type) && (userDetailsForm.get('email').dirty || userDetailsForm.get('email').touched)">{{validation.message}}
+                </label>
+                </div>
+                                            <input type="email" class="form-control" name="email" id="email" placeholder="Your E-mail" formControlName="email" required>
                                         </div>
                                     </div>
                                     <!-- Single Input Area Start -->
                                     <div class="col-12">
                                         <div class="form-group">
-                                          <input type="password" name="password" class="form-control" id="password" placeholder="Your password" required>
+                                            <div  *ngFor="let validation of validation_messages.password" >
+                <label for="password" class="bmd-label-floating" style="margin: -9% 21%;color: red;position: absolute;width: 100%;" *ngIf="userDetailsForm.get('password').hasError(validation.type) && (userDetailsForm.get('password').dirty || userDetailsForm.get('password').touched)">{{validation.message}}
+                  </label>
+                </div>
+                                          <input type="password" name="password" class="form-control" id="password" placeholder="Your password" formControlName="password" required>
                                         </div>
                                     </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                          <input type="password" name="password" class="form-control" id="password" placeholder="Repete password" required>
-                                        </div>
-                                    </div>
+                                
                                     <!-- Single Input Area Start -->
                                     <div class="col-12">
-                                        <button type="submit" class="btn submit-btn">Register Now</button>
+                                        <button type="submit" class="btn submit-btn" [disabled]="!userDetailsForm.valid" >Register Now</button>
                                     </div>
                                 </div>
                             </div>

@@ -4,5 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  meteoApiKey:"f200c59bf3daa0",
+  openweatherAppId:"c21a75b667d6f7abb81f118dcf8d4611"
 };

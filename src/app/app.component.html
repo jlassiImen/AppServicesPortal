@@ -41,6 +41,13 @@
           (click)="router.navigate(['/login']);" >
             Sign In
         </a>
+        <a
+          *ngIf="auth.isAuthenticated() || simpleLogin.isAuthenticated"
+          (click)="router.navigate(['/login']);" >
+            Logout
+        </a>
+        
+
                     </div>
                 </div>
             </div>

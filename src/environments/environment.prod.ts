@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  meteoApiKey:"f200c59bf3daa0",
+  openweatherAppId:"c21a75b667d6f7abb81f118dcf8d4611"
 };

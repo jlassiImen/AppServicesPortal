@@ -1,7 +1,7 @@
 const config = require('../config.json');
 const mongoose = require('mongoose');
 mongoose.connect
-(process.env.MONGODB_URI || config.connectionString, 
+(process.env.MONGOLAB_IVORY_URI || config.connectionString, 
 { useCreateIndex: true, useNewUrlParser: true})
 .then(()=> {
 	console.log("connected to MongoDb");

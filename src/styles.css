@@ -1163,7 +1163,12 @@ p {
     margin-bottom: 50px;
 }
 
-#name {
+#firstName {
+    font-size: 18px;
+    padding: 15px 15px;
+    border-radius: 25px 25px 25px 0;
+}
+#firstName {
     font-size: 18px;
     padding: 15px 15px;
     border-radius: 25px 25px 25px 0;

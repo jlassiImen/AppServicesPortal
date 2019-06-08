@@ -62,7 +62,7 @@ register: function(req, res, next) {
 
     // crypter le mot de passe
     user.password = bcrypt.hashSync(userParam.password, 10);
-   process.stdout.write("yyyyyyy   "+JSON.stringify(user));
+  // process.stdout.write("yyyyyyy   "+JSON.stringify(user));
                             
 
     // enregistrer user

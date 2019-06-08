@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmitUserDetails(value){
-    console.log("ccccccccccccc       "+JSON.stringify(value));
+   // console.log("ccccccccccccc       "+JSON.stringify(value));
     this.simpleLogin.authenticate(value).subscribe((response) => {
     console.log("xxxxxxxxxxxx     "+JSON.stringify(response));
       if(response.message == "success"){

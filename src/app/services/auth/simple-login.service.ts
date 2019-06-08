@@ -15,13 +15,13 @@ export class SimpleLoginService {
   constructor(private http: HttpClient, private router: Router) {}
 
   public register(user: any): Observable<any> {
-    const apiURL = 'http://localhost/registerUser';
+    const apiURL = '/registerUser';
     return this.http.post(apiURL, user);
      
   }
 
   public authenticate(user: any): Observable<any> {
-    const apiURL = 'http://localhost/authenticate';
+    const apiURL = '/authenticate';
     return this.http.post(apiURL, user);
    
   }

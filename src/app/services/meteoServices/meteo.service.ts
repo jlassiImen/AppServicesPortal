@@ -36,7 +36,7 @@ export class MeteoService {
 
 // appler l'api meteo avec le pays et la region afin d'obtenir les informations relative à la meteo
   getCityMeteo(address) :Observable<any> {
-    var meteoURL="https://api.openweathermap.org/data/2.5/weather?q="+address.region+","+address.country+"&appid=environment.openweatherAppId&units=metric";
+    var meteoURL="https://api.openweathermap.org/data/2.5/weather?q="+address.region+","+address.country+"&appid="+environment.openweatherAppId+"&units=metric";
      return this.http.get(meteoURL).map(data => {
       return data;  
       });

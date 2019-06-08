@@ -1,3 +1,3 @@
 ﻿{
-    "connectionString": "mongodb://heroku_4prb7g5t:894i0jrms261nlne7j1gkgk84n@ds135107.mlab.com:35107/heroku_4prb7g5t"
+    "connectionString": "mongodb://localhost/jasminePortalService"
 }

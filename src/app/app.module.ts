@@ -20,6 +20,8 @@ import { OwlModule } from 'ngx-owl-carousel'
 import { SimpleLoginService } from './services/auth/simple-login.service';
 import { FormBuilder, FormGroup, Validators, FormControl,ReactiveFormsModule } from '@angular/forms';
 
+import { AuthGuardService } from './services/auth/auth-guard.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +40,7 @@ import { FormBuilder, FormGroup, Validators, FormControl,ReactiveFormsModule } f
     RouterModule.forRoot(ROUTES),
     OwlModule
   ],
-  providers: [AuthService,SimpleLoginService],
+  providers: [AuthService,SimpleLoginService,AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

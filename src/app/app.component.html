@@ -35,19 +35,18 @@
                 </div>
                 <!-- Signup btn -->
                 <div class="col-12 col-lg-2">
-                    <div class="sing-up-button d-none d-lg-block">
+                    <div class="sing-up-button d-none d-lg-block" *ngIf="!(auth.isAuthenticated() || simpleLogin.isLoggedIn())">
+        
                         <a
-          *ngIf="!auth.isAuthenticated()"
           (click)="router.navigate(['/login']);" >
             Sign In
         </a>
+            </div>
+        <div class="sing-up-button d-none d-lg-block" *ngIf="auth.isAuthenticated() || simpleLogin.isLoggedIn()">
         <a
-          *ngIf="auth.isAuthenticated() || simpleLogin.isAuthenticated"
-          (click)="router.navigate(['/login']);" >
+          (click)="simpleLogin.logout();" >
             Logout
         </a>
-        
-
                     </div>
                 </div>
             </div>

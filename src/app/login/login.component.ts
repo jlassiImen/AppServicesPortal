@@ -49,9 +49,9 @@ export class LoginComponent implements OnInit {
   onSubmitUserDetails(value){
    // console.log("ccccccccccccc       "+JSON.stringify(value));
     this.simpleLogin.authenticate(value).subscribe((response) => {
-    console.log("xxxxxxxxxxxx     "+JSON.stringify(response));
+   //console.log("xxxxxxxxxxxx     "+JSON.stringify(response));
       if(response.message == "success"){
-      this.simpleLogin.isAuthenticated=true;
+      localStorage.setItem('currentUser',"login");
       this.router.navigateByUrl('/meteo');
       }
       else {

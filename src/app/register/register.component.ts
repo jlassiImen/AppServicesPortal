@@ -60,7 +60,7 @@ export class RegisterComponent implements OnInit {
   onSubmitUserDetails(value){
     this.simpleLogin.register(value).subscribe((response) => {
       if(response.message == "success"){
-      this.simpleLogin.isAuthenticated=true;
+      localStorage.setItem('currentUser',"login");
       this.router.navigateByUrl('/meteo');
       }
       else {

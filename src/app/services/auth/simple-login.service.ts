@@ -23,11 +23,24 @@ export class SimpleLoginService {
   public authenticate(user: any): Observable<any> {
     const apiURL = '/authenticate';
     return this.http.post(apiURL, user);
-   
   }
 
   public logout(): void {
-    this.router.navigateByUrl('/');
+    localStorage.removeItem('currentUser');
+    this.router.navigateByUrl('/login');
+  }
+
+  public isLoggedIn() {
+    if (localStorage.getItem('currentUser')) {
+            // logged in so return true
+            console.log("trueeeeeeeeeeeeeee");
+            return true;
+        }
+        else {
+        console.log("flassssssssssss");
+            return false;
+        }
+
   }
 
 }

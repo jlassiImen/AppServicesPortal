@@ -56,11 +56,12 @@
                                         <button type="submit" class="btn submit-btn" [disabled]="!userDetailsForm.valid" >Sign In</button>
                                     </div>
                                     <div class="col-12">
-                                      <p>Not a member yet?</p>
+                                      <a (click)="router.navigate(['/forgotPassword']);">I forgot my password</a>
                                     </div>
                                     <div class="col-12">
-                                      <a href="">I forgot my password</a>
+                                      <p>Not a member yet?</p>
                                     </div>
+                                    
                                     <div class="col-12">
                                         <button type="submit" class="btn submit-btn" (click)="router.navigate(['/register']);">Sign Up Now</button>
                                     </div>

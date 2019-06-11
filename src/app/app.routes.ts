@@ -5,12 +5,15 @@ import { MeteoComponent } from './meteo/meteo.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuardService } from './services/auth/auth-guard.service';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 export const ROUTES: Routes = [
   { path: '', component: HomeComponent },
   { path: 'meteo', component: MeteoComponent ,canActivate: [AuthGuardService] },
   { path: 'login', component: LoginComponent },
+  { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'callback', component: CallbackComponent },
   { path: '**', redirectTo: '' }
+
 ];

@@ -21,6 +21,7 @@ import { SimpleLoginService } from './services/auth/simple-login.service';
 import { FormBuilder, FormGroup, Validators, FormControl,ReactiveFormsModule } from '@angular/forms';
 
 import { AuthGuardService } from './services/auth/auth-guard.service';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AuthGuardService } from './services/auth/auth-guard.service';
     CallbackComponent,
     MeteoComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

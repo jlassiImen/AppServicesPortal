@@ -1,3 +1,7 @@
 ﻿{
-    "connectionString": "mongodb://localhost/jasminePortalService"
+    "connectionString": "mongodb://localhost/jasminePortalService",
+    "fromEmail":"jasmineapiserviceportal@gmail.com",
+    "emailPassword":"Sa225566",
+    "tokenExpiry":360,
+    "clientUrl":"http://localhost:8080"
 }

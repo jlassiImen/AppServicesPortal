@@ -31,16 +31,18 @@ export class SimpleLoginService {
   }
 
   public isLoggedIn() {
-    if (localStorage.getItem('currentUser')) {
-            // logged in so return true
-            console.log("trueeeeeeeeeeeeeee");
+    if (localStorage.getItem('currentUser')) {          
             return true;
         }
         else {
-        console.log("flassssssssssss");
             return false;
         }
 
   }
 
+  public resetPassword(user: any): Observable<any> {
+    const apiURL = '/resetPassword';
+    return this.http.post(apiURL, user);
+     
+  }
 }

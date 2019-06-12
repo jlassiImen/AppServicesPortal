@@ -7,6 +7,7 @@ var crypto = require("crypto");
 var moment = require("moment");
 const User = db.User;
 const ResetPassword = db.ResetPassword;
+var ObjectID = require('mongodb').ObjectID;
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
@@ -81,7 +82,7 @@ var users = {
         });
     },
 
-    resetPassword: function(req, res, next) {
+    forgotPassword: function(req, res, next) {
 
         var email = req.body.email || '';
 
@@ -103,57 +104,128 @@ var users = {
                         message: 'No user found with that email address'
                     })
                 }
-                ResetPassword.findOne({ 'userId': user.id })
-                .then(function(resetPass) {
-                    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaa   "+JSON.stringify(resetPass));
-                    if (resetPass){
-                        resetPass.deleteOne({ 'id': resetPass._id});
-                        console.log("1 document deleted");
-                     }           
-
-                            
-                            token = crypto.randomBytes(32).toString('hex') //creating the token to be sent to the forgot password form (react)
-
-                            const resetPassword = new ResetPassword();
+                ResetPassword.findOne({
+                        'userId': user.id
+                    })
+                    .then(function(resetPass) {
+                        if (resetPass) {
+                            resetPass.deleteOne({
+                                'id': resetPass._id
+                            });
+                            console.log("1 document deleted");
+                        }
 
 
-                            resetPassword.resetPasswordToken = bcrypt.hashSync(token, 10);
-                            resetPassword.userId = user.id;
-                            resetPassword.expire = moment.utc().add(config.tokenExpiry, 'seconds');
-                            //hashing the password to store in the db node.js
+                        token = crypto.randomBytes(32).toString('hex') //creating the token to be sent to the forgot password form (react)
 
-                            resetPassword.save();
+                        const resetPassword = new ResetPassword();
 
-                            let mailOptions = {
-                                to: user.email,
-                                subject: 'Reset your account password',
-                                html: '<h4><b>Reset Password</b></h4>' +
-                                    '<p>To reset your password, complete this form:</p>' +
-                                    '<a href=' + config.clientUrl + 'reset/' + user.id + '/' + token + '">' + config.clientUrl + 'reset/' + user.id + '/' + token + '</a>' +
-                                    '<br><br>' +
-                                    '<p>--Team</p>'
+                        //hashing the password to store in the db node.js
+                        resetPassword.resetPasswordToken = bcrypt.hashSync(token, 10);
+                        resetPassword.userId = user.id;
+                        resetPassword.expire = moment.utc().add(config.tokenExpiry, 'seconds');
+                        
+                        resetPassword.status=0;
+                        resetPassword.save();
+
+                        let mailOptions = {
+                            to: user.email,
+                            subject: 'Reset your account password',
+                            html: '<h4><b>Reset Password</b></h4>' +
+                                '<p>To reset your password, complete this form:</p>' +
+                                '<a href=' + config.clientUrl + 'reset/' + user.id + '/' + token + '">' + config.clientUrl + 'reset/' + user.id + '/' + token + '</a>' +
+                                '<br><br>' +
+                                '<p>--Team</p>'
+                        }
+                        smtpTransport.sendMail(mailOptions, function(error, response) {
+                            if (error) {
+                                console.log(error);
+                                res.status(500);
+                                res.json({
+                                    "status": 500,
+                                    "message": "failure"
+                                });
+                            } else {
+                                console.log("Message sent ");
+                                res.status(200);
+                                res.json({
+                                    "status": 200,
+                                    "message": "success"
+                                });
                             }
-                            smtpTransport.sendMail(mailOptions, function(error, response) {
-                                if (error) {
-                                    console.log(error);
+                        });
+
+
+                    });
+            });
+    },
+    resetPassword: function(req, res, next) {
+        const userId = req.body.userId;
+        const token = req.body.token;
+        const password = req.body.password;
+        ResetPassword.findOne({
+                'userId': userId
+            })
+            .then(function(resetPassword) {
+                 console.log(" --------------  "+resetPassword+"     **********    "+token);
+                if (!resetPassword) {
+                    res.status(401);
+                    res.json({
+                        "status": 401,
+                        "message": "Invalid or expired reset token."
+                    });
+
+                }
+                // the token and the hashed token in the db are verified befor updating the password
+                if (bcrypt.compareSync(token, resetPassword.resetPasswordToken)) {
+                 console.log(" 0000000  000000  ");
+                    var hash = bcrypt.hashSync(password, 10);
+                       console.log(" 11111111  "+hash);
+                        User.updateOne({'_id': ObjectID(userId)},{$set :{'password': hash}})
+                        .then((result) => {
+                            console.log(" 22222222  "+JSON.stringify(result));
+                            ResetPassword.updateOne(
+                                {'_id': ObjectID(resetPassword.id)},
+                                {$set:{'status': 1}}
+                            ).
+                            then((msg) => {
+                                console.log(" 33333333  "+JSON.stringify(msg));
+                                if (!msg) {
+                                   
                                     res.status(500);
                                     res.json({
                                         "status": 500,
-                                        "message": "failure"
+                                        "message": "Internal server error"
                                     });
-                                } else {
-                                    console.log("Message sent ");
-                                    res.status(200);
-                                    res.json({
-                                        "status": 200,
-                                        "message": "success"
-                                    });
-                                }
-                            });
 
-                       
-                });
-            });
+                                } else
+                                    res.json({
+                                        "status": "200",
+                                        "message": 'Password Updated successfully.'
+                                    })
+                            })
+                        }).catch((error)=>
+                        res.json({
+                         "status": 500,
+                         "message": "Internal server error  "+ error
+                             })
+
+                        )
+                    
+                }
+                else{
+                     res.status(401);
+                                    res.json({
+                                        "status": 401,
+                                        "message": "different reset password token"
+                                    });
+                }
+            }).catch((error)=>
+                res.json({
+                    "status": 500,
+                    "message": "Internal server error  "+ error
+                })
+                );
     }
 }
 

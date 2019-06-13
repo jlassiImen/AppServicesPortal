@@ -40,7 +40,13 @@ export class SimpleLoginService {
 
   }
 
-  public resetPassword(user: any): Observable<any> {
+  public forgotPassword(user: any): Observable<any> {
+    const apiURL = '/forgotPassword';
+    return this.http.post(apiURL, user);
+     
+  }
+  
+    public resetPassword(user: any): Observable<any> {
     const apiURL = '/resetPassword';
     return this.http.post(apiURL, user);
      

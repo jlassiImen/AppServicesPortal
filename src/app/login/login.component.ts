@@ -14,7 +14,8 @@ export class LoginComponent implements OnInit {
 
   constructor(public auth: AuthService,public router: Router,private fb: FormBuilder,public simpleLogin: SimpleLoginService) { }
   userDetailsForm: FormGroup;
-
+  successMessage='';
+  errorMessage='';
   validation_messages = { 
     'email': [
       { type: 'required', message: 'Email is required' },
@@ -55,10 +56,13 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/meteo');
       }
       else {
-        alert("Invalid credentials");
+            this.successMessage="";
+            this.errorMessage="Invalid credentials";
       }
     }, (err) => {
       console.error(err);
+      this.successMessage="";
+      this.errorMessage="An error has occured,please retry later";
     });
   }
 

@@ -20,6 +20,13 @@
                    
                 </div>
                 <div class="col-md-6">
+                     <div *ngIf="successMessage !=''" class="alert alert-success" role="alert">
+                {{successMessage}}
+            </div>
+
+             <div *ngIf="errorMessage !=''" class="alert alert-success" role="alert">
+                {{errorMessage}}
+            </div>
                     <!-- Form Start-->
                     <div class="contact_from">
                         <form  [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)">

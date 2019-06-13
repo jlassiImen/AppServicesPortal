@@ -12,6 +12,7 @@ export const ROUTES: Routes = [
   { path: 'meteo', component: MeteoComponent ,canActivate: [AuthGuardService] },
   { path: 'login', component: LoginComponent },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
+   { path: 'resetPassword', component: ForgotPasswordComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'callback', component: CallbackComponent },
   { path: '**', redirectTo: '' }

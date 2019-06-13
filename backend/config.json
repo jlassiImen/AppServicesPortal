@@ -3,5 +3,5 @@
     "fromEmail":"jasmineapiserviceportal@gmail.com",
     "emailPassword":"Sa225566",
     "tokenExpiry":360,
-    "clientUrl":"http://localhost:8080"
+    "clientUrl":"https://city-meteo.herokuapp.com/"
 }

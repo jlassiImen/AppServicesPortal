@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders  } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { Router } from '@angular/router';
-
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +47,8 @@ export class SimpleLoginService {
   
     public resetPassword(user: any): Observable<any> {
     const apiURL = '/resetPassword';
-    return this.http.post(apiURL, user);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+    return this.http.post(apiURL, user, {headers});
      
   }
 }

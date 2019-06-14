@@ -1,5 +1,7 @@
 const config = require('../config.json');
 const mongoose = require('mongoose');
+var autoIncrement = require('mongoose-auto-increment');
+
 mongoose.connect
 (process.env.MONGOLAB_IVORY_URI || config.connectionString, 
 { useCreateIndex: true, useNewUrlParser: true})
@@ -14,3 +16,7 @@ module.exports = {
     User: require('../users/user.model'),
     ResetPassword: require('../users/resetPassword.model')
 };
+
+
+
+    

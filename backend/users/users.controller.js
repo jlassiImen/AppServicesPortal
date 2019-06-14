@@ -1,6 +1,6 @@
 ﻿const express = require('express');
 const config = require('../config.json');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const db = require('../_helpers/db');
 var nodemailer = require("nodemailer");
 var crypto = require("crypto");
@@ -72,7 +72,7 @@ var users = {
 
         const user = new User(userParam);
         // crypter le mot de passe
-        user.password = bcrypt.hashSync(userParam.password, 10);
+        user.password = bcrypt.hashSync(userParam.password, 5);
 
         // enregistrer user
         user.save();
@@ -109,7 +109,7 @@ var users = {
                         'userId': user.id
                     })
                     .then(function(resetPass) {
-                        console.log(" ccccccccc   "+JSON.stringify(resetPass));
+                       console.log(" ccccccccc   "+JSON.stringify(resetPass));
                         if (resetPass) {
                             resetPass.deleteOne({
                                 'id': resetPass._id
@@ -123,14 +123,14 @@ var users = {
                         const resetPassword = new ResetPassword();
 
                         //hashing the reset token  to store in the db node.js
-                    bcrypt.hash(token, 10, (err, hashedResetToken) => {
+                    bcrypt.hash(token, 5, (err, hashedResetToken) => {
                         resetPassword.resetPasswordToken = hashedResetToken;
                         resetPassword.userId = user.id;
                         resetPassword.expire = moment.utc().add(config.tokenExpiry, 'seconds');
                         
                         resetPassword.status=0;
 
-                        console.log(" dddddddd  "+resetPassword);
+                       console.log(" dddddddd  "+resetPassword);
                         resetPassword.save();
 
                         let mailOptions = {
@@ -138,7 +138,7 @@ var users = {
                             subject: 'Reset your account password',
                             html: '<h4><b>Reset Password</b></h4>' +
                                 '<p>To reset your password, complete this form:</p>' +
-                                '<a href=' + config.clientUrl + '/resetPassword/?userId=' + user.id + '&resetToken=' + token + '">' + config.clientUrl + '/resetPassword/?userId=' + user.id + '&resetToken=' + token + '</a>' +
+                                '<a href=' + config.clientUrl + '/resetPassword/?userId=' + user.id + '&resetToken=' + token +'>' + config.clientUrl + '/resetPassword/?userId=' + user.id + '&resetToken=' + token + '</a>' +
                                 '<br><br>' + 
                                 '<p>--Team</p>'
                         }
@@ -165,7 +165,8 @@ var users = {
             });
     },
     resetPassword: function(req, res, next) {
-        console.log("++++++++++++  "+JSON.stringify(req.body));
+        console.log("++++++++++++  "+JSON.stringify(req.headers));
+        console.log("*************  "+JSON.stringify(req.body));
         const userId = req.body.userId;
         const token = req.body.resetToken;
         const password = req.body.password;
@@ -173,7 +174,6 @@ var users = {
                 'userId': userId
             })
             .then(function(resetPassword) {
-                console.log(" --------------  "+resetPassword.resetPasswordToken+"     **********    "+token);
                 if (!resetPassword) {
                     res.status(401);
                     res.json({
@@ -182,17 +182,19 @@ var users = {
                     });
 
                 }
+                 console.log(" --------------  "+resetPassword+"     **********    "+token);
+               
                 // the token and the hashed token in the db are verified befor updating the password
-                bcrypt.compare(token, resetPassword.resetPasswordToken, (err, match) => {
-                console.log(" 0000000  000000  "+match);
+                bcrypt.compare(String(token), resetPassword.resetPasswordToken, (err, match) => {
+                console.log(" 0000000  000000  "+match );
                     if (match == true) {
-                        var hash = bcrypt.hashSync(password, 10);
+                        var hash = bcrypt.hashSync(password, 5);
                        console.log(" 11111111  "+hash);
-                        User.updateOne({'_id': ObjectID(userId)},{$set :{'password': hash}})
+                        User.updateOne({'_id': userId},{$set :{'password': hash}})
                         .then((result) => {
                            console.log(" 22222222  "+JSON.stringify(result));
                             ResetPassword.updateOne(
-                                {'_id': ObjectID(resetPassword.id)},
+                                {'id': resetPassword.id},
                                 {$set:{'status': 1}}
                             ).
                             then((msg) => {

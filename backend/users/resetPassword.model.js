@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const resetPasswordSchema = new Schema({
     resetPasswordToken: { type: String, required: false },
@@ -10,5 +10,7 @@ const resetPasswordSchema = new Schema({
 });
 
 resetPasswordSchema.set('toJSON', { virtuals: true });
+
+resetPasswordSchema.plugin(AutoIncrement, {inc_field: 'id'});
 
 module.exports = mongoose.model('ResetPassword', resetPasswordSchema);

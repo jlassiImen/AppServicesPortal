@@ -36,6 +36,7 @@ export class MeteoComponent implements OnInit {
   getCityName (position) {
   	this.meteo.getPositionDetailsFromLocationIQAPI(position.longitude,position.latitude)
     .subscribe((response: any) => {
+    console.log("rrrrrrrr    "+JSON.stringify(response));
     		this.address.region=response.address.city;
         this.address.country=response.address.country_code;
       	 

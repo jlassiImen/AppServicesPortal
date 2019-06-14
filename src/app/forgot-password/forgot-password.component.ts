@@ -94,11 +94,11 @@ export class ForgotPasswordComponent implements OnInit {
   onSubmitResetPasswordForm(value){
   	var request ={
   	"userId":this.userId,
-  	"resetToken":this.resetToken,
+  	"resetToken":""+this.resetToken,
   	"password":value.password
   	}
     this.simpleLogin.resetPassword(request).subscribe((response) => {
-    if(response.message=="success"){
+    if(response.status=="200"){
     	this.errorMessage="";
  		this.successMessage="Your password has been updated successfuly";
  	}

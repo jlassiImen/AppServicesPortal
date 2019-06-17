@@ -17,7 +17,8 @@ export const ROUTES: Routes = [
    { path: 'resetPassword', component: ForgotPasswordComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'callback', component: CallbackComponent },
-  { path: '**', redirectTo: '' },
-  { path: 'ServicePortal', component: ServicePortalComponent  }
+  { path: 'servicePortal', component: ServicePortalComponent  },
+  { path: '**', redirectTo: '' }
+
 
 ];

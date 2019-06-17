@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+//pour gerer l'auto incrementation de l'id
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const resetPasswordSchema = new Schema({

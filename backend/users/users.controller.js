@@ -85,7 +85,7 @@ var users = {
     forgotPassword: function(req, res, next) {
 
         var email = req.body.email || '';
-        console.log(" aaaaaaaaaa    "+email);
+       
         if (email == '') {
             res.status(401);
             res.json({
@@ -98,7 +98,7 @@ var users = {
                 'email': email
             })
             .then(function(user) {
-                console.log(" bbbbbbbbbbb   "+JSON.stringify(user));
+               
                 if (!user) {
                     return res.json({
                         status: "404",
@@ -109,7 +109,7 @@ var users = {
                         'userId': user.id
                     })
                     .then(function(resetPass) {
-                       console.log(" ccccccccc   "+JSON.stringify(resetPass));
+                      
                         if (resetPass) {
                             resetPass.deleteOne({
                                 'id': resetPass._id
@@ -129,8 +129,6 @@ var users = {
                         resetPassword.expire = moment.utc().add(config.tokenExpiry, 'seconds');
                         
                         resetPassword.status=0;
-
-                       console.log(" dddddddd  "+resetPassword);
                         resetPassword.save();
 
                         let mailOptions = {
@@ -165,8 +163,6 @@ var users = {
             });
     },
     resetPassword: function(req, res, next) {
-        console.log("++++++++++++  "+JSON.stringify(req.headers));
-        console.log("*************  "+JSON.stringify(req.body));
         const userId = req.body.userId;
         const token = req.body.resetToken;
         const password = req.body.password;
@@ -182,23 +178,19 @@ var users = {
                     });
 
                 }
-                 console.log(" --------------  "+resetPassword+"     **********    "+token);
-               
+                 
                 // the token and the hashed token in the db are verified befor updating the password
                 bcrypt.compare(String(token), resetPassword.resetPasswordToken, (err, match) => {
-                console.log(" 0000000  000000  "+match );
                     if (match == true) {
                         var hash = bcrypt.hashSync(password, 5);
-                       console.log(" 11111111  "+hash);
                         User.updateOne({'_id': userId},{$set :{'password': hash}})
                         .then((result) => {
-                           console.log(" 22222222  "+JSON.stringify(result));
                             ResetPassword.updateOne(
                                 {'id': resetPassword.id},
                                 {$set:{'status': 1}}
                             ).
                             then((msg) => {
-                                console.log(" 33333333  "+JSON.stringify(msg));
+                                
                                 if (!msg) {
                                    
                                     res.status(500);

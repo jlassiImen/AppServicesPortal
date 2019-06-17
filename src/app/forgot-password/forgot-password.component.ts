@@ -37,15 +37,12 @@ export class ForgotPasswordComponent implements OnInit {
 
   	this.successMessage='';
   	this.errorMessage='';
-  	 console.log("ccccccccc   "+this.router.url) ; 
-
 
   	if(this.router.url.indexOf('resetPassword')>0){
   		this.routeType="resetPassword";
   		this.userId=this.activatedRoute.snapshot.queryParamMap.get('userId');
     	this.resetToken=this.activatedRoute.snapshot.queryParamMap.get('resetToken');
-
-    	console.log("1111111   "+this.userId + "      22222222  "+this.resetToken) ; 
+ 
     	this.createResetPasswordForms();
     }
     else {

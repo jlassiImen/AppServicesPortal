@@ -6,6 +6,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuardService } from './services/auth/auth-guard.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ServicePortalComponent } from './service-portal/service-portal.component';
+
 
 export const ROUTES: Routes = [
   { path: '', component: HomeComponent },
@@ -15,6 +17,7 @@ export const ROUTES: Routes = [
    { path: 'resetPassword', component: ForgotPasswordComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'callback', component: CallbackComponent },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
+  { path: 'ServicePortal', component: ServicePortalComponent  }
 
 ];

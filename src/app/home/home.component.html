@@ -10,15 +10,13 @@
                         <p>Everything You Need. To build an API based application</p>
                     </div>
                     <div class="get-start-area">
-                        <!-- Form Start -->
-                        <form action="#" method="post" class="form-inline">
-                            <a
-        
+
+                            <button type="submit" class="btn submit-btn"
+
           (click)="router.navigate(['/register']);" >
             Get started
-        </a>
-                        </form>
-                        <!-- Form End -->
+        </button>
+
                     </div>
                 </div>
             </div>
@@ -50,28 +48,28 @@
                         <div class="single-icon">
                             <i class="ti-mobile" aria-hidden="true"></i>
                         </div>
-                        <h4>Easy to use</h4>
-                        <p>We build pretty complex tools and this allows us to take designs and turn them into functional quickly and easily</p>
+                        <h4>Robust</h4>
+                        <p>Mirakl adapts to all configurations and volumetrics ensuring data security</p>
                     </div>
                 </div>
                 <!-- Single Special Area -->
                 <div class="col-12 col-md-4">
                     <div class="single-special text-center wow fadeInUp" data-wow-delay="0.4s">
                         <div class="single-icon">
-                            <i class="ti-ruler-pencil" aria-hidden="true"></i>
+                        <i class="ti-settings" aria-hidden="true"></i>
                         </div>
-                        <h4>Powerful Design</h4>
-                        <p>We build pretty complex tools and this allows us to take designs and turn them into functional quickly and easily</p>
+                        <h4>Modular</h4>
+                        <p>Fully customizable features to meet your needs</p>
                     </div>
                 </div>
                 <!-- Single Special Area -->
                 <div class="col-12 col-md-4">
                     <div class="single-special text-center wow fadeInUp" data-wow-delay="0.6s">
                         <div class="single-icon">
-                            <i class="ti-settings" aria-hidden="true"></i>
+                          <i class="ti-ruler-pencil" aria-hidden="true"></i>
                         </div>
-                        <h4>Customizability</h4>
-                        <p>We build pretty complex tools and this allows us to take designs and turn them into functional quickly and easily</p>
+                        <h4>Simple</h4>
+                        <p>Easy to use and acclaimed by developers and business users</p>
                     </div>
                 </div>
             </div>
@@ -253,10 +251,10 @@
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
+                <div class="col-6" style="max-width: 100%;">
                     <!-- App Screenshots Slides  -->
-                <owl-carousel [options]="carouselOptions" [items]="images" [carouselClasses]="['owl-theme', 'row', 'sliding']">
-    <div class="item" *ngFor="let image of images;let i= index">
+                <owl-carousel [options]="carouselOptions" [items]="screenshots" [carouselClasses]="['owl-theme', 'row', 'sliding']">
+    <div class="item" *ngFor="let image of screenshots;let i= index">
       <img class="slide-image" src="{{image.image}}" >
       <div class="slide-text">
         <h4>{{image.text}}</h4>
@@ -390,103 +388,46 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10">
                     <div class="slider slider-for">
-                        <!-- Client Feedback Text  -->
-                        <div class="client-feedback-text text-center">
-                            <div class="client">
-                                <i class="fa fa-quote-left" aria-hidden="true"></i>
-                            </div>
-                            <div class="client-description text-center">
-                                <p>“ I have been using it for a number of years. I use Colorlib for usability testing. It's great for taking images and making clickable image prototypes that do the job and save me the coding time and just the general hassle of hosting. ”</p>
-                            </div>
-                            <div class="star-icon text-center">
-                                <i class="ion-ios-star"></i>
-                                <i class="ion-ios-star"></i>
-                                <i class="ion-ios-star"></i>
-                                <i class="ion-ios-star"></i>
-                                <i class="ion-ios-star"></i>
-                            </div>
-                            <div class="client-name text-center">
-                                <h5>Aigars Silkalns</h5>
-                                <p>Ceo Colorlib</p>
-                            </div>
-                        </div>
-                        <!-- Client Feedback Text  -->
-                        <div class="client-feedback-text text-center">
-                            <div class="client">
-                                <i class="fa fa-quote-left" aria-hidden="true"></i>
-                            </div>
-                            <div class="client-description text-center">
-                                <p>“ I use Colorlib for usability testing. It's great for taking images and making clickable image prototypes that do the job and save me the coding time and just the general hassle of hosting. ”</p>
-                            </div>
-                            <div class="star-icon text-center">
-                                <i class="ion-ios-star"></i>
-                                <i class="ion-ios-star"></i>
-                                <i class="ion-ios-star"></i>
-                                <i class="ion-ios-star"></i>
-                                <i class="ion-ios-star"></i>
-                            </div>
-                            <div class="client-name text-center">
-                                <h5>Jennifer</h5>
-                                <p>Developer</p>
-                            </div>
-                        </div>
-                        <!-- Client Feedback Text  -->
-                        <div class="client-feedback-text text-center">
-                            <div class="client">
-                                <i class="fa fa-quote-left" aria-hidden="true"></i>
-                            </div>
-                            <div class="client-description text-center">
-                                <p>“ I have been using it for a number of years. I use Colorlib for usability testing. It's great for taking images and making clickable image prototypes that do the job.”</p>
-                            </div>
-                            <div class="star-icon text-center">
-                                <i class="ion-ios-star"></i>
-                                <i class="ion-ios-star"></i>
-                                <i class="ion-ios-star"></i>
-                                <i class="ion-ios-star"></i>
-                                <i class="ion-ios-star"></i>
-                            </div>
-                            <div class="client-name text-center">
-                                <h5>Helen</h5>
-                                <p>Marketer</p>
-                            </div>
-                        </div>
-                        <!-- Client Feedback Text  -->
-                        <div class="client-feedback-text text-center">
-                            <div class="client">
-                                <i class="fa fa-quote-left" aria-hidden="true"></i>
-                            </div>
-                            <div class="client-description text-center">
-                                <p>“ I have been using it for a number of years. I use Colorlib for usability testing. It's great for taking images and making clickable image prototypes that do the job and save me the coding time and just the general hassle of hosting. ”</p>
-                            </div>
-                            <div class="star-icon text-center">
-                                <i class="ion-ios-star"></i>
-                                <i class="ion-ios-star"></i>
-                                <i class="ion-ios-star"></i>
-                                <i class="ion-ios-star"></i>
-                                <i class="ion-ios-star"></i>
-                            </div>
-                            <div class="client-name text-center">
-                                <h5>Henry smith</h5>
-                                <p>Developer</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Client Thumbnail Area -->
-                <div class="col-12 col-md-6 col-lg-5">
-                    <div class="slider slider-nav">
-                        <div class="client-thumbnail">
-                            <img src="../../assets/img/bg-img/client-3.jpg" alt="">
-                        </div>
-                        <div class="client-thumbnail">
-                            <img src="../../assets/img/bg-img/client-2.jpg" alt="">
-                        </div>
-                        <div class="client-thumbnail">
-                            <img src="../../assets/img/bg-img/client-1.jpg" alt="">
-                        </div>
-                        <div class="client-thumbnail">
-                            <img src="../../assets/img/bg-img/client-2.jpg" alt="">
-                        </div>
+
+
+
+                <owl-carousel [options]="carouselOptions" [items]="clients" [carouselClasses]="['owl-theme', 'row', 'sliding']">
+                                <div class="item" *ngFor="let image of clients;let i= index">
+
+                                  <!-- Client Feedback Text  -->
+                                  <div class="client-feedback-text text-center">
+                                      <div class="client">
+                                          <i class="fa fa-quote-left" aria-hidden="true"></i>
+                                      </div>
+                                      <div class="client-description text-center">
+                                          <p>{{image.text}}</p>
+                                      </div>
+                                      <div class="star-icon text-center">
+                                          <i class="ion-ios-star"></i>
+                                          <i class="ion-ios-star"></i>
+                                          <i class="ion-ios-star"></i>
+                                          <i class="ion-ios-star"></i>
+                                          <i class="ion-ios-star"></i>
+                                      </div>
+                                      <div class="client-name text-center">
+                                          <h5>Henry smith</h5>
+                                          <p>Developer</p>
+                                      </div>
+                                  </div>
+
+
+                                  <img class="slide-image" src="{{image.image}}" >
+
+                                </div>
+                              </owl-carousel>
+
+
+
+
+
+
+
+
                     </div>
                 </div>
             </div>

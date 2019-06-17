@@ -35,9 +35,11 @@
             ],
             "scripts": [
               "src/assets/js/jquery-2.2.4.min.js",
-             // "./node_modules/bootstrap/dist/js/bootstrap.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
               "src/assets/js/plugins.js",
               "src/assets/js/popper.min.js",
+              "src/assets/js/slick.min.js",
+              "src/assets/js/active.js",
               "./node_modules/owl.carousel/dist/owl.carousel.js"
             ]
           },

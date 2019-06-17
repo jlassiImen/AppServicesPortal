@@ -10,15 +10,15 @@ import { Router } from '@angular/router';
 
 })
 export class HomeComponent implements OnInit {
-  
+
   constructor(public auth: AuthService, public router: Router) { }
-   
+
   ngOnInit() {
 
   }
 
- title = 'OwlCarousel2 in Angular7 with Custom Navigation Arrows';
- 
+ title = 'App screenshots';
+
   carouselOptions = {
     margin: 25,
     loop:true,
@@ -45,8 +45,8 @@ export class HomeComponent implements OnInit {
       }
     }
   }
- 
-  images = [
+
+  screenshots = [
     {
       image: "../../assets/img/scr-img/app-1.jpg"
     },
@@ -63,6 +63,30 @@ export class HomeComponent implements OnInit {
       image: "../../assets/img/scr-img/app-5.jpg"
     }
   ]
- 
-}
 
+  clients = [
+    {
+      image: "../../assets/img/bg-img/client-1.jpg",
+      text:"oooooooooooooo "
+    },
+    {
+      image: "../../assets/img/bg-img/client-2.jpg",
+      text:"aaaaaaaaaaaaa"
+    },
+    {
+      image: "../../assets/img/bg-img/client-3.jpg",
+      text:"bbbbbbbbbbbb"
+    },
+    {
+      image: "../../assets/img/bg-img/client-1.jpg",
+      text:"ccccccccccccccc"
+    },
+    {
+      image: "../../assets/img/bg-img/client-2.jpg",
+      text:"yyyyyyyyyyy"
+    }
+  ]
+
+
+
+}

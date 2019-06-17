@@ -1,10 +1,8 @@
 <!-- Preloader Start -->
-    
+
     <!-- ***** Header Area Start ***** -->
 
-    <header class="header_area animated" style="
-    background-color: #7550e3;
-">
+    <header class="header_area animated" style="background-color: #7550e3;">
         <div class="container-fluid">
             <div class="row align-items-center">
                 <!-- Menu Area Start -->
@@ -36,7 +34,7 @@
                 <!-- Signup btn -->
                 <div class="col-12 col-lg-2">
                     <div class="sing-up-button d-none d-lg-block" *ngIf="!(auth.isAuthenticated() || simpleLogin.isLoggedIn())">
-        
+
                         <a
           (click)="router.navigate(['/login']);" >
             Sign In

@@ -3,6 +3,15 @@
   margin: 10% auto;
 }
 
+.owl-carousel .owl-wrapper {
+    display: flex !important;
+}
+.owl-carousel .owl-item img {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+    max-width: initial;
+}
 .owl-carousel .owl-nav {
   overflow: hidden;
   height: 0px;
@@ -37,8 +46,10 @@
 .owl-carousel .next-slide:hover {
   background-position: -24px -53px;
 }
+
+
 /* --------------------------
-:: Template Name: Colorlib App - App Landing Page 
+:: Template Name: Colorlib App - App Landing Page
 :: Template Author: Colorlib
 :: Template Author URI: https://colorlib.com/
 :: Description: Colorlib is a One Page based App Landing Template. It's very clean, creative & beautiful. It's super     responsive & ultra light.
@@ -491,7 +502,7 @@ p {
     color: #ffffff;
     font-weight: 700;
     position: relative;
-    z-index: 3;
+    z-index: 99;
 }
 
 .get-start-area .email {
@@ -784,7 +795,7 @@ p {
     background: -webkit-gradient(linear, right top, left top, from(#7873ed), to(#a865e1));
     background: -o-linear-gradient(right, #7873ed, #a865e1);
     background: linear-gradient(to left, #7873ed, #a865e1);
-    padding: 180px 0 80px 0;
+    padding: 50px 0 80px 0;
     top: -100px;
 }
 

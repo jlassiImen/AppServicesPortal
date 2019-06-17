@@ -33,9 +33,9 @@
                 </div>
                 <!-- Signup btn -->
                 <div class="col-12 col-lg-2">
-                    <div class="sing-up-button d-none d-lg-block" *ngIf="!(auth.isAuthenticated() || simpleLogin.isLoggedIn())">
+                    <div class="sing-up-button d-none d-lg-block" *ngIf="!(auth.isAuthenticated() || simpleLogin.isLoggedIn())" >
 
-                        <a
+                        <a style="cursor: pointer;"
           (click)="router.navigate(['/login']);" >
             Sign In
         </a>

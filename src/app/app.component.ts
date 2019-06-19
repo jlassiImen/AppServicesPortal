@@ -46,5 +46,5 @@ carouselOptions = {
       }
     }
   }
-  
+
 }

@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { AuthGuardService } from './services/auth/auth-guard.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ServicePortalComponent } from './service-portal/service-portal.component';
+import { ServiceRestoComponent } from './service-resto/service-resto.component';
 
 
 export const ROUTES: Routes = [
@@ -18,6 +19,7 @@ export const ROUTES: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'callback', component: CallbackComponent },
   { path: 'servicePortal', component: ServicePortalComponent  },
+  { path: 'ServiceResto', component: ServiceRestoComponent  },
   { path: '**', redirectTo: '' }
 
 

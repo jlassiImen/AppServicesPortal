@@ -23,6 +23,7 @@ import { FormBuilder, FormGroup, Validators, FormControl,ReactiveFormsModule } f
 import { AuthGuardService } from './services/auth/auth-guard.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ServicePortalComponent } from './service-portal/service-portal.component';
+import { ServiceRestoComponent } from './service-resto/service-resto.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ServicePortalComponent } from './service-portal/service-portal.componen
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
-    ServicePortalComponent
+    ServicePortalComponent,
+    ServiceRestoComponent
   ],
   imports: [
     BrowserModule,

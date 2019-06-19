@@ -10,7 +10,7 @@ import { SimpleLoginService } from './services/auth/simple-login.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(public auth: AuthService,private router: Router,public simpleLogin: SimpleLoginService) {
+  constructor(public auth: AuthService,public router: Router,public simpleLogin: SimpleLoginService) {
     auth.handleAuthentication();
   }
 

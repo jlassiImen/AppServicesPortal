@@ -24,6 +24,7 @@ import { AuthGuardService } from './services/auth/auth-guard.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ServicePortalComponent } from './service-portal/service-portal.component';
 import { ServiceRestoComponent } from './service-resto/service-resto.component';
+import { TransportComponent } from './transport/transport.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ServiceRestoComponent } from './service-resto/service-resto.component';
     RegisterComponent,
     ForgotPasswordComponent,
     ServicePortalComponent,
-    ServiceRestoComponent
+    ServiceRestoComponent,
+    TransportComponent
   ],
   imports: [
     BrowserModule,

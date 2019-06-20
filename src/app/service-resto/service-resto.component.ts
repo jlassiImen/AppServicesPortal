@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl,ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from './../services/auth/auth.service';
 
@@ -9,79 +10,78 @@ import { AuthService } from './../services/auth/auth.service';
 })
 export class ServiceRestoComponent implements OnInit {
 
-  constructor(public auth: AuthService, public router: Router ) { }
+  constructor(public auth: AuthService, public router: Router, public fb: FormBuilder ) { }
+
+restaurantList =[
+{
+"name": "Hippopotamus",
+"address":"40, avenue Maréchal de Lattre de Tassigny 92360 Meudon France",
+"Speciality":"FRANÇAIS ",
+"Price":"25",
+"img":"../../assets/img/restaurant/1.jpg"
+},
+{
+"name": "Toscanini",
+"address":" 32 Rue Jean Pierre Timbaud 92130 Issy-les-Moulineaux France",
+"Speciality":"ITALIEN",
+"Price":"20",
+"img":"../../assets/img/restaurant/2.jpg"
+},
+{
+"name": "Restaurant L'Ile",
+"address":"170, quai de Stalingrad 92130 Issy-les-Moulineaux France ",
+"Speciality":"FRANÇAIS ",
+"Price":"38",
+"img":"../../assets/img/restaurant/3.jpg"
+}
+]
+   restoForm: FormGroup;
+    validation_messages = { 
+    
+    'personne': [
+      { type: 'required' }
+    ],
+    'date': [
+      { type: 'required'}
+    ],
+    'heure': [
+      { type: 'required'}
+    ],
+    'typeRestaurant': [
+      { type: 'required' }
+    ],
+    'adresse': [
+      { type: 'required' }
+    ]
+
+  }
 
   ngOnInit() {
+  this.createForms();
   }
-
- title = 'App screenshots';
-
-  carouselOptions = {
-    margin: 25,
-    loop:true,
-    autoplay: 1000,
-    nav: true,
-    navText: ["<div class='nav-btn prev-slide'></div>", "<div class='nav-btn next-slide'></div>"],
-    responsiveClass: true,
-    responsive: {
-      0: {
-        items: 1,
-        nav: true
-      },
-      600: {
-        items: 1,
-        nav: true
-      },
-      1000: {
-        items: 2,
-        nav: true
-      },
-      1500: {
-        items: 3,
-        nav: true
-      }
-    }
+//valider le formulaire
+  createForms() {
+    this.restoForm = this.fb.group({
+      personne: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      date: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      heure: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      typeRestaurant: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      adresse: new FormControl('', Validators.compose([
+        Validators.required
+      ]))
+    })
   }
-
-  screenshots = [
-    {
-      image: "../../assets/img/scr-img/app-1.jpg"
-    },
-    {
-      image: "../../assets/img/scr-img/app-2.jpg"
-    },
-    {
-      image: "../../assets/img/scr-img/app-3.jpg"
-    },
-    {
-      image: "../../assets/img/scr-img/app-4.jpg"
-    },
-    {
-      image: "../../assets/img/scr-img/app-5.jpg"
-    }
-  ]
-
-  clients = [
-    {
-      image: "../../assets/img/bg-img/client-1.jpg",
-      text:"oooooooooooooo "
-    },
-    {
-      image: "../../assets/img/bg-img/client-2.jpg",
-      text:"aaaaaaaaaaaaa"
-    },
-    {
-      image: "../../assets/img/bg-img/client-3.jpg",
-      text:"bbbbbbbbbbbb"
-    },
-    {
-      image: "../../assets/img/bg-img/client-1.jpg",
-      text:"ccccccccccccccc"
-    },
-    {
-      image: "../../assets/img/bg-img/client-2.jpg",
-      text:"yyyyyyyyyyy"
-    }
-  ]
+  //valider la recherche du resto
+  onSubmitResto(value){
+    
+  }
 
 }

@@ -1,28 +1,91 @@
+<section class="footer-contact-area section_padding_100 clearfix" id="contact" style="
+    margin-top: 5%;
+    width: 100%;">
 <div class="col-12 text-center">
-                    <!-- Heading Text  -->
-                    <div class="section-heading">
-                        <h2>Découvrez et Réservez
-                           les meilleurs restaurants au meilleur prix</h2>
-                        <div class="line-shape"></div>
-                    </div>
-                </div>
+    <div class="section-heading">
+        <h2>Discover and Book the best restaurants 
+        	<br>at the best price</h2>
+    </div>
+</div>
+<div class="col-12 text-center">
 <div class="container-fluid">
             <div class="row align-items-center">
                 <!-- Menu Area Start -->
+                <form  [formGroup]="restoForm" (ngSubmit)="onSubmitResto(restoForm.value)">
+                	<div class="contact_input_area">
+                                <div class="row">
+                                  
+                                    <!-- Single Input Area Start -->
+                                    <div class="col-md-12">
+                                        <div class="form-group">
                 <div class="col-12 col-lg-10">
                     <div class="menu_area">
-                        <div class="navbar navbar-expand-lg navbar-light" style=" background-color: #7550e3;"> 
+                        <div class="navbar navbar-expand-lg navbar-light" style="background-color: #7550e3;width: 125%;"> 
                             <div class="collapse navbar-collapse" id="ca-navbar">
-                                <ul class="navbar-nav ml-auto" id="nav">
-                                    <li class="nav-item active"><input type="number" name="personne" placeholder="Personne"></li>
-                                    <li class="nav-item"><input type="date" name="Date" placeholder="JJ/MM/AAAA"></li>
-                                    <li class="nav-item"><input type="time" name="Heure" placeholder="Heure"></li>
-                                    <li class="nav-item"><select name="Type Restaurant" id="typeRestaurant"></select></li>
+                                <ul class="navbar-nav ml-auto" >
+                                    <li class="nav-item active"><div class="form-group"><input class="form-control" type="number" name="personne" id="personne" placeholder="Personne" required></div></li>
+                                    <li class="nav-item"><div class="form-group"><input class="form-control" type="date" name="Date" id="date" placeholder="JJ/MM/AAAA" required></div></li>
+                                    <li class="nav-item"><div class="form-group"><input class="form-control" type="time" name="Heure" id="heure" placeholder="Heure" required></div></li>
+                                    <li class="nav-item"><div class="form-group"><select class="form-control" name="Type Restaurant" id="typeRestaurant" placeholder="Restaurants" required>
+                                    	<option value="All restaurants">All restaurants</option>
+                                    	<option value="Italian" id="italian">Italian</option>
+                                    	<option value="American" id="american">American</option>
+                                    	<option value="Frensh" id="frensh">Frensh</option>
+                                    	<option value="Traditional" id="tradional">traditional</option>
+                                    </select></div></li>
+                                    <li class="nav-item"><div class="form-group"><input class="form-control" type="text" name="Adresse" id="adresse"
+                                    	placeholder="Adresse, Restaurant" required></div></li>
+                                    <li class="nav-item"><div class="col-12">
+                                        <button type="submit" class="btn submit-btn" [disabled]="!userDetailsForm.valid" >Search</button>
+                                    </div></li>
+
                                 </ul>
                                 
                             </div>
                         </div>
                     </div>
                 </div>
+            </div></div></div></div>
+                    </form>
+                </div>
             </div>
         </div>
+
+<div *ngFor="let rest of restaurantList">
+     <!-- ***** Special Area End ***** -->
+     <div class="special_description_area mt-150">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="special_description_img">
+                            <img src="{{rest.img}}" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-5 ml-xl-auto">
+                        <div class="special_description_content">
+                            <h2>{{rest.name}}</h2>
+                            <p>Address :{{rest.address}}
+<br> PLAN : {{rest.speciality}}
+
+...
+<br>
+Prix moyen {{rest.price}} €</p>
+                            <div class="app-download-area">
+                                <div class="app-download-btn wow fadeInUp" data-wow-delay="0.2s">
+                                    <!-- Google Store Btn -->
+                                    <a href="#">
+                                        <i class="fa fa-search"></i>
+                                        <p class="mb-0"> View restaurant</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+    <!-- ***** Special Area End ***** -->
+
+    </section>
+    <!-- ***** Special Area End ***** -->

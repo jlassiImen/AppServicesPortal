@@ -33,10 +33,10 @@
                                     	<option value="Frensh" id="frensh">Frensh</option>
                                     	<option value="Traditional" id="tradional">traditional</option>
                                     </select></div></li>
-                                    <li class="nav-item"><div class="form-group"><input class="form-control" type="text" name="Adresse" id="adresse"
+                                    <li class="nav-item"><div class="form-group"><input class="form-control" type="text" name="Adresse" id="adresse" #restoAdrress
                                     	placeholder="Adresse, Restaurant" required></div></li>
                                     <li class="nav-item"><div class="col-12">
-                                        <button type="submit" class="btn submit-btn" [disabled]="!userDetailsForm.valid" >Search</button>
+                                        <button type="submit" class="btn" (click)="showRestaurant()" >Search</button>
                                     </div></li>
 
                                 </ul>
@@ -51,7 +51,8 @@
             </div>
         </div>
 
-<div *ngFor="let rest of restaurantList">
+<div *ngIf="showResto" >
+<div *ngFor="let rest of restaurantList" >
      <!-- ***** Special Area End ***** -->
      <div class="special_description_area mt-150">
             <div class="container">
@@ -84,6 +85,7 @@ Prix moyen {{rest.price}} €</p>
                 </div>
             </div>
         </div>
+   </div>
    </div>
     <!-- ***** Special Area End ***** -->
 

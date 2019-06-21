@@ -49,8 +49,7 @@ import { RestaurantDetailsComponent } from './restaurant-details/restaurant-deta
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES),
-    OwlModule,
-    NgAisModule.forRoot()
+    OwlModule
   ],
   providers: [AuthService,SimpleLoginService,AuthGuardService],
   bootstrap: [AppComponent]

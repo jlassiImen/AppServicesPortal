@@ -1,7 +1,8 @@
-import { Component, OnInit,ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl,ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from './../services/auth/auth.service';
+import * as places from 'places.js';
 
 @Component({
   selector: 'app-service-resto',
@@ -9,6 +10,12 @@ import { AuthService } from './../services/auth/auth.service';
   styleUrls: ['./service-resto.component.css']
 })
 export class ServiceRestoComponent implements OnInit {
+
+  @Input() q: string;
+  @ViewChild('restoAdrress') qElementRef: ElementRef;
+ private RestoAddressConfig: any;
+
+ showResto=false;
 
   constructor(public auth: AuthService, public router: Router, public fb: FormBuilder ) { }
 
@@ -57,9 +64,20 @@ restaurantList =[
   }
 
   ngOnInit() {
+  this.RestoAddressConfig = places({
+      apiKey: '3d19b788046b9694c17de41e5dff48c9',
+      appId: 'pl0TT9QPY8U9',
+      indexName: 'instant_search',
+      routing: true,
+      container: this.qElementRef.nativeElement,
+    });
+
   this.createForms();
   }
-//valider le formulaire
+
+showRestaurant(){
+  this.showResto = true;
+}
   createForms() {
     this.restoForm = this.fb.group({
       personne: new FormControl('', Validators.compose([

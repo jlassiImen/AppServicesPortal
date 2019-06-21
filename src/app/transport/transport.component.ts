@@ -1,5 +1,5 @@
 import { Style, Icon } from 'ol/style';
-import { Component, ElementRef, Input, OnInit, Output, ViewChild, OnDestroy } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MeteoService } from '../services/meteoServices/meteo.service';
@@ -33,6 +33,7 @@ export class TransportComponent implements OnInit {
   constructor(public router: Router, private fb: FormBuilder, public meteo: MeteoService) { }
 
   ngOnInit() {
+  
     this.algoliaFromAddressConfig = places({
       apiKey: '3d19b788046b9694c17de41e5dff48c9',
       appId: 'pl0TT9QPY8U9',

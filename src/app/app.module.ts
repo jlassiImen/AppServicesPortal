@@ -27,6 +27,7 @@ import { ServiceRestoComponent } from './service-resto/service-resto.component';
 import { TransportComponent } from './transport/transport.component';
 import { RestaurantDetailsComponent } from './restaurant-details/restaurant-details.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,8 @@ import { RestaurantDetailsComponent } from './restaurant-details/restaurant-deta
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES),
-    OwlModule
+    OwlModule,
+    NgAisModule.forRoot()
   ],
   providers: [AuthService,SimpleLoginService,AuthGuardService],
   bootstrap: [AppComponent]

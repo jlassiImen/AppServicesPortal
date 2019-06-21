@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient , HttpHeaders} from '@angular/common/http'
 
 import { Observable, Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
@@ -13,15 +13,31 @@ export class MeteoService {
   
   constructor(public http:HttpClient) { }
 
+  getIpLocation() :Observable<any>{  
+
+
+     return this.http.get("http://extreme-ip-lookup.com/json/").map(response => {
+      return response;  
+      });
+  }
 
  // detecter la position du client à l'aide du navigateur
   detectLocation(callback): void  {
-    if (window.navigator.geolocation) {
-        window.navigator.geolocation.getCurrentPosition((position)=>{
+
+    const options = {
+      enableHighAccuracy: true, maximumAge: 0, timeout: 10000000
+    };
+
+    if (navigator.geolocation) {
+
+        navigator.geolocation.getCurrentPosition(function(position) {
           callback(position.coords);
-        });
+        }, function error(msg){
+          alert('Please enable your GPS position future.');
+
+        }, options);
     } else {
-       alert("No support for geolocation")
+       alert("No support for geolocation");
     }
   }  
 

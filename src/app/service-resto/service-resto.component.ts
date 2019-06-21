@@ -23,8 +23,8 @@ restaurantList =[
 {
 "name": "Toscanini",
 "address":" 32 Rue Jean Pierre Timbaud 92130 Issy-les-Moulineaux France",
-"Speciality":"ITALIEN",
-"Price":"20",
+"speciality":"ITALIEN",
+"price":"20",
 "img":"../../assets/img/restaurant/2.jpg"
 },
 {

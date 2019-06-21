@@ -9,6 +9,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ServicePortalComponent } from './service-portal/service-portal.component';
 import { ServiceRestoComponent } from './service-resto/service-resto.component';
 import { TransportComponent } from './transport/transport.component';
+import { RestaurantDetailsComponent } from './restaurant-details/restaurant-details.component';
+
 
 export const ROUTES: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +23,7 @@ export const ROUTES: Routes = [
   { path: 'servicePortal', component: ServicePortalComponent  },
   { path: 'serviceResto', component: ServiceRestoComponent  },
   { path: 'transport', component: TransportComponent  },
+  { path: 'RestaurantDetails', component: RestaurantDetailsComponent  },
   { path: '**', redirectTo: '' }
 
 

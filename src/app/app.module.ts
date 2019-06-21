@@ -25,6 +25,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ServicePortalComponent } from './service-portal/service-portal.component';
 import { ServiceRestoComponent } from './service-resto/service-resto.component';
 import { TransportComponent } from './transport/transport.component';
+import { RestaurantDetailsComponent } from './restaurant-details/restaurant-details.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { TransportComponent } from './transport/transport.component';
     ForgotPasswordComponent,
     ServicePortalComponent,
     ServiceRestoComponent,
-    TransportComponent
+    TransportComponent,
+    RestaurantDetailsComponent
   ],
   imports: [
     BrowserModule,

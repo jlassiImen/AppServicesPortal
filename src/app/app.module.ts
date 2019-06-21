@@ -25,6 +25,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ServicePortalComponent } from './service-portal/service-portal.component';
 import { ServiceRestoComponent } from './service-resto/service-resto.component';
 import { TransportComponent } from './transport/transport.component';
+import { NgAisModule } from 'angular-instantsearch';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { TransportComponent } from './transport/transport.component';
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES),
-    OwlModule
+    OwlModule,
+    NgAisModule.forRoot()
   ],
   providers: [AuthService,SimpleLoginService,AuthGuardService],
   bootstrap: [AppComponent]

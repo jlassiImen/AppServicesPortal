@@ -1,70 +1,77 @@
 <section class="app-screenshots-area bg-white section_padding_0_100 clearfix" id="screenshot" style="
     margin-top: 5%;
     width: 100%;">
-          <div class="container" style="max-height: 10px;">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <!-- Heading Text  -->
-                    <div class="section-heading">
-                        <h2>Hippopotamus Meudon-Vélizy</h2>
-                        <div class="line-shape"></div>
-                    </div>
+    <div class="container" style="max-height: 10px;">
+        <div class="row">
+            <div class="col-12 text-center">
+                <!-- Heading Text -->
+                <div class="section-heading">
+                    <h2>Hippopotamus Meudon-Vélizy</h2>
+                    <div class="line-shape"></div>
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-6" style="max-width: 100%;">
-                    <!-- App Screenshots Slides  -->
-                <owl-carousel [options]="carouselOptions" [items]="screenshots" [carouselClasses]="['owl-theme', 'row', 'sliding']">
-    <div class="item" *ngFor="let image of screenshots;let i= index">
-      <img class="slide-image" src="{{image.image}}" >
-      <div class="slide-text">
-        <h4>{{image.text}}</h4>
-      </div>
     </div>
-  </owl-carousel>
-                </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6" style="max-width: 100%;">
+                <!-- App Screenshots Slides -->
+                <owl-carousel [options]="carouselOptions" [items]="screenshots"
+                    [carouselClasses]="['owl-theme', 'row', 'sliding']">
+                    <div class="item" *ngFor="let image of screenshots;let i= index">
+                        <img class="slide-image" src="{{image.image}}">
+                        <div class="slide-text">
+                            <h4>{{image.text}}</h4>
+                        </div>
+                    </div>
+                </owl-carousel>
             </div>
         </div>
-    </section>
-    <section class="app-screenshots-area bg-white section_padding_0_100 clearfix" >
-        <div class="col-12 text-center">
-                    
+    </div>
+</section>
+<section class="app-screenshots-area bg-white section_padding_0_100 clearfix">
+    <div class="col-12 text-center">
 
-                            <button type="submit" class="btn submit-btn"
-
-          (click)="router.navigate(['/register']);" >
+        <button type="submit" class="btn submit-btn" (click)="router.navigate(['/register']);">
             Reserve a table
         </button>
-        
-         <button type="submit" class="btn submit-btn"
 
-          (click)="router.navigate(['/register']);" >
+        <button type="submit" class="btn submit-btn" (click)="router.navigate(['/register']);">
             Menu delivered
         </button>
-<br>
-        <p>Address :40, avenue Maréchal de Lattre de Tassigny 92360 Meudon France 
+        <br>
+        <p>
+            Address :40, avenue Maréchal de Lattre de Tassigny 92360 Meudon France
             <br>
-            PLAN : Français <br>
-         Prix moyen 25€</p>
-         <h4>Menu</h4>
-         <h6>Entree</h6>
-         <p>OEUF POCHÉ, SAUCE BASQUAISE
-6,2 € <br>
-PETIT CARPACCIO DE BOEUF 9€<br>
-Fines tranches de boeuf, Parmesan
-6,9 €<br>
-CROUSTILLANT DE CHÈVRE CHAUD 7€
-</p>
-<h6>Plat</h6>
-         <p>OEUF POCHÉ, SAUCE BASQUAISE
-6,2 € <br>
-PETIT CARPACCIO DE BOEUF 9€<br>
-Fines tranches de boeuf, Parmesan
-6,9 €<br>
-CROUSTILLANT DE CHÈVRE CHAUD 7€
-</p>
+            PLAN : Français
+            <br>
+            Prix moyen 25€
+        </p>
+        <h4>Menu</h4>
+        <h6>Entree</h6>
+        <p>
+            OEUF POCHÉ, SAUCE BASQUAISE
+            6,2 €
+            <br>
+            PETIT CARPACCIO DE BOEUF 9€
+            <br>
+            Fines tranches de boeuf, Parmesan
+            6,9 €
+            <br>
+            CROUSTILLANT DE CHÈVRE CHAUD 7€
+        </p>
+        <h6>Plat</h6>
+        <p>
+            OEUF POCHÉ, SAUCE BASQUAISE
+            6,2 €
+            <br>
+            PETIT CARPACCIO DE BOEUF 9€
+            <br>
+            Fines tranches de boeuf, Parmesan
+            6,9 €
+            <br>
+            CROUSTILLANT DE CHÈVRE CHAUD 7€
+        </p>
 
-       </div>             
-      </section>      
+    </div>
+</section>

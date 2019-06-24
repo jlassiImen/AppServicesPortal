@@ -1,82 +1,137 @@
 <!-- Preloader Start -->
 
-    <!-- ***** Header Area Start ***** -->
+<!-- ***** Header Area Start ***** -->
 
-    <header class="header_area animated" style="background-color: #7550e3;">
-        <div class="container-fluid">
-            <div class="row align-items-center">
-                <!-- Menu Area Start -->
-                <div class="col-12 col-lg-10">
-                    <div class="menu_area">
-                        <nav class="navbar navbar-expand-lg navbar-light">
-                            <!-- Logo -->
-                            <img src="../../assets/img/logo.png" alt="" style="width: 80px;">
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ca-navbar" aria-controls="ca-navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                            <!-- Menu Area -->
-                            <div class="collapse navbar-collapse" id="ca-navbar">
-                                <ul class="navbar-nav ml-auto" id="nav">
-                                    <li class="nav-item active"><a class="nav-link" href="#home">Home</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#screenshot">Screenshot</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
-                                    <li class="nav-item"><a class="nav-link" style="cursor: pointer;"(click)="router.navigate(['/servicePortal']);">Services</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                                </ul>
-                                
-                            </div>
-                        </nav>
-                    </div>
+<header class="header_area animated" style="background-color: #7550e3;">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <!-- Menu Area Start -->
+            <div class="col-12 col-lg-10">
+                <div class="menu_area">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <!-- Logo -->
+                        <img src="../../assets/img/logo.png" alt style="width: 80px;">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ca-navbar"
+                            aria-controls="ca-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <!-- Menu Area -->
+                        <div class="collapse navbar-collapse" id="ca-navbar">
+                            <ul class="navbar-nav ml-auto" id="nav">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#home">
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#about">
+                                        About
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#features">
+                                        Features
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#screenshot">
+                                        Screenshot
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#pricing">
+                                        Pricing
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#testimonials">
+                                        Testimonials
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="cursor: pointer;"
+                                        (click)="router.navigate(['/servicePortal']);">
+                                        Services
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#contact">
+                                        Contact
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </nav>
                 </div>
-                <!-- Signup btn -->
-                <div class="col-12 col-lg-2">
-                    <div class="sing-up-button d-none d-lg-block" *ngIf="!(auth.isAuthenticated() || simpleLogin.isLoggedIn())" >
-
-                        <a style="cursor: pointer;"
-          (click)="router.navigate(['/login']);" >
-            Sign In
-        </a>
             </div>
-        <div class="sing-up-button d-none d-lg-block" *ngIf="auth.isAuthenticated() || simpleLogin.isLoggedIn()">
-        <a
-          (click)="simpleLogin.logout();" >
-            Logout
-        </a>
-                    </div>
+            <!-- Signup btn -->
+            <div class="col-12 col-lg-2">
+                <div class="sing-up-button d-none d-lg-block"
+                    *ngIf="!(auth.isAuthenticated() || simpleLogin.isLoggedIn())">
+
+                    <a style="cursor: pointer;" (click)="router.navigate(['/login']);">
+                        Sign In
+                    </a>
+                </div>
+                <div class="sing-up-button d-none d-lg-block"
+                    *ngIf="auth.isAuthenticated() || simpleLogin.isLoggedIn()">
+                    <a (click)="simpleLogin.logout();">Logout</a>
                 </div>
             </div>
         </div>
-    </header>
-    <!-- ***** Header Area End ***** -->
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->
 
-  <router-outlet></router-outlet>
-   <!-- ***** Footer Area Start ***** -->
-    <footer class="footer-social-icon text-center section_padding_70 clearfix">
-        <!-- footer logo -->
-        <div class="footer-text">
-            <h2>API Service Portal</h2>
-        </div>
-        <!-- social icon-->
-        <div class="footer-social-icon">
-            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="#"><i class="active fa fa-twitter" aria-hidden="true"></i></a>
-            <a href="#"> <i class="fa fa-instagram" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-        </div>
-        <div class="footer-menu">
-            <nav>
-                <ul>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Terms &amp; Conditions</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-        <!-- Foooter Text-->
-        <div class="copyright-text">
-            <!-- ***** Removing this text is now allowed! This template is licensed under CC BY 3.0 ***** -->
-            <p>Copyright ©2019 Jasmine Conseil. Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
-        </div>
-    </footer>
+<router-outlet></router-outlet>
+<!-- ***** Footer Area Start ***** -->
+<footer class="footer-social-icon text-center section_padding_70 clearfix">
+    <!-- footer logo -->
+    <div class="footer-text">
+        <h2>API Service Portal</h2>
+    </div>
+    <!-- social icon -->
+    <div class="footer-social-icon">
+        <a href="#">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+        </a>
+        <a href="#">
+            <i class="active fa fa-twitter" aria-hidden="true"></i>
+        </a>
+        <a href="#">
+            <i class="fa fa-instagram" aria-hidden="true"></i>
+        </a>
+        <a href="#">
+            <i class="fa fa-google-plus" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="footer-menu">
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Terms &amp; Conditions</a>
+                </li>
+                <li>
+                    <a href="#">Privacy Policy</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <!-- Foooter Text -->
+    <div class="copyright-text">
+        <!-- ***** Removing this text is now allowed! This template is licensed under CC BY 3.0 ***** -->
+        <p>
+            Copyright ©2019 Jasmine Conseil. Designed by
+            <a href="https://colorlib.com" target="_blank">
+                Colorlib
+            </a>
+        </p>
+    </div>
+</footer>

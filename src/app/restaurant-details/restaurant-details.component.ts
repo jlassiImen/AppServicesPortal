@@ -13,11 +13,11 @@ export class RestaurantDetailsComponent implements OnInit {
   ngOnInit() {
   }
 
- title = 'App screenshots';
+  title = 'App screenshots';
 
   carouselOptions = {
     margin: 25,
-    loop:true,
+    loop: true,
     autoplay: 1000,
     nav: true,
     navText: ["<div class='nav-btn prev-slide'></div>", "<div class='nav-btn next-slide'></div>"],

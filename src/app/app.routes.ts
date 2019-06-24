@@ -25,6 +25,4 @@ export const ROUTES: Routes = [
   { path: 'transport', component: TransportComponent  },
   { path: 'RestaurantDetails', component: RestaurantDetailsComponent  },
   { path: '**', redirectTo: '' }
-
-
 ];

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders  } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { Router } from '@angular/router';
@@ -9,14 +9,14 @@ import { Router } from '@angular/router';
 })
 export class SimpleLoginService {
 
-    isAuthenticated=false;
-    
-  constructor(private http: HttpClient, private router: Router) {}
+  isAuthenticated = false;
+
+  constructor(private http: HttpClient, private router: Router) { }
 
   public register(user: any): Observable<any> {
     const apiURL = '/registerUser';
     return this.http.post(apiURL, user);
-     
+
   }
 
   public authenticate(user: any): Observable<any> {
@@ -30,25 +30,25 @@ export class SimpleLoginService {
   }
 
   public isLoggedIn() {
-    if (localStorage.getItem('currentUser')) {          
-            return true;
-        }
-        else {
-            return false;
-        }
+    if (localStorage.getItem('currentUser')) {
+      return true;
+    }
+    else {
+      return false;
+    }
 
   }
 
   public forgotPassword(user: any): Observable<any> {
     const apiURL = '/forgotPassword';
     return this.http.post(apiURL, user);
-     
+
   }
-  
-    public resetPassword(user: any): Observable<any> {
+
+  public resetPassword(user: any): Observable<any> {
     const apiURL = '/resetPassword';
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
-    return this.http.post(apiURL, user, {headers});
-     
+    return this.http.post(apiURL, user, { headers });
+
   }
 }

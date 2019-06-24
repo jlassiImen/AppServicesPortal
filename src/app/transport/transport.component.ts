@@ -34,7 +34,7 @@ export class TransportComponent implements OnInit {
   constructor(public router: Router, private fb: FormBuilder, public meteo: MeteoService) { }
 
   ngOnInit() {
-  
+
     this.algoliaFromAddressConfig = places({
       apiKey: environment.autoCompleteToken,
       appId: environment.autoCompleteAppId,
@@ -72,23 +72,23 @@ export class TransportComponent implements OnInit {
 
     const layer = new ol.layer.Vector({
       source: new ol.source.Vector({
-          features: [
-              new ol.Feature({
-                style: new ol.style.Style({
-                  image: new ol.style.Icon({
-                  anchor: [0.5, 0.5],
-                  anchorXUnits: "fraction",
-                  anchorYUnits: "fraction",
-                  src: "https://upload.wikimedia.org/wikipedia/commons/e/ec/RedDot.svg"
-                  })
-                  }),
-                  geometry: new ol.geom.Point(ol.proj.fromLonLat([+(position.longitude), +(position.latitude)] ))
+        features: [
+          new ol.Feature({
+            style: new ol.style.Style({
+              image: new ol.style.Icon({
+                anchor: [0.5, 0.5],
+                anchorXUnits: "fraction",
+                anchorYUnits: "fraction",
+                src: "https://upload.wikimedia.org/wikipedia/commons/e/ec/RedDot.svg"
               })
-          ]
+            }),
+            geometry: new ol.geom.Point(ol.proj.fromLonLat([+(position.longitude), +(position.latitude)]))
+          })
+        ]
       }),
       zIndex: 999
-  });
-  this.map.addLayer(layer);
+    });
+    this.map.addLayer(layer);
 
 
   }

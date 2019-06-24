@@ -10,7 +10,7 @@ import { SimpleLoginService } from './services/auth/simple-login.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(public auth: AuthService,public router: Router,public simpleLogin: SimpleLoginService) {
+  constructor(public auth: AuthService, public router: Router, public simpleLogin: SimpleLoginService) {
     auth.handleAuthentication();
   }
 
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-carouselOptions = {
+  carouselOptions = {
     margin: 25,
     nav: true,
     navText: ["<div class='nav-btn prev-slide'></div>", "<div class='nav-btn next-slide'></div>"],

@@ -1,60 +1,63 @@
 <section class="special-area bg-white section_padding_100" id="about" style="margin-top: 9%;">
-  <div class="container">
-      <div class="row">
-          <div class="col-12">
-              <!-- Section Heading Area -->
-              <div class="section-heading text-center">
-                  <h3>Where are you going ?</h3>
-                  <div class="line-shape"></div>
-              </div>
-          </div>
-      </div>
-      <div class="contact_from">
-          <form   [formGroup]="rideForm" (ngSubmit)="onSubmitRideForm(rideForm.value)">
-      <div class="row">
-        
-          <div class="col-12 col-md-4">
-             
-              <div class="single-special text-center wow fadeInUp" >
-                  <div class="single-icon">
-                      <i class="ti-location-pin" aria-hidden="true"></i>
-                  </div>
-                 
-                  
-                  <label class="container"> 
-                    <input type="checkbox" [(ngModel)]="usePosition"  data-md-icheck (change)="detectUsePosition($event)"/> use your position ?
-                    </label>
-                
-                    
-                    <input type="search" #fromAdrress  [(ngModel)]="fromAddress" class="form-control" formControlName="fromAddress"  placeholder="pickup address" required />
-                 
-                
-              
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!-- Section Heading Area -->
+                <div class="section-heading text-center">
+                    <h3>Where are you going ?</h3>
+                    <div class="line-shape"></div>
                 </div>
-          </div>
-          <div class="col-12 col-md-4">
-          
-              <div class="single-special text-center wow fadeInUp" >
-                  <div class="single-icon">
-                    <i class="ti-location-pin" aria-hidden="true"></i>
-                </div>
-                <input type="search" #destinationAdrress class="form-control"   placeholder="Your destination" formControlName="toAddress" required />
-                  
-              </div>
-          
-      </div>
-      <div class="col-12 col-md-4">
-            <div class="single-special text-center wow fadeInUp" >
-                <div class="single-icon">
-                  <i class="ti-search" aria-hidden="true"></i>
-              </div>
-              <button type="submit" class="btn submit-btn" [disabled]="!rideForm.valid" >Search</button>  
+            </div>
+        </div>
+        <div class="contact_from">
+            <form [formGroup]="rideForm" (ngSubmit)="onSubmitRideForm(rideForm.value)">
+                <div class="row">
 
-           </div> 
-          </div> 
-        </div> 
-    </form>
-    <div id="map" class="map"></div>
-  </div> 
-  </div>
-</section>                
+                    <div class="col-12 col-md-4">
+
+                        <div class="single-special text-center wow fadeInUp">
+                            <div class="single-icon">
+                                <i class="ti-location-pin" aria-hidden="true"></i>
+                            </div>
+
+
+                            <label class="container">
+                                <input type="checkbox" [(ngModel)]="usePosition" data-md-icheck
+                                    (change)="detectUsePosition($event)" /> use your position ?
+                            </label>
+
+
+                            <input type="search" #fromAdrress [(ngModel)]="fromAddress" class="form-control"
+                                formControlName="fromAddress" placeholder="pickup address" required />
+
+
+
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+
+                        <div class="single-special text-center wow fadeInUp">
+                            <div class="single-icon">
+                                <i class="ti-location-pin" aria-hidden="true"></i>
+                            </div>
+                            <input type="search" #destinationAdrress class="form-control" placeholder="Your destination"
+                                formControlName="toAddress" required />
+
+                        </div>
+
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="single-special text-center wow fadeInUp">
+                            <div class="single-icon">
+                                <i class="ti-search" aria-hidden="true"></i>
+                            </div>
+                            <button type="submit" class="btn submit-btn" [disabled]="!rideForm.valid">Search</button>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div id="map" class="map"></div>
+        </div>
+    </div>
+</section>

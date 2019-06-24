@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl,ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from './../services/auth/auth.service';
 import * as places from 'places.js';
@@ -14,46 +14,46 @@ export class RestaurationComponent implements OnInit {
 
   @Input() q: string;
   @ViewChild('restoAdrress') qElementRef: ElementRef;
- private RestoAddressConfig: any;
+  private RestoAddressConfig: any;
 
- showResto=false;
+  showResto = false;
 
-  constructor(public auth: AuthService, public router: Router, public fb: FormBuilder ) { }
+  constructor(public auth: AuthService, public router: Router, public fb: FormBuilder) { }
 
-restaurantList =[
-{
-"name": "Hippopotamus",
-"address":"40, avenue Maréchal de Lattre de Tassigny 92360 Meudon France",
-"Speciality":"FRANÇAIS ",
-"Price":"25",
-"img":"../../assets/img/restaurant/1.jpg"
-},
-{
-"name": "Toscanini",
-"address":" 32 Rue Jean Pierre Timbaud 92130 Issy-les-Moulineaux France",
-"speciality":"ITALIEN",
-"price":"20",
-"img":"../../assets/img/restaurant/2.jpg"
-},
-{
-"name": "Restaurant L'Ile",
-"address":"170, quai de Stalingrad 92130 Issy-les-Moulineaux France ",
-"Speciality":"FRANÇAIS ",
-"Price":"38",
-"img":"../../assets/img/restaurant/3.jpg"
-}
-]
-   restoForm: FormGroup;
-    validation_messages = { 
-    
+  restaurantList = [
+    {
+      "name": "Hippopotamus",
+      "address": "40, avenue Maréchal de Lattre de Tassigny 92360 Meudon France",
+      "Speciality": "FRANÇAIS ",
+      "Price": "25",
+      "img": "../../assets/img/restaurant/1.jpg"
+    },
+    {
+      "name": "Toscanini",
+      "address": " 32 Rue Jean Pierre Timbaud 92130 Issy-les-Moulineaux France",
+      "speciality": "ITALIEN",
+      "price": "20",
+      "img": "../../assets/img/restaurant/2.jpg"
+    },
+    {
+      "name": "Restaurant L'Ile",
+      "address": "170, quai de Stalingrad 92130 Issy-les-Moulineaux France ",
+      "Speciality": "FRANÇAIS ",
+      "Price": "38",
+      "img": "../../assets/img/restaurant/3.jpg"
+    }
+  ]
+  restoForm: FormGroup;
+  validation_messages = {
+
     'personne': [
       { type: 'required' }
     ],
     'date': [
-      { type: 'required'}
+      { type: 'required' }
     ],
     'heure': [
-      { type: 'required'}
+      { type: 'required' }
     ],
     'typeRestaurant': [
       { type: 'required' }
@@ -65,20 +65,26 @@ restaurantList =[
   }
 
   ngOnInit() {
+<<<<<<< HEAD:src/app/restauration/restauration.component.ts
   this.RestoAddressConfig = places({
       apiKey: environment.autoCompleteToken,
       appId: environment.autoCompleteAppId,
+=======
+    this.RestoAddressConfig = places({
+      apiKey: '3d19b788046b9694c17de41e5dff48c9',
+      appId: 'pl0TT9QPY8U9',
+>>>>>>> f254637c1af9100b9b371c9fa1cb2c8286c9aea5:src/app/service-resto/service-resto.component.ts
       indexName: 'instant_search',
       routing: true,
       container: this.qElementRef.nativeElement,
     });
 
-  this.createForms();
+    this.createForms();
   }
 
-showRestaurant(){
-  this.showResto = true;
-}
+  showRestaurant() {
+    this.showResto = true;
+  }
   createForms() {
     this.restoForm = this.fb.group({
       personne: new FormControl('', Validators.compose([
@@ -99,8 +105,8 @@ showRestaurant(){
     })
   }
   //valider la recherche du resto
-  onSubmitResto(value){
-    
+  onSubmitResto(value) {
+
   }
 
 }

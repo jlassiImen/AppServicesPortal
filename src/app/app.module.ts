@@ -23,7 +23,7 @@ import { FormBuilder, FormGroup, Validators, FormControl,ReactiveFormsModule } f
 import { AuthGuardService } from './services/auth/auth-guard.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ServicePortalComponent } from './service-portal/service-portal.component';
-import { ServiceRestoComponent } from './service-resto/service-resto.component';
+import { RestaurationComponent } from './restauration/restauration.component';
 import { TransportComponent } from './transport/transport.component';
 import { RestaurantDetailsComponent } from './restaurant-details/restaurant-details.component';
 
@@ -38,7 +38,7 @@ import { RestaurantDetailsComponent } from './restaurant-details/restaurant-deta
     RegisterComponent,
     ForgotPasswordComponent,
     ServicePortalComponent,
-    ServiceRestoComponent,
+    RestaurationComponent,
     TransportComponent,
     RestaurantDetailsComponent
   ],

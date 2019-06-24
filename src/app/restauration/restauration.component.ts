@@ -3,13 +3,14 @@ import { FormBuilder, FormGroup, Validators, FormControl,ReactiveFormsModule } f
 import { Router } from '@angular/router';
 import { AuthService } from './../services/auth/auth.service';
 import * as places from 'places.js';
+import { environment } from '../../environments/environment';
 
 @Component({
-  selector: 'app-service-resto',
-  templateUrl: './service-resto.component.html',
-  styleUrls: ['./service-resto.component.css']
+  selector: 'app-restauration',
+  templateUrl: './restauration.component.html',
+  styleUrls: ['./restauration.component.css']
 })
-export class ServiceRestoComponent implements OnInit {
+export class RestaurationComponent implements OnInit {
 
   @Input() q: string;
   @ViewChild('restoAdrress') qElementRef: ElementRef;
@@ -65,8 +66,8 @@ restaurantList =[
 
   ngOnInit() {
   this.RestoAddressConfig = places({
-      apiKey: '3d19b788046b9694c17de41e5dff48c9',
-      appId: 'pl0TT9QPY8U9',
+      apiKey: environment.autoCompleteToken,
+      appId: environment.autoCompleteAppId,
       indexName: 'instant_search',
       routing: true,
       container: this.qElementRef.nativeElement,

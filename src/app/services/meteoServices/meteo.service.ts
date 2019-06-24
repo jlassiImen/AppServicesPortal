@@ -13,14 +13,6 @@ export class MeteoService {
   
   constructor(public http:HttpClient) { }
 
-  getIpLocation() :Observable<any>{  
-
-
-     return this.http.get("http://extreme-ip-lookup.com/json/").map(response => {
-      return response;  
-      });
-  }
-
  // detecter la position du client à l'aide du navigateur
   detectLocation(callback): void  {
 

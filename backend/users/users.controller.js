@@ -226,49 +226,7 @@ var users = {
             })
     })
 },
-reserveResto: function(req, res, next) {
-        var personne = req.body.personne || '';
-        var date = req.body.date || '';
-        var heure = req.body.heure || '';
-        var typeRestaurant = req.body.typeRestaurant || '';
-        var adresse = req.body.adresse || '';
 
-        if (personne == '' || date == '' || heure == '' || typeRestaurant == '' || adresse == '' ) {
-            res.status(401);
-            res.json({
-                "status": 401,
-                "message": "Invalid credentials"
-            });
-        }
-
-        Restaurant.findOne({
-            'adresse': adresse
-        }, function(err, restoFromDB) {
-            if (restoFromDB) {
-                if (compareSync(password, userFromDB.password)) {
-                    res.status(200);
-                    res.json({
-                        "status": 200,
-                        "message": "success"
-                    });
-                } else {
-                    res.status(401);
-                    res.json({
-                        "status": 401,
-                        "message": "Invalid credentials"
-                    });
-                }
-
-            } else {
-                console.log('Result does not exist');
-                res.status(401);
-                res.json({
-                    "status": 401,
-                    "message": "Invalid credentials"
-                });
-            }
-        });
-    }
 }
 
 module.exports = users;

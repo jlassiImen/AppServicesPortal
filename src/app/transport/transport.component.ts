@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MeteoService } from '../services/meteoServices/meteo.service';
 import * as places from 'places.js';
+import { environment } from '../../environments/environment';
 
 declare var ol: any;
 
@@ -35,16 +36,16 @@ export class TransportComponent implements OnInit {
   ngOnInit() {
   
     this.algoliaFromAddressConfig = places({
-      apiKey: '3d19b788046b9694c17de41e5dff48c9',
-      appId: 'pl0TT9QPY8U9',
+      apiKey: environment.autoCompleteToken,
+      appId: environment.autoCompleteAppId,
       indexName: 'instant_search',
       routing: true,
       container: this.qElementRef.nativeElement,
     });
 
     this.algoliaToAddressConfig = places({
-      apiKey: '3d19b788046b9694c17de41e5dff48c9',
-      appId: 'pl0TT9QPY8U9',
+      apiKey: environment.autoCompleteToken,
+      appId: environment.autoCompleteAppId,
       indexName: 'instant_search',
       routing: true,
       container: this.qElementRef2.nativeElement,
@@ -113,6 +114,6 @@ export class TransportComponent implements OnInit {
   }
 
   onSubmitRideForm(value) {
-    console.log('fffffffffffff         ' + JSON.stringify(value));
+  
   }
 }

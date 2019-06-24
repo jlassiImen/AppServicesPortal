@@ -1,5 +1,5 @@
-import { Component, OnInit,ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl,ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { SimpleLoginService } from './../services/auth/simple-login.service';
 import { Router } from '@angular/router';
@@ -12,10 +12,10 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(public router: Router,private fb: FormBuilder,public simpleLogin: SimpleLoginService) { }
+  constructor(public router: Router, private fb: FormBuilder, public simpleLogin: SimpleLoginService) { }
   userDetailsForm: FormGroup;
-    validation_messages = { 
-    
+  validation_messages = {
+
     'firstName': [
       { type: 'required', message: 'first name is required' }
     ],
@@ -34,9 +34,9 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-  this.createForms();
+    this.createForms();
   }
-//valider le formulaire
+  //valider le formulaire
   createForms() {
     this.userDetailsForm = this.fb.group({
       firstName: new FormControl('', Validators.compose([
@@ -56,12 +56,12 @@ export class RegisterComponent implements OnInit {
       ]))
     })
   }
-//appel du service simpleLogin pour la création du compte utilisateur
-  onSubmitUserDetails(value){
+  //appel du service simpleLogin pour la création du compte utilisateur
+  onSubmitUserDetails(value) {
     this.simpleLogin.register(value).subscribe((response) => {
-      if(response.message == "success"){
-      localStorage.setItem('currentUser',"login");
-      this.router.navigateByUrl('/meteo');
+      if (response.message == "success") {
+        localStorage.setItem('currentUser', "login");
+        this.router.navigateByUrl('/meteo');
       }
       else {
         alert("Invalid credentials");
@@ -70,7 +70,6 @@ export class RegisterComponent implements OnInit {
       console.error(err);
     });
   }
-
 
 
 }

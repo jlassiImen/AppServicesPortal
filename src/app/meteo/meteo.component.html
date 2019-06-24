@@ -1,56 +1,57 @@
-	<div class="w3ls-weather" *ngIf="auth.isAuthenticated() || simpleLogin.isLoggedIn() " >
-		<div class="w3ls-weather-agileinfo" align="center" style="margin: 10%"> 
-			<div class="weather-left">
-				<div class="weather-left-text">
-					<h4>{{address.region}} {{address.country}} </h4>
-					<h5> {{ curentDate | date:'medium' }}</h5>
-				</div>
-				<ul class="report">
-					<li><a href="#">{{meteoDetails.temperature}} °C</a></li>
-				</ul>
-			</div>
-			<div class="weather-right">
-				<ul>
-					<li>
-						<figure class="icons">
-							<canvas id="partly-cloudy-day" width="60" height="60"></canvas>
-						</figure>
-						<h3>{{meteoDetails.temperature}} °C</h3>
-						<div class="clear"></div>
-					</li>
-					<li>
-						<figure class="icons">
-							<canvas id="clear-day" width="40" height="40"></canvas>
-						</figure>
-						<div class="weather-text">
-							<h4>Humidity</h4>
-							<h5>{{meteoDetails.humidite}}</h5>
-						</div>
-						<div class="clear"></div>
-					</li>
-					<li>
-						<figure class="icons">
-							<canvas id="snow" width="40" height="40"></canvas>
-						</figure>
-						<div class="weather-text">
-							<h4>Wind Speed</h4>
-							<h5>{{meteoDetails.vitesseVent}}</h5>
-						</div>
-						<div class="clear"></div>
-					</li>
-					<li>
-						<figure class="icons">
-							<canvas id="partly-cloudy-night" width="40" height="40"></canvas>
-						</figure>
-						<div class="weather-text">
-							<h4>Description</h4>
-							<h5>{{meteoDetails.description}}</h5>
-						</div>
-						<div class="clear"></div>
-					</li>
-				</ul>
-			</div>
-			<div class="clear"></div>
-		</div>  
-	</div>	
-	
+<div class="w3ls-weather" *ngIf="auth.isAuthenticated() || simpleLogin.isLoggedIn() ">
+    <div class="w3ls-weather-agileinfo" align="center" style="margin: 10%">
+        <div class="weather-left">
+            <div class="weather-left-text">
+                <h4>{{address.region}} {{address.country}}</h4>
+                <h5>{{ curentDate | date:'medium' }}</h5>
+            </div>
+            <ul class="report">
+                <li>
+                    <a href="#">{{meteoDetails.temperature}} °C</a>
+                </li>
+            </ul>
+        </div>
+        <div class="weather-right">
+            <ul>
+                <li>
+                    <figure class="icons">
+                        <canvas id="partly-cloudy-day" width="60" height="60"></canvas>
+                    </figure>
+                    <h3>{{meteoDetails.temperature}} °C</h3>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <figure class="icons">
+                        <canvas id="clear-day" width="40" height="40"></canvas>
+                    </figure>
+                    <div class="weather-text">
+                        <h4>Humidity</h4>
+                        <h5>{{meteoDetails.humidite}}</h5>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <figure class="icons">
+                        <canvas id="snow" width="40" height="40"></canvas>
+                    </figure>
+                    <div class="weather-text">
+                        <h4>Wind Speed</h4>
+                        <h5>{{meteoDetails.vitesseVent}}</h5>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <figure class="icons">
+                        <canvas id="partly-cloudy-night" width="40" height="40"></canvas>
+                    </figure>
+                    <div class="weather-text">
+                        <h4>Description</h4>
+                        <h5>{{meteoDetails.description}}</h5>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

@@ -17,11 +17,11 @@ export class HomeComponent implements OnInit {
 
   }
 
- title = 'App screenshots';
+  title = 'App screenshots';
 
   carouselOptions = {
     margin: 25,
-    loop:true,
+    loop: true,
     autoplay: 1000,
     nav: true,
     navText: ["<div class='nav-btn prev-slide'></div>", "<div class='nav-btn next-slide'></div>"],
@@ -67,26 +67,23 @@ export class HomeComponent implements OnInit {
   clients = [
     {
       image: "../../assets/img/bg-img/client-1.jpg",
-      text:"oooooooooooooo "
+      text: "oooooooooooooo "
     },
     {
       image: "../../assets/img/bg-img/client-2.jpg",
-      text:"aaaaaaaaaaaaa"
+      text: "aaaaaaaaaaaaa"
     },
     {
       image: "../../assets/img/bg-img/client-3.jpg",
-      text:"bbbbbbbbbbbb"
+      text: "bbbbbbbbbbbb"
     },
     {
       image: "../../assets/img/bg-img/client-1.jpg",
-      text:"ccccccccccccccc"
+      text: "ccccccccccccccc"
     },
     {
       image: "../../assets/img/bg-img/client-2.jpg",
-      text:"yyyyyyyyyyy"
+      text: "yyyyyyyyyyy"
     }
   ]
-
-
-
 }

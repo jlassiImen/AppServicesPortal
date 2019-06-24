@@ -1,5 +1,5 @@
-import { Component, OnInit,ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl,ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { AuthService } from './../services/auth/auth.service';
 import { SimpleLoginService } from './../services/auth/simple-login.service';
@@ -12,11 +12,11 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public auth: AuthService,public router: Router,private fb: FormBuilder,public simpleLogin: SimpleLoginService) { }
+  constructor(public auth: AuthService, public router: Router, private fb: FormBuilder, public simpleLogin: SimpleLoginService) { }
   userDetailsForm: FormGroup;
-  successMessage='';
-  errorMessage='';
-  validation_messages = { 
+  successMessage = '';
+  errorMessage = '';
+  validation_messages = {
     'email': [
       { type: 'required', message: 'Email is required' },
       { type: 'pattern', message: 'Enter a valid email' }
@@ -47,22 +47,22 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  onSubmitUserDetails(value){
-   // console.log("ccccccccccccc       "+JSON.stringify(value));
+  onSubmitUserDetails(value) {
+    // console.log("ccccccccccccc       "+JSON.stringify(value));
     this.simpleLogin.authenticate(value).subscribe((response) => {
-   //console.log("xxxxxxxxxxxx     "+JSON.stringify(response));
-      if(response.message == "success"){
-      localStorage.setItem('currentUser',"login");
-      this.router.navigateByUrl('/meteo');
+      //console.log("xxxxxxxxxxxx     "+JSON.stringify(response));
+      if (response.message == "success") {
+        localStorage.setItem('currentUser', "login");
+        this.router.navigateByUrl('/meteo');
       }
       else {
-            this.successMessage="";
-            this.errorMessage="Invalid credentials";
+        this.successMessage = "";
+        this.errorMessage = "Invalid credentials";
       }
     }, (err) => {
       console.error(err);
-      this.successMessage="";
-      this.errorMessage="An error has occured,please retry later";
+      this.successMessage = "";
+      this.errorMessage = "An error has occured,please retry later";
     });
   }
 

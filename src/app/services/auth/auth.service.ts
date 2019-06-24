@@ -58,12 +58,12 @@ export class AuthService {
 
   public renewTokens(): void {
     this.auth0.checkSession({}, (err, authResult) => {
-       if (authResult && authResult.accessToken && authResult.idToken) {
-         this.localLogin(authResult);
-       } else if (err) {
-         alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
-         this.logout();
-       }
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        this.localLogin(authResult);
+      } else if (err) {
+        alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
+        this.logout();
+      }
     });
   }
 

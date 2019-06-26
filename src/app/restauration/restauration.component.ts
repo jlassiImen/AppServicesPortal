@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from './../services/auth/auth.service';
@@ -8,7 +8,8 @@ import { environment } from '../../environments/environment';
 @Component({
   selector: 'app-restauration',
   templateUrl: './restauration.component.html',
-  styleUrls: ['./restauration.component.css']
+  styleUrls: ['./restauration.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RestaurationComponent implements OnInit {
 
@@ -65,15 +66,9 @@ export class RestaurationComponent implements OnInit {
   }
 
   ngOnInit() {
-<<<<<<< HEAD:src/app/restauration/restauration.component.ts
   this.RestoAddressConfig = places({
       apiKey: environment.autoCompleteToken,
       appId: environment.autoCompleteAppId,
-=======
-    this.RestoAddressConfig = places({
-      apiKey: '3d19b788046b9694c17de41e5dff48c9',
-      appId: 'pl0TT9QPY8U9',
->>>>>>> f254637c1af9100b9b371c9fa1cb2c8286c9aea5:src/app/service-resto/service-resto.component.ts
       indexName: 'instant_search',
       routing: true,
       container: this.qElementRef.nativeElement,

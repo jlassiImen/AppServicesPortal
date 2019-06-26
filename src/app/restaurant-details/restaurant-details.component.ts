@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-restaurant-details',
   templateUrl: './restaurant-details.component.html',
-  styleUrls: ['./restaurant-details.component.css']
+  styleUrls: ['./restaurant-details.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RestaurantDetailsComponent implements OnInit {
 

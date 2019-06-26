@@ -1,5 +1,5 @@
 import { Style, Icon } from 'ol/style';
-import { Component, ElementRef, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MeteoService } from '../services/meteoServices/meteo.service';
@@ -11,7 +11,8 @@ declare var ol: any;
 @Component({
   selector: 'app-transport',
   templateUrl: './transport.component.html',
-  styleUrls: ['./transport.component.css']
+  styleUrls: ['./transport.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TransportComponent implements OnInit {
   @Input() q: string;

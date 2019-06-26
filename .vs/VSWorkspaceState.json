@@ -1,10 +1,13 @@
 {
   "ExpandedNodes": [
     "",
+    "\\backend",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\transport"
+    "\\src\\app\\lazymodule",
+    "\\src\\app\\profil",
+    "\\src\\app\\services\\meteoServices"
   ],
-  "SelectedNode": "\\src\\app\\transport\\transport.component.ts",
+  "SelectedNode": "\\src\\app\\app.module.ts",
   "PreviewInSolutionExplorer": false
 }

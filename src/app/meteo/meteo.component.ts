@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AuthService } from './../services/auth/auth.service';
 import { MeteoService } from '../services/meteoServices/meteo.service';
 import { formatDate } from '@angular/common';
@@ -8,7 +8,8 @@ import { Observable, Subject } from 'rxjs';
 @Component({
   selector: 'app-meteo',
   templateUrl: './meteo.component.html',
-  styleUrls: ['./meteo.component.css']
+  styleUrls: ['./meteo.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MeteoComponent implements OnInit {
 

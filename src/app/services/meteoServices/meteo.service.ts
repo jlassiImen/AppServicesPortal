@@ -11,10 +11,6 @@ import { environment } from '../../../environments/environment';
 })
 export class MeteoService {
 
-<<<<<<< HEAD
- // detecter la position du client à l'aide du navigateur
-  detectLocation(callback): void  {
-=======
   constructor(public http: HttpClient) { }
 
   getIpLocation(): Observable<any> {
@@ -27,7 +23,7 @@ export class MeteoService {
 
   // detecter la position du client à l'aide du navigateur
   detectLocation(callback): void {
->>>>>>> f254637c1af9100b9b371c9fa1cb2c8286c9aea5
+
 
     const options = {
       enableHighAccuracy: true, maximumAge: 0, timeout: 10000000

@@ -1,12 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-callback',
-  templateUrl: './callback.component.html',
-  styleUrls: ['./callback.component.css'],
+  selector: 'app-profil',
+  templateUrl: './profil.component.html',
+  styleUrls: ['./profil.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CallbackComponent implements OnInit {
+export class ProfilComponent implements OnInit {
 
   constructor() { }
 

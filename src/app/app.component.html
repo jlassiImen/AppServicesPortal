@@ -1,19 +1,21 @@
- <!-- Header Section Start -->
+<!-- Header Section Start -->
 <header id="home" class="hero-area">
   <div class="overlay">
     <span></span>
     <span></span>
   </div>
-  <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar" style="
-    background: #000;
-
-">
+  <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar" style="background: #000;">
     <div class="container">
       <a href="index.html" class="navbar-brand"><img src="../../assets/img/logo.png" alt=""></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="lni-menu"></i>
+
+
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-label="Toggle navigation" (click)="toggleNavbar()">
+        <i class="fa fa-bars"></i>
       </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
+
+      <div class="collapse navbar-collapse" id="navbarCollapse" [ngClass]="{ 'show': navbarOpen }">
         <ul class="navbar-nav mr-auto w-100 justify-content-end">
           <li class="nav-item">
             <a class="nav-link " href="/home">Home</a>
@@ -21,37 +23,34 @@
           <li class="nav-item">
             <a class="nav-link " href="/home">About</a>
           </li>
-
-
- <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="http://google.com">Google</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Submenu</a></li>
-              <li><a class="dropdown-item" href="#">Submenu0</a></li>
-              <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu 1</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="http://google.com">Google</a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Subsubmenu1</a></li>
-                  <li><a class="dropdown-item" href="#">Subsubmenu1</a></li>
-                </ul>
-              </li>
-              <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu 2</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Subsubmenu2</a></li>
-                  <li><a class="dropdown-item" href="#">Subsubmenu2</a></li>
+                  <li><a class="dropdown-item" href="#">Submenu</a></li>
+                  <li><a class="dropdown-item" href="#">Submenu0</a></li>
+                  <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu 1</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Subsubmenu1</a></li>
+                      <li><a class="dropdown-item" href="#">Subsubmenu1</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu 2</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Subsubmenu2</a></li>
+                      <li><a class="dropdown-item" href="#">Subsubmenu2</a></li>
+                    </ul>
+                  </li>
                 </ul>
               </li>
             </ul>
           </li>
-        </ul>
-      </li>
-
-
 
           <li class="nav-item">
             <a class="nav-link " style="cursor: pointer;" (click)="router.navigate(['/categories']);">Services</a>
@@ -72,10 +71,12 @@
             <a class="nav-link " href="">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-singin" *ngIf="!(auth.isAuthenticated() || simpleLogin.isLoggedIn())" (click)="router.navigate(['/login']);">Log in</a>
+            <a class="btn btn-singin" *ngIf="!(auth.isAuthenticated() || simpleLogin.isLoggedIn())"
+              (click)="router.navigate(['/login']);">Log in</a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-singin" *ngIf="auth.isAuthenticated() || simpleLogin.isLoggedIn()" (click)="simpleLogin.logout();">Log out</a>
+            <a class="btn btn-singin" *ngIf="auth.isAuthenticated() || simpleLogin.isLoggedIn()"
+              (click)="simpleLogin.logout();">Log out</a>
           </li>
         </ul>
       </div>
@@ -127,7 +128,7 @@
           <div class="widget">
             <h3 class="block-title">Company</h3>
             <ul class="menu">
-              <li><a href="#">  - About Us</a></li>
+              <li><a href="#"> - About Us</a></li>
               <li><a href="#">- Career</a></li>
               <li><a href="#">- Blog</a></li>
               <li><a href="#">- Press</a></li>
@@ -140,7 +141,7 @@
           <div class="widget">
             <h3 class="block-title">Product</h3>
             <ul class="menu">
-              <li><a href="#">  - Customer Service</a></li>
+              <li><a href="#"> - Customer Service</a></li>
               <li><a href="#">- Enterprise</a></li>
               <li><a href="#">- Price</a></li>
               <li><a href="#">- Scurity</a></li>
@@ -154,7 +155,7 @@
           <div class="widget">
             <h3 class="block-title">Download App</h3>
             <ul class="menu">
-              <li><a href="#">  - Android App</a></li>
+              <li><a href="#"> - Android App</a></li>
               <li><a href="#">- IOS App</a></li>
               <li><a href="#">- Windows App</a></li>
               <li><a href="#">- Play Store</a></li>

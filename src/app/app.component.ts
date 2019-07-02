@@ -10,6 +10,8 @@ import { SimpleLoginService } from './services/auth/simple-login.service';
 })
 export class AppComponent implements OnInit {
 
+  navbarOpen = false;
+
   constructor(public auth: AuthService, public router: Router, public simpleLogin: SimpleLoginService) {
     auth.handleAuthentication();
   }
@@ -18,6 +20,10 @@ export class AppComponent implements OnInit {
     if (this.auth.isAuthenticated()) {
       this.auth.renewTokens();
     }
+  }
+
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
   }
 
   carouselOptions = {

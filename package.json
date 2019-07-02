@@ -9,7 +9,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --prod"
+    "postinstall": "ng build --prod",
+    "build:stats": "ng build --stats-json",
+    "analyze": "webpack-bundle-analyzer dist/AngularBundleAnalyser/stats.json"
   },
   "private": true,
   "dependencies": {
@@ -89,7 +91,8 @@
     "protractor": "^5.4.1",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
-    "typescript": "3.2.4"
+    "typescript": "3.2.4",
+    "webpack-bundle-analyzer": "^3.3.2"
   },
   "engines": {
     "node": "10.15.3",

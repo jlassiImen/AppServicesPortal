@@ -21,29 +21,33 @@
               "src/favicon.ico"
             ],
             "styles": [
-             "src/assets/css/bootstrap.min.css",
-             "src/styles.css",
-             "src/assets/css/responsive.css",
-             "src/assets/css/ionicons.min.css",
-             "src/assets/css/animate.css",
-             "src/assets/css/magnific-popup.css",
-             "src/assets/css/themify-icons.css",
-             "src/assets/css/font-awesome.min.css",
-             "src/assets/css/owl.carousel.min.css",
-             "./node_modules/owl.carousel/dist/assets/owl.carousel.css",
-             "./node_modules/owl.carousel/dist/assets/owl.theme.default.css",
-             "./node_modules/angular-instantsearch/bundles/instantsearch.min.css",
-             "./node_modules/angular-instantsearch/bundles/instantsearch-theme-algolia.min.css"
+              "src/assets/css/bootstrap.min.css",
+              "src/styles.css",
+              "src/assets/css/responsive.css",
+              "src/assets/css/animate.css",
+              "src/assets/css/magnific-popup.css",
+              "src/assets/css/nivo-lightbox.css",
+              "src/assets/css/LineIcons.css",
+              "src/assets/css/font-awesome.min.css",
+              "src/assets/css/login.css",
+              "src/assets/css/owl.carousel.css",
+              "src/assets/css/owl.theme.css",
+
+              "./node_modules/angular-instantsearch/bundles/instantsearch.min.css",
+              "./node_modules/angular-instantsearch/bundles/instantsearch-theme-algolia.min.css"
 
             ],
             "scripts": [
-              "src/assets/js/jquery-2.2.4.min.js",
+              "src/assets/js/jquery-min.js",
+              "src/assets/js/jquery.easing.min.js",
+              "src/assets/js/jquery.magnific-popup.min.js",
+              "src/assets/js/jquery.nav.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "src/assets/js/plugins.js",
+              "src/assets/js/main.js",
+              "src/assets/js/owl.carousel.js",
               "src/assets/js/popper.min.js",
-              "src/assets/js/slick.min.js",
-              "src/assets/js/active.js",
-              "./node_modules/owl.carousel/dist/owl.carousel.js"
+              "src/assets/js/scrolling-nav.js",
+              "src/assets/js/nivo-lightbox.js"
             ]
           },
           "configurations": {

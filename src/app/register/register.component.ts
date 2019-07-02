@@ -15,6 +15,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(public router: Router, private fb: FormBuilder, public simpleLogin: SimpleLoginService) { }
   userDetailsForm: FormGroup;
+  successMessage = '';
+  errorMessage = '';
   validation_messages = {
 
     'firstName': [
@@ -36,6 +38,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.createForms();
+    this.successMessage = '';
+    this.errorMessage = '';
   }
   //valider le formulaire
   createForms() {
@@ -61,11 +65,12 @@ export class RegisterComponent implements OnInit {
   onSubmitUserDetails(value) {
     this.simpleLogin.register(value).subscribe((response) => {
       if (response.message == "success") {
-        localStorage.setItem('currentUser', "login");
-        this.router.navigateByUrl('/meteo');
+        this.errorMessage = "";
+        this.successMessage = "An email containing a link to activate your account has been sent ! Please verify your email";
       }
       else {
-        alert("Invalid credentials");
+        this.errorMessage = "Invalid credentials";
+        this.successMessage = "";
       }
     }, (err) => {
       console.error(err);

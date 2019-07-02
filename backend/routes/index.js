@@ -6,7 +6,8 @@ var users = require('../users/users.controller.js');
 router.post('/authenticate', users.authenticate);
 router.post('/registerUser',  users.register);  
 router.post('/forgotPassword',  users.forgotPassword );            
-router.post('/resetPassword',  users.resetPassword ); 
-
+router.post('/resetPassword', users.resetPassword);
+//router.get('/confirmation', users.confirmation);
+//router.post('/resend', users.resendToken);
 
 module.exports = router;

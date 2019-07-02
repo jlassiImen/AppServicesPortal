@@ -1,9 +1,6 @@
 @angular/common
 MIT
 
-@angular/compiler
-MIT
-
 @angular/core
 MIT
 
@@ -14,9 +11,6 @@ MIT
 MIT
 
 @angular/platform-browser
-MIT
-
-@angular/platform-browser-dynamic
 MIT
 
 @angular/router
@@ -411,9 +405,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
-owl.carousel
-SEE LICENSE IN https://github.com/OwlCarousel2/OwlCarousel2/blob/master/LICENSE
 
 places.js
 MIT

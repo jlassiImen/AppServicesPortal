@@ -16,15 +16,13 @@
         <div class="row">
             <div class="col-6" style="max-width: 100%;">
                 <!-- App Screenshots Slides -->
-                <owl-carousel [options]="carouselOptions" [items]="screenshots"
-                    [carouselClasses]="['owl-theme', 'row', 'sliding']">
+               
                     <div class="item" *ngFor="let image of screenshots;let i= index">
                         <img class="slide-image" src="{{image.image}}">
                         <div class="slide-text">
                             <h4>{{image.text}}</h4>
                         </div>
                     </div>
-                </owl-carousel>
             </div>
         </div>
     </div>

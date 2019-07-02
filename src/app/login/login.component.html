@@ -1,96 +1,65 @@
-<section class="footer-contact-area section_padding_100 clearfix" id="contact" style="
-    margin-top: 5%;
-    width: 100%;
-">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <!-- Heading Text -->
-                <div class="section-heading">
-                    <h2>Auth2 Authentification</h2>
-                    <div class="line-shape"></div>
-                </div>
-                <div class="footer-text">
-                    <div class="col-12">
-                        <button type="submit" (click)="auth.login()" class="btn submit-btn">
-                            Sign In
-                        </button>
-                    </div>
-                </div>
+<div class="main-bg">
+  <div class="sub-main-w3">
+    <div class="bg-content-w3pvt">
+      <div class="top-content-style">
+        <img src="../../assets/img/user.png" style="
+    background-color: white;
+" alt="" />
+      </div>
+      <div *ngIf="successMessage !=''" class="alert alert-success" role="alert">
+        {{successMessage}}
+      </div>
 
-            </div>
-            <div class="col-md-6">
-                <div *ngIf="successMessage !=''" class="alert alert-success" role="alert">
-                    {{successMessage}}
-                </div>
-
-                <div *ngIf="errorMessage !=''" class="alert alert-success" role="alert">
-                    {{errorMessage}}
-                </div>
-                <!-- Form Start -->
-                <div class="contact_from">
-                    <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)">
-                        <!-- Message Input Area Start -->
-                        <div class="contact_input_area">
-                            <div class="row">
-
-                                <!-- Single Input Area Start -->
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div *ngFor="let validation of validation_messages.email">
-                                            <label for="email" class="bmd-label-floating"
-                                                style="margin: -5% 21%;color: red;"
-                                                *ngIf="userDetailsForm.get('email').hasError(validation.type) && (userDetailsForm.get('email').dirty || userDetailsForm.get('email').touched)">
-                                                {{validation.message}}
-                                            </label>
-                                        </div>
-
-                                        <input type="email" class="form-control" name="email" id="email"
-                                            placeholder="Your E-mail" formControlName="email" required>
-                                    </div>
-                                </div>
-                                <!-- Single Input Area Start -->
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <input type="password" name="password" class="form-control" id="password"
-                                            placeholder="Your password" formControlName="password" required>
-                                        <div *ngFor="let validation of validation_messages.password">
-                                            <label for="password" class="bmd-label-floating"
-                                                style="margin: -9% 21%;color: red;position: absolute;width: 100%;"
-                                                *ngIf="userDetailsForm.get('password').hasError(validation.type) && (userDetailsForm.get('password').dirty || userDetailsForm.get('password').touched)">
-                                                {{validation.message}}
-                                            </label>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!-- Single Input Area Start -->
-                                <div class="col-12">
-                                    <button type="submit" class="btn submit-btn" [disabled]="!userDetailsForm.valid">
-                                        Sign In
-                                    </button>
-                                </div>
-                                <div class="col-12">
-                                    <a (click)="router.navigate(['/forgotPassword']);">I forgot my password</a>
-                                </div>
-                                <div class="col-12">
-                                    <p>Not a member yet?</p>
-                                </div>
-
-                                <div class="col-12">
-                                    <button type="submit" class="btn submit-btn"
-                                        (click)="router.navigate(['/register']);">
-                                        Sign Up Now
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Message Input Area End -->
-                    </form>
-
-                </div>
-            </div>
+      <div *ngIf="errorMessage !=''" class="alert alert-danger" role="alert">
+        {{errorMessage}}
+      </div>
+      <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)">
+        <p class="legend">Welcome</p>
+        <div class="input">
+          <input type="email" name="email" id="email"
+                 placeholder="Your E-mail" formControlName="email" required>
+          <span class="focus-input100"></span>
+          <div class="help-block with-errors"
+               *ngFor="let validation of validation_messages.email">
+            <label for="email" class="bmd-label-floating"
+                   style="margin: -5% 21%;color: red;"
+                   *ngIf="userDetailsForm.get('email').hasError(validation.type) && (userDetailsForm.get('email').dirty || userDetailsForm.get('email').touched)">
+              {{validation.message}}
+            </label>
+          </div>
+          <span class="fa fa-envelope"></span>
         </div>
+        <div class="input">
+          <input type="password" name="password" id="password"
+                 placeholder="Your password" formControlName="password" required>
+          <a a (click)="router.navigate(['/forgotPassword']);" style="float: left;">
+            Forgot Password ?
+          </a>
+          <div class="help-block with-errors"
+               *ngFor="let validation of validation_messages.password">
+            <label for="password" class="bmd-label-floating"
+                   style="margin: -9% 21%;color: red;position: absolute;width: 100%;"
+                   *ngIf="userDetailsForm.get('password').hasError(validation.type) && (userDetailsForm.get('password').dirty || userDetailsForm.get('password').touched)">
+              {{validation.message}}
+            </label>
+          </div>
+          <span class="fa fa-unlock"></span>
+        </div>
+        <button type="submit" [disabled]="!userDetailsForm.valid" class="btn submit">
+          <span class="fa fa-sign-in"></span>
+        </button>
+      </form>
+      <span>
+        Not a member?
+      </span>
+      <a (click)="router.navigate(['/register']);">
+        Sign up now
+      </a>
+      <div class="copyright">
+        <h2>
+          By logging in, you agree to our Terms of Service, Privacy Policy, Community Guidelines and Cookie Policy.
+        </h2>
+      </div>
     </div>
-</section>
-<!-- ***** Contact Us Area End ***** -->
+  </div>
+</div>

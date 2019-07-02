@@ -14,9 +14,9 @@ mongoose.Promise = global.Promise;
 
 module.exports = {
     User: require('../users/user.model'),
-    ResetPassword: require('../users/resetPassword.model')
+  ResetPassword: require('../users/resetPassword.model'),
+  Token: require('../users/tokenVerification.model')
 };
 
 
 
-    

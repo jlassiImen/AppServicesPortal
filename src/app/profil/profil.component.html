@@ -1,3 +1,149 @@
-<p>
-  profil works!
-</p>
+
+
+<div class="row">
+  <div class="col-lg-1"></div>
+  <div class="col-lg-2">
+  <h4 style="font-size: 18px;">Acount Setting</h4>
+</div>
+<div class="col-lg-1"></div>
+<div class="col-lg-4">
+  <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)">
+    <label>Your email</label>
+    <div class="input">
+      <input type="email" name="email" id="email"
+             formControlName="email"  required>
+      <span class="focus-input100"></span>
+    
+      <span class="fa fa-envelope"></span>
+    </div>
+    <label>New password</label>
+    <div class="input">
+      <input type="password" name="password" id="password"
+             formControlName="password" required>
+  
+      <span class="fa fa-unlock"></span>
+    </div>
+    <label>Confirm password </label>
+    <div class="input">
+      <input type="password" name="password" id="password2"
+             formControlName="password" required>
+      
+      <span class="fa fa-unlock"></span>
+    </div>
+    <div class="col-lg-6 col-md-12 pl-4">
+      <div class="business-item-info">
+        <a class="btn btn-common" href="#">save changes</a>
+      </div>
+    </div>
+  </form>
+  </div>
+   </div>
+
+<hr style="    height: 5px;
+    width: 30%;
+    margin-left: 5%;
+    border-top: 4px solid #000;" />
+
+<div class="row">
+  <div class="col-lg-1"></div>
+  <div class="col-lg-2">
+   <h4 style="font-size: 18px;">Profile Setting</h4>
+</div>
+<div class="col-lg-1"></div>
+<div class="col-lg-4">
+
+
+ 
+  <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)">
+    <div class="input">
+     
+      <input type="text" name="firstName" id="firstName"
+             placeholder="Your first Name" formControlName="firstName" required>
+      <span class="fa fa-user"></span>
+    </div>
+    <div class="input">
+      
+      <input type="text" class="form-control" name="lastName" id="lastName"
+             placeholder="Your last Name" formControlName="lastName" required>
+      <span class="fa fa-user"></span>
+    </div>
+
+ <div class="input">
+      
+      <input type="text" class="form-control" name="lastName"
+             placeholder="Address" formControlName="lastName" required>
+      <span class="fa fa-user"></span>
+    </div>
+
+      <div class="input">
+        <input type="date" name="birthday" id="birthday" class="form-control" required>
+      </div>
+        <div class="col-lg-6 col-md-12 pl-4">
+      <div class="business-item-info">
+        <a class="btn btn-common" href="#">save changes</a>
+      </div>
+    </div>
+</form>
+</div>
+</div>
+ 
+<hr style="    height: 5px;
+    width: 30%;
+    margin-left: 5%;
+    border-top: 4px solid #000;" />
+
+
+<div class="row">
+  <div class="col-lg-1"></div>
+  <div class="col-lg-2">
+   <h4 style="font-size: 18px;">Payment Setting</h4>
+</div>
+<div class="col-lg-1"></div>
+<div class="col-lg-4">
+
+
+ 
+  <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)">
+    <div class="input">
+      <div help-block with-errors *ngFor="let validation of validation_messages.firstName">
+        <label for="firstName" class="bmd-label-floating"
+               style="margin: -9% 21%;color: red;position: absolute;width: 100%;"
+               *ngIf="userDetailsForm.get('firstName').hasError(validation.type) && (userDetailsForm.get('firstName').dirty || userDetailsForm.get('firstName').touched)">
+          {{validation.message}}
+        </label>
+      </div>
+      <input type="text" name="firstName" id="firstName"
+             placeholder="Credit card number" formControlName="firstName" required>
+      <span class="fa fa-user"></span>
+    </div>
+
+    <div class="input">
+      <div help-block with-errors *ngFor="let validation of validation_messages.lastName">
+        <label for="lastName" class="bmd-label-floating"
+               style="margin: -9% 21%;color: red;position: absolute;width: 100%;"
+               *ngIf="userDetailsForm.get('firstName').hasError(validation.type) && (userDetailsForm.get('firstName').dirty || userDetailsForm.get('firstName').touched)">
+          {{validation.message}}
+        </label>
+      </div>
+      <input type="text" class="form-control" name="lastName" id="lastName"
+             placeholder="Crypto" formControlName="lastName" required>
+      <span class="fa fa-user"></span>
+    </div>
+
+
+    <div class="input">
+       <input type="text" class="form-control" name="lastName" id="lastName"
+             placeholder="Expiration date" formControlName="lastName" required>
+      </div>
+        <div class="col-lg-6 col-md-12 pl-4">
+      <div class="business-item-info">
+        <a class="btn btn-common" href="#">save changes</a>
+      </div>
+    </div>
+</form>
+</div>
+</div>
+
+
+
+

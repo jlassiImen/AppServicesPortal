@@ -2,12 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\backend",
-    "\\src",
+    "\\backend\\routes",
+    "\\backend\\users",
+    "\\backend\\_helpers",
     "\\src\\app",
-    "\\src\\app\\lazymodule",
-    "\\src\\app\\profil",
-    "\\src\\app\\services\\meteoServices"
+    "\\src\\app\\register",
+    "\\src\\app\\services\\auth"
   ],
-  "SelectedNode": "\\src\\app\\app.module.ts",
+  "SelectedNode": "\\package.json",
   "PreviewInSolutionExplorer": false
 }

@@ -1,137 +1,213 @@
-<!-- Preloader Start -->
+ <!-- Header Section Start -->
+<header id="home" class="hero-area">
+  <div class="overlay">
+    <span></span>
+    <span></span>
+  </div>
+  <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar" style="
+    background: #000;
 
-<!-- ***** Header Area Start ***** -->
+">
+    <div class="container">
+      <a href="index.html" class="navbar-brand"><img src="../../assets/img/logo.png" alt=""></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="lni-menu"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto w-100 justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link " href="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="/home">About</a>
+          </li>
 
-<header class="header_area animated" style="background-color: #7550e3;">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <!-- Menu Area Start -->
-            <div class="col-12 col-lg-10">
-                <div class="menu_area">
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                        <!-- Logo -->
-                        <img src="../../assets/img/logo.png" alt style="width: 80px;">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ca-navbar"
-                            aria-controls="ca-navbar" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <!-- Menu Area -->
-                        <div class="collapse navbar-collapse" id="ca-navbar">
-                            <ul class="navbar-nav ml-auto" id="nav">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="#home">
-                                        Home
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#about">
-                                        About
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#features">
-                                        Features
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#screenshot">
-                                        Screenshot
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#pricing">
-                                        Pricing
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#testimonials">
-                                        Testimonials
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" style="cursor: pointer;"
-                                        (click)="router.navigate(['/servicePortal']);">
-                                        Services
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#contact">
-                                        Contact
-                                    </a>
-                                </li>
-                            </ul>
 
-                        </div>
-                    </nav>
-                </div>
-            </div>
-            <!-- Signup btn -->
-            <div class="col-12 col-lg-2">
-                <div class="sing-up-button d-none d-lg-block"
-                    *ngIf="!(auth.isAuthenticated() || simpleLogin.isLoggedIn())">
+ <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="http://google.com">Google</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Submenu</a></li>
+              <li><a class="dropdown-item" href="#">Submenu0</a></li>
+              <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu 1</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Subsubmenu1</a></li>
+                  <li><a class="dropdown-item" href="#">Subsubmenu1</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu 2</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Subsubmenu2</a></li>
+                  <li><a class="dropdown-item" href="#">Subsubmenu2</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
 
-                    <a style="cursor: pointer;" (click)="router.navigate(['/login']);">
-                        Sign In
-                    </a>
-                </div>
-                <div class="sing-up-button d-none d-lg-block"
-                    *ngIf="auth.isAuthenticated() || simpleLogin.isLoggedIn()">
-                    <a (click)="simpleLogin.logout();">Logout</a>
-                </div>
-            </div>
-        </div>
+
+
+          <li class="nav-item">
+            <a class="nav-link " style="cursor: pointer;" (click)="router.navigate(['/categories']);">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="/home">Showcase</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="/home">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="/home">Team</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="/home">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-singin" *ngIf="!(auth.isAuthenticated() || simpleLogin.isLoggedIn())" (click)="router.navigate(['/login']);">Log in</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-singin" *ngIf="auth.isAuthenticated() || simpleLogin.isLoggedIn()" (click)="simpleLogin.logout();">Log out</a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
+  <div class="container" *ngIf="router.url ==='/'">
+    <div class="row space-100">
+      <div class="col-lg-6 col-md-12 col-xs-12">
+        <div class="contents">
+          <h2 class="head-title">Handcrafted Web Template <br>For Business and Startups</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab <br>dolores ea fugiat nesciunt quisquam.</p>
+          <div class="header-button">
+            <a href="#" class="btn btn-border-filled">Get Started</a>
+            <a href="#contact" class="btn btn-border page-scroll">Contact Us</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12 col-xs-12 p-0">
+        <div class="intro-img">
+          <img src="../../assets/img/welcome.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
 </header>
-<!-- ***** Header Area End ***** -->
+<!-- Header Section End -->
 
 <router-outlet></router-outlet>
-<!-- ***** Footer Area Start ***** -->
-<footer class="footer-social-icon text-center section_padding_70 clearfix">
-    <!-- footer logo -->
-    <div class="footer-text">
-        <h2>API Service Portal</h2>
-    </div>
-    <!-- social icon -->
-    <div class="footer-social-icon">
-        <a href="#">
-            <i class="fa fa-facebook" aria-hidden="true"></i>
-        </a>
-        <a href="#">
-            <i class="active fa fa-twitter" aria-hidden="true"></i>
-        </a>
-        <a href="#">
-            <i class="fa fa-instagram" aria-hidden="true"></i>
-        </a>
-        <a href="#">
-            <i class="fa fa-google-plus" aria-hidden="true"></i>
-        </a>
-    </div>
-    <div class="footer-menu">
-        <nav>
-            <ul>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Terms &amp; Conditions</a>
-                </li>
-                <li>
-                    <a href="#">Privacy Policy</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
+
+
+<!-- Footer Section Start -->
+<footer>
+  <!-- Footer Area Start -->
+  <section id="footer-Content">
+    <div class="container">
+      <!-- Start Row -->
+      <div class="row">
+
+        <!-- Start Col -->
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
+
+          <div class="footer-logo">
+            <img src="../../assets/img/footer-logo.png" alt="">
+          </div>
+        </div>
+        <!-- End Col -->
+        <!-- Start Col -->
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-mb-12">
+          <div class="widget">
+            <h3 class="block-title">Company</h3>
+            <ul class="menu">
+              <li><a href="#">  - About Us</a></li>
+              <li><a href="#">- Career</a></li>
+              <li><a href="#">- Blog</a></li>
+              <li><a href="#">- Press</a></li>
             </ul>
-        </nav>
+          </div>
+        </div>
+        <!-- End Col -->
+        <!-- Start Col -->
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-mb-12">
+          <div class="widget">
+            <h3 class="block-title">Product</h3>
+            <ul class="menu">
+              <li><a href="#">  - Customer Service</a></li>
+              <li><a href="#">- Enterprise</a></li>
+              <li><a href="#">- Price</a></li>
+              <li><a href="#">- Scurity</a></li>
+              <li><a href="#">- Why SLICK?</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- End Col -->
+        <!-- Start Col -->
+        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-mb-12">
+          <div class="widget">
+            <h3 class="block-title">Download App</h3>
+            <ul class="menu">
+              <li><a href="#">  - Android App</a></li>
+              <li><a href="#">- IOS App</a></li>
+              <li><a href="#">- Windows App</a></li>
+              <li><a href="#">- Play Store</a></li>
+              <li><a href="#">- IOS Store</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- End Col -->
+        <!-- Start Col -->
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
+          <div class="widget">
+            <h3 class="block-title">Subscribe Now</h3>
+            <p>Appropriately implement calysts for change visa wireless catalysts for change. </p>
+            <div class="subscribe-area">
+              <input type="email" class="form-control" placeholder="Enter Email">
+              <span><i class="lni-chevron-right"></i></span>
+            </div>
+          </div>
+        </div>
+        <!-- End Col -->
+      </div>
+      <!-- End Row -->
     </div>
-    <!-- Foooter Text -->
-    <div class="copyright-text">
-        <!-- ***** Removing this text is now allowed! This template is licensed under CC BY 3.0 ***** -->
-        <p>
-            Copyright ©2019 Jasmine Conseil. Designed by
-            <a href="https://colorlib.com" target="_blank">
-                Colorlib
-            </a>
-        </p>
+    <!-- Copyright Start  -->
+
+    <div class="copyright">
+      <div class="container">
+        <!-- Star Row -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="site-info text-center">
+              <p>Crafted by <a href="http://uideck.com" rel="nofollow">UIdeck</a></p>
+            </div>
+
+          </div>
+          <!-- End Col -->
+        </div>
+        <!-- End Row -->
+      </div>
     </div>
+    <!-- Copyright End -->
+  </section>
+  <!-- Footer area End -->
+
 </footer>
+<!-- Footer Section End -->
+<!-- Go To Top Link -->
+<a href="#" class="back-to-top">
+  <i class="lni-chevron-up"></i>
+</a>
+
+<!-- Preloader -->
+<div id="preloader">
+  <div class="loader" id="loader-1"></div>
+</div>
+<!-- End Preloader -->

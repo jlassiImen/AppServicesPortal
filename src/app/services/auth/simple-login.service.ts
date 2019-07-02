@@ -39,6 +39,16 @@ export class SimpleLoginService {
 
   }
 
+  public confirmationRegister(user: any): Observable<any> {
+    const apiURL = '/confirmation'
+    return this.http.post(apiURL, user);
+  }
+
+  public resend(user: any): Observable<any> {
+    const apiURL = '/resend';
+    return this.http.post(apiURL, user);
+  }
+
   public forgotPassword(user: any): Observable<any> {
     const apiURL = '/forgotPassword';
     return this.http.post(apiURL, user);

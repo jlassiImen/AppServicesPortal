@@ -1,4 +1,5 @@
 const express = require('express');
+//const express-validator = require('express-validator')
 const config = require('../config.json');
 const bcrypt = require('bcrypt');
 const db = require('../_helpers/db');
@@ -13,73 +14,110 @@ var ObjectID = require('mongodb').ObjectID;
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 var smtpTransport = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-        user: config.fromEmail,
-        pass: config.emailPassword
-    }
+  service: 'Gmail',
+  auth: {
+    user: config.fromEmail,
+    pass: config.emailPassword
+  }
 });
 var users = {
-    authenticate: function(req, res, next) {
-        var email = req.body.email || '';
-        var password = req.body.password || '';
+  authenticate: function (req, res, next) {
+    var email = req.body.email || '';
+    var password = req.body.password || '';
 
-        if (email == '' || password == '') {
-            res.status(401);
-            res.json({
-                "status": 401,
-                "message": "Invalid credentials"
-            });
+    if (email == '' || password == '') {
+      res.status(401);
+      res.json({
+        "status": 401,
+        "message": "Invalid credentials"
+      });
+    }
+
+    User.findOne({
+      'email': email
+    }, function (err, userFromDB) {
+      if (userFromDB) {
+        //comaper le mot de passe saisie par l'utilisateur et celle de la base de données
+        if (bcrypt.compareSync(password, userFromDB.password)) {
+          res.status(200);
+          res.json({
+            "status": 200,
+            "message": "success"
+          });
+        } else {
+          res.status(401);
+          res.json({
+            "status": 401,
+            "message": "Invalid credentials"
+          });
         }
 
-        User.findOne({
-            'email': email
-        }, function(err, userFromDB) {
-            if (userFromDB) {
-                //comaper le mot de passe saisie par l'utilisateur et celle de la base de données
-                if (bcrypt.compareSync(password, userFromDB.password)) {
-                    res.status(200);
-                    res.json({
-                        "status": 200,
-                        "message": "success"
-                    });
-                } else {
-                    res.status(401);
-                    res.json({
-                        "status": 401,
-                        "message": "Invalid credentials"
-                    });
-                }
-
-            } else {
-                console.log('Result does not exist');
-                res.status(401);
-                res.json({
-                    "status": 401,
-                    "message": "Invalid credentials"
-                });
-            }
+      } else {
+        console.log('Result does not exist');
+        res.status(401);
+        res.json({
+          "status": 401,
+          "message": "Invalid credentials"
         });
-    },
+      }
+    });
+  },
+  updatePassword: function (req, res, next) {
+    var email = req.body.email || '';
+    var password = req.body.password || '';
+
+    if (email == '' || password == '') {
+      res.status(401);
+      res.json({
+        "status": 401,
+        "message": "Invalid credentials"
+      });
+    }
+
+    User.findOne({
+      'email': email
+    }, function (err, userFromDB) {
+      if (userFromDB) {
+        //comaper le mot de passe saisie par l'utilisateur et celle de la base de données
+        if (bcrypt.compareSync(password, userFromDB.password)) {
+          res.status(200);
+          res.json({
+            "status": 200,
+            "message": "it's your old password"
+          });
+        } else {
+          res.status(401);
+          res.json({
+            "status": 401,
+            "message": "Invalid credentials"
+          });
+        }
+
+      } else {
+        console.log('Result does not exist');
+        res.status(401);
+        res.json({
+          "status": 401,
+          "message": "Invalid credentials"
+        });
+      }
+    });
+  },
 
   register: function (req, res, next) {
     var userParam = req.body;
     // vérifier si l'email existe déjà
     User.findOne({ email: req.body.email }, function (err, userResult) {
       // Make sure user doesn't already exist
-      console.log("finfoooooooooooooooone      " + JSON.stringify(userResult));
       if (userResult) {
         return res.json({
           "status": 409,
           "message": "email is already taken"
         });
       }
-
-
       const user = new User(userParam);
       // crypter le mot de passe
       user.password = bcrypt.hashSync(userParam.password, 5);
-
       // enregistrer user
       user.save(function (err) {
         if (err) {
@@ -88,27 +126,22 @@ var users = {
             "message": "Internal server error"
           });
         }
-
-
         // Create a verification token for this user
-        var token = new Token({ _userId: new ObjectID(user._id), token: crypto.randomBytes(16).toString('hex') });
+        var token = new Token({ _userId: user._id, token: crypto.randomBytes(16).toString('hex') });
 
         // Save the verification token
         token.save(function (err) {
           if (err) {
-            console.log("rrrrrrrrrrrrr       " + err);
             return res.json({
               "status": 500,
               "message": "Internal server error"
             });
           }
-
           // Send the email
-
           var mailOptions = {
             to: user.email,
             subject: 'Account Verification Token',
-            text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/confirmation\/' + token.token + '.\n'
+            text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/confirmation\/?tokenId=' + token.token + '&userId=' + user._id+'.\n'
           };
           smtpTransport.sendMail(mailOptions, function (err) {
             if (err) {
@@ -123,210 +156,225 @@ var users = {
         });
       });
     });
-        },
- /* confirmation : function (req, res, next) {
-    req.assert('email', 'Email is not valid').isEmail();
-    req.assert('email', 'Email cannot be blank').notEmpty();
-    req.assert('token', 'Token cannot be blank').notEmpty();
-    req.sanitize('email').normalizeEmail({ remove_dots: false });
-
-    // Check for validation errors    
-    var errors = req.validationErrors();
-    if (errors) return res.status(400).send(errors);
-
+  },
+  confirmation : function (req, res, next) {
+     //req.assert('email', 'Email is not valid').isEmail();
+     //req.assert('email', 'Email cannot be blank').notEmpty();
+     //req.assert('token', 'Token cannot be blank').notEmpty();
+     //req.sanitize('email').normalizeEmail({ remove_dots: false });
+     // Check for validation errors    
+     //var errors = req.validationErrors();
+     //if (errors) return res.status(400).send(errors);
     // Find a matching token
-    Token.findOne({ token: req.body.token }, function (err, token) {
-      if (!token) return res.status(400).send({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token my have expired.' });
-
-      // If we found a token, find a matching user
-      User.findOne({ _id: token._userId, email: req.body.email }, function (err, user) {
-        if (!user) return res.status(400).send({ msg: 'We were unable to find a user for this token.' });
-        if (user.isVerified) return res.status(400).send({ type: 'already-verified', msg: 'This user has already been verified.' });
-
-        // Verify and save the user
-        user.isVerified = true;
-        user.save(function (err) {
-          if (err) { return res.status(500).send({ msg: err.message }); }
-          res.status(200).send("The account has been verified. Please log in.");
+    console.log("   token " + req.body.tokenId+ "  user " + req.body.userId);
+    Token.findOne({ token: req.body.tokenId, _userId: req.body.userId }, function (err, token) {
+      console.log("   search token result  " + JSON.stringify(token));
+      if (!token) {
+        return res.json({
+          "status": 404,
+          "message": "Token not found"
         });
+      }
+       // If we found a token, find a matching user
+       User.findOne({ _id: token._userId }, function (err, user) {
+         if (!user) {
+           return res.json({
+             "status": 404,
+             "message": "user not found"
+           });
+         }
+         if (user.isVerified) {
+           return res.json({
+             "status": 400,
+             "message": "User already has been verified"
+           });
+         }
+         // Verify and save the user
+         user.isVerified = true;
+         user.save(function (err) {
+           if (err) {
+             return res.status(500).json({
+               "status": 500,
+               "message": err.message
+             });
+           }
+           res.status(200).json({
+             "status": 200,
+             "message": "success"
+           });
+         });
+       });
+     });
+   },
+   //si le token d'un user a expiré
+   resendToken : function (req, res, next) {
+     req.assert('email', 'Email is not valid').isEmail();
+     req.assert('email', 'Email cannot be blank').notEmpty();
+     req.sanitize('email').normalizeEmail({ remove_dots: false });
+     // Check for validation errors    
+     var errors = req.validationErrors();
+     if (errors) return res.status(400).send(errors);
+     User.findOne({ email: req.body.email }, function (err, user) {
+       if (!user) return res.status(400).send({ msg: 'We were unable to find a user with that email.' });
+       if (user.isVerified) return res.status(400).send({ msg: 'This account has already been verified. Please log in.' });
+       // Create a verification token, save it, and send email
+       var token = new Token({ _userId: user._id, token: crypto.randomBytes(16).toString('hex') });
+       // Save the token
+       token.save(function (err) {
+         if (err) { return res.status(500).send({ msg: err.message }); }
+         // Send the email
+       var mailOptions = { to: user.email, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/confirmation\/' + token.token + '.\n' };
+         smtpTransport.sendMail(mailOptions, function (err) {
+           if (err) { return res.status(500).send({ msg: err.message }); }
+           res.status(200).send('A verification email has been sent to ' + user.email + '.');
+         });
+       });
+     });
+   },
+
+  forgotPassword: function (req, res, next) {
+
+    var email = req.body.email || '';
+
+    if (email == '') {
+      res.status(401);
+      res.json({
+        "status": 401,
+        "message": "Invalid credentials"
       });
-    });
-  },
-  //si le token d'un user a expiré
-  resendToken : function (req, res, next) {
-    req.assert('email', 'Email is not valid').isEmail();
-    req.assert('email', 'Email cannot be blank').notEmpty();
-    req.sanitize('email').normalizeEmail({ remove_dots: false });
+    }
 
-    // Check for validation errors    
-    var errors = req.validationErrors();
-    if (errors) return res.status(400).send(errors);
+    User.findOne({
+      'email': email
+    })
+      .then(function (user) {
 
-    User.findOne({ email: req.body.email }, function (err, user) {
-      if (!user) return res.status(400).send({ msg: 'We were unable to find a user with that email.' });
-      if (user.isVerified) return res.status(400).send({ msg: 'This account has already been verified. Please log in.' });
+        if (!user) {
+          return res.json({
+            status: "404",
+            message: 'No user found with that email address'
+          })
+        }
+        ResetPassword.findOne({
+          'userId': user.id
+        })
+          .then(function (resetPass) {
 
-      // Create a verification token, save it, and send email
-      var token = new Token({ _userId: user._id, token: crypto.randomBytes(16).toString('hex') });
+            if (resetPass) {
+              resetPass.deleteOne({
+                'id': resetPass._id
+              });
+              console.log("1 document deleted");
+            }
 
-      // Save the token
-      token.save(function (err) {
-        if (err) { return res.status(500).send({ msg: err.message }); }
 
-        // Send the email
-      var mailOptions = { to: user.email, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/confirmation\/' + token.token + '.\n' };
-        smtpTransport.sendMail(mailOptions, function (err) {
-          if (err) { return res.status(500).send({ msg: err.message }); }
-          res.status(200).send('A verification email has been sent to ' + user.email + '.');
-        });
-      });
+            token = crypto.randomBytes(32).toString('hex') //creating the token to be sent to the forgot password form (react)
 
-    });
-  },
-  */
-    forgotPassword: function(req, res, next) {
+            const resetPassword = new ResetPassword();
 
-        var email = req.body.email || '';
-       
-        if (email == '') {
-            res.status(401);
-            res.json({
-                "status": 401,
-                "message": "Invalid credentials"
+            //hashing the reset token  to store in the db node.js
+            bcrypt.hash(token, 5, (err, hashedResetToken) => {
+              resetPassword.resetPasswordToken = hashedResetToken;
+              resetPassword.userId = user.id;
+              resetPassword.expire = moment.utc().add(config.tokenExpiry, 'seconds');
+
+              resetPassword.status = 0;
+              resetPassword.save();
+
+              let mailOptions = {
+                to: user.email,
+                subject: 'Reset your account password',
+                html: '<h4><b>Reset Password</b></h4>' +
+                  '<p>To reset your password, complete this form:</p>' +
+                  '<a href=' + config.clientUrl + '/resetPassword/?userId=' + user.id + '&resetToken=' + token + '>' + config.clientUrl + '/resetPassword/?userId=' + user.id + '&resetToken=' + token + '</a>' +
+                  '<br><br>' +
+                  '<p>--Team</p>'
+              }
+              smtpTransport.sendMail(mailOptions, function (error, response) {
+                if (error) {
+                  console.log(error);
+                  res.status(500);
+                  res.json({
+                    "status": 500,
+                    "message": "failure"
+                  });
+                } else {
+                  console.log("Message sent ");
+                  res.status(200);
+                  res.json({
+                    "status": 200,
+                    "message": "success"
+                  });
+                }
+              });
+
             });
+          });
+      });
+  },
+  resetPassword: function (req, res, next) {
+    const userId = req.body.userId;
+    const token = req.body.resetToken;
+    const password = req.body.password;
+    ResetPassword.findOne({
+      'userId': userId
+    })
+      .then(function (resetPassword) {
+        if (!resetPassword) {
+          res.status(401);
+          res.json({
+            "status": 401,
+            "message": "Invalid or expired reset token."
+          });
+
         }
 
-        User.findOne({
-                'email': email
-            })
-            .then(function(user) {
-               
-                if (!user) {
-                    return res.json({
-                        status: "404",
-                        message: 'No user found with that email address'
-                    })
-                }
-                ResetPassword.findOne({
-                        'userId': user.id
-                    })
-                    .then(function(resetPass) {
-                      
-                        if (resetPass) {
-                            resetPass.deleteOne({
-                                'id': resetPass._id
-                            });
-                            console.log("1 document deleted");
-                        }
+        // the token and the hashed token in the db are verified befor updating the password
+        bcrypt.compare(String(token), resetPassword.resetPasswordToken, (err, match) => {
+          if (match == true) {
+            var hash = bcrypt.hashSync(password, 5);
+            User.updateOne({ '_id': userId }, { $set: { 'password': hash } })
+              .then((result) => {
+                ResetPassword.updateOne(
+                  { 'id': resetPassword.id },
+                  { $set: { 'status': 1 } }
+                ).
+                  then((msg) => {
 
+                    if (!msg) {
 
-                        token = crypto.randomBytes(32).toString('hex') //creating the token to be sent to the forgot password form (react)
+                      res.status(500);
+                      res.json({
+                        "status": 500,
+                        "message": "Internal server error"
+                      });
 
-                        const resetPassword = new ResetPassword();
+                    } else
+                      res.json({
+                        "status": "200",
+                        "message": 'Password Updated successfully.'
+                      })
+                  })
+              }).catch((error) =>
+                res.json({
+                  "status": 500,
+                  "message": "Internal server error  " + error
+                })
 
-                        //hashing the reset token  to store in the db node.js
-                    bcrypt.hash(token, 5, (err, hashedResetToken) => {
-                        resetPassword.resetPasswordToken = hashedResetToken;
-                        resetPassword.userId = user.id;
-                        resetPassword.expire = moment.utc().add(config.tokenExpiry, 'seconds');
-                        
-                        resetPassword.status=0;
-                        resetPassword.save();
-
-                        let mailOptions = {
-                            to: user.email,
-                            subject: 'Reset your account password',
-                            html: '<h4><b>Reset Password</b></h4>' +
-                                '<p>To reset your password, complete this form:</p>' +
-                                '<a href=' + config.clientUrl + '/resetPassword/?userId=' + user.id + '&resetToken=' + token +'>' + config.clientUrl + '/resetPassword/?userId=' + user.id + '&resetToken=' + token + '</a>' +
-                                '<br><br>' + 
-                                '<p>--Team</p>'
-                        }
-                        smtpTransport.sendMail(mailOptions, function(error, response) {
-                            if (error) {
-                                console.log(error);
-                                res.status(500);
-                                res.json({
-                                    "status": 500,
-                                    "message": "failure"
-                                });
-                            } else {
-                                console.log("Message sent ");
-                                res.status(200);
-                                res.json({
-                                    "status": 200,
-                                    "message": "success"
-                                });
-                            }
-                        });
-
-                    });
-                    });
+              )
+          }
+          else {
+            res.status(401);
+            res.json({
+              "status": 401,
+              "message": "Reset token does not match"
             });
-    },
-    resetPassword: function(req, res, next) {
-        const userId = req.body.userId;
-        const token = req.body.resetToken;
-        const password = req.body.password;
-        ResetPassword.findOne({
-                'userId': userId
-            })
-            .then(function(resetPassword) {
-                if (!resetPassword) {
-                    res.status(401);
-                    res.json({
-                        "status": 401,
-                        "message": "Invalid or expired reset token."
-                    });
+          }
 
-                }
-                 
-                // the token and the hashed token in the db are verified befor updating the password
-                bcrypt.compare(String(token), resetPassword.resetPasswordToken, (err, match) => {
-                    if (match == true) {
-                        var hash = bcrypt.hashSync(password, 5);
-                        User.updateOne({'_id': userId},{$set :{'password': hash}})
-                        .then((result) => {
-                            ResetPassword.updateOne(
-                                {'id': resetPassword.id},
-                                {$set:{'status': 1}}
-                            ).
-                            then((msg) => {
-                                
-                                if (!msg) {
-                                   
-                                    res.status(500);
-                                    res.json({
-                                        "status": 500,
-                                        "message": "Internal server error"
-                                    });
 
-                                } else
-                                    res.json({
-                                        "status": "200",
-                                        "message": 'Password Updated successfully.'
-                                    })
-                            })
-                        }).catch((error)=>
-                        res.json({
-                         "status": 500,
-                         "message": "Internal server error  "+ error
-                             })
 
-                        )
-                    }
-                    else {
-                        res.status(401);
-                                    res.json({
-                                        "status": 401,
-                                        "message": "Reset token does not match"
-                                    });
-                    }
-                    
-                    
-                
-            })
-    })
+        })
+      })
   },
 
 }

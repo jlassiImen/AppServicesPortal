@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-
+import 'rxjs/add/operator/map';
 import { Observable, Subject } from 'rxjs';
 
 
@@ -16,7 +16,9 @@ export class CategoriesService {
 
   public getAllCategories(): Observable<any> {
     const apiURL = '/getCategories';
-    return this.http.get(apiURL);
+    return this.http.get(apiURL).map(response => {
+      return response;
+    });
 
   }
 

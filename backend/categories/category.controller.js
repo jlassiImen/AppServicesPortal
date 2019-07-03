@@ -5,11 +5,6 @@ const db = require('../_helpers/db');
 
 const Category = db.Category;
 
-
-
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
-
 var categories = {
   
   getAllCategories: function(req, res, next) {

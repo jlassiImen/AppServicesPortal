@@ -23,38 +23,6 @@
           <li class="nav-item">
             <a class="nav-link " href="/home">About</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="http://google.com">Google</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Submenu</a></li>
-                  <li><a class="dropdown-item" href="#">Submenu0</a></li>
-                  <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu 1</a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Subsubmenu1</a></li>
-                      <li><a class="dropdown-item" href="#">Subsubmenu1</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu 2</a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Subsubmenu2</a></li>
-                      <li><a class="dropdown-item" href="#">Subsubmenu2</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link " style="cursor: pointer;" (click)="router.navigate(['/categories']);">Services</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link " href="/home">Showcase</a>
           </li>
@@ -70,14 +38,22 @@
           <li class="nav-item">
             <a class="nav-link " href="">Contact</a>
           </li>
+           <li class="nav-item">
+            <a class="nav-link " style="cursor: pointer;" (click)="router.navigate(['/categories']);">Services</a>
+          </li> 
           <li class="nav-item">
             <a class="btn btn-singin" *ngIf="!(auth.isAuthenticated() || simpleLogin.isLoggedIn())"
               (click)="router.navigate(['/login']);">Log in</a>
           </li>
-          <li class="nav-item">
-            <a class="btn btn-singin" *ngIf="auth.isAuthenticated() || simpleLogin.isLoggedIn()"
-              (click)="simpleLogin.logout();">Log out</a>
-          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="auth.isAuthenticated() || simpleLogin.isLoggedIn()">
+              {{user.firstName}}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" (click)="router.navigate(['/profil']);">My profile</a></li>
+              <li><a class="dropdown-item" (click)="simpleLogin.logout();">LOG OUT</a></li>
+            </ul>
         </ul>
       </div>
     </div>

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var users = require('../users/users.controller.js');
+var payment = require('../payment/payment.controler.js');
 var categories = require('../categories/category.controller.js');
 
 router.post('/authenticate', users.authenticate);
@@ -16,6 +17,8 @@ router.post('/addCategory', categories.addCategory);
 
 router.post('/confirmRegistration', users.confirmation);
 router.post('/resend', users.resendToken);
+router.get('/userDetails/:email', users.getUser);
+router.get('/userPayment/:userId', payment.getPayment);
 
 
 module.exports = router;

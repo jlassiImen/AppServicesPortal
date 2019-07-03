@@ -16,8 +16,4 @@ schema.set('toJSON', { virtuals: true });
 schema.plugin(AutoIncrement, {inc_field: '_id'});
 var User = mongoose.model('User', schema);
 
-
-
-
-
 module.exports =User;

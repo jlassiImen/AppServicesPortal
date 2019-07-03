@@ -1,5 +1,4 @@
 const express = require('express');
-//const express-validator = require('express-validator')
 const config = require('../config.json');
 const bcrypt = require('bcrypt');
 const db = require('../_helpers/db');
@@ -63,6 +62,24 @@ var users = {
       }
     });
   },
+  getUser : function (req, res, next){
+    var email=req.params.email;
+    User.findOne({'email': email}, function (err, userFromDB){
+      if (userFromDB) {
+        return res.json({
+          "status": 200,
+          "message": userFromDB
+        });
+      }
+      else{
+        return res.json({
+          "status": 404,
+          "message": "User does not found!!"
+        });
+      }
+  });
+  },
+  
   updatePassword: function (req, res, next) {
     var email = req.body.email || '';
     var password = req.body.password || '';
@@ -75,9 +92,7 @@ var users = {
       });
     }
 
-    User.findOne({
-      'email': email
-    }, function (err, userFromDB) {
+    User.findOne({'email': email}, function (err, userFromDB) {
       if (userFromDB) {
         //comaper le mot de passe saisie par l'utilisateur et celle de la base de données
         if (bcrypt.compareSync(password, userFromDB.password)) {
@@ -159,17 +174,7 @@ var users = {
     });
   },
   confirmation : function (req, res, next) {
-     //req.assert('email', 'Email is not valid').isEmail();
-     //req.assert('email', 'Email cannot be blank').notEmpty();
-     //req.assert('token', 'Token cannot be blank').notEmpty();
-     //req.sanitize('email').normalizeEmail({ remove_dots: false });
-     // Check for validation errors    
-     //var errors = req.validationErrors();
-     //if (errors) return res.status(400).send(errors);
-    // Find a matching token
-    console.log("   token " + req.body.tokenId+ "  user " + req.body.userId);
     Token.findOne({ token: req.body.tokenId, _userId: req.body.userId }, function (err, token) {
-      console.log("   search token result  " + JSON.stringify(token));
       if (!token) {
         return res.json({
           "status": 404,
@@ -209,25 +214,35 @@ var users = {
    },
    //si le token d'un user a expiré
    resendToken : function (req, res, next) {
-     req.assert('email', 'Email is not valid').isEmail();
-     req.assert('email', 'Email cannot be blank').notEmpty();
-     req.sanitize('email').normalizeEmail({ remove_dots: false });
-     // Check for validation errors    
-     var errors = req.validationErrors();
-     if (errors) return res.status(400).send(errors);
      User.findOne({ email: req.body.email }, function (err, user) {
-       if (!user) return res.status(400).send({ msg: 'We were unable to find a user with that email.' });
-       if (user.isVerified) return res.status(400).send({ msg: 'This account has already been verified. Please log in.' });
+       if (!user) return  res.json({
+             "status": 400,
+             "message": "We were unable to find a user with that email."
+           }); 
+       if (user.isVerified) return res.json({
+             "status": 400,
+             "message": "This account has already been verified. Please log in."
+           }); 
        // Create a verification token, save it, and send email
        var token = new Token({ _userId: user._id, token: crypto.randomBytes(16).toString('hex') });
        // Save the token
        token.save(function (err) {
-         if (err) { return res.status(500).send({ msg: err.message }); }
+         if (err) { return res.json({
+             "status": 500,
+             "message": err.message
+           });
+         }
          // Send the email
        var mailOptions = { to: user.email, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/confirmation\/' + token.token + '.\n' };
          smtpTransport.sendMail(mailOptions, function (err) {
-           if (err) { return res.status(500).send({ msg: err.message }); }
-           res.status(200).send('A verification email has been sent to ' + user.email + '.');
+           if (err) { return res.json({
+             "status": 500,
+             "message": err.message
+           }); }
+           res.json({
+             "status": 200,
+             "message": 'A verification email has been sent to ' + user.email + '.'
+           });
          });
        });
      });

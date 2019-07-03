@@ -17,13 +17,15 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit() {
     this.errorMessage='';
+    
     this.loadCategories();
     
   }
 
 loadCategories(){
-  this.categoryService.getAllCategories().map(response => {
+//this.categoriesList=[{"_id":"5d1d1309fe81f26760f8fa30","name":"Transport","link":"transport","icon":"fa fa-taxi","categoryId":1,"__v":0,"id":"5d1d1309fe81f26760f8fa30"},{"_id":"5d1d1767607afa750c87fe70","name":"Flights","link":"filghts","icon":"fa fa-plane","categoryId":2,"__v":0,"id":"5d1d1767607afa750c87fe70"}];
         
+  this.categoryService.getAllCategories().subscribe(response => {
         if(response.status == 200){
           this.errorMessage='';
            this.categoriesList=response.message;

@@ -13,9 +13,10 @@ mongoose.connect
 mongoose.Promise = global.Promise;
 
 module.exports = {
-    User: require('../users/user.model'),
+  User: require('../users/user.model'),
   ResetPassword: require('../users/resetPassword.model'),
   Token: require('../users/tokenVerification.model'),
+  Payment: require('../payment/payment.model'),
   Category: require('../categories/category.model')
 };
 

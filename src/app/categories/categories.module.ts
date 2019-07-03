@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } 
 import { CategoriesRoutingModule } from './categories-routing.module';
 
 import { CategoriesComponent } from './categories.component';
-
+import {CategoriesService} from './../services/categories/categories.service'
 
 
 
@@ -26,7 +26,8 @@ import { CategoriesComponent } from './categories.component';
     FormsModule,
     ReactiveFormsModule,
     HttpModule
-  ]
+  ],
+  providers:[CategoriesService]
 })
 export class CategoriesModule { }
 

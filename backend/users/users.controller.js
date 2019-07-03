@@ -20,6 +20,30 @@ var smtpTransport = nodemailer.createTransport({
     }
 });
 var users = {
+  
+  getUser: function(req, res, next) {
+    var email = req.params.email ;
+    User.findOne({'email': email}, function(err, userFromDB) {
+      if (userFromDB) {
+         console.log(JSON.stringify(userFromDB));
+              res.status(200);
+              res.json({
+                  "status": 200,
+                  "message": userFromDB
+              });
+          
+
+      } else {
+          console.log('Result does not exist');
+          res.status(404);
+          res.json({
+              "status": 404,
+              "message": "user not found"
+          });
+      }
+  });
+
+  },
     authenticate: function(req, res, next) {
         var email = req.body.email || '';
         var password = req.body.password || '';

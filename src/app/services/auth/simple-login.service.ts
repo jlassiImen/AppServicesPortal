@@ -24,6 +24,11 @@ export class SimpleLoginService {
     return this.http.post(apiURL, user);
   }
 
+  public UpdatePassword(user: any): Observable<any> {
+    const apiURL = '/updatePassword';
+    return this.http.post(apiURL, user);
+  }
+
   public logout(): void {
     localStorage.removeItem('currentUser');
     this.router.navigateByUrl('/login');
@@ -40,8 +45,10 @@ export class SimpleLoginService {
   }
 
   public confirmationRegister(user: any): Observable<any> {
-    const apiURL = '/confirmation'
-    return this.http.post(apiURL, user);
+    const apiURL = '/confirmRegistration';
+    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+    return this.http.post(apiURL, user, { headers });
+
   }
 
   public resend(user: any): Observable<any> {

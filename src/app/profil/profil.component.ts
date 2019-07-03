@@ -59,8 +59,8 @@ export class ProfilComponent implements OnInit {
     })
   }
 
-  onSubmitUserDetails(value) {
-    this.simpleLogin.authenticate(value).subscribe((response) => {
+  onSubmitUpdatePassword(value) {
+    this.simpleLogin.UpdatePassword(value).subscribe((response) => {
       if (response.message == "success") {
         localStorage.setItem('currentUser', "login");
         this.router.navigateByUrl('/categories');
@@ -74,5 +74,14 @@ export class ProfilComponent implements OnInit {
       this.successMessage = "";
       this.errorMessage = "An error has occured,please retry later";
     });
+  }
+
+
+  onSubmitPersonnelProfil(value) {
+    return true;
+  }
+
+  onSubmitPaiement(value) {
+    return true;
   }
 }

@@ -2,13 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\backend",
-    "\\backend\\routes",
     "\\backend\\users",
     "\\backend\\_helpers",
+    "\\src",
     "\\src\\app",
-    "\\src\\app\\register",
+    "\\src\\app\\confirmation",
+    "\\src\\app\\forgot-password",
+    "\\src\\app\\services",
     "\\src\\app\\services\\auth"
   ],
-  "SelectedNode": "\\package.json",
+  "SelectedNode": "\\src\\app\\confirmation\\confirmation.component.ts",
   "PreviewInSolutionExplorer": false
 }

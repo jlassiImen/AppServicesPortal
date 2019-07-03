@@ -1,12 +1,13 @@
 var compression = require('compression');
 var express = require('express');
 var bodyParser = require('body-parser');
+var expressValidator = require('express-validator'); //Declare Express-Validator
 
-var app = express();
-
+var app = express();  //required for Express-Validator
 app.use(compression());
 app.use(bodyParser.urlencoded({'extended': 'true'}));
-app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.json({ limit: '50mb' }));
+
 
 app.all('/*', function (req, res, next) {
     // CORS headers

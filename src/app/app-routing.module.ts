@@ -5,10 +5,12 @@ import { HomeComponent } from './home/home.component';
 import { CallbackComponent } from './callback/callback.component';
 import { AuthGuardService } from './services/auth/auth-guard.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'confirmation', component: ConfirmationComponent },
   { path: 'meteo', loadChildren: './meteo/meteo.module#MeteoModule', canActivate: [AuthGuardService] },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'resetPassword', component: ForgotPasswordComponent },

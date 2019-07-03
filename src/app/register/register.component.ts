@@ -69,7 +69,7 @@ export class RegisterComponent implements OnInit {
         this.successMessage = "An email containing a link to activate your account has been sent ! Please verify your email";
       }
       else {
-        this.errorMessage = "Invalid credentials";
+        this.errorMessage = response.message;
         this.successMessage = "";
       }
     }, (err) => {

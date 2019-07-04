@@ -60,6 +60,11 @@
           </div>
           <span class="fa fa-unlock"></span>
         </div>
+        <div class="input"> 
+          <input type="text" class="form-control" name="adress" id="adress"
+                 placeholder="Your adress" formControlName="adress" required>
+          <span class="fa fa-map-marker"></span>
+        </div>
         <button type="submit" [disabled]="!userDetailsForm.valid" class="btn submit">
           <span class="fa fa-sign-in"></span>
         </button>

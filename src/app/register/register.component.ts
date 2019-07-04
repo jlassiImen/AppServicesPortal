@@ -33,6 +33,9 @@ export class RegisterComponent implements OnInit {
       { type: 'required', message: 'Password is required' },
       { type: 'minlength', message: 'Password must be at least 5 characters long' },
       { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number' }
+    ],
+    'adress': [
+      { type: 'required', message: 'first name is required' }
     ]
   }
 
@@ -58,6 +61,9 @@ export class RegisterComponent implements OnInit {
         Validators.minLength(5),
         Validators.required,
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
+      ])),
+      adress: new FormControl('', Validators.compose([
+        Validators.required
       ]))
     })
   }

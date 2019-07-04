@@ -2,7 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { SimpleLoginService } from '../services/auth/simple-login.service';
+import { SimpleLoginService } from './../services/auth/simple-login.service';
+import { PaymentService } from './../services/payment/payment.service';
 
 @Component({
   selector: 'app-profil',
@@ -12,10 +13,11 @@ import { SimpleLoginService } from '../services/auth/simple-login.service';
 })
 export class ProfilComponent implements OnInit {
 
-  constructor(public auth: AuthService, public router: Router, private fb: FormBuilder, public simpleLogin: SimpleLoginService) { }
+  constructor(public auth: AuthService, public router: Router, private fb: FormBuilder, public simpleLogin: SimpleLoginService, public payment: PaymentService) { }
   userDetailsForm: FormGroup;
   successMessage = '';
   errorMessage = '';
+  user='';
   validation_messages = {
     'firstName': [
       { type: 'required', message: 'first name is required' }
@@ -31,39 +33,38 @@ export class ProfilComponent implements OnInit {
       { type: 'required', message: 'Password is required' },
       { type: 'minlength', message: 'Password must be at least 5 characters long' },
       { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number' }
+    ],
+    'adress': [
+      { type: 'required', message: 'last name is required' }
     ]
   }
-
-
   ngOnInit() {
-    this.createForms();
+   this.createform(this.user);
   }
-  createForms() {
-    // user details form validations
-    this.userDetailsForm = this.fb.group({
-      firstName: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      lastName: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      email: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-      ])),
-      password: new FormControl('', Validators.compose([
-        Validators.minLength(5),
-        Validators.required,
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
-      ]))
-    })
-  }
-
+createform(value){
+     this.simpleLogin.getUser(value).subscribe((response) => {
+      if (response.message == "success") {
+        localStorage.setItem('currentUser', "login");                                                                             
+      }
+      else {
+        this.successMessage = "";
+        this.errorMessage = "Invalid credentials";
+      }
+    });
+     this.payment.getPayment(value).subscribe((response) => {
+      if (response.message == "success") {
+        localStorage.setItem('currentUser', "login");                                                                             
+      }
+      else {
+        this.successMessage = "";
+        this.errorMessage = "Invalid credentials";
+      }
+    });
+}
   onSubmitUpdatePassword(value) {
-    this.simpleLogin.UpdatePassword(value).subscribe((response) => {
+    this.simpleLogin.updatePassword(value).subscribe((response) => {
       if (response.message == "success") {
         localStorage.setItem('currentUser', "login");
-        this.router.navigateByUrl('/categories');
       }
       else {
         this.successMessage = "";

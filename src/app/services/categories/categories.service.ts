@@ -16,9 +16,7 @@ export class CategoriesService {
 
   public getAllCategories(): Observable<any> {
     const apiURL = '/getCategories';
-    return this.http.get(apiURL).map(response => {
-      return response;
-    });
+    return this.http.get(apiURL).map(response => {return response;});
 
   }
 

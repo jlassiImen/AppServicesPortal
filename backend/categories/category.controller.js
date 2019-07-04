@@ -9,21 +9,16 @@ var categories = {
   
   getAllCategories: function(req, res, next) {
 
-    Category.find(function (err, result) {
-      if (err) {
+    Category.find((error, data) => {
+      if (error) {
         return res.status(200).json({
           "status": 500,
           "message": err.message
         });
+      } else {
+        res.json(data)
       }
-
-          res.status(200);
-          res.json({
-              "status": 200,
-              "message":result
-          });
-      
-  });
+    })
 
   },
   addCategory: function(req, res, next) {

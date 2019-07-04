@@ -12,12 +12,13 @@ import { CategoriesRoutingModule } from './categories-routing.module';
 
 import { CategoriesComponent } from './categories.component';
 import {CategoriesService} from './../services/categories/categories.service'
-
+import {FilterPipe} from './categoriesFilter.pipe';
 
 
 @NgModule({
   declarations: [
-    CategoriesComponent
+    CategoriesComponent,
+    FilterPipe
   ],
   imports: [
     CommonModule,
@@ -27,7 +28,8 @@ import {CategoriesService} from './../services/categories/categories.service'
     ReactiveFormsModule,
     HttpModule
   ],
-  providers:[CategoriesService]
+  providers:[CategoriesService],
+  exports:[FilterPipe]
 })
 export class CategoriesModule { }
 

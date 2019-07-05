@@ -16,11 +16,7 @@
       <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)">
         <p class="legend">Welcome</p>
 
-        <div>
-          <h4 style="font-size: 16px;float: left;">Autho0 Login </h4>
-          <a (click)="auth.login()" ><img src="../../assets/img/auth0.png"  style ="max-width: 50px;" alt="auth0"></a>
-          <br>Or
-        </div>
+        
         <div class="input">
           <input type="email" name="email" id="email"
                  placeholder="Your E-mail" formControlName="email" required>
@@ -56,7 +52,16 @@
           <span class="fa fa-sign-in"></span>
         </button>
 
+       <div>
+        <div class="row">
+          <div class="col-lg-4"> <hr style="height: 2px; border-top: 1px solid #000;" /></div>
        
+          <div class="col-lg-2"><p>Or</p></div>
+        <div class="col-lg-4"><hr style="height: 2px;  border-top: 1px solid #000;" />  </div></div>
+          <h4 style="font-size: 16px;float: left;">Autho0 Login </h4>
+          <a (click)="auth.login()" ><img src="../../assets/img/auth0.png"  style ="max-width: 50px;" alt="auth0"></a>
+          
+        </div>
 
 
       </form>

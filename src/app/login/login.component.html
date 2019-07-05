@@ -15,6 +15,12 @@
       </div>
       <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)">
         <p class="legend">Welcome</p>
+
+        <div>
+          <h4 style="font-size: 16px;float: left;">Autho0 Login </h4>
+          <a (click)="auth.login()" ><img src="../../assets/img/auth0.png"  style ="max-width: 50px;" alt="auth0"></a>
+          <br>Or
+        </div>
         <div class="input">
           <input type="email" name="email" id="email"
                  placeholder="Your E-mail" formControlName="email" required>
@@ -45,9 +51,14 @@
           </div>
           <span class="fa fa-unlock"></span>
         </div>
-        <button type="submit" [disabled]="!userDetailsForm.valid" class="btn submit">
+       
+        <button type="submit" [disabled]="!userDetailsForm.valid" class="btn submit" >
           <span class="fa fa-sign-in"></span>
         </button>
+
+       
+
+
       </form>
       <span>
         Not a member?

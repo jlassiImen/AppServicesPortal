@@ -7,6 +7,7 @@ var categories = require('../categories/category.controller.js');
 
 router.post('/authenticate', users.authenticate);
 router.post('/updatePassword', users.updatePassword);
+router.post('/updatePersonnelProfile', users.updatePersonnelProfile);
 router.post('/registerUser',  users.register);  
 router.post('/forgotPassword',  users.forgotPassword );            
 router.post('/resetPassword', users.resetPassword);

@@ -6,6 +6,13 @@
 </div>
 <div class="col-lg-1"></div>
 <div class="col-lg-4">
+  <div *ngIf="successMessage !=''" class="alert alert-success" role="alert">
+        {{successMessage}}
+      </div>
+
+      <div *ngIf="errorMessage !=''" class="alert alert-danger" role="alert">
+        {{errorMessage}}
+      </div>
   <form [formGroup]="userDetailsFormAcount" (ngSubmit)="onSubmitUpdatePassword(userDetailsFormAcount.value)">
     <label>Your email</label>
     <div class="input">
@@ -31,7 +38,7 @@
     </div>
     <div class="col-lg-6 col-md-12 pl-4">
       <div class="business-item-info">
-        <a class="btn btn-common" href="#">save changes</a>
+        <button type="submit" [disabled]="!userDetailsFormAcount.valid" class="btn submit">save changes</button>
       </div>
     </div>
   </form>
@@ -49,6 +56,13 @@
 </div>
 <div class="col-lg-1"></div>
 <div class="col-lg-4">
+  <div *ngIf="successMessage !=''" class="alert alert-success" role="alert">
+        {{successMessage}}
+      </div>
+
+      <div *ngIf="errorMessage !=''" class="alert alert-danger" role="alert">
+        {{errorMessage}}
+      </div>
   <form [formGroup]="userDetailsFormProfile" (ngSubmit)="onSubmitPersonnelProfil(userDetailsFormProfile.value)">
     <div class="input">    
       <input type="text" name="firstName" id="firstName"
@@ -68,7 +82,7 @@
     </div>
         <div class="col-lg-6 col-md-12 pl-4">
       <div class="business-item-info">
-        <a class="btn btn-common" href="#">save changes</a>
+        <button type="submit" [disabled]="!userDetailsFormProfile.valid" class="btn submit">save changes</button>
       </div>
     </div>
 </form>
@@ -84,30 +98,6 @@
    <h4 style="font-size: 18px;">Payment Setting</h4>
 </div>
 <div class="col-lg-1"></div>
-<div class="col-lg-4"> 
-  <form >
-    <div class="input">
-      <input type="text" name="creditNumber" id="creditNumber"
-             placeholder="Credit card number" required>
-      <span class="fa fa-user"></span>
-    </div>
 
-    <div class="input">
-      <input type="text" name="crypto" id="crypto"
-             placeholder="Crypto"  required>
-      <span class="fa fa-user"></span>
-    </div>
-
-    <div class="input">
-       <input type="text" name="expirationDate" id="expirationDate"
-             placeholder="Expiration date" required>
-      </div>
-        <div class="col-lg-6 col-md-12 pl-4">
-      <div class="business-item-info">
-        <a class="btn btn-common" href="#">save changes</a>
-      </div>
-    </div>
-</form>
-</div>
 </div>
 </div>

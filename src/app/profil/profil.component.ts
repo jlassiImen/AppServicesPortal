@@ -8,8 +8,7 @@ import { PaymentService } from './../services/payment/payment.service';
 @Component({
   selector: 'app-profil',
   templateUrl: './profil.component.html',
-  styleUrls: ['./profil.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush //pour l'optimisation du site
+  styleUrls: ['./profil.component.css']
 })
 export class ProfilComponent implements OnInit {
 
@@ -52,15 +51,13 @@ export class ProfilComponent implements OnInit {
   }
   getUserDetails(){
   var email=localStorage.getItem('userEmail');  
-  console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxx" + email);
   this.simpleLogin.getUser(email).subscribe((response) => {
-  console.log("aaaaaaaaaaa" + JSON.stringify(response));
       if (response.status == 200) {
         this.firstName=response.message.firstName;
         this.lastName=response.message.lastName;
         this.email=response.message.email;       
         this.adress=response.message.adress;    
-        console.log(response.message.firstName);                                                                 
+                                                                       
       }
     });
   }
@@ -117,7 +114,26 @@ createFormsAcount() {
 
 
   onSubmitPersonnelProfil(value) {
-    return true;
+  var req = {
+  "firstName" : value.firstName,
+  "lastName" : value.lastName,
+  "adress" : value.adress,
+  "email" : this.email
+  }
+    this.simpleLogin.updateProfile(req).subscribe((response) => {
+      if (response.message == "success") {
+      this.successMessage = "Your informations has been apdated seccessfuly";
+        this.errorMessage = "";
+      }
+      else {
+        this.successMessage = "";
+        this.errorMessage = "Invalid credentials";
+      }
+    }, (err) => {
+      console.error(err);
+      this.successMessage = "";
+      this.errorMessage = "An error has occured,please retry later";
+    });
   }
 
   onSubmitPayment(value) {

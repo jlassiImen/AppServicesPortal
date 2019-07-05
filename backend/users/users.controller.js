@@ -99,40 +99,80 @@ var users = {
             if (userFromDB) {
                 //comaper le mot de passe saisie par l'utilisateur et celle de la base de données
                 bcrypt.compare(oldPassword, userFromDB.password, (err, match) => {
-                  if (match == true) {
-                    var cryptPassword = bcrypt.hashSync(newPassword, 5);
-                    User.updateOne({
-                        '_id': userFromDB._id
-                    }, {
-                        $set: {
-                            'password': cryptPassword
-                        }
-                      })
-                        .then((result) => {
-                            if (err) {
-                                return res.json({
-                                    "status": 500,
-                                    "message": "Internal server error"
-                                });
-                            } else {
-                                res.json({
-                                    "status": 200,
-                                    "message": "success"
-                                });
-                            }
-                        })
+                    if (match == true) {
+                        var cryptPassword = bcrypt.hashSync(newPassword, 5);
+                        User.updateOne({
+                                '_id': userFromDB._id
+                            }, {
+                                $set: {
+                                    'password': cryptPassword
+                                }
+                            })
+                            .then((result) => {
+                                if (err) {
+                                    return res.json({
+                                        "status": 500,
+                                        "message": "Internal server error"
+                                    });
+                                } else {
+                                    res.json({
+                                        "status": 200,
+                                        "message": "success"
+                                    });
+                                }
+                            })
+                    } else {
+                        res.json({
+                            "status": 401,
+                            "message": "Invalid oldPassword"
+                        });
                     }
-             else {
-                res.json({
-                    "status": 401,
-                    "message": "Invalid oldPassword"
                 });
             }
         });
-    }
-  });
-      },
+    },
 
+    updatePersonnelProfile: function(req, res, next) {
+        var email = req.body.email || '';
+        var firstName = req.body.firstName || '';
+        var lastName = req.body.lastName || '';
+        var adress = req.body.adress || '';
+
+        if (firstName == '' || lastName == '' || adress == '') {
+            res.json({
+                "status": 401,
+                "message": "Invalid credentials"
+            });
+        }
+       else{
+        User.findOne({
+            'email': email
+        }, function(err, userFromDB) {
+            if (userFromDB) {
+                User.updateOne({
+                        '_id': userFromDB._id
+                    }, {
+                        $set: {
+                            'firstName': firstName,
+                            'lastName': lastName,
+                            'adress': adress
+                        }
+                    })
+                    .then((result) => {          
+                        res.json({
+                            "status": 200,
+                            "message": "success"
+                        });
+                    })
+            } else {
+                res.json({
+                    "status": 404,
+                    "message": "Email does not exist"
+                });
+            }
+        })
+    }
+    },
 
     register: function(req, res, next) {
         var userParam = req.body;

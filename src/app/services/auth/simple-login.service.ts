@@ -24,7 +24,12 @@ export class SimpleLoginService {
     return this.http.post(apiURL, user);
   }
 
-  public updatePassword(user: any): Observable<any> {
+  public updateProfile(user: any): Observable<any> {
+    const apiURL = '/updatePersonnelProfile';
+    return this.http.post(apiURL, user);
+  }
+
+    public updatePassword(user: any): Observable<any> {
     const apiURL = '/updatePassword';
     return this.http.post(apiURL, user);
   }

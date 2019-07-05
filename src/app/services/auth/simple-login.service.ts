@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { map } from 'rxjs/operators/map';
+import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -30,12 +30,12 @@ export class SimpleLoginService {
   }
 
   public logout(): void {
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('userEmail');
     this.router.navigateByUrl('/login');
   }
 
   public isLoggedIn() {
-    if (localStorage.getItem('currentUser')) {
+    if (localStorage.getItem('userEmail')) {
       return true;
     }
     else {
@@ -44,9 +44,9 @@ export class SimpleLoginService {
 
   }
 
-  public getUser(user: any): Observable<any> {
-    const apiURL = '//userDetails/:email';
-    return this.http.get(apiURL, user);
+  public getUser(email: string): Observable<any> {
+    const apiURL = '/userDetails/'+email;
+    return this.http.get(apiURL).map(response => {return response;});
   }
 
   public confirmationRegister(user: any): Observable<any> {

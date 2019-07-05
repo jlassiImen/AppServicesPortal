@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { SimpleLoginService } from './../services/auth/simple-login.service';
 import { PaymentService } from './../services/payment/payment.service';
 
@@ -9,15 +9,22 @@ import { PaymentService } from './../services/payment/payment.service';
   selector: 'app-profil',
   templateUrl: './profil.component.html',
   styleUrls: ['./profil.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush //pour l'optimisation du site
 })
 export class ProfilComponent implements OnInit {
 
   constructor(public auth: AuthService, public router: Router, private fb: FormBuilder, public simpleLogin: SimpleLoginService, public payment: PaymentService) { }
-  userDetailsForm: FormGroup;
+
+ userDetailsFormAcount: FormGroup;
+ userDetailsFormProfile: FormGroup;
+
   successMessage = '';
   errorMessage = '';
-  user='';
+  firstName='';
+  lastName='';
+  email='';
+  adress='';
+
   validation_messages = {
     'firstName': [
       { type: 'required', message: 'first name is required' }
@@ -39,32 +46,63 @@ export class ProfilComponent implements OnInit {
     ]
   }
   ngOnInit() {
-   this.createform(this.user);
+     this.getUserDetails();
+     this.createFormsAcount();
+     this.createFormsProfile();
   }
-createform(value){
-     this.simpleLogin.getUser(value).subscribe((response) => {
-      if (response.message == "success") {
-        localStorage.setItem('currentUser', "login");                                                                             
-      }
-      else {
-        this.successMessage = "";
-        this.errorMessage = "Invalid credentials";
-      }
-    });
-     this.payment.getPayment(value).subscribe((response) => {
-      if (response.message == "success") {
-        localStorage.setItem('currentUser', "login");                                                                             
-      }
-      else {
-        this.successMessage = "";
-        this.errorMessage = "Invalid credentials";
+  getUserDetails(){
+  var email=localStorage.getItem('userEmail');  
+  console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxx" + email);
+  this.simpleLogin.getUser(email).subscribe((response) => {
+  console.log("aaaaaaaaaaa" + JSON.stringify(response));
+      if (response.status == 200) {
+        this.firstName=response.message.firstName;
+        this.lastName=response.message.lastName;
+        this.email=response.message.email;       
+        this.adress=response.message.adress;    
+        console.log(response.message.firstName);                                                                 
       }
     });
-}
+  }
+
+createFormsAcount() {
+    // user details form validations
+    this.userDetailsFormAcount = this.fb.group({
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])),
+      oldPassword: new FormControl('', Validators.compose([
+        Validators.minLength(5),
+        Validators.required,
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
+      ])),
+       newPassword: new FormControl('', Validators.compose([
+        Validators.minLength(5),
+        Validators.required,
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
+      ]))
+    })
+  }
+
+  createFormsProfile() {
+    // user details form validations
+    this.userDetailsFormProfile = this.fb.group({
+      firstName: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      lastName: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      adress: new FormControl('', Validators.compose([
+        Validators.required
+      ]))
+    })
+  }
+     
   onSubmitUpdatePassword(value) {
     this.simpleLogin.updatePassword(value).subscribe((response) => {
       if (response.message == "success") {
-        localStorage.setItem('currentUser', "login");
       }
       else {
         this.successMessage = "";
@@ -82,7 +120,8 @@ createform(value){
     return true;
   }
 
-  onSubmitPaiement(value) {
+  onSubmitPayment(value) {
     return true;
   }
+
 }

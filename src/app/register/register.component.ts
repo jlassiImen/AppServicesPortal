@@ -14,7 +14,9 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   constructor(public router: Router, private fb: FormBuilder, public simpleLogin: SimpleLoginService) { }
+
   userDetailsForm: FormGroup;
+
   successMessage = '';
   errorMessage = '';
   validation_messages = {
@@ -44,6 +46,7 @@ export class RegisterComponent implements OnInit {
     this.successMessage = '';
     this.errorMessage = '';
   }
+
   //valider le formulaire
   createForms() {
     this.userDetailsForm = this.fb.group({
@@ -67,6 +70,7 @@ export class RegisterComponent implements OnInit {
       ]))
     })
   }
+  
   //appel du service simpleLogin pour la création du compte utilisateur
   onSubmitUserDetails(value) {
     this.simpleLogin.register(value).subscribe((response) => {

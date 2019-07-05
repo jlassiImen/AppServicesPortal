@@ -15,7 +15,6 @@ router.get('/getCategories', categories.getAllCategories);
 router.post('/addCategory', categories.addCategory);
 router.post('/confirmRegistration', users.confirmation);
 router.post('/resend', users.resendToken);
-router.get('/userDetails/:email', users.getUser);
 router.get('/userPayment/:userId', payment.getPayment);
 router.get('/addPay/:creditCartNumber', payment.addPayment);
 

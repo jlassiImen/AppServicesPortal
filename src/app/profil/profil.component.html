@@ -6,26 +6,26 @@
 </div>
 <div class="col-lg-1"></div>
 <div class="col-lg-4">
-  <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUpdatePassword(userDetailsForm.value)">
+  <form [formGroup]="userDetailsFormAcount" (ngSubmit)="onSubmitUpdatePassword(userDetailsFormAcount.value)">
     <label>Your email</label>
     <div class="input">
       <input type="email" name="email" id="email"
-             formControlName="email"  required>
+             formControlName="email" [(ngModel)]="email"  required>
       <span class="focus-input100"></span>
     
       <span class="fa fa-envelope"></span>
     </div>
-    <label>New password</label>
+    <label>Old password</label>
     <div class="input">
-      <input type="password" name="password" id="password"
-             formControlName="password" required>
+      <input type="password" name="oldPassword" id="oldPassword"
+             formControlName="oldPassword" required>
   
       <span class="fa fa-unlock"></span>
     </div>
-    <label>Confirm password </label>
+    <label>New password </label>
     <div class="input">
-      <input type="password" name="password" id="password2"
-             formControlName="password" required>
+      <input type="password" name="newPassword" id="newPassword"
+             formControlName="newPassword" required>
       
       <span class="fa fa-unlock"></span>
     </div>
@@ -49,25 +49,23 @@
 </div>
 <div class="col-lg-1"></div>
 <div class="col-lg-4">
-  <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitPersonnelProfil(userDetailsForm.value)">
+  <form [formGroup]="userDetailsFormProfile" (ngSubmit)="onSubmitPersonnelProfil(userDetailsFormProfile.value)">
     <div class="input">    
       <input type="text" name="firstName" id="firstName"
-             placeholder="Your first Name" formControlName="firstName" required>
+             placeholder="Your first Name" formControlName="firstName" 
+             [(ngModel)]="firstName" required>
       <span class="fa fa-user"></span>
     </div>
     <div class="input">      
       <input type="text" class="form-control" name="lastName" id="lastName"
-             placeholder="Your last Name" formControlName="lastName" required>
+             placeholder="Your last Name" formControlName="lastName" [(ngModel)]="lastName"  required>
       <span class="fa fa-user"></span>
     </div>
  <div class="input">     
-      <input type="text" class="form-control" name="lastName"
-             placeholder="Address" formControlName="lastName" required>
+      <input type="text" class="form-control" name="adress"
+             placeholder="Address" formControlName="adress" [(ngModel)]="adress"  required>
       <span class="fa fa-user"></span>
     </div>
-      <div class="input">
-        <input type="date" name="birthday" id="birthday" class="form-control" required>
-      </div>
         <div class="col-lg-6 col-md-12 pl-4">
       <div class="business-item-info">
         <a class="btn btn-common" href="#">save changes</a>
@@ -87,37 +85,22 @@
 </div>
 <div class="col-lg-1"></div>
 <div class="col-lg-4"> 
-  <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitPaiement(userDetailsForm.value)">
+  <form >
     <div class="input">
-      <div help-block with-errors *ngFor="let validation of validation_messages.firstName">
-        <label for="firstName" class="bmd-label-floating"
-               style="margin: -9% 21%;color: red;position: absolute;width: 100%;"
-               *ngIf="userDetailsForm.get('firstName').hasError(validation.type) && (userDetailsForm.get('firstName').dirty || userDetailsForm.get('firstName').touched)">
-          {{validation.message}}
-        </label>
-      </div>
-      <input type="text" name="firstName" id="firstName"
-             placeholder="Credit card number" formControlName="firstName" required>
+      <input type="text" name="creditNumber" id="creditNumber"
+             placeholder="Credit card number" required>
       <span class="fa fa-user"></span>
     </div>
 
     <div class="input">
-      <div help-block with-errors *ngFor="let validation of validation_messages.lastName">
-        <label for="lastName" class="bmd-label-floating"
-               style="margin: -9% 21%;color: red;position: absolute;width: 100%;"
-               *ngIf="userDetailsForm.get('firstName').hasError(validation.type) && (userDetailsForm.get('firstName').dirty || userDetailsForm.get('firstName').touched)">
-          {{validation.message}}
-        </label>
-      </div>
-      <input type="text" class="form-control" name="lastName" id="lastName"
-             placeholder="Crypto" formControlName="lastName" required>
+      <input type="text" name="crypto" id="crypto"
+             placeholder="Crypto"  required>
       <span class="fa fa-user"></span>
     </div>
 
-
     <div class="input">
-       <input type="text" class="form-control" name="lastName" id="lastName"
-             placeholder="Expiration date" formControlName="lastName" required>
+       <input type="text" name="expirationDate" id="expirationDate"
+             placeholder="Expiration date" required>
       </div>
         <div class="col-lg-6 col-md-12 pl-4">
       <div class="business-item-info">

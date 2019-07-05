@@ -42,7 +42,7 @@ var users = {
                     res.status(200);
                     res.json({
                         "status": 200,
-                        "message": "success"
+                        "message": email
                     });
                 } else {
                     res.json({
@@ -93,14 +93,12 @@ var users = {
                 "message": "Invalid credentials"
             });
         }
-        console.log("aaaaaaaaaaaaa");
         User.findOne({
             'email': email
         }, function(err, userFromDB) {
             if (userFromDB) {
                 //comaper le mot de passe saisie par l'utilisateur et celle de la base de données
                 bcrypt.compare(oldPassword, userFromDB.password, (err, match) => {
-                  console.log("rrrrrrrrrrrrrrr" + match);
                   if (match == true) {
                     var cryptPassword = bcrypt.hashSync(newPassword, 5);
                     User.updateOne({
@@ -117,7 +115,6 @@ var users = {
                                     "message": "Internal server error"
                                 });
                             } else {
-                                console.log("zzzzzzzzzzzzzzzzzzzzzzzzz");
                                 res.json({
                                     "status": 200,
                                     "message": "success"
@@ -125,18 +122,13 @@ var users = {
                             }
                         })
                     }
-
-                
              else {
-                console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeee");
                 res.json({
                     "status": 401,
                     "message": "Invalid oldPassword"
                 });
             }
-
         });
-
     }
   });
       },

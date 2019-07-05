@@ -48,7 +48,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="auth.isAuthenticated() || simpleLogin.isLoggedIn()">
-              {{user.firstName}}
+              
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li><a class="dropdown-item" (click)="router.navigate(['/profil']);">My profile</a></li>

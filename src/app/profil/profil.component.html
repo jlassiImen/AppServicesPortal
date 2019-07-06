@@ -38,7 +38,13 @@
     </div>
     <div class="col-lg-6 col-md-12 pl-4">
       <div class="business-item-info">
-        <button type="submit" [disabled]="!userDetailsFormAcount.valid" class="btn submit style="width: 100%;">save changes</button>
+      
+
+        <button  type="submit" [disabled]="!userDetailsFormAcount.valid" 
+        style="width: 100%;" value="save changes" class="btn submit" >
+        </button>
+
+
       </div>
     </div>
   </form>
@@ -52,8 +58,8 @@
 <div class="row">
   <div class="col-lg-1"></div>
   <div class="col-lg-2">
-   <h4 style="font-size: 18px;">Profile Setting</h4>
-</div>
+    <h4 style="font-size: 18px;">Profile Setting</h4>
+  </div>
 <div class="col-lg-1"></div>
 <div class="col-lg-4">
   <div *ngIf="successMessage !=''" class="alert alert-success" role="alert">
@@ -75,16 +81,19 @@
              placeholder="Your last Name" formControlName="lastName" [(ngModel)]="lastName"  required>
       <span class="fa fa-user"></span>
     </div>
- <div class="input">     
+    <div class="input">     
       <input type="text" class="form-control" name="adress"
              placeholder="Address" formControlName="adress" [(ngModel)]="adress"  required>
       <span class="fa fa-user"></span>
     </div>
-        <div class="col-lg-6 col-md-12 pl-4">
+    <div class="col-lg-6 col-md-12 pl-4">
       <div class="business-item-info">
-        <button type="submit" [disabled]="!userDetailsFormProfile.valid" class="btn submit style="width: 100%;">save changes</button>
+        <button  type="submit" [disabled]="!userDetailsFormProfile.valid" 
+        style="width: 100%;" value="save changes" class="btn submit" >
+        </button>
       </div>
     </div>
 </form>
 </div>
+</div> 
 </div> 

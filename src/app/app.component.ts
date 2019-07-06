@@ -11,7 +11,7 @@ import { SimpleLoginService } from './services/auth/simple-login.service';
 export class AppComponent implements OnInit {
 
   navbarOpen = false;
-
+  userName='';
   constructor(public auth: AuthService, public router: Router, public simpleLogin: SimpleLoginService) {
     auth.handleAuthentication();
   }
@@ -19,6 +19,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     if (this.auth.isAuthenticated()) {
       this.auth.renewTokens();
+    }
+    if(this.simpleLogin.isLoggedIn()){
+      this.userName=localStorage.getItem('firstName');
     }
   }
 

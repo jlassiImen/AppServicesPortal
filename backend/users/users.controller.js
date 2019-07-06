@@ -42,7 +42,8 @@ var users = {
                     res.status(200);
                     res.json({
                         "status": 200,
-                        "message": email
+                        "email": email,
+                        "firstName":userFromDB.firstName
                     });
                 } else {
                     res.json({

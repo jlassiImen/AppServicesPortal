@@ -50,7 +50,8 @@ export class LoginComponent implements OnInit {
   onSubmitUserDetails(value) {
     this.simpleLogin.authenticate(value).subscribe((response) => {
       if (response.status == 200) {
-        localStorage.setItem('userEmail', response.message);
+        localStorage.setItem('userEmail', response.email);
+        localStorage.setItem('firstName', response.firstName);
         this.router.navigateByUrl('/categories');                                                                                                                 
       }
       else {

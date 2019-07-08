@@ -25,23 +25,23 @@ export class RestaurationComponent implements OnInit {
     {
       "name": "Hippopotamus",
       "address": "40, avenue Maréchal de Lattre de Tassigny 92360 Meudon France",
-      "Speciality": "FRANÇAIS ",
-      "Price": "25",
-      "img": "../../assets/img/restaurant/1.jpg"
+      "speciality": "FRANÇAIS ",
+      "price": "25",
+      "img": "../../assets/img/team/01.jpg"
     },
     {
       "name": "Toscanini",
       "address": " 32 Rue Jean Pierre Timbaud 92130 Issy-les-Moulineaux France",
       "speciality": "ITALIEN",
       "price": "20",
-      "img": "../../assets/img/restaurant/2.jpg"
+      "img": "../../assets/img/team/02.jpg"
     },
     {
       "name": "Restaurant L'Ile",
       "address": "170, quai de Stalingrad 92130 Issy-les-Moulineaux France ",
-      "Speciality": "FRANÇAIS ",
-      "Price": "38",
-      "img": "../../assets/img/restaurant/3.jpg"
+      "speciality": "FRANÇAIS ",
+      "price": "38",
+      "img": "../../assets/img/team/03.jpg"
     }
   ]
   restoForm: FormGroup;

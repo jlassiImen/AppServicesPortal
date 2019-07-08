@@ -17,9 +17,9 @@ export const routes: Routes = [
   { path: 'register', loadChildren: './register/register.module#RegisterModule' },
   { path: 'callback', component: CallbackComponent },
   { path: 'categories', loadChildren: './categories/categories.module#CategoriesModule', canActivate: [AuthGuardService] },
-  { path: 'restauration', loadChildren: './restauration/restauration.module#RestaurationModule', canActivate: [AuthGuardService]},
+  { path: 'restauration', loadChildren: './restauration/restauration.module#RestaurationModule'},
   { path: 'transport', loadChildren: './transport/transport.module#TransportModule', canActivate: [AuthGuardService] },
-  { path: 'RestaurantDetails', loadChildren: './restaurant-details/restaurant-details.module#RestaurantDetailsModule', canActivate: [AuthGuardService] },
+  { path: 'RestaurantDetails', loadChildren: './restaurant-details/restaurant-details.module#RestaurantDetailsModule' },
   { path: 'login', loadChildren: './login/login.module#LoginModule' },
   { path: 'profil', loadChildren: './profil/profil.module#ProfilModule', canActivate: [AuthGuardService] }
 ];

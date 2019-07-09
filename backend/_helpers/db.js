@@ -17,7 +17,8 @@ module.exports = {
   ResetPassword: require('../users/resetPassword.model'),
   Token: require('../users/tokenVerification.model'),
   Payment: require('../payment/payment.model'),
-  Category: require('../categories/category.model')
+  Category: require('../categories/category.model'),
+  Restaurant: require('../restaurant/restaurant.model')
 };
 
 

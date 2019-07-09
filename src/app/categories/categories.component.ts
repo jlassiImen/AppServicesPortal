@@ -9,8 +9,7 @@ import { Observable, Subject } from 'rxjs';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
   categoriesList : Observable<Array<any>>

@@ -11,8 +11,8 @@ const schema = new Schema({
 
 schema.set('toJSON', { virtuals: true });
 schema.plugin(AutoIncrement, {inc_field: 'categoryId'});
-var User = mongoose.model('Category', schema);
+var Category = mongoose.model('Category', schema);
 
 
 
-module.exports =User;
+module.exports =Category;

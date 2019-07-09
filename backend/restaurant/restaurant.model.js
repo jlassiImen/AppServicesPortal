@@ -12,7 +12,7 @@ const schema = new Schema({
 });
 
 schema.set('toJSON', { virtuals: true });
-schema.plugin(AutoIncrement, {inc_field: '_id'});
+schema.plugin(AutoIncrement, {inc_field: 'restaurantId'});
 var Restaurant = mongoose.model('Restaurant', schema);
 
 module.exports =Restaurant;

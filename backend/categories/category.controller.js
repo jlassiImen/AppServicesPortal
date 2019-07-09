@@ -11,7 +11,7 @@ var categories = {
 
     Category.find((error, data) => {
       if (error) {
-        return res.status(200).json({
+        return res.status(500).json({
           "status": 500,
           "message": err.message
         });

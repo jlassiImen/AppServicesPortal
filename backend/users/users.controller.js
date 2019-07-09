@@ -479,6 +479,25 @@ var users = {
                 })
             })
     },
+    deleteUser: function(req, res, next) {
+        var email = req.body.email;
+       
+        User.findOneAndRemove({
+            'email': email
+        }, function(err, userFromDB) {
+            if (userFromDB) {
+                return res.json({
+                    "status": 200,
+                    "message": "User deleted !!"
+                });
+            } else {
+                return res.json({
+                    "status": 404,
+                    "message": "User does not found!!"
+                });
+            }
+        });
+    }  
 
 }
 

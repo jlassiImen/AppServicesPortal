@@ -7,8 +7,7 @@ const schema = new Schema({
     name: { type: String, required: true },
     adress: { type: String, required: true },
     plan: { type: String, required: true },
-    prixMoyen: { type: String, required: true },
-    menu: { type: String, required: true }
+    prixMoyen: { type: String, required: true }
 });
 
 schema.set('toJSON', { virtuals: true });

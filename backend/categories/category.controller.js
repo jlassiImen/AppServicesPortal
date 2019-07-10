@@ -24,7 +24,7 @@ var categories = {
   addCategory: function(req, res, next) {
     var categoryName=req.body.name;
     var categoryParam = req.body;
-    Category.find({name : categoryName},function (err, result) {
+    Category.find({'name' : categoryName},function (err, result) {
       console.log(JSON.stringify(result));
       if (err) {
         return res.json({
@@ -57,7 +57,27 @@ var categories = {
         });
   });
 
-  }
+  },
+
+  deleteCategory: function(req, res, next) {
+      var categoryName=req.body.name;
+       
+      Category.findOneAndRemove({
+            'name' : categoryName
+        }, function(err, categoryDB) {
+            if (categoryDB) {
+                return res.json({
+                    "status": 200,
+                    "message": "Category deleted !!"
+                });
+            } else {
+                return res.json({
+                    "status": 404,
+                    "message": "Category does not found!!"
+                });
+            }
+        });
+    }  
   
   /* ,
 

@@ -4,6 +4,9 @@ const config = require('../config.json');
 const db = require('../_helpers/db');
 
 const Restaurant = db.Restaurant;
+const MenuCategory = db.MenuCategory;
+const MenuItem = db.MenuItem;
+
 
 var restaurants = {
 	getAllRestaurants: function(req, res, next) {
@@ -20,19 +23,18 @@ var restaurants = {
     })
 
   },
+
   getRestaurant: function(req, res, next) {
-  	var restaurantId = req.body.restaurantId;
+  	var restaurantId = req.params.restaurantId;
     Restaurant.findOne({
             'restaurantId': restaurantId
         }, function(err, restaurantDB) {
             if (restaurantDB) {
-            	console.log("ssssssssssssssssssssssss");
-                return res.json({
+              return res.json({
                     "status": 200,
                     "message": restaurantDB
                 });
             } else {
-            	console.log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
                 return res.json({
                     "status": 404,
                     "message": "Restaurant does not found!!"
@@ -40,25 +42,83 @@ var restaurants = {
             }
         });
     },
-    addRestaurant: function(req, res, next) {
-    var restaurantId=req.body.restaurantId;
-    var restaurantParam = req.body;
-    Restaurant.find({'restaurantId' : restaurantId},function (err, result) {
-      if (err) {
-        return res.json({
-          "status": 500,
-          "message": err.message
-        });
-      }
-      if(result.length != 0){
-        return res.status(409).json({
-            "status": 409,
-            "message":"Restaurant already exist"
-        });
-      }
+  
+  getRestaurantDetails: function(req, res, next) {
+  	var restaurantId = req.params.restaurantId;
+    Restaurant.findOne({
+            'restaurantId': restaurantId
+        }, function(err, restaurantDB) {
+            if (restaurantDB) {
 
+
+    MenuItem.find({
+        'restaurantId': restaurantId
+        }, function(err, menuItemDB) {
+            if (menuItemDB) {
+
+        MenuCategory.find(function(err, menuCategoryDB) {
+            if (menuCategoryDB) {
+            	
+
+    var finalResult= menuItemDB.map(function(item) {
+    	console.log("aaaaaaaaaaaaa "+menuItemDB.length);
+    	menuCategoryDB.map(function(category) {
+    		if(item.menuCategoryId === category.menuCategoryId){
+
+    			item['categoryName']=category.name;
+
+    			console.log("vvvvvvvvvvvvv "+JSON.stringify(item));
+    			
+    		}
+		});
+    	var finalItem={
+    		"item":item,
+    		"category":item['categoryName']
+    	}
+    	return finalItem;
+	});
+    
+	var result={
+            		"restaurant":restaurantDB,
+            		"menu":finalResult
+
+            	}
+                return res.json({
+                    "status": 200,
+                    "message": result
+                });
+
+
+
+
+            	
+            } else {
+                return res.json({
+                    "status": 404,
+                    "message": "Dishes does not found!!"
+                });
+            }
+        });
+
+            } else {
+                return res.json({
+                    "status": 404,
+                    "message": "Dishes does not found!!"
+                });
+            }
+        });
+
+            } else {
+                return res.json({
+                    "status": 404,
+                    "message": "Restaurant does not found!!"
+                });
+            }
+        });
+    },
+addRestaurant: function(req, res, next) {
+    var restaurantParam = req.body;  
       const restaurant = new Restaurant(restaurantParam);
-
       restaurant.save(function (err) {
         if (err) {
           return res.json({
@@ -73,18 +133,15 @@ var restaurants = {
           });
       
         });
-  });
-  },
-
+  } ,
   updateDetailsRestaurant: function(req, res, next) {
   	    var restaurantId=req.body.restaurantId || '';
         var name = req.body.name || '';
         var adress = req.body.adress || '';
         var plan = req.body.plan || '';
         var prixMoyen = req.body.prixMoyen || '';
-        var menu = req.body.menu || '';
 
-        if (restaurantId == '' || name == '' || adress == '' || plan == '' || prixMoyen == '' || menu == '') {
+        if (restaurantId == '' || name == '' || adress == '' || plan == '' || prixMoyen == '' ) {
             res.json({
                 "status": 401,
                 "message": "Invalid credentials"
@@ -139,7 +196,86 @@ var restaurants = {
                 });
             }
         });
-    }  
+    },
+
+    getMenuItem: function(req, res, next) {
+  	var menuItemId = req.body.menuItemId;
+  	var restaurantId = req.body.restaurantId;
+
+    MenuItem.find({
+        'restaurantId': restaurantId
+        }, function(err, menuItemDB) {
+            if (menuItemDB) {
+                return res.json({
+                    "status": 200,
+                    "message": menuItemDB
+                });
+            } else {
+                return res.json({
+                    "status": 404,
+                    "message": "Dishes does not found!!"
+                });
+            }
+        });
+    }, 
+
+    addMenuCategory: function(req, res, next) {
+    var name=req.body.name;
+    var menuCategoryParam = req.body;
+
+    MenuCategory.find({'name' : name},function (err, result) {
+      if (err) {
+        return res.json({
+          "status": 500,
+          "message": err.message
+        });
+      }
+      if(result.length != 0){
+        return res.status(409).json({
+            "status": 409,
+            "message":"Category already exist"
+        });
+      }
+
+      const menuCategory = new MenuCategory(menuCategoryParam);
+
+      menuCategory.save(function (err) {
+        if (err) {
+          return res.json({
+            "status": 500,
+            "message": err.message
+          });
+        }
+          res.status(200);
+          res.json({
+              "status": 200,
+              "message":"success"
+          });
+      
+        });
+  });
+  },
+
+  addMenuItem: function(req, res, next) {
+    var menuItemParam = req.body;  
+      const menuItem = new MenuItem(menuItemParam);
+      menuItem.save(function (err) {
+        if (err) {
+          return res.json({
+            "status": 500,
+            "message": err.message
+          });
+        }
+          res.status(200);
+          res.json({
+              "status": 200,
+              "message":"success"
+          });
+      
+        });
+  } 
+
+  
 
 }
 module.exports = restaurants;

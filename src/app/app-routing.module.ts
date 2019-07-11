@@ -17,7 +17,7 @@ export const routes: Routes = [
   { path: 'register', loadChildren: './register/register.module#RegisterModule' },
   { path: 'callback', component: CallbackComponent },
   { path: 'categories', loadChildren: './categories/categories.module#CategoriesModule'},
-  { path: 'restauration', loadChildren: './restauration/restauration.module#RestaurationModule'},
+  { path: 'restoration', loadChildren: './restoration/restoration.module#RestorationModule'},
   { path: 'transport', loadChildren: './transport/transport.module#TransportModule' },
   { path: 'RestaurantDetails', loadChildren: './restaurant-details/restaurant-details.module#RestaurantDetailsModule' },
   { path: 'login', loadChildren: './login/login.module#LoginModule' },

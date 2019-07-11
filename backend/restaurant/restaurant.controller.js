@@ -9,7 +9,7 @@ const MenuItem = db.MenuItem;
 
 
 var restaurants = {
-	getAllRestaurants: function(req, res, next) {
+  getAllRestaurants: function(req, res, next) {
 
     Restaurant.find((error, data) => {
       if (error) {
@@ -55,20 +55,12 @@ var restaurants = {
         'restaurantId': restaurantId
         }, function(err, menuItemDB) {
             if (menuItemDB) {
-
         MenuCategory.find(function(err, menuCategoryDB) {
             if (menuCategoryDB) {
-            	
-
     var finalResult= menuItemDB.map(function(item) {
-    	console.log("aaaaaaaaaaaaa "+menuItemDB.length);
     	menuCategoryDB.map(function(category) {
     		if(item.menuCategoryId === category.menuCategoryId){
-
-    			item['categoryName']=category.name;
-
-    			console.log("vvvvvvvvvvvvv "+JSON.stringify(item));
-    			
+    			item['categoryName']=category.name;		
     		}
 		});
     	var finalItem={
@@ -77,21 +69,14 @@ var restaurants = {
     	}
     	return finalItem;
 	});
-    
 	var result={
             		"restaurant":restaurantDB,
             		"menu":finalResult
-
             	}
                 return res.json({
                     "status": 200,
                     "message": result
-                });
-
-
-
-
-            	
+                });	
             } else {
                 return res.json({
                     "status": 404,
@@ -99,7 +84,6 @@ var restaurants = {
                 });
             }
         });
-
             } else {
                 return res.json({
                     "status": 404,
@@ -199,10 +183,11 @@ addRestaurant: function(req, res, next) {
     },
 
     getMenuItem: function(req, res, next) {
-  	var menuItemId = req.body.menuItemId;
+  	var name = req.body.name;
   	var restaurantId = req.body.restaurantId;
 
     MenuItem.find({
+        'name': name,
         'restaurantId': restaurantId
         }, function(err, menuItemDB) {
             if (menuItemDB) {
@@ -219,7 +204,27 @@ addRestaurant: function(req, res, next) {
         });
     }, 
 
-    addMenuCategory: function(req, res, next) {
+    getMenuCategory: function(req, res, next) {
+  	var name = req.body.name;
+
+    MenuItem.find({
+    	"name":name
+        }, function(err, menuCategoryDB) {
+            if (menuCategoryDB) {
+                return res.json({
+                    "status": 200,
+                    "message": menuCategoryDB
+                });
+            } else {
+                return res.json({
+                    "status": 404,
+                    "message": "Dishes does not found!!"
+                });
+            }
+        });
+    },
+
+  addMenuCategory: function(req, res, next) {
     var name=req.body.name;
     var menuCategoryParam = req.body;
 

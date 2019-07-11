@@ -8,27 +8,27 @@ import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } 
 
 
 
-import { RestaurationRoutingModule } from './restauration-routing.module';
+import { RestorationRoutingModule } from './restoration-routing.module';
 
-import { RestaurationComponent } from './restauration.component';
+import { RestorationComponent } from './restoration.component';
 
 
 
 
 @NgModule({
   declarations: [
-    RestaurationComponent
+    RestorationComponent
   ],
   imports: [
     CommonModule,
-    RestaurationRoutingModule,
+    RestorationRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule
   ]
 })
-export class RestaurationModule { }
+export class RestorationModule { }
 
 
 

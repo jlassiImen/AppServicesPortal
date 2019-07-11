@@ -16,8 +16,11 @@ module.exports = {
   User: require('../users/user.model'),
   ResetPassword: require('../users/resetPassword.model'),
   Token: require('../users/tokenVerification.model'),
+
   Payment: require('../payment/payment.model'),
+
   Category: require('../categories/category.model'),
+  
   Restaurant: require('../restaurant/restaurant.model'),
   MenuCategory: require('../restaurant/menuCategory.model'),
   MenuItem: require('../restaurant/menuItem.model')

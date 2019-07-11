@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
       if (response.status == 200) {
         localStorage.setItem('userEmail', response.email);
         localStorage.setItem('firstName', response.firstName);
-        this.router.navigateByUrl('/categories');                                                                                                                 
+        this.router.navigateByUrl('/categories');  
       }
       else {
         this.successMessage = "";

@@ -11,9 +11,9 @@ export class RestorationService {
 
   constructor(public http: HttpClient, public router: Router) { }
 
-    public getAllRestaurant(): Observable<any> {
+    public getAllRestaurant(): Observable<any[]> {
     const apiURL = '/allRestaurant';
-    return this.http.get(apiURL).map(response => {return response;});
+    return this.http.get<any[]>(apiURL).map(response => {return response;});
   }
 
     public getRestaurant(restaurantId: string): Observable<any> {

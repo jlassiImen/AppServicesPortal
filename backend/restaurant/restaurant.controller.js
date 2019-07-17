@@ -7,6 +7,9 @@ const Restaurant = db.Restaurant;
 const MenuCategory = db.MenuCategory;
 const MenuItem = db.MenuItem;
 
+var NodeGeocoder = require('node-geocoder');
+var geocoder = NodeGeocoder(config.NodeGeocoderOptions);
+
 
 var restaurants = {
   getAllRestaurants: function(req, res, next) {
@@ -103,6 +106,11 @@ var restaurants = {
 addRestaurant: function(req, res, next) {
     var restaurantParam = req.body;  
       const restaurant = new Restaurant(restaurantParam);
+      geocoder.geocode(restaurant.adress, function(err, result) {
+      console.log(result);
+      restaurant.latitude=result[0].latitude;
+      restaurant.longitude=result[0].longitude;
+
       restaurant.save(function (err) {
         if (err) {
           return res.json({
@@ -115,7 +123,7 @@ addRestaurant: function(req, res, next) {
               "status": 200,
               "message":"success"
           });
-      
+        });
         });
   } ,
   updateDetailsRestaurant: function(req, res, next) {

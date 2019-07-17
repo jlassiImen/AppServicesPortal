@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { RestorationComponent } from './restoration.component';
 
+
 const routes: Routes = [
   { path: '', component: RestorationComponent }
 ];

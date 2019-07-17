@@ -18,14 +18,40 @@ export class RestorationComponent implements OnInit {
   @Input() q: string;
   @ViewChild('restoAdrress') qElementRef: ElementRef;
   private RestoAddressConfig: any;
+  
+
+  config = {
+    id: 'custom',
+    itemsPerPage: 5,
+    currentPage: 1,
+    totalItems: 60
+  };
+
+  public maxSize: number = 7;
+  public directionLinks: boolean = true;
+  public autoHide: boolean = false;
+  public responsive: boolean = true;
+  public labels: any = {
+      previousLabel: '<--',
+      nextLabel: '-->',
+      screenReaderPaginationLabel: 'Pagination',
+      screenReaderPageLabel: 'page',
+      screenReaderCurrentLabel: `You're on page`
+  };
+
+   onPageChange(event){
+    console.log(event);
+    this.config.currentPage = event;
+  }
 
 
-  constructor(public auth: AuthService, public router: Router, public fb: FormBuilder, public restoration: RestorationService) { }
+  constructor(public auth: AuthService, public router: Router, public fb: FormBuilder, public restoration: RestorationService) {}
 
+ 
   restoForm: FormGroup;
   successMessage = '';
   errorMessage = '';
-  restaurantList : Observable<Array<any>>
+  restaurantList : Observable<any[]>
   validation_messages = {
     'personne': [
       { type: 'required' }
@@ -43,9 +69,10 @@ export class RestorationComponent implements OnInit {
       { type: 'required' }
     ]
   }
-  
+
   ngOnInit() {
   this.restaurantList=this.restoration.getAllRestaurant();
+
   // address autocomplete
   this.RestoAddressConfig = places({
       apiKey: environment.autoCompleteToken,
@@ -94,4 +121,5 @@ export class RestorationComponent implements OnInit {
       this.errorMessage = "An error has occured,please retry later";
     });
   }
+
 }

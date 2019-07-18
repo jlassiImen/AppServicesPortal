@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +13,8 @@ import { Router } from '@angular/router';
 export class RestorationService {
 
   constructor(public http: HttpClient, public router: Router) { }
+
+  
 
     public getAllRestaurant(): Observable<any[]> {
     const apiURL = '/allRestaurant';
@@ -59,4 +64,11 @@ export class RestorationService {
     const apiURL = '/addMenuItem';
     return this.http.delete(apiURL, item);
   }
+ 
+ public getYelpRestaurants(): Observable<any[]> {
+    const apiURL = '/getYelpRestaurants';
+    return this.http.get<any[]>(apiURL).map(response => {return response;});
+  }
+
+
 }

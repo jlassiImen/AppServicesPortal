@@ -1,6 +1,6 @@
 const express = require('express');
 const config = require('../config.json');
-
+const request = require('request');
 const db = require('../_helpers/db');
 
 const Restaurant = db.Restaurant;
@@ -12,6 +12,31 @@ var geocoder = NodeGeocoder(config.NodeGeocoderOptions);
 
 
 var restaurants = {
+  getYelpRestaurants: function(req, res, next) {
+    var yelpApiUrl= "https://api.yelp.com/v3/businesses/search?location=Paris&term=restaurants";
+              request({
+                url: yelpApiUrl,
+                method: 'get',
+                headers: {
+                    "Authorization": 'Bearer QcbmbI2E1GYQwRIBVXuQbK9v0a30GnAdneQEMahlzPZkJ5bGi0xgxZqZv8mdsoJ0Xqo0D_OKa9f_VVIJohEKtsS5hcT7KrPBkCaHrjjR5xkn-PM8sFvTOeyZVRQvXXYx'
+                },
+            }, function (err, resp) {
+                if (err ) {
+                    log.error('an error has occured :', err);
+                        res.json({
+          "status": 500,
+          "message": err.message
+        });
+                }
+
+//console.log("aaaaaaaa     "+JSON.stringify());
+                res.json(JSON.parse(resp.body).businesses);
+                
+             
+                
+            });
+
+  },
   getAllRestaurants: function(req, res, next) {
 
     Restaurant.find((error, data) => {

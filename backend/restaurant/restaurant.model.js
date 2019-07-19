@@ -7,7 +7,9 @@ const schema = new Schema({
     name: { type: String, required: true },
     adress: { type: String, required: true },
     plan: { type: String, required: true },
-    prixMoyen: { type: String, required: true }
+    prixMoyen: { type: String, required: true },
+    latitude: Number,
+    longitude: Number
 });
 
 schema.set('toJSON', { virtuals: true });

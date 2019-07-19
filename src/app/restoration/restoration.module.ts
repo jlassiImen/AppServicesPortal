@@ -5,30 +5,32 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
-import { RestaurationRoutingModule } from './restauration-routing.module';
+import { RestorationRoutingModule } from './restoration-routing.module';
 
-import { RestaurationComponent } from './restauration.component';
+import { RestorationComponent } from './restoration.component';
 
 
 
 
 @NgModule({
   declarations: [
-    RestaurationComponent
+    RestorationComponent
   ],
   imports: [
     CommonModule,
-    RestaurationRoutingModule,
+    RestorationRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
     HttpModule
   ]
 })
-export class RestaurationModule { }
+export class RestorationModule { }
 
 
 

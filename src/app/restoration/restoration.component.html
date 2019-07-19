@@ -1,0 +1,252 @@
+<div class="container" style="
+    margin-top: 8%;">
+    <div class="row">
+        <!-- Menu Area Start -->
+        <form [formGroup]="restoForm" (ngSubmit)="onSubmitResto(restoForm.value)">
+            <div class="contact_input_area">
+                <div class="row">
+                    <!-- Single Input Area Start -->
+                    <div class="col-md-12">
+                        <div class="input">
+                            <div class="col-12 col-lg-10">
+                                <div class="menu_area">
+                                    <div class="navbar navbar-expand-lg navbar-light"
+                                        style="background-color: #000;width: 125%;">
+                                        <div class="collapse navbar-collapse" id="ca-navbar">
+                                            <ul class="navbar-nav ml-auto">
+                                                <li>
+                                                    <div class="input">
+                                                        <input type="number" name="personne" id="personne"
+                                                            placeholder="Pers" required>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="input">
+                                                        <input type="date" name="Date" id="date"
+                                                            placeholder="JJ/MM/AAAA" required>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="input">
+                                                        <input type="time" name="Heure" id="heure" placeholder="Heure"
+                                                            required>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="input">
+                                                        <input type="text" name="Adresse" id="adresse" #restoAdrress
+                                                            placeholder="Adresse, Restaurant" required>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="input">
+                                                        <select name="Type Restaurant" id="typeRestaurant"
+                                                            placeholder="Restaurants" required>
+                                                            <option value="All restaurants">All restaurants
+                                                            </option>
+                                                            <option value="Italian" id="italian">
+                                                                Italian
+                                                            </option>
+                                                            <option value="American" id="american">
+                                                                American
+                                                            </option>
+                                                            <option value="Frensh" id="frensh">
+                                                                Frensh
+                                                            </option>
+                                                            <option value="Traditional" id="tradional">
+                                                                traditional
+                                                            </option>
+                                                        </select>
+                                                    </div>
+
+                                                </li>
+                                                <li>
+                                                    <div class="col-12">
+                                                        <button type="submit" class="btn">
+                                                            Search
+                                                        </button>
+                                                    </div>
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        <div class="col-xl-3 col-lg-3 col-md-3">
+            <div class="sidebar-categories">
+                <div class="head">Specialties</div>
+                <ul class="main-categories">
+                    <li class="filter-list"><input type="checkbox" name="brand"><label for="apple"
+                            style="display: inline-block;">American<span>(29)</span></label></li>
+
+                    <li class="filter-list"><input type="checkbox" name="brand"><label for="apple"
+                            style="display: inline-block;">Indian<span>(29)</span></label></li>
+
+                    <li class="filter-list"><input type="checkbox" name="brand"><label for="apple"
+                            style="display: inline-block;">Asian<span>(29)</span></label></li>
+
+                    <li class="filter-list"><input type="checkbox" name="brand"><label for="apple"
+                            style="display: inline-block;">Spanish<span>(29)</span></label></li>
+
+                    <li class="filter-list"><input type="checkbox" name="brand"><label for="apple"
+                            style="display: inline-block;">French<span>(29)</span></label></li>
+
+                    <li class="filter-list"><input type="checkbox" name="brand"><label for="apple"
+                            style="display: inline-block;">Turkish<span>(29)</span></label></li>
+
+                    <li class="filter-list"><input type="checkbox" name="brand"><label for="apple"
+                            style="display: inline-block;">Tunisian<span>(29)</span></label></li>
+
+                    <li class="filter-list"><input type="checkbox" name="brand"><label for="apple"
+                            style="display: inline-block;">Lebanese<span>(29)</span></label></li>
+
+                    <li class="filter-list"><input type="checkbox" name="brand"><label for="apple"
+                            style="display: inline-block;">Japanese<span>(29)</span></label></li>
+
+                    <li class="filter-list"><input type="checkbox" name="brand"><label for="apple"
+                            style="display: inline-block;">Vegetarian dishes<span>(29)</span></label></li>
+                </ul>
+            </div>
+
+
+
+
+            <div class="sidebar-filter mt-50">
+                <div class="top-filter-head">Services</div>
+                <div class="common-filter">
+                    <form action="#">
+                        <ul>
+                            <li class="filter-list"><input type="checkbox" name="brand"><label for="apple"
+                                    style="display: inline-block;">Disabled access<span>(29)</span></label></li>
+                            <li class="filter-list"><input type="checkbox" id="asus" name="brand"><label for="asus"
+                                    style="display: inline-block;">Pets welcome<span>(29)</span></label></li>
+                            <li class="filter-list"><input type="checkbox" id="gionee" name="brand"><label for="gionee"
+                                    style="display: inline-block;">Air-conditioned<span>(19)</span></label></li>
+                            <li class="filter-list"><input type="checkbox" id="micromax" name="brand"><label
+                                    for="micromax" style="display: inline-block;">Dance floor<span>(19)</span></label>
+                            </li>
+                            <li class="filter-list"><input type="checkbox" id="samsung" name="brand"><label
+                                    for="samsung" style="display: inline-block;">Open on
+                                    Sundays<span>(19)</span></label></li>
+                            <li class="filter-list"><input type="checkbox" id="samsung" name="brand"><label
+                                    for="samsung" style="display: inline-block;">Privatizable<span>(19)</span></label>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+
+            <div class="sidebar-filter mt-50">
+                <div class="top-filter-head">Means of payment</div>
+                <div class="common-filter"></div>
+                <form action="#">
+                    <ul>
+                        <li class="filter-list"><input type="checkbox" id="black" name="color"><label for="black"
+                                style="display: inline-block;">American Express card<span>(29)</span></label></li>
+                        <li class="filter-list"><input type="checkbox" id="balckleather" name="color"><label
+                                for="balckleather" style="display: inline-block;">Blue Card <span>(29)</span></label>
+                        </li>
+                        <li class="filter-list"><input type="checkbox" id="blackred" name="color"><label for="blackred"
+                                style="display: inline-block;">Mastercard<span>(19)</span></label></li>
+                        <li class="filter-list"><input type="checkbox" id="gold" name="color"><label for="gold"
+                                style="display: inline-block;">Visa Card<span>(19)</span></label></li>
+                        <li class="filter-list"><input type="checkbox" id="spacegrey" name="color"><label
+                                for="spacegrey" style="display: inline-block;">Check<span>(19)</span></label></li>
+                        <li class="filter-list"><input type="checkbox" id="spacegrey" name="color"><label
+                                for="spacegrey" style="display: inline-block;">Titles and checks for
+                                restaurants<span>(19)</span></label></li>
+                    </ul>
+                </form>
+
+                <div class="common-filter">
+                    <div class="head">Price</div>
+                    <div class="price-range-area">
+                        <div id="price-range"></div>
+                        <div class="value-wrapper d-flex">
+                            <div class="price">Price:</div>
+                            <span>$</span>
+                            <div id="lower-value"></div>
+                            <div class="to">to</div>
+                            <span>$</span>
+                            <div id="upper-value"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- End Filter Bar -->
+        <!-- Start Best Seller -->
+
+    
+            <div class="col-8 text-center">
+                <div class="section-heading">
+                    <h2>
+                        Discover and Book the best restaurants
+                        <br>
+                        at the best price
+                    </h2>
+                </div>
+            
+
+
+
+   
+                <div>
+                    <div *ngFor="let restaurant of restaurantList | async | paginate: { itemsPerPage: 6, currentPage: p }">  
+                        <section class="lattest-product-area pb-40 category-list">
+                            <div class="row">
+                                <div class="row single-product">
+                                    <div class="col-lg-4">
+                                        <img class="img-fluid" [src]=restaurant.image_url alt="">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="product-details">
+                                            <h6>{{restaurant.name}}</h6>
+                                            <div class="price">
+                                                <br>
+                                                <h6>Address : </h6> {{restaurant.location.display_address}}
+                                                <br>
+                                                <h6> Plan : </h6> {{restaurant.categories[0].title}}
+                                                <br>
+                                                <h6>Phone  </h6> {{restaurant.display_phone}}
+                                                <br>
+                                                <h6>Status </h6> {{restaurant.is_closed}}
+                                            </div>                                    
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <h6>Note</h6>
+                                        <br>
+                                        <h6>{{restaurant.rating}}</h6>
+                                        <div class="prd-bottom">
+                                                <a (click)="router.navigate(['/RestaurantDetails']);"
+                                                    class="social-info">
+                                                    <i class="fa fa-search"></i>
+                                                    <p class="mb-0">View restaurant</p>
+                                                </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                 
+                    </div>
+          <ul class="pagination">  
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>  
+        </ul> 
+          
+        </div>
+    </div>
+        <!-- End Filter Bar -->
+    </div>
+</div>

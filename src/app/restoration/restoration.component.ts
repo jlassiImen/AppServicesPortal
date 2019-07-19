@@ -4,49 +4,34 @@ import { Router } from '@angular/router';
 import { AuthService } from './../services/auth/auth.service';
 import * as places from 'places.js';
 import { environment } from '../../environments/environment';
+import { Observable, Subject } from 'rxjs';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+
+import { RestorationService } from './../services/restoration/restoration.service';
 
 @Component({
-  selector: 'app-restauration',
-  templateUrl: './restauration.component.html',
-  styleUrls: ['./restauration.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-restoration',
+  templateUrl: './restoration.component.html',
+  styleUrls: ['./restoration.component.css']
 })
-export class RestaurationComponent implements OnInit {
+export class RestorationComponent implements OnInit {
 
   @Input() q: string;
   @ViewChild('restoAdrress') qElementRef: ElementRef;
   private RestoAddressConfig: any;
+  
+  restaurantList : Observable<any[]>
+  p: Number = 1;
 
-  showResto = false;
 
-  constructor(public auth: AuthService, public router: Router, public fb: FormBuilder) { }
+  constructor(public auth: AuthService, public router: Router, public fb: FormBuilder, public restoration: RestorationService) {}
 
-  restaurantList = [
-    {
-      "name": "Hippopotamus",
-      "address": "40, avenue Maréchal de Lattre de Tassigny 92360 Meudon France",
-      "speciality": "FRANÇAIS ",
-      "price": "25",
-      "img": "../../assets/img/team/01.jpg"
-    },
-    {
-      "name": "Toscanini",
-      "address": " 32 Rue Jean Pierre Timbaud 92130 Issy-les-Moulineaux France",
-      "speciality": "ITALIEN",
-      "price": "20",
-      "img": "../../assets/img/team/02.jpg"
-    },
-    {
-      "name": "Restaurant L'Ile",
-      "address": "170, quai de Stalingrad 92130 Issy-les-Moulineaux France ",
-      "speciality": "FRANÇAIS ",
-      "price": "38",
-      "img": "../../assets/img/team/03.jpg"
-    }
-  ]
+ 
   restoForm: FormGroup;
+  successMessage = '';
+  errorMessage = '';
   validation_messages = {
-
     'personne': [
       { type: 'required' }
     ],
@@ -62,10 +47,12 @@ export class RestaurationComponent implements OnInit {
     'adresse': [
       { type: 'required' }
     ]
-
   }
 
   ngOnInit() {
+  this.restaurantList=this.restoration.getYelpRestaurants();
+
+  // address autocomplete
   this.RestoAddressConfig = places({
       apiKey: environment.autoCompleteToken,
       appId: environment.autoCompleteAppId,
@@ -77,9 +64,7 @@ export class RestaurationComponent implements OnInit {
     this.createForms();
   }
 
-  showRestaurant() {
-    this.showResto = true;
-  }
+ 
   createForms() {
     this.restoForm = this.fb.group({
       personne: new FormControl('', Validators.compose([
@@ -100,8 +85,20 @@ export class RestaurationComponent implements OnInit {
     })
   }
   //valider la recherche du resto
-  onSubmitResto(value) {
 
+  onSubmitResto(value) {
+     this.restoration.getRestaurant(value).subscribe((response) => {
+      if (response.message == "success") {
+      }
+      else {
+        this.successMessage = "";
+        this.errorMessage = "Invalid credentials";
+      }
+    }, (err) => {
+      console.error(err);
+      this.successMessage = "";
+      this.errorMessage = "An error has occured,please retry later";
+    });
   }
 
 }

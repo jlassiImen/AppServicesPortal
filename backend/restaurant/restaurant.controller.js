@@ -1,15 +1,43 @@
 const express = require('express');
 const config = require('../config.json');
-
+const request = require('request');
 const db = require('../_helpers/db');
 
 const Restaurant = db.Restaurant;
 const MenuCategory = db.MenuCategory;
 const MenuItem = db.MenuItem;
 
+var NodeGeocoder = require('node-geocoder');
+var geocoder = NodeGeocoder(config.NodeGeocoderOptions);
+
 
 var restaurants = {
-	getAllRestaurants: function(req, res, next) {
+  getYelpRestaurants: function(req, res, next) {
+    var yelpApiUrl= "https://api.yelp.com/v3/businesses/search?location=Paris&term=restaurants";
+              request({
+                url: yelpApiUrl,
+                method: 'get',
+                headers: {
+                    "Authorization": 'Bearer QcbmbI2E1GYQwRIBVXuQbK9v0a30GnAdneQEMahlzPZkJ5bGi0xgxZqZv8mdsoJ0Xqo0D_OKa9f_VVIJohEKtsS5hcT7KrPBkCaHrjjR5xkn-PM8sFvTOeyZVRQvXXYx'
+                },
+            }, function (err, resp) {
+                if (err ) {
+                    log.error('an error has occured :', err);
+                        res.json({
+          "status": 500,
+          "message": err.message
+        });
+                }
+
+//console.log("aaaaaaaa     "+JSON.stringify());
+                res.json(JSON.parse(resp.body).businesses);
+                
+             
+                
+            });
+
+  },
+  getAllRestaurants: function(req, res, next) {
 
     Restaurant.find((error, data) => {
       if (error) {
@@ -55,20 +83,12 @@ var restaurants = {
         'restaurantId': restaurantId
         }, function(err, menuItemDB) {
             if (menuItemDB) {
-
         MenuCategory.find(function(err, menuCategoryDB) {
             if (menuCategoryDB) {
-            	
-
     var finalResult= menuItemDB.map(function(item) {
-    	console.log("aaaaaaaaaaaaa "+menuItemDB.length);
     	menuCategoryDB.map(function(category) {
     		if(item.menuCategoryId === category.menuCategoryId){
-
-    			item['categoryName']=category.name;
-
-    			console.log("vvvvvvvvvvvvv "+JSON.stringify(item));
-    			
+    			item['categoryName']=category.name;		
     		}
 		});
     	var finalItem={
@@ -77,21 +97,14 @@ var restaurants = {
     	}
     	return finalItem;
 	});
-    
 	var result={
             		"restaurant":restaurantDB,
             		"menu":finalResult
-
             	}
                 return res.json({
                     "status": 200,
                     "message": result
-                });
-
-
-
-
-            	
+                });	
             } else {
                 return res.json({
                     "status": 404,
@@ -99,7 +112,6 @@ var restaurants = {
                 });
             }
         });
-
             } else {
                 return res.json({
                     "status": 404,
@@ -119,6 +131,11 @@ var restaurants = {
 addRestaurant: function(req, res, next) {
     var restaurantParam = req.body;  
       const restaurant = new Restaurant(restaurantParam);
+      geocoder.geocode(restaurant.adress, function(err, result) {
+      console.log(result);
+      restaurant.latitude=result[0].latitude;
+      restaurant.longitude=result[0].longitude;
+
       restaurant.save(function (err) {
         if (err) {
           return res.json({
@@ -131,7 +148,7 @@ addRestaurant: function(req, res, next) {
               "status": 200,
               "message":"success"
           });
-      
+        });
         });
   } ,
   updateDetailsRestaurant: function(req, res, next) {
@@ -199,10 +216,11 @@ addRestaurant: function(req, res, next) {
     },
 
     getMenuItem: function(req, res, next) {
-  	var menuItemId = req.body.menuItemId;
+  	var name = req.body.name;
   	var restaurantId = req.body.restaurantId;
 
     MenuItem.find({
+        'name': name,
         'restaurantId': restaurantId
         }, function(err, menuItemDB) {
             if (menuItemDB) {
@@ -219,7 +237,27 @@ addRestaurant: function(req, res, next) {
         });
     }, 
 
-    addMenuCategory: function(req, res, next) {
+    getMenuCategory: function(req, res, next) {
+  	var name = req.body.name;
+
+    MenuItem.find({
+    	"name":name
+        }, function(err, menuCategoryDB) {
+            if (menuCategoryDB) {
+                return res.json({
+                    "status": 200,
+                    "message": menuCategoryDB
+                });
+            } else {
+                return res.json({
+                    "status": 404,
+                    "message": "Dishes does not found!!"
+                });
+            }
+        });
+    },
+
+  addMenuCategory: function(req, res, next) {
     var name=req.body.name;
     var menuCategoryParam = req.body;
 

@@ -56,12 +56,10 @@ export class ProfilComponent implements OnInit {
         this.firstName=response.message.firstName;
         this.lastName=response.message.lastName;
         this.email=response.message.email;       
-        this.adress=response.message.adress;    
-                                                                       
+        this.adress=response.message.adress;                                 
       }
     });
   }
-
 createFormsAcount() {
     // user details form validations
     this.userDetailsFormAcount = this.fb.group({
@@ -83,7 +81,6 @@ createFormsAcount() {
   }
 
   createFormsProfile() {
-    // user details form validations
     this.userDetailsFormProfile = this.fb.group({
       firstName: new FormControl('', Validators.compose([
         Validators.required
@@ -111,7 +108,6 @@ createFormsAcount() {
       this.errorMessage = "An error has occured,please retry later";
     });
   }
-
 
   onSubmitPersonnelProfil(value) {
   var req = {

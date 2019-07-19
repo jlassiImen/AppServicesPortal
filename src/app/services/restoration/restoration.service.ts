@@ -16,7 +16,7 @@ export class RestorationService {
 
   
 
-    public getAllRestaurant(): Observable<any[]> {
+    public getAllRestaurants(): Observable<any[]> {
     const apiURL = '/allRestaurant';
     return this.http.get<any[]>(apiURL).map(response => {return response;});
   }

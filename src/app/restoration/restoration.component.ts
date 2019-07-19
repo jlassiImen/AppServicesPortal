@@ -21,13 +21,28 @@ export class RestorationComponent implements OnInit {
   @ViewChild('restoAdrress') qElementRef: ElementRef;
   private RestoAddressConfig: any;
   
-  restaurantList : Observable<any[]>
-  p: Number = 1;
-
-
   constructor(public auth: AuthService, public router: Router, public fb: FormBuilder, public restoration: RestorationService) {}
 
+  restaurantList : Observable<any[]>
+  p: Number = 1;
+  config = {
+    id: 'custom',
+    itemsPerPage: 5,
+    currentPage: 1,
+    totalItems: 60
+  };
  
+  public maxSize: number = 7;
+  public directionLinks: boolean = true;
+  public autoHide: boolean = false;
+  public responsive: boolean = true;
+  public labels: any = {
+      previousLabel: '<--',
+      nextLabel: '-->',
+      screenReaderPaginationLabel: 'Pagination',
+      screenReaderPageLabel: 'page',
+      screenReaderCurrentLabel: `You're on page`
+  };
   restoForm: FormGroup;
   successMessage = '';
   errorMessage = '';
@@ -51,7 +66,6 @@ export class RestorationComponent implements OnInit {
 
   ngOnInit() {
   this.restaurantList=this.restoration.getYelpRestaurants();
-
   // address autocomplete
   this.RestoAddressConfig = places({
       apiKey: environment.autoCompleteToken,

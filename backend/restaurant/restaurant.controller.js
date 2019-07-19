@@ -13,12 +13,12 @@ var geocoder = NodeGeocoder(config.NodeGeocoderOptions);
 
 var restaurants = {
   getYelpRestaurants: function(req, res, next) {
-    var yelpApiUrl= "https://api.yelp.com/v3/businesses/search?location=Paris&term=restaurants";
+   
               request({
-                url: yelpApiUrl,
+                url: config.yelpApiUrl,
                 method: 'get',
                 headers: {
-                    "Authorization": 'Bearer QcbmbI2E1GYQwRIBVXuQbK9v0a30GnAdneQEMahlzPZkJ5bGi0xgxZqZv8mdsoJ0Xqo0D_OKa9f_VVIJohEKtsS5hcT7KrPBkCaHrjjR5xkn-PM8sFvTOeyZVRQvXXYx'
+                    "Authorization": config.yelpToken
                 },
             }, function (err, resp) {
                 if (err ) {
@@ -28,14 +28,8 @@ var restaurants = {
           "message": err.message
         });
                 }
-
-//console.log("aaaaaaaa     "+JSON.stringify());
-                res.json(JSON.parse(resp.body).businesses);
-                
-             
-                
+                res.json(JSON.parse(resp.body).businesses);        
             });
-
   },
   getAllRestaurants: function(req, res, next) {
 

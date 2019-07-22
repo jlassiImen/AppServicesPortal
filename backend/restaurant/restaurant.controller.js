@@ -13,9 +13,10 @@ var geocoder = NodeGeocoder(config.NodeGeocoderOptions);
 
 var restaurants = {
   getYelpRestaurants: function(req, res, next) {
-   
+    var location=req.params.address;
+    var params="?location="+location+"&&term=restaurants";
               request({
-                url: config.yelpApiUrl,
+                url: config.yelpApiUrl+params,
                 method: 'get',
                 headers: {
                     "Authorization": config.yelpToken
@@ -31,6 +32,8 @@ var restaurants = {
                 res.json(JSON.parse(resp.body).businesses);        
             });
   },
+
+
   getAllRestaurants: function(req, res, next) {
 
     Restaurant.find((error, data) => {

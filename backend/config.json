@@ -9,5 +9,6 @@
     	"apiKey": "f200c59bf3daa0"
     },
     "yelpToken" : "Bearer QcbmbI2E1GYQwRIBVXuQbK9v0a30GnAdneQEMahlzPZkJ5bGi0xgxZqZv8mdsoJ0Xqo0D_OKa9f_VVIJohEKtsS5hcT7KrPBkCaHrjjR5xkn-PM8sFvTOeyZVRQvXXYx",
-    "yelpApiUrl" : "https://api.yelp.com/v3/businesses/search?location=Paris&term=restaurants"
+    "yelpApiUrl" : "https://api.yelp.com/v3/businesses/search"
+
 }

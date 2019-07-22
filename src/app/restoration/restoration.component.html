@@ -79,7 +79,9 @@
                 </div>
             </div>
         </form>
-        <div class="col-xl-3 col-lg-4 col-md-5">
+
+
+        <div class="col-xl-3 col-lg-3 col-md-3">
             <div class="sidebar-categories">
                 <div class="head">Specialties</div>
                 <ul class="main-categories">
@@ -164,7 +166,6 @@
                                 restaurants<span>(19)</span></label></li>
                     </ul>
                 </form>
-
                 <div class="common-filter">
                     <div class="head">Price</div>
                     <div class="price-range-area">
@@ -181,81 +182,60 @@
                 </div>
             </div>
         </div>
-
-        <!-- End Filter Bar -->
-        <!-- Start Best Seller -->
-
-        <!-- End Best Seller -->
-        <!-- Start Filter Bar -->
-        <div style="text-align:center">
-            <div class="col-12 text-center">
+            <div class="col-8 text-center">
                 <div class="section-heading">
                     <h2>
                         Discover and Book the best restaurants
                         <br>
                         at the best price
                     </h2>
-                </div>
-            </div>
-
-
-
-            <table class="table">
-                <tbody>
-                    <tr
-                        *ngFor="let restaurant of restaurantList | async | paginate: { itemsPerPage: 6, currentPage: p }">
+                </div> 
+                <div>
+                    <div *ngFor="let restaurant of restaurantList | async | paginate: { itemsPerPage: 6, currentPage: p }">  
                         <section class="lattest-product-area pb-40 category-list">
                             <div class="row">
                                 <div class="row single-product">
                                     <div class="col-lg-4">
-                                        <img class="img-fluid" src="../../assets/img/team/01.jpg" alt="">
+                                        <img class="img-fluid" [src]=restaurant.image_url alt="">
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="product-details">
                                             <h6>{{restaurant.name}}</h6>
                                             <div class="price">
-
                                                 <br>
-                                                <h6>Address :{{restaurant.location.display_address}}</h6>
+                                                <h6>Address : </h6> {{restaurant.location.display_address}}
                                                 <br>
-                                                <h6> Plan : {{restaurant.categories.title}}</h6>
+                                                <h6> Plan : </h6> {{restaurant.categories[0].title}}
                                                 <br>
-                                                <h6>Phone  </h6>
-                                                {{restaurant.display_phone}}
+                                                <h6>Phone  </h6> {{restaurant.display_phone}}
                                                 <br>
-                                                <h6>{{restaurant.is_closed}}  </h6>
-                                            </div>
-                                            <div class="prd-bottom">
-                                                <a (click)="router.navigate(['/RestaurantDetails']);"
-                                                    class="social-info">
-                                                    <i class="fa fa-search"></i>
-                                                    <p class="mb-0">View restaurant</p>
-                                                </a>
-                                            </div>
+                                                <h6>Status </h6> {{restaurant.is_closed}}
+                                            </div>                                    
                                         </div>
                                     </div>
                                     <div class="col-lg-2">
                                         <h6>Note</h6>
                                         <br>
                                         <h6>{{restaurant.rating}}</h6>
+                                        <div class="prd-bottom">
+                                                <a (click)="router.navigate(['/RestaurantDetails']);"
+                                                    class="social-info">
+                                                    <i class="fa fa-search"></i>
+                                                    <p class="mb-0">View restaurant</p>
+                                                </a>
+                                        </div>
                                     </div>
-
                                 </div>
-
-
                             </div>
                         </section>
-                    </tr>
-                </tbody>
+                 
+                    </div>
           <ul class="pagination">  
         <pagination-controls (pageChange)="p = $event"></pagination-controls>  
         </ul> 
-            </table>
-
-
-
-
+          
         </div>
+    </div>
         <!-- End Filter Bar -->
     </div>
 </div>

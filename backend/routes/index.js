@@ -37,7 +37,7 @@ router.post('/addMenuCategory',  restaurants.addMenuCategory);
 router.post('/addMenuItem',  restaurants.addMenuItem);
 router.get('/restaurantDetails/:restaurantId',  restaurants.getRestaurantDetails);
 router.get('/getMenuCategory/:name',  restaurants.getMenuCategory);
-router.get('/getYelpRestaurants',  restaurants.getYelpRestaurants);
+router.get('/getYelpRestaurants/:address',  restaurants.getYelpRestaurants);
 
 
 

@@ -65,7 +65,7 @@ export class RestorationComponent implements OnInit {
   }
 
   ngOnInit() {
-  this.restaurantList=this.restoration.getYelpRestaurants();
+  this.restaurantList=this.restoration.getYelpRestaurants("16 rue des acacias 92360 meudon");
   // address autocomplete
   this.RestoAddressConfig = places({
       apiKey: environment.autoCompleteToken,

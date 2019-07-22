@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } 
 import {NgxPaginationModule} from 'ngx-pagination';
 import { RestorationRoutingModule } from './restoration-routing.module';
 import { RestorationComponent } from './restoration.component';
+import { OwlModule } from 'ngx-owl-carousel'
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { RestorationComponent } from './restoration.component';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    HttpModule
+    HttpModule,
+    OwlModule
   ]
 })
 export class RestorationModule { }

@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import * as places from 'places.js';
 import { Style, Icon } from 'ol/style';
-import * as L from 'leaflet';
+import  'leaflet';
 import 'leaflet-routing-machine';
 import * as ELG from 'esri-leaflet-geocoder';
 import * as esri from 'esri-leaflet'
@@ -108,8 +108,12 @@ export class RestorationComponent implements OnInit {
   });
 
 
-
-    this.restaurantList=this.restoration.getYelpRestaurants("16 rue des acacias 92360 meudon");
+  var req={
+  "term":"restaurant",
+  "location":"16 rue des acacias 92360 Meudon France",
+  "radius":"3000"
+};
+    this.restaurantList=this.restoration.getYelpRestaurants(req);
   
     this.createForms();
     this.meteo.detectLocation(position => this.initMap(position));

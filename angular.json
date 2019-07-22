@@ -30,7 +30,8 @@
               "src/assets/css/font-awesome.min.css",
               "src/assets/css/login.css",
               "src/assets/css/owl.carousel.css",
-              "src/assets/css/owl.theme.css"
+              "src/assets/css/owl.theme.css",
+              "./node_modules/leaflet/dist/leaflet.css"
 
             ],
             "scripts": [

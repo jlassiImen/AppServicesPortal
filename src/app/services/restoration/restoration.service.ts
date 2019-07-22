@@ -65,9 +65,9 @@ export class RestorationService {
     return this.http.delete(apiURL, item);
   }
  
- public getYelpRestaurants(address: string): Observable<any[]> {
-    const apiURL = '/getYelpRestaurants/'+address;
-    return this.http.get<any[]>(apiURL).map(response => {return response;});
+ public getYelpRestaurants(request: any): Observable<any[]> {
+    const apiURL = '/getYelpRestaurants';
+    return this.http.post<any[]>(apiURL,request).map(response => {return response;});
   }
 
 

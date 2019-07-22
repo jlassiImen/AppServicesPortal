@@ -58,9 +58,10 @@ var restaurants = {
       params=params+"&&categories="+categories;
     }
    
+
               request({
                 url: config.yelpApiUrl+params,
-                method: 'post',
+                method: 'get',
                 headers: {
                     "Authorization": config.yelpToken
                 },
@@ -72,7 +73,7 @@ var restaurants = {
           "message": err.message
         });
                 }
-                 console.log("aaaaaaaaaaa" +JSON.stringify(resp.body));
+              
               return  res.json(JSON.parse(resp.body).businesses);        
             });
   },

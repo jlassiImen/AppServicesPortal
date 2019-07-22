@@ -13,23 +13,67 @@ var geocoder = NodeGeocoder(config.NodeGeocoderOptions);
 
 var restaurants = {
   getYelpRestaurants: function(req, res, next) {
-    var location=req.params.address;
-    var params="?location="+location+"&&term=restaurants";
+    var location=req.body.location;
+    var radius=req.body.radius;
+    var price=req.body.price;
+    var open_now=req.body.open_now;
+    var limit=req.body.limit;
+    var offset=req.body.offset;
+    var sort_by=req.body.sort_by;
+    var open_at=req.body.open_at;
+    var categories=req.body.categories;
+    var alias=req.body.alias;
+    var term=req.body.term;
+
+
+    var params="?location="+location+"&&term="+term;
+
+
+    if(radius!= null && radius!= undefined){
+      params=params+"&&radius="+radius;
+      
+    }
+    if(price!= null && price!= undefined){
+      params=params+"&&price="+price;
+    }
+    if(open_now!= null && open_now!= undefined){
+      params=params+"&&open_now="+open_now;
+    }
+    if(alias!= null && alias!= undefined){
+      params=params+"&&alias="+alias;
+    }
+    if(limit!= null && limit!= undefined){
+      params=params+"&&limit="+limit;
+    }
+    if(offset!= null && offset!= undefined){
+      params=params+"&&offset="+offset;
+    }
+    if(sort_by!= null && sort_by!= undefined){
+      params=params+"&&sort_by="+sort_by;
+    }
+    if(open_at!= null && open_at!= undefined){
+      params=params+"&&open_at="+open_at;
+    }
+    if(categories!= null && categories!= undefined){
+      params=params+"&&categories="+categories;
+    }
+   
               request({
                 url: config.yelpApiUrl+params,
-                method: 'get',
+                method: 'post',
                 headers: {
                     "Authorization": config.yelpToken
                 },
             }, function (err, resp) {
                 if (err ) {
                     log.error('an error has occured :', err);
-                        res.json({
+                     return   res.json({
           "status": 500,
           "message": err.message
         });
                 }
-                res.json(JSON.parse(resp.body).businesses);        
+                 console.log("aaaaaaaaaaa" +JSON.stringify(resp.body));
+              return  res.json(JSON.parse(resp.body).businesses);        
             });
   },
 

@@ -131,9 +131,4 @@ createFormsAcount() {
       this.errorMessage = "An error has occured,please retry later";
     });
   }
-
-  onSubmitPayment(value) {
-    return true;
-  }
-
 }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './../services/auth/auth.service';
 import { MeteoService } from './../services/meteoServices/meteo.service';
 import { environment } from '../../environments/environment';
+import { RestorationService } from './../services/restoration/restoration.service';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -20,8 +21,6 @@ const iconUrl = 'assets/img/marker-icon.png';
 const shadowUrl = 'assets/img/marker-shadow.png';
 
 declare var ol: any;
-
-import { RestorationService } from './../services/restoration/restoration.service';
 
 @Component({
   selector: 'app-restoration',
@@ -43,43 +42,17 @@ export class RestorationComponent implements OnInit {
   );
 
   constructor(public auth: AuthService, public router: Router, public fb: FormBuilder, public restoration: RestorationService, public meteo: MeteoService) {}
+  
+  restaurantForm: FormGroup;
+  restaurants = ['Open now', 'Pizzaria', 'coffee',  'American',  'Frensh', 'Italian', 'Halal', 'Indian', 'Japanese']
 
   restaurantList : Observable<any[]>
   p: Number = 1;
-
-  config = {
-    id: 'custom',
-    itemsPerPage: 5,
-    currentPage: 1,
-    totalItems: 60
-  };
- 
-  public maxSize: number = 7;
-  public directionLinks: boolean = true;
-  public autoHide: boolean = false;
-  public responsive: boolean = true;
-  public labels: any = {
-      previousLabel: '<--',
-      nextLabel: '-->',
-      screenReaderPaginationLabel: 'Pagination',
-      screenReaderPageLabel: 'page',
-      screenReaderCurrentLabel: `You're on page`
-  };
-
 
   restoForm: FormGroup;
   successMessage = '';
   errorMessage = '';
   validation_messages = {
-    'personne': [
-      { type: 'required' }
-    ],
-    'date': [
-      { type: 'required' }
-    ],
-    'heure': [
-      { type: 'required' }
-    ],
     'typeRestaurant': [
       { type: 'required' }
     ],
@@ -89,6 +62,10 @@ export class RestorationComponent implements OnInit {
   }
 
   ngOnInit() {
+    //select type of restaurant
+     this.restaurantForm = this.fb.group({
+     restaurantControl: ['Type of restaurants']
+     });
 
     // address autocomplete
     this.places = places({
@@ -98,23 +75,13 @@ export class RestorationComponent implements OnInit {
       style: false,
       debug: true
   });
-
   if (this.q) {
       this.places.setVal(this.q);
   }
-
   this.places.on('change', function resultSelected(e) {
       console.log("eeeeeeeeeee "+JSON.stringify(e));
   });
-
-
-  var req={
-  "term":"restaurant",
-  "location":"16 rue des acacias 92360 Meudon France",
-  "radius":"3000"
-};
-    this.restaurantList=this.restoration.getYelpRestaurants(req);
-  
+    //this.restaurantList=this.restoration.getYelpRestaurants(req);
     this.createForms();
     this.meteo.detectLocation(position => this.initMap(position));
   }
@@ -122,15 +89,6 @@ export class RestorationComponent implements OnInit {
  
   createForms() {
     this.restoForm = this.fb.group({
-      personne: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      date: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      heure: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
       typeRestaurant: new FormControl('', Validators.compose([
         Validators.required
       ])),
@@ -139,23 +97,25 @@ export class RestorationComponent implements OnInit {
       ]))
     })
   }
-  //valider la recherche du resto
 
   onSubmitResto(value) {
-     this.restoration.getRestaurant(value).subscribe((response) => {
-      if (response.message == "success") {
+  var request = {
+  "term":"restaurant",
+  "location" : value.address,
+  "radius":"3000",
+  "alias" : value.restaurantType
+  }
+     this.restoration.getYelpRestaurants(request).subscribe((response) => {
+      if (response.status == 200) {
+        this.errorMessage = "";
+        this.successMessage = "An email that contains a link to reset your password has been sent ! Please verify your email";
       }
       else {
         this.successMessage = "";
-        this.errorMessage = "Invalid credentials";
+        this.errorMessage = "An error has occured,please retry later";
       }
-    }, (err) => {
-      console.error(err);
-      this.successMessage = "";
-      this.errorMessage = "An error has occured,please retry later";
-    });
+  });
   }
-
 
   initMap(position) {
     console.log(position.longitude + ' , ' + position.latitude);
@@ -180,6 +140,4 @@ export class RestorationComponent implements OnInit {
     fromMarker.bindPopup("Your position").openPopup();
   
   }
-
-
 }

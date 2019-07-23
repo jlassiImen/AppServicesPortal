@@ -68,13 +68,17 @@ var restaurants = {
             }, function (err, resp) {
                 if (err ) {
                     log.error('an error has occured :', err);
-                     return   res.json({
+                     return  
+                      res.json({
           "status": 500,
           "message": err.message
         });
                 }
               
-              return  res.json(JSON.parse(resp.body).businesses);        
+              return  res.json({
+                "status": 500,
+                "message": JSON.parse(resp.body).businesses
+                });       
             });
   },
 

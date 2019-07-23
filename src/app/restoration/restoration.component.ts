@@ -8,20 +8,9 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import * as places from 'places.js';
-import { Style, Icon } from 'ol/style';
-import  'leaflet';
-import 'leaflet-routing-machine';
-import * as ELG from 'esri-leaflet-geocoder';
-import * as esri from 'esri-leaflet'
-import { icon, latLng, Map, marker, point, polyline, tileLayer, layerGroup } from 'leaflet';
-
-const iconRetinaUrl = 'assets/img/marker-icon-2x.png';
-const iconUrl = 'assets/img/marker-icon.png';
-const shadowUrl = 'assets/img/marker-shadow.png';
-
-declare var ol: any;
-
 import { RestorationService } from './../services/restoration/restoration.service';
+
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-restoration',
@@ -30,17 +19,12 @@ import { RestorationService } from './../services/restoration/restoration.servic
 })
 export class RestorationComponent implements OnInit {
 
+  accessToken = environment.mapBoxKey;
   @Input() q: string;
   @ViewChild('autocomplete') qElementRef: ElementRef;
 
   private places: any;
 
-  map: any;
-  accessToken = 'pk.eyJ1Ijoiamxhc3NpaW1lbiIsImEiOiJjang3anF3M3kwYWFxM29sZ2c2NTMzamtlIn0.OUJR08JcIjxWvTWLJpTRWw';
-  mapBox = tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}',
-    { id: 'mapbox.streets', attribution: '', maxZoom: 20, accessToken: this.accessToken , tileSize: 512, zoomOffset: -1} as any
-
-  );
 
   constructor(public auth: AuthService, public router: Router, public fb: FormBuilder, public restoration: RestorationService, public meteo: MeteoService) {}
 
@@ -156,28 +140,30 @@ export class RestorationComponent implements OnInit {
     });
   }
 
-
+  
   initMap(position) {
+ 
     console.log(position.longitude + ' , ' + position.latitude);
-    this.map = new Map ('map', {
-      layers: [ this.mapBox ],
-      zoom: 13,
-      center: latLng([ position.latitude , position.longitude])
+    const map = L.map('map').setView([position.latitude, position.longitude], 12);
+ 
+    L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}',
+    { id: 'mapbox.streets', attribution: '', maxZoom: 20, accessToken: this.accessToken , tileSize: 512, zoomOffset: -1} as any
+  ).addTo(map);
+    const myIcon = L.icon({
+      iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png'
     });
 
-    let fromMarker = marker([ position.latitude ,position.longitude ], {
-      icon: icon({
-        iconSize: [ 25, 41 ],
-        iconAnchor: [ 13, 41 ],
-        iconRetinaUrl,
-        iconUrl,
-        shadowUrl,
-        popupAnchor:  [-3, -26]
-      })
-    });
 
-    fromMarker.addTo(this.map);
-    fromMarker.bindPopup("Your position").openPopup();
+    L.marker([position.latitude, position.longitude], {icon: myIcon}).bindPopup('Your position').addTo(map).openPopup();
+
+    for (let key in this.restaurantList) {
+      let restaurant = this.restaurantList[key];
+      // Use `key` and `value`
+      L.marker([restaurant.coordinates.latitude, restaurant.coordinates.longitude], {icon: myIcon})
+  }
+
+
+   
   
   }
 

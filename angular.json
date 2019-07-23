@@ -97,6 +97,11 @@
               "src/styles.css"
             ],
             "assets": [
+              {
+                "glob": "**/*",
+                "input": "./node_modules/leaflet/dist/images",
+                "output": "leaflet/"
+              },
               "src/assets",
               "src/favicon.ico"
             ]

@@ -1,118 +1,120 @@
 <section id="contact" class="section">
-<div class="container" style="margin-top: 4%;">
-
-        <div class="row">
-        <!-- Menu Area Start -->
-        <div class="col-sm-12">
-            <div class="section-heading" style= "margin-left: 30%;">
-                    <h2>
-                        Discover and Book the best restaurants
-                        <br>
-                        at the best price
-                    </h2>
-                </div> 
-        <form [formGroup]="restoForm" (ngSubmit)="onSubmitResto(restoForm.value)" style="margin-top: 4%; " >
-            <div class="contact_input_area">
-                <div class="row">
-                    <!-- Single Input Area Start -->
-                    <div class="col-sm-12" style= "margin-left: 30%;">
-                            <div class="col-sm-10">
-                                <div class="menu_area">
-                                    <div class="navbar navbar-expand-lg navbar-light"
-                                        style="width: 125%;">
-                                        <div class="collapse navbar-collapse" id="ca-navbar">
-                                        <input type="search" name="autocomplete" id="autocomplete" #autocomplete formControlName="address" 
-                                                            placeholder="Adresse" required>
-                                                 
-                                        <select formControlName="typeRestaurant">
-                                        <option value="" disabled>Restaurant type</option>
-                                                 <option  *ngFor="let restaurant of restaurants" [ngValue]="restaurant"> {{restaurant}}</option>
-                                                </select>
-                                                   
-                                                    <div class="col-sm-12">
-                                                        <button type="submit" class="btn submit" style="background-color: black;">
-                                                            Search
-                                                        </button>
-                                                    </div>
-                                                
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                    </div>
-                </div>
+   <div class="container" style="margin-top: 4%;">
+      <div class="row">
+         <!-- Menu Area Start -->
+         <div class="col-sm-12">
+            <div class="section-heading" style= "margin-left: 5%;">
+               <h2>Discover and Book the best restaurants<br>at the best price</h2>
             </div>
-        </form>
-    </div>
-    </div>
-    <div class="row">
-
-        <div class="col-lg-7 col-md-12 pl-4">
-                <div class="section-heading">
-                    <h2>
-                        Discover and Book the best restaurants
-                        <br>
-                        at the best price
-                    </h2>
-                </div> 
-
-                <div>
-                    <div *ngFor="let restaurant of restaurantList | async | paginate: { itemsPerPage: 6, currentPage: p }">  
-                        <section class="lattest-product-area pb-40 category-list">
-                            <div class="row">
-                                <div class="row single-product">
-                                    <div class="col-lg-4">
-                                        <img class="img-fluid" [src]=restaurant.image_url alt="">
+            <form [formGroup]="form" (ngSubmit)="onSubmitResto(form.value)" style="margin-top: 4%; " >
+               <div class="contact_input_area">
+                  <div class="row">
+                     <!-- Single Input Area Start -->
+                     <div class="col-sm-12" style= "margin-left: 5%;">
+                        <div class="col-sm-10">
+                           <div class="menu_area">
+                              <div class="navbar navbar-expand-lg navbar-light"style="width: 125%;">
+                                 <div class="collapse navbar-collapse" id="ca-navbar">
+                                    <input type="search" name="autocomplete" id="autocomplete" #autocomplete formControlName="address"placeholder="Adresse" required>
+                                    <label formArrayName="typeRestaurant" *ngFor="let item of form.controls.typeRestaurant.controls; let i = index">
+                                    <input type="checkbox" [formControlName]="i">
+                                    {{typeRestaurant[i].name}}
+                                    </label>
+                                    <label formArrayName="sortBy" *ngFor="let element of form.controls.sortBy.controls; let i = index">
+                                     <input type="checkbox" [formControlName]="i">{{sortBy[i].name}}
+                                    </label>
+                                    <label formArrayName="distance" *ngFor="let element of form.controls.distance.controls; let i = index">
+                                     <input type="checkbox" [formControlName]="i">{{distance[i].name}}
+                                    </label>
+                                    <label formArrayName="features" *ngFor="let feature of form.controls.features.controls; let i = index">
+                                     <input type="checkbox" [formControlName]="i">{{features[i].name}}
+                                    </label>
+                                    <label formArrayName="neighborhoods" *ngFor="let neighborhood of form.controls.neighborhoods.controls; let i = index">
+                                     <input type="checkbox" [formControlName]="i">{{neighborhoods[i].name}}
+                                    </label> -->
+                                    <div class="col-sm-12">
+                                       <button type="submit" class="btn"style="background-color: black;">Search</button>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="product-details">
-                                            <h6>{{restaurant.name}}</h6>
-                                            <div class="price">
-                                                <br>
-                                                <h6>Address : </h6> {{restaurant.location.display_address}}
-                                                <br>
-                                                <h6> Plan : </h6> {{restaurant.categories[0].title}}
-                                                <br>
-                                                <h6>Phone  </h6> {{restaurant.display_phone}}
-                                                <br>
-                                                <h6>Status </h6> {{restaurant.is_closed}}
-                                            </div>                                    
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <h6>Note</h6>
-                                        <br>
-                                        <h6>{{restaurant.rating}}</h6>
-                                        <div class="prd-bottom">
-                                                <a (click)="router.navigate(['/RestaurantDetails']);"
-                                                    class="social-info">
-                                                    <i class="fa fa-search"></i>
-                                                    <p class="mb-0">View restaurant</p>
-                                                </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                 
-                    </div>
-                   <div class="text-center">
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
-  </div>
-          
-        </div>
-    </div>
-
-    <div class="col-lg-5 col-md-12 pl-0 pt-70 pr-5">
-        <div class="contact-img">
-            <div id="map" class="map" ></div>
-          </div>
-    </div>
-    </div>
-    
-</div>
-
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-lg-7 col-md-12 pl-4">
+            <div>
+               <div *ngFor="let restaurant of restaurantList | async | paginate: { itemsPerPage: 6, currentPage: p }">
+                  <section class="lattest-product-area pb-40 category-list">
+                     <div class="row">
+                        <div class="row single-product">
+                           <div class="col-lg-4">
+                              <img class="img-fluid" [src]=restaurant.image_url alt="">
+                           </div>
+                           <div class="col-lg-6">
+                              <div class="product-details">
+                                 <h6>
+                                    {{restaurant.name}}
+                                 </h6>
+                                 <div class="price">
+                                    <br>
+                                    <h6>
+                                       Address : 
+                                    </h6>
+                                    {{restaurant.location.display_address}}
+                                    <br>
+                                    <h6>
+                                        Plan : 
+                                    </h6>
+                                    {{restaurant.categories[0].title}}
+                                    <br>
+                                    <h6>
+                                       Phone  
+                                    </h6>
+                                    {{restaurant.display_phone}}
+                                    <br>
+                                    <h6>
+                                       Status 
+                                    </h6>
+                                    {{restaurant.is_closed}}
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-2">
+                              <h6>
+                                 Note
+                              </h6>
+                              <br>
+                              <h6>
+                                 {{restaurant.rating}}
+                              </h6>
+                              <div class="prd-bottom">
+                                 <a (click)="router.navigate(['/RestaurantDetails']);"class="social-info">
+                                    <i class="fa fa-search"></i>
+                                    <p class="mb-0">
+                                       View restaurant
+                                    </p>
+                                 </a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </section>
+               </div>
+               <div class="text-center">
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-5 col-md-12 pl-0 pt-70 pr-5">
+            <div class="contact-img">
+               <div id="map" class="map" ></div>
+            </div>
+         </div>
+      </div>
+   </div>
 </section>
-
-  

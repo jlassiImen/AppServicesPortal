@@ -75,10 +75,7 @@ var restaurants = {
         });
                 }
               
-              return  res.json({
-                "status": 500,
-                "message": JSON.parse(resp.body).businesses
-                });       
+              return  res.json(JSON.parse(resp.body).businesses );       
             });
   },
 

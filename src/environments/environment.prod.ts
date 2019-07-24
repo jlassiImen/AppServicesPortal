@@ -5,5 +5,6 @@ export const environment = {
   autoCompleteAppId:"pl0TT9QPY8U9",
   autoCompleteToken:"3d19b788046b9694c17de41e5dff48c9",
   uberToken:"ciJZozgrO2nbEwDRLaVSYSDJX9neFzzl",
-  yelpToken:"Bearer QcbmbI2E1GYQwRIBVXuQbK9v0a30GnAdneQEMahlzPZkJ5bGi0xgxZqZv8mdsoJ0Xqo0D_OKa9f_VVIJohEKtsS5hcT7KrPBkCaHrjjR5xkn-PM8sFvTOeyZVRQvXXYx"
+  yelpToken:"Bearer QcbmbI2E1GYQwRIBVXuQbK9v0a30GnAdneQEMahlzPZkJ5bGi0xgxZqZv8mdsoJ0Xqo0D_OKa9f_VVIJohEKtsS5hcT7KrPBkCaHrjjR5xkn-PM8sFvTOeyZVRQvXXYx",
+  mapBoxKey:"pk.eyJ1Ijoiamxhc3NpaW1lbiIsImEiOiJjang3anF3M3kwYWFxM29sZ2c2NTMzamtlIn0.OUJR08JcIjxWvTWLJpTRWw"
 };

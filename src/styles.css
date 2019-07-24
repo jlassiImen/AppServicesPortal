@@ -8169,3 +8169,10 @@ label {
   .ap-footer:hover {
     opacity: 1;
   }
+
+  #map {
+    height: 400px;
+  
+}
+
+  

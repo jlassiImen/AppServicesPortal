@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild, } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from './../services/auth/auth.service';
 import { MeteoService } from './../services/meteoServices/meteo.service';
@@ -26,29 +26,27 @@ export class RestorationComponent implements OnInit {
 
   private places: any; //autocomplete adress
 
-
-
   //form
   form: FormGroup;
-  typeRestaurant=[
+  typeRestaurant = [
     {
-      name: "American",
+      name: "american",
       id: 1
     },
     {
-      name: "Italian",
+      name: "italian",
       id: 2
     },
     {
-      name: "Frensh",
+      name: "frensh",
       id: 3
     },
     {
-      name: "Japanese Sweets",
+      name: "japanese",
       id: 4
     },
     {
-      name: "Pizzaria",
+      name: "pizza",
       id: 5
     },
     {
@@ -56,76 +54,72 @@ export class RestorationComponent implements OnInit {
       id: 6
     },
     {
-      name: "Desserts   ",
+      name: "desserts",
       id: 7
     },
     {
-      name: "Bubble Tea",
+      name: "tea",
       id: 8
     },
     {
-      name: "Bar",
+      name: "bar",
       id: 9
     },
     {
-      name: "Parent Cafes",
+      name: "lebanese",
       id: 10
     },
     {
-      name: "Brazilian ",
+      name: "turkish",
       id: 10
     },
     {
-      name: "Arabian ",
+      name: "arabian",
       id: 10
     },
     {
-      name: "Argentine ",
+      name: "spanish",
       id: 10
     },
     {
-      name: "Andalusian ",
+      name: "chinese",
       id: 10
     },
     {
-      name: "Brasseries" ,
+      name: "brasseries" ,
       id: 10
     }
     ,
     {
-      name: "Breakfast & Brunch" ,
+      name: "bedbreakfast" ,
       id: 10
     },
     {
-      name: "Creperies " ,
+      name: "creperies" ,
       id: 10
     },
     {
-      name: "Corsican " ,
+      name: "corsican" ,
       id: 10
     },
     {
-      name: "German " ,
+      name: "german" ,
       id: 10
     },
     {
-      name: "Giblets " ,
+      name: "moroccan" ,
       id: 10
     },
     {
-      name: "Japanese " ,
-      id: 10
-    },
-    {
-      name: "Modern European" ,
+      name: "japanese" ,
       id: 10
     }
   ];
   sortBy = [
     {
-      name: "Price",
-      value: "Price",
-      selected: true
+
+      name: "best match",
+      value: "best_match"
     },
     {
       name: "Note",
@@ -134,19 +128,19 @@ export class RestorationComponent implements OnInit {
   ];
   distance = [
     {
-      name: "Less of 500 m",
+      name: "1000",
       id: 10
     },
     {
-      name: "By car (8 km)",
+      name: "8000",
       id: 11
     },
     {
-      name: "By bike (4 km)",
-      id:12
+      name: "4000",
+      id: 12
     },
     {
-      name: "walk (2 km)",
+      name: "2000",
       id: 13
     }
   ];
@@ -186,24 +180,34 @@ export class RestorationComponent implements OnInit {
       id: 34
     }
   ];
-  
+
   //onsubmit result
-  restaurantList : Observable<any[]> 
+  restaurantList: Observable<any[]>
   p: Number = 1; //pagination
 
 
   public showAdvancedSearch: boolean = false;
   public buttonName: any = 'Advanced Search';
 
-  address='';
+  address = '';
 
 
   successMessage = '';
   errorMessage = '';
 
+   mapboxLayer: any;
 
+  myIcon :any;
+   map :any;
+  markers = [];
+
+  
   constructor(public auth: AuthService, public router: Router, public fb: FormBuilder,public restoration: RestorationService, public meteo: MeteoService) {
+
     this.form = this.fb.group({
+      address: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
       typeRestaurant: new FormArray([]),
       sortBy: new FormArray([]),
       distance: new FormArray([]),
@@ -213,24 +217,7 @@ export class RestorationComponent implements OnInit {
     this.addCheckboxes();
   }
 
-  ngOnInit() {
-
-    // address autocomplete
-    this.places = places({
-      appId: environment.autoCompleteAppId,
-      apiKey: environment.autoCompleteToken,
-      container: this.qElementRef.nativeElement,
-      style: false,
-      debug: true
-     }); 
-    this.places.on('change', function resultSelected(e) {
-      this.address=e.suggestion.value;
-    }); 
-
-    
-  }
- 
-  toggle() {
+ toggle() {
     this.showAdvancedSearch = !this.showAdvancedSearch;
 
     // CHANGE THE NAME OF THE BUTTON.
@@ -238,6 +225,70 @@ export class RestorationComponent implements OnInit {
       this.buttonName = "Hide Filter";
     else
       this.buttonName = "Advanced Search";
+  }
+
+  ngOnInit() {
+
+    // address autocomplete
+    this.places = places({
+      appId: environment.autoCompleteAppId,
+      apiKey: environment.autoCompleteToken,
+      container: this.qElementRef.nativeElement,
+      debug: true
+    }).configure({
+      language: 'en',
+      hitsPerPage: 4
+    });
+
+  
+    this.mapboxLayer=L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}',
+      { id: 'mapbox.streets', attribution: '', maxZoom: 20, accessToken: this.accessToken, tileSize: 512, zoomOffset: -1 } as any
+    );
+
+    this.myIcon = L.icon({
+      iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png'
+    });
+
+    this.map=L.map('map', {
+      scrollWheelZoom: false,
+      zoomControl: false
+    });
+
+    this.mapboxLayer.addTo(this.map);
+
+    this.places.on('change', (event) => this.updateRestaurantList(event));
+    this.map.setView(new L.LatLng(0, 0), 1);
+    this.map.addLayer(this.mapboxLayer);
+  }
+
+  updateRestaurantList(event) {
+    this.address = event.suggestion.value;
+   
+    var req = {
+      "location": this.address,
+      "term": "restaurant"
+    }
+    this.restaurantList=this.restoration.getYelpRestaurants(req);
+    this.markers.forEach(this.removeMarker);
+    this.markers = [];
+    this.restaurantList.forEach(restaurant =>this.addMarker(restaurant));
+    this.findBestZoom();
+  };
+
+   addMarker(suggestion) {
+    console.log("kkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjj  " + JSON.stringify(suggestion));
+    var marker = L.marker([suggestion.coordinates.latitude, suggestion.coordinates.longitude], { icon: this.myIcon });
+    marker.addTo(this.map);
+    this.markers.push(marker);
+  }
+
+  removeMarker(marker) {
+    this.map.removeLayer(marker);
+  }
+
+  findBestZoom() {
+    var featureGroup = L.featureGroup(this.markers);
+    this.map.fitBounds(featureGroup.getBounds().pad(0.5), {animate: false});
   }
 
   private addCheckboxes() {
@@ -264,6 +315,9 @@ export class RestorationComponent implements OnInit {
   }
 
   onSubmitResto(value) {
+  if(this.showAdvancedSearch){
+    this.toggle();
+  }
     console.log("vvvvvvvvvvv   "+JSON.stringify(value));
     const selectedTypeRestaurantByName = this.form.value.typeRestaurant
       .map((v, i) => v ? this.typeRestaurant[i].name : null)
@@ -280,6 +334,7 @@ export class RestorationComponent implements OnInit {
       .filter(v => v !== null);  
     console.log("rrrrrrrrrrrrrr       "+selectedDistanceByName);
 
+
     const selectedFeaturesByName = this.form.value.features
       .map((v, i) => v ? this.features[i].name : null)
       .filter(v => v !== null);  
@@ -291,40 +346,14 @@ export class RestorationComponent implements OnInit {
     console.log("rrrrrrrrrrrrrr       "+selectedNeighborhoodsByName);
 
     console.log("ttttttttttt "+this.address);
-    var req ={
-      "location":"16 rue des acacias 92360 meudon France",
-      "term":"restaurant",
-      "categories":selectedTypeRestaurantByName
 
+    var req = {
+      "location": this.address,
+      "term": "restaurant",
+      "categories":selectedTypeRestaurantByName
     }
-    
     this.restaurantList=this.restoration.getYelpRestaurants(req);
   }
-
-
-  loadMap(position) {
-    console.log(position.longitude + ' , ' + position.latitude);
-    const map = L.map('map').setView([position.latitude, position.longitude], 12);
-    L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}',
-      { id: 'mapbox.streets', attribution: '', maxZoom: 20, accessToken: this.accessToken, tileSize: 512, zoomOffset: -1 } as any
-    ).addTo(map);
-    const myIcon = L.icon({
-      iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png'
-    });
-    L.marker([position.latitude, position.longitude], { icon: myIcon }).bindPopup('Your position').addTo(map).openPopup();
-    console.log("ooooooooooooooooooooooooooo    " + JSON.stringify(this.restaurantList));
-    this.restaurantList[0].forEach(restaurant => {
-      L.marker([restaurant.coordinates.latitude, restaurant.coordinates.longitude], { icon: myIcon })
-    });
-  }
-/*
-  loadRestaurantList(request : any){
-    this.restoration.getYelpRestaurants(request).subscribe((response: any) => {
-      this.restaurantList = response;
-      this.meteo.detectLocation(position => this.loadMap(position));
-    });
-  }
-*/
 
 
 

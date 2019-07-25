@@ -44,7 +44,7 @@ export class RestorationComponent implements OnInit {
       id: 3
     },
     {
-      name: "Traditional",
+      name: "Japanese Sweets",
       id: 4
     },
     {
@@ -54,6 +54,71 @@ export class RestorationComponent implements OnInit {
     {
       name: "coffee",
       id: 6
+    },
+    {
+      name: "Desserts   ",
+      id: 7
+    },
+    {
+      name: "Bubble Tea",
+      id: 8
+    },
+    {
+      name: "Bar",
+      id: 9
+    },
+    {
+      name: "Parent Cafes",
+      id: 10
+    },
+    {
+      name: "Brazilian ",
+      id: 10
+    },
+    {
+      name: "Arabian ",
+      id: 10
+    },
+    {
+      name: "Argentine ",
+      id: 10
+    },
+    {
+      name: "Andalusian ",
+      id: 10
+    },
+    {
+      name: "Brasseries" ,
+      id: 10
+    }
+    ,
+    {
+      name: "Breakfast & Brunch" ,
+      id: 10
+    },
+    {
+      name: "Creperies " ,
+      id: 10
+    },
+    {
+      name: "Corsican " ,
+      id: 10
+    },
+    {
+      name: "German " ,
+      id: 10
+    },
+    {
+      name: "Giblets " ,
+      id: 10
+    },
+    {
+      name: "Japanese " ,
+      id: 10
+    },
+    {
+      name: "Modern European" ,
+      id: 10
     }
   ];
   sortBy = [
@@ -95,7 +160,7 @@ export class RestorationComponent implements OnInit {
       id: 21
     },
     {
-      name: "delivery ",
+      name: "Food Delivery Services ",
       id: 22
     }
   ];
@@ -138,7 +203,6 @@ export class RestorationComponent implements OnInit {
 
 
   constructor(public auth: AuthService, public router: Router, public fb: FormBuilder,public restoration: RestorationService, public meteo: MeteoService) {
-
     this.form = this.fb.group({
       typeRestaurant: new FormArray([]),
       sortBy: new FormArray([]),
@@ -146,19 +210,7 @@ export class RestorationComponent implements OnInit {
       features: new FormArray([]),
       neighborhoods: new FormArray([])
     });
-
     this.addCheckboxes();
-  }
-
-
-  toggle() {
-    this.showAdvancedSearch = !this.showAdvancedSearch;
-
-    // CHANGE THE NAME OF THE BUTTON.
-    if (this.showAdvancedSearch)
-      this.buttonName = "Hide Filter";
-    else
-      this.buttonName = "Advanced Search";
   }
 
   ngOnInit() {
@@ -170,14 +222,22 @@ export class RestorationComponent implements OnInit {
       container: this.qElementRef.nativeElement,
       style: false,
       debug: true
-     });
-
-  
+     }); 
     this.places.on('change', function resultSelected(e) {
       this.address=e.suggestion.value;
-    });
+    }); 
 
-  
+    
+  }
+ 
+  toggle() {
+    this.showAdvancedSearch = !this.showAdvancedSearch;
+
+    // CHANGE THE NAME OF THE BUTTON.
+    if (this.showAdvancedSearch)
+      this.buttonName = "Hide Filter";
+    else
+      this.buttonName = "Advanced Search";
   }
 
   private addCheckboxes() {
@@ -203,59 +263,68 @@ export class RestorationComponent implements OnInit {
     });
   }
 
-
-
-
   onSubmitResto(value) {
-console.log("vvvvvvvvvvv       "+JSON.stringify(value));
-    const selectedTypeRestaurantIds = this.form.value.typeRestaurant
+    console.log("vvvvvvvvvvv   "+JSON.stringify(value));
+    const selectedTypeRestaurantByName = this.form.value.typeRestaurant
       .map((v, i) => v ? this.typeRestaurant[i].name : null)
-      .filter(v => v !== null);
-  
-  
-  console.log("rrrrrrrrrrrrrr       "+selectedTypeRestaurantIds);
+      .filter(v => v !== null);  
+    console.log("rrrrrrrrrrrrrr       "+selectedTypeRestaurantByName);
 
+    const selectedSortByByName = this.form.value.sortBy
+      .map((v, i) => v ? this.sortBy[i].name : null)
+      .filter(v => v !== null);  
+    console.log("rrrrrrrrrrrrrr       "+selectedSortByByName);
+
+    const selectedDistanceByName = this.form.value.distance
+      .map((v, i) => v ? this.distance[i].name : null)
+      .filter(v => v !== null);  
+    console.log("rrrrrrrrrrrrrr       "+selectedDistanceByName);
+
+    const selectedFeaturesByName = this.form.value.features
+      .map((v, i) => v ? this.features[i].name : null)
+      .filter(v => v !== null);  
+    console.log("rrrrrrrrrrrrrr       "+selectedFeaturesByName);
+
+    const selectedNeighborhoodsByName = this.form.value.neighborhoods
+      .map((v, i) => v ? this.neighborhoods[i].name : null)
+      .filter(v => v !== null);  
+    console.log("rrrrrrrrrrrrrr       "+selectedNeighborhoodsByName);
 
     console.log("ttttttttttt "+this.address);
     var req ={
-      "location":this.address,
-      "term":"restaurant"
+      "location":"16 rue des acacias 92360 meudon France",
+      "term":"restaurant",
+      "categories":selectedTypeRestaurantByName
+
     }
-    this.loadRestaurantList(req);
+    
+    this.restaurantList=this.restoration.getYelpRestaurants(req);
   }
 
 
   loadMap(position) {
-
     console.log(position.longitude + ' , ' + position.latitude);
     const map = L.map('map').setView([position.latitude, position.longitude], 12);
-
     L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}',
       { id: 'mapbox.streets', attribution: '', maxZoom: 20, accessToken: this.accessToken, tileSize: 512, zoomOffset: -1 } as any
     ).addTo(map);
     const myIcon = L.icon({
       iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png'
     });
-
-
     L.marker([position.latitude, position.longitude], { icon: myIcon }).bindPopup('Your position').addTo(map).openPopup();
-
     console.log("ooooooooooooooooooooooooooo    " + JSON.stringify(this.restaurantList));
-
     this.restaurantList[0].forEach(restaurant => {
       L.marker([restaurant.coordinates.latitude, restaurant.coordinates.longitude], { icon: myIcon })
     });
-
   }
-
-
+/*
   loadRestaurantList(request : any){
     this.restoration.getYelpRestaurants(request).subscribe((response: any) => {
       this.restaurantList = response;
       this.meteo.detectLocation(position => this.loadMap(position));
     });
   }
-
+*/
 
 
 

@@ -22,7 +22,6 @@ var restaurants = {
     var sort_by=req.body.sort_by;
     var open_at=req.body.open_at;
     var categories=req.body.categories;
-    var alias=req.body.alias;
     var term=req.body.term;
 
 
@@ -38,9 +37,6 @@ var restaurants = {
     }
     if(open_now!= null && open_now!= undefined){
       params=params+"&&open_now="+open_now;
-    }
-    if(alias!= null && alias!= undefined){
-      params=params+"&&alias="+alias;
     }
     if(limit!= null && limit!= undefined){
       params=params+"&&limit="+limit;
@@ -75,7 +71,8 @@ var restaurants = {
         });
                 }
               
-              return  res.json(JSON.parse(resp.body).businesses );       
+              return  res.json(JSON.parse(resp.body).businesses );  
+              concole.log ("aaaaaaaaaaaaaaaaaaaaaa" + JSON.parse(resp.body).businesses);    
             });
   },
 

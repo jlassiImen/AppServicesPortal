@@ -1,90 +1,96 @@
 <section id="contact" class="section">
-    <div class="container" style="margin-top: 4%;">
+    <div class="container" >
 
         <div class="row" >
             <!-- Menu Area Start -->
-            <div class="col-lg-12">
-                <div class="contents" style="margin-left: 30%;">
-                    <h2>
-                        Discover and Book the best restaurants
-                        <br>
-                        at the best price
-                    </h2>
-                </div>
-            </div>
-        </div>
-        <div class="s007">
+           
+               
             
-                <div class="inner-form">
-                    <form [formGroup]="form" (ngSubmit)="onSubmitResto(form.value)">
-                    <div class="basic-search">
-                        <div class="input-field">
-                            <input id="search" type="search" id="autocomplete" #autocomplete placeholder="Address" style="width: 100%"/>
+        </div>
+        <div class="main-bg" style="margin-top: 4%;">
+            
+            <div class="sub-main-w3">
+                    <div class="contents" style="margin-bottom: 5%;">
+                            <h2>
+                                Discover and Book the best restaurants at the best price
+                            </h2>
                         </div>
-                        <button type="submit"  style="    color: red;
-                        background: red;
-                        width: 200px;
-                        height: 100px;">
-                                submit
-                              </button>
-                        <span class="desc" style="color: white;font-family: sans-serif;font-size: medium;" (click)="toggle()"> {{buttonName}}</span>
-                    </div>
+              <div class="bg-content-w3pvt" style="max-width: 700px;">
+                    <form [formGroup]="form" (ngSubmit)="onSubmitResto(form.value)" style="width: 100%;">
+                        
+                    
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-9 input" >
+                                    <input  type="search" id="autocomplete" #autocomplete  formControlName="address" placeholder="Address" style="width: 100%"/>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button type="submit" class="btn btn-singin" style="margin: 28%;">
+                                        search
+                                      </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <span class="desc" style="float: left;margin: 5px 22px;;font-family: sans-serif;font-size: medium;" (click)="toggle()"> {{buttonName}}</span>
+                    
                     <div class="advance-search" *ngIf="showAdvancedSearch">
                        
                         
                             <div class="row">
-                                <div class="input-field">
+                                <div class="col-sm-3">
+                               
+                                        <label>Cuisine</label>
                                     <label formArrayName="typeRestaurant" *ngFor="let item of form.controls.typeRestaurant.controls; let i = index">
                                     <input type="checkbox" [formControlName]="i">
                                     {{typeRestaurant[i].name}}
                                     </label>
-                                </div>
-                                <div class="input-field">
+                                
+                            </div>
+                            <div class="col-sm-3">
+                                
                                      <label formArrayName="sortBy" *ngFor="let element of form.controls.sortBy.controls; let i = index">
                                      <input type="checkbox" [formControlName]="i">{{sortBy[i].name}}
                                     </label>
-                                </div>
-                                <div class="input-field">
+                                
+                            </div>
+                            <div class="col-sm-3">
+                                
                                       <label formArrayName="distance" *ngFor="let element of form.controls.distance.controls; let i = index">
                                      <input type="checkbox" [formControlName]="i">{{distance[i].name}}
                                     </label>
-                                </div>
+                                
                             </div>
                             <div class="row second">
-                                <div class="input-field">
+                                    <div class="col-sm-3">
+                              
                                     <label formArrayName="features" *ngFor="let feature of form.controls.features.controls; let i = index">
                                      <input type="checkbox" [formControlName]="i">{{features[i].name}}
                                     </label>
                                     
+                                
                                 </div>
-                                <div class="input-field">
+                                <div class="col-sm-3">
+                               
                                     <label formArrayName="neighborhoods" *ngFor="let neighborhood of form.controls.neighborhoods.controls; let i = index">
                                      <input type="checkbox" [formControlName]="i">{{neighborhoods[i].name}}
                                     </label> 
+                                
                                 </div>
-                                <div class="input-field">
-                                    <div class="select">
-                                        <select data-trigger="" name="choices-single-defaul">
-                                            <option placeholder="" value="">TYPE</option>
-                                            <option>TYPE</option>
-                                            <option>SUBJECT B</option>
-                                            <option>SUBJECT C</option>
-                                        </select>
-                                    </div>
-                                </div>
+                               
                             </div>
                             <div class="row third">
                                 <div class="input-field">
-                                    <button class="btn-search">Search</button>
-                                    <button class="btn-delete" id="delete">Delete</button>
+                                    <button class="btn-delete" id="delete">Reset Filter</button>
                                 </div>
                             </div>
                     
-                        
+                        </div>
                     </div>
                 </form>
                 </div>
-           
+           </div>
         </div>
         <div class="row">
 

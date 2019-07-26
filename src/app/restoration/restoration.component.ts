@@ -115,6 +115,25 @@ export class RestorationComponent implements OnInit {
       id: 10
     }
   ];
+  price = [
+    {
+      name: "€",
+      id: "1"
+    },
+    {
+      name: "€€",
+      id: "2"
+    },
+    {
+      name: "€€€",
+      id: "3"
+    }
+    ,
+    {
+      name: "€€€€",
+      id: "4"
+    }
+  ];
   sortBy = [
     {
 
@@ -217,6 +236,7 @@ export class RestorationComponent implements OnInit {
     this.addCheckboxes();
   }
 
+//afficher et desactiver le filtre
  toggle() {
     this.showAdvancedSearch = !this.showAdvancedSearch;
 
@@ -323,6 +343,11 @@ export class RestorationComponent implements OnInit {
       .map((v, i) => v ? this.typeRestaurant[i].name : null)
       .filter(v => v !== null);  
     console.log("rrrrrrrrrrrrrr       "+selectedTypeRestaurantByName);
+ 
+    const selectedPriceById = this.form.value.price
+      .map((v, i) => v ? this.price[i].id : null)
+      .filter(v => v !== null);  
+    console.log("rrrrrrrrrrrrrr       "+selectedPriceById);
 
     const selectedSortByByName = this.form.value.sortBy
       .map((v, i) => v ? this.sortBy[i].name : null)

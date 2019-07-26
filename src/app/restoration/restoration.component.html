@@ -7,7 +7,7 @@
                
             
         </div>
-        <div class="main-bg" style="margin-top: 4%;">
+        <div class="main-bg" style="min-height: 10vh;">
             
             <div class="sub-main-w3">
                     <div class="contents" style="margin-bottom: 5%;">
@@ -97,7 +97,7 @@
             <div class="col-lg-7 col-md-12 pl-4">
                 <div>
                     <div
-                        *ngFor="let restaurant of restaurantList | async | paginate: { itemsPerPage: 6, currentPage: p }">
+                        *ngFor="let restaurant of restaurantList  | paginate: { itemsPerPage: 6, currentPage: p }">
                         <section class="lattest-product-area pb-40 category-list">
                             <div class="row">
                                 <div class="row single-product">

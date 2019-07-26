@@ -182,7 +182,7 @@ export class RestorationComponent implements OnInit {
   ];
 
   //onsubmit result
-  restaurantList: Observable<any[]>
+  restaurantList: any[];
   p: Number = 1; //pagination
 
 
@@ -250,8 +250,8 @@ export class RestorationComponent implements OnInit {
     });
 
     this.map=L.map('map', {
-      scrollWheelZoom: false,
-      zoomControl: false
+      scrollWheelZoom: true,
+      zoomControl: true
     });
 
     this.mapboxLayer.addTo(this.map);
@@ -262,21 +262,33 @@ export class RestorationComponent implements OnInit {
   }
 
   updateRestaurantList(event) {
-    this.address = event.suggestion.value;
-   
+    if(event!=null && event != ""){
+      this.address = event.suggestion.value;
+    }
     var req = {
       "location": this.address,
       "term": "restaurant"
     }
-    this.restaurantList=this.restoration.getYelpRestaurants(req);
-    this.markers.forEach(this.removeMarker);
-    this.markers = [];
-    this.restaurantList.forEach(restaurant =>this.addMarker(restaurant));
-    this.findBestZoom();
-  };
+    this.restoration.getYelpRestaurants(req).subscribe((response) => {
+      this.restaurantList=response;
+      this.markers.forEach(marker => {
+        this.removeMarker(marker);
+      });
+      this.markers = [];
+      this.restaurantList.forEach(restaurant  =>{
+      this.addMarker(restaurant);
+      })
+      this.findBestZoom();
+    })
+    
+    
+    }
+    
+    
+  
 
    addMarker(suggestion) {
-    console.log("kkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjj  " + JSON.stringify(suggestion));
+    console.log("zzzzzzzzzzzzzzzzzzzzzzz  " + JSON.stringify(this.restaurantList[0]));
     var marker = L.marker([suggestion.coordinates.latitude, suggestion.coordinates.longitude], { icon: this.myIcon });
     marker.addTo(this.map);
     this.markers.push(marker);
@@ -318,41 +330,43 @@ export class RestorationComponent implements OnInit {
   if(this.showAdvancedSearch){
     this.toggle();
   }
-    console.log("vvvvvvvvvvv   "+JSON.stringify(value));
     const selectedTypeRestaurantByName = this.form.value.typeRestaurant
       .map((v, i) => v ? this.typeRestaurant[i].name : null)
       .filter(v => v !== null);  
-    console.log("rrrrrrrrrrrrrr       "+selectedTypeRestaurantByName);
 
     const selectedSortByByName = this.form.value.sortBy
       .map((v, i) => v ? this.sortBy[i].name : null)
       .filter(v => v !== null);  
-    console.log("rrrrrrrrrrrrrr       "+selectedSortByByName);
 
     const selectedDistanceByName = this.form.value.distance
       .map((v, i) => v ? this.distance[i].name : null)
       .filter(v => v !== null);  
-    console.log("rrrrrrrrrrrrrr       "+selectedDistanceByName);
 
 
     const selectedFeaturesByName = this.form.value.features
       .map((v, i) => v ? this.features[i].name : null)
       .filter(v => v !== null);  
-    console.log("rrrrrrrrrrrrrr       "+selectedFeaturesByName);
 
     const selectedNeighborhoodsByName = this.form.value.neighborhoods
       .map((v, i) => v ? this.neighborhoods[i].name : null)
       .filter(v => v !== null);  
-    console.log("rrrrrrrrrrrrrr       "+selectedNeighborhoodsByName);
-
-    console.log("ttttttttttt "+this.address);
 
     var req = {
       "location": this.address,
       "term": "restaurant",
       "categories":selectedTypeRestaurantByName
     }
-    this.restaurantList=this.restoration.getYelpRestaurants(req);
+    this.restoration.getYelpRestaurants(req).subscribe((response) => {
+      this.restaurantList=response;
+      this.markers.forEach(marker => {
+        this.removeMarker(marker);
+      });
+      this.markers = [];
+      this.restaurantList.forEach(restaurant  =>{
+      this.addMarker(restaurant);
+      })
+      this.findBestZoom();
+    })
   }
 
 

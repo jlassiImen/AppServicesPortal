@@ -86,32 +86,32 @@ export class RestorationComponent implements OnInit {
       id: 10
     },
     {
-      name: "brasseries" ,
+      name: "brasseries",
       id: 10
     }
     ,
     {
-      name: "bedbreakfast" ,
+      name: "bedbreakfast",
       id: 10
     },
     {
-      name: "creperies" ,
+      name: "creperies",
       id: 10
     },
     {
-      name: "corsican" ,
+      name: "corsican",
       id: 10
     },
     {
-      name: "german" ,
+      name: "german",
       id: 10
     },
     {
-      name: "moroccan" ,
+      name: "moroccan",
       id: 10
     },
     {
-      name: "japanese" ,
+      name: "japanese",
       id: 10
     }
   ];
@@ -191,24 +191,23 @@ export class RestorationComponent implements OnInit {
 
   address = '';
 
-
   successMessage = '';
   errorMessage = '';
 
-   mapboxLayer: any;
+  mapboxLayer: any;
 
-  myIcon :any;
-   map :any;
+  myIcon: any;
+  map: any;
   markers = [];
 
-  
-  constructor(public auth: AuthService, public router: Router, public fb: FormBuilder,public restoration: RestorationService, public meteo: MeteoService) {
+
+  constructor(public auth: AuthService, public router: Router, public fb: FormBuilder, public restoration: RestorationService, public meteo: MeteoService) {
 
     this.form = this.fb.group({
       address: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      typeRestaurant: new FormArray([]),
+      typeRestaurant: new FormControl(''),
       sortBy: new FormArray([]),
       distance: new FormArray([]),
       features: new FormArray([]),
@@ -217,7 +216,7 @@ export class RestorationComponent implements OnInit {
     this.addCheckboxes();
   }
 
- toggle() {
+  toggle() {
     this.showAdvancedSearch = !this.showAdvancedSearch;
 
     // CHANGE THE NAME OF THE BUTTON.
@@ -240,8 +239,8 @@ export class RestorationComponent implements OnInit {
       hitsPerPage: 4
     });
 
-  
-    this.mapboxLayer=L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}',
+
+    this.mapboxLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}',
       { id: 'mapbox.streets', attribution: '', maxZoom: 20, accessToken: this.accessToken, tileSize: 512, zoomOffset: -1 } as any
     );
 
@@ -249,46 +248,23 @@ export class RestorationComponent implements OnInit {
       iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png'
     });
 
-    this.map=L.map('map', {
+    this.map = L.map('map', {
       scrollWheelZoom: true,
       zoomControl: true
     });
 
     this.mapboxLayer.addTo(this.map);
 
-    this.places.on('change', (event) => this.updateRestaurantList(event));
+    this.places.on('change', (event) => this.setAddress(event));
     this.map.setView(new L.LatLng(0, 0), 1);
     this.map.addLayer(this.mapboxLayer);
   }
 
-  updateRestaurantList(event) {
-    if(event!=null && event != ""){
-      this.address = event.suggestion.value;
-    }
-    var req = {
-      "location": this.address,
-      "term": "restaurant"
-    }
-    this.restoration.getYelpRestaurants(req).subscribe((response) => {
-      this.restaurantList=response;
-      this.markers.forEach(marker => {
-        this.removeMarker(marker);
-      });
-      this.markers = [];
-      this.restaurantList.forEach(restaurant  =>{
-      this.addMarker(restaurant);
-      })
-      this.findBestZoom();
-    })
-    
-    
-    }
-    
-    
-  
+  setAddress(event){
+    this.address = event.suggestion.value;
+  }
 
-   addMarker(suggestion) {
-    console.log("zzzzzzzzzzzzzzzzzzzzzzz  " + JSON.stringify(this.restaurantList[0]));
+  addMarker(suggestion) {
     var marker = L.marker([suggestion.coordinates.latitude, suggestion.coordinates.longitude], { icon: this.myIcon });
     marker.addTo(this.map);
     this.markers.push(marker);
@@ -300,14 +276,10 @@ export class RestorationComponent implements OnInit {
 
   findBestZoom() {
     var featureGroup = L.featureGroup(this.markers);
-    this.map.fitBounds(featureGroup.getBounds().pad(0.5), {animate: false});
+    this.map.fitBounds(featureGroup.getBounds().pad(0.5), { animate: false });
   }
 
   private addCheckboxes() {
-    this.typeRestaurant.map((o, i) => {
-      const control = new FormControl(i === 0); // if first item set to true, else false
-      (this.form.controls.typeRestaurant as FormArray).push(control);
-    });
     this.sortBy.map((o, i) => {
       const control = new FormControl(i === 0); // if first item set to true, else false
       (this.form.controls.sortBy as FormArray).push(control);
@@ -327,47 +299,49 @@ export class RestorationComponent implements OnInit {
   }
 
   onSubmitResto(value) {
-  if(this.showAdvancedSearch){
-    this.toggle();
-  }
-    const selectedTypeRestaurantByName = this.form.value.typeRestaurant
-      .map((v, i) => v ? this.typeRestaurant[i].name : null)
-      .filter(v => v !== null);  
+    console.log(JSON.stringify(value));
+    if (this.showAdvancedSearch) {
+      this.toggle();
+    }
+    const selectedTypeRestaurantByName = this.form.value.typeRestaurant;
 
     const selectedSortByByName = this.form.value.sortBy
       .map((v, i) => v ? this.sortBy[i].name : null)
-      .filter(v => v !== null);  
+      .filter(v => v !== null);
 
     const selectedDistanceByName = this.form.value.distance
       .map((v, i) => v ? this.distance[i].name : null)
-      .filter(v => v !== null);  
+      .filter(v => v !== null);
 
 
     const selectedFeaturesByName = this.form.value.features
       .map((v, i) => v ? this.features[i].name : null)
-      .filter(v => v !== null);  
+      .filter(v => v !== null);
 
     const selectedNeighborhoodsByName = this.form.value.neighborhoods
       .map((v, i) => v ? this.neighborhoods[i].name : null)
-      .filter(v => v !== null);  
+      .filter(v => v !== null);
 
     var req = {
       "location": this.address,
       "term": "restaurant",
-      "categories":selectedTypeRestaurantByName
+      "categories": selectedTypeRestaurantByName
     }
     this.restoration.getYelpRestaurants(req).subscribe((response) => {
-      this.restaurantList=response;
+      this.restaurantList = response;
       this.markers.forEach(marker => {
         this.removeMarker(marker);
       });
       this.markers = [];
-      this.restaurantList.forEach(restaurant  =>{
-      this.addMarker(restaurant);
+      this.restaurantList.forEach(restaurant => {
+        this.addMarker(restaurant);
       })
       this.findBestZoom();
     })
   }
+
+
+
 
 
 

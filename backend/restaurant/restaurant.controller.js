@@ -24,9 +24,6 @@ var restaurants = {
       });
     var radius = req.body.radius;
     var price = req.body.price;
-    var open_now = req.body.open_now;
-    var limit = req.body.limit;
-    var offset = req.body.offset;
     var sort_by = req.body.sort_by;
     var open_at = req.body.open_at;
     var categories = req.body.categories;
@@ -43,15 +40,6 @@ var restaurants = {
     }
     if (price != null && price != undefined) {
       params = params + "&&price=" + price;
-    }
-    if (open_now != null && open_now != undefined) {
-      params = params + "&&open_now=" + open_now;
-    }
-    if(limit!= null && limit!= undefined){
-      params=params+"&&limit="+limit;
-    }
-    if (offset != null && offset != undefined) {
-      params = params + "&&offset=" + offset;
     }
     if (sort_by != null && sort_by != undefined) {
       params = params + "&&sort_by=" + sort_by;

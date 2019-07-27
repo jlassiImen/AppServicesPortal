@@ -7,7 +7,7 @@
                
             
         </div>
-        <div class="main-bg" style="margin-top: 4%;">
+        <div class="main-bg" style="min-height: 10vh;">
             
             <div class="sub-main-w3">
                     <div class="contents" style="margin-bottom: 5%;">
@@ -36,50 +36,42 @@
                         <span class="desc" style="float: left;margin: 5px 22px;;font-family: sans-serif;font-size: medium;" (click)="toggle()"> {{buttonName}}</span>
                     
                     <div class="advance-search" *ngIf="showAdvancedSearch">
-                       
-                        
-                            <div class="row">
-                                <div class="col-sm-3">
+                       <div class="row">
+                            <div class="col-sm-3">
                                
-                                        <label>Cuisine</label>
+                                    <label>Cuisine</label>
                                     <label formArrayName="typeRestaurant" *ngFor="let item of form.controls.typeRestaurant.controls; let i = index">
                                     <input type="checkbox" [formControlName]="i">
                                     {{typeRestaurant[i].name}}
-                                    </label>
+                                    </label>     
+                            </div>
+                            <div class="col-sm-3">
+                               
+                                    <label>Price</label>
+                                    <label formArrayName="price" *ngFor="let item of form.controls.price.controls; let i = index">
+                                    <input type="checkbox" [formControlName]="i">
+                                    {{price[i].name}}
+                                    </label>     
+                            </div>
+                            <div class="col-sm-3">
+                                     <label>Sort by</label>
+                                     <label formArrayName="sort_by" *ngFor="let element of form.controls.sort_by.controls; let i = index">
+                                     <input type="checkbox" [formControlName]="i">{{sort_by[i].name}}
+                                     </label>
                                 
                             </div>
                             <div class="col-sm-3">
-                                
-                                     <label formArrayName="sortBy" *ngFor="let element of form.controls.sortBy.controls; let i = index">
-                                     <input type="checkbox" [formControlName]="i">{{sortBy[i].name}}
-                                    </label>
-                                
-                            </div>
-                            <div class="col-sm-3">
-                                
-                                      <label formArrayName="distance" *ngFor="let element of form.controls.distance.controls; let i = index">
-                                     <input type="checkbox" [formControlName]="i">{{distance[i].name}}
-                                    </label>
-                                
-                            </div>
-                            <div class="row second">
-                                    <div class="col-sm-3">
-                              
-                                    <label formArrayName="features" *ngFor="let feature of form.controls.features.controls; let i = index">
-                                     <input type="checkbox" [formControlName]="i">{{features[i].name}}
-                                    </label>
-                                    
-                                
-                                </div>
+                           <label >Open at</label>
+                           <input type="time" id="appt" required>
+                           </div>
+                           <div class="col-sm-3">
                                 <div class="col-sm-3">
-                               
-                                    <label formArrayName="neighborhoods" *ngFor="let neighborhood of form.controls.neighborhoods.controls; let i = index">
-                                     <input type="checkbox" [formControlName]="i">{{neighborhoods[i].name}}
-                                    </label> 
+                                 <label > Radius</label>
+                                <label formArrayName="radius" *ngFor="let elmt of form.controls.radius.controls; let i = index">
+                                <input type="checkbox" [formControlName]="i">{{radius[i].name}}
+                                </label> 
                                 
                                 </div>
-                               
-                            </div>
                             <div class="row third">
                                 <div class="input-field">
                                     <button class="btn-delete" id="delete">Reset Filter</button>
@@ -88,6 +80,7 @@
                     
                         </div>
                     </div>
+                 </div>
                 </form>
                 </div>
            </div>
@@ -97,7 +90,7 @@
             <div class="col-lg-7 col-md-12 pl-4">
                 <div>
                     <div
-                        *ngFor="let restaurant of restaurantList | async | paginate: { itemsPerPage: 6, currentPage: p }">
+                        *ngFor="let restaurant of restaurantList  | paginate: { itemsPerPage: 6, currentPage: p }">
                         <section class="lattest-product-area pb-40 category-list">
                             <div class="row">
                                 <div class="row single-product">

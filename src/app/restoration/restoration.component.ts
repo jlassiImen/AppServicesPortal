@@ -134,74 +134,50 @@ export class RestorationComponent implements OnInit {
       id: "4"
     }
   ];
-  sortBy = [
+  sort_by = [
     {
 
-      name: "best match",
-      value: "best_match"
+      name: "Best match",
+      id: "best_match"
     },
     {
-      name: "Note",
-      value: "Note"
+      name: "rating",
+      id: "rating"
+    },
+    {
+      name: "Review count",
+      id: "review_count"
+    },
+    {
+      name: "Distance",
+      id: "distance"
     }
-  ];
-  distance = [
+  ]; 
+  radius = [
     {
-      name: "1000",
-      id: 10
+      name: "Less 3 km",
+      id: 3000
     },
     {
-      name: "8000",
-      id: 11
+      name: "Less 10 km",
+      id: 10000
     },
     {
-      name: "4000",
-      id: 12
+      name: "Less 20 km ",
+      id: 20000
     },
     {
-      name: "2000",
-      id: 13
-    }
-  ];
-  features = [
-    {
-      name: "Open now",
-      id: 20
+      name: "Less 30 km ",
+      id: 30000
     },
     {
-      name: "Accept reservation",
-      id: 21
-    },
-    {
-      name: "Food Delivery Services ",
-      id: 22
-    }
-  ];
-  neighborhoods = [
-    {
-      name: "3000 m",
-      id: 30
-    },
-    {
-      name: "6000 m",
-      id: 31
-    },
-    {
-      name: "15000 ",
-      id: 32
-    },
-    {
-      name: "30000 ",
-      id: 33
-    },
-    {
-      name: "40000 ",
-      id: 34
+      name: "Less 40 km",
+      id: 40000
     }
   ];
 
   //onsubmit result
-  restaurantList: Observable<any[]>
+  restaurantList: any[];
   p: Number = 1; //pagination
 
 
@@ -209,8 +185,6 @@ export class RestorationComponent implements OnInit {
   public buttonName: any = 'Advanced Search';
 
   address = '';
-
-
   successMessage = '';
   errorMessage = '';
 
@@ -227,11 +201,13 @@ export class RestorationComponent implements OnInit {
       address: new FormControl('', Validators.compose([
         Validators.required
       ])),
+      price: new FormArray([]),
       typeRestaurant: new FormArray([]),
-      sortBy: new FormArray([]),
-      distance: new FormArray([]),
-      features: new FormArray([]),
-      neighborhoods: new FormArray([])
+      sort_by: new FormArray([]),
+      open_at: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      radius: new FormArray([])
     });
     this.addCheckboxes();
   }
@@ -270,8 +246,8 @@ export class RestorationComponent implements OnInit {
     });
 
     this.map=L.map('map', {
-      scrollWheelZoom: false,
-      zoomControl: false
+      scrollWheelZoom: true,
+      zoomControl: true
     });
 
     this.mapboxLayer.addTo(this.map);
@@ -282,21 +258,30 @@ export class RestorationComponent implements OnInit {
   }
 
   updateRestaurantList(event) {
-    this.address = event.suggestion.value;
-   
+    if(event!=null && event != ""){
+      this.address = event.suggestion.value;
+    }
     var req = {
       "location": this.address,
       "term": "restaurant"
     }
-    this.restaurantList=this.restoration.getYelpRestaurants(req);
-    this.markers.forEach(this.removeMarker);
-    this.markers = [];
-    this.restaurantList.forEach(restaurant =>this.addMarker(restaurant));
-    this.findBestZoom();
-  };
+    this.restoration.getYelpRestaurants(req).subscribe((response) => {
+      this.restaurantList=response;
+      this.markers.forEach(marker => {
+        this.removeMarker(marker);
+      });
+      this.markers = [];
+      this.restaurantList.forEach(restaurant  =>{
+      this.addMarker(restaurant);
+      })
+      this.findBestZoom();
+    })
+    
+    
+    }
 
-   addMarker(suggestion) {
-    console.log("kkkkkkkkkkkkkkkjjjjjjjjjjjjjjjjj  " + JSON.stringify(suggestion));
+ addMarker(suggestion) {
+    console.log("zzzzzzzzzzzzzzzzzzzzzzz  " + JSON.stringify(this.restaurantList[0]));
     var marker = L.marker([suggestion.coordinates.latitude, suggestion.coordinates.longitude], { icon: this.myIcon });
     marker.addTo(this.map);
     this.markers.push(marker);
@@ -316,21 +301,17 @@ export class RestorationComponent implements OnInit {
       const control = new FormControl(i === 0); // if first item set to true, else false
       (this.form.controls.typeRestaurant as FormArray).push(control);
     });
-    this.sortBy.map((o, i) => {
+    this.price.map((o, i) => {
       const control = new FormControl(i === 0); // if first item set to true, else false
-      (this.form.controls.sortBy as FormArray).push(control);
+      (this.form.controls.price as FormArray).push(control);
     });
-    this.distance.map((o, i) => {
+    this.sort_by.map((o, i) => {
       const control = new FormControl(i === 0); // if first item set to true, else false
-      (this.form.controls.distance as FormArray).push(control);
+      (this.form.controls.sort_by as FormArray).push(control);
     });
-    this.features.map((o, i) => {
+    this.radius.map((o, i) => {
       const control = new FormControl(i === 0); // if first item set to true, else false
-      (this.form.controls.features as FormArray).push(control);
-    });
-    this.neighborhoods.map((o, i) => {
-      const control = new FormControl(i === 0); // if first item set to true, else false
-      (this.form.controls.neighborhoods as FormArray).push(control);
+      (this.form.controls.radius as FormArray).push(control);
     });
   }
 
@@ -338,7 +319,6 @@ export class RestorationComponent implements OnInit {
   if(this.showAdvancedSearch){
     this.toggle();
   }
-    console.log("vvvvvvvvvvv   "+JSON.stringify(value));
     const selectedTypeRestaurantByName = this.form.value.typeRestaurant
       .map((v, i) => v ? this.typeRestaurant[i].name : null)
       .filter(v => v !== null);  
@@ -349,37 +329,32 @@ export class RestorationComponent implements OnInit {
       .filter(v => v !== null);  
     console.log("rrrrrrrrrrrrrr       "+selectedPriceById);
 
-    const selectedSortByByName = this.form.value.sortBy
-      .map((v, i) => v ? this.sortBy[i].name : null)
+    const selectedSortByById = this.form.value.sort_by
+      .map((v, i) => v ? this.sort_by[i].id : null)
       .filter(v => v !== null);  
-    console.log("rrrrrrrrrrrrrr       "+selectedSortByByName);
 
-    const selectedDistanceByName = this.form.value.distance
-      .map((v, i) => v ? this.distance[i].name : null)
+    const selectedRadiusById = this.form.value.radius
+      .map((v, i) => v ? this.radius[i].id : null)
       .filter(v => v !== null);  
-    console.log("rrrrrrrrrrrrrr       "+selectedDistanceByName);
-
-
-    const selectedFeaturesByName = this.form.value.features
-      .map((v, i) => v ? this.features[i].name : null)
-      .filter(v => v !== null);  
-    console.log("rrrrrrrrrrrrrr       "+selectedFeaturesByName);
-
-    const selectedNeighborhoodsByName = this.form.value.neighborhoods
-      .map((v, i) => v ? this.neighborhoods[i].name : null)
-      .filter(v => v !== null);  
-    console.log("rrrrrrrrrrrrrr       "+selectedNeighborhoodsByName);
-
-    console.log("ttttttttttt "+this.address);
 
     var req = {
       "location": this.address,
       "term": "restaurant",
-      "categories":selectedTypeRestaurantByName
+      "categories": selectedTypeRestaurantByName,
+      "price": selectedPriceById,
+      "sort_by": selectedSortByById,
+      "radius":selectedRadiusById
     }
-    this.restaurantList=this.restoration.getYelpRestaurants(req);
+    this.restoration.getYelpRestaurants(req).subscribe((response) => {
+      this.restaurantList=response;
+      this.markers.forEach(marker => {
+        this.removeMarker(marker);
+      });
+      this.markers = [];
+      this.restaurantList.forEach(restaurant  =>{
+      this.addMarker(restaurant);
+      })
+      this.findBestZoom();
+    })
   }
-
-
-
 }

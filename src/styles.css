@@ -8081,7 +8081,7 @@ label {
     overflow: hidden;
   }
   
-  .ap-nostyle-suggestion{
+  .ap-suggestion{
     cursor: pointer;
     height: 40px;
     line-height: 20px;
@@ -8089,10 +8089,11 @@ label {
     overflow: hidden;
     background: white;
     display: inline-table;
-    width: 100%
+    width: 100%;
+    display: flex;
   }
   
-  .ap-nostyle-suggestion em {
+  .ap-suggestion em {
     font-weight: bold;
     font-style: normal;
   }
@@ -8116,7 +8117,7 @@ label {
     fill: #cfcfcf;
   }
   
-  .ap-nostyle-input-icon {
+  .ap-input-icon {
     border: 0;
     background: transparent;
     position: absolute;
@@ -8126,11 +8127,11 @@ label {
     outline: none;
   }
   
-  .ap-nostyle-input-icon.ap-icon-pin {
+  .ap-input-icon.ap-icon-pin {
     cursor: initial;
   }
   
-  .ap-nostyle-input-icon svg {
+  .ap-input-icon svg {
     fill: #cfcfcf;
     position: absolute;
     top: 50%;
@@ -8143,7 +8144,7 @@ label {
     background: #efefef;
   }
   
-  .ap-cursor .ap-nostyle-suggestion-icon svg {
+  .ap-cursor .ap-suggestion-icon svg {
     -webkit-transform: scale(1) translateY(2px);
             transform: scale(1) translateY(2px);
     fill: #aaaaaa;

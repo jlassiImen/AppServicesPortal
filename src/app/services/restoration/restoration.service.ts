@@ -70,5 +70,16 @@ export class RestorationService {
     return this.http.post(apiURL,request).map(response => {return response;});
   }
 
+  public getYelpRestaurantsDetails(id: string): Observable<any> {
+    const apiURL = '/getYelpRestaurantsDetails/'+id;
+    return this.http.get(apiURL).map(response => {return response;});
+  }
+
+  public getYelpRestaurantsReviews(id: string): Observable<any> {
+    const apiURL = '/getYelpRestaurantsReviews/'+id;
+    return this.http.get(apiURL).map(response => {return response;});
+  }
+
+
 
 }

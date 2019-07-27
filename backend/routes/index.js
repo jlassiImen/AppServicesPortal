@@ -38,6 +38,8 @@ router.post('/addMenuItem',  restaurants.addMenuItem);
 router.get('/restaurantDetails/:restaurantId',  restaurants.getRestaurantDetails);
 router.get('/getMenuCategory/:name',  restaurants.getMenuCategory);
 router.post('/getYelpRestaurants',  restaurants.getYelpRestaurants);
+router.get('/getYelpRestaurantsDetails/:id',  restaurants.getYelpRestaurantsDetails);
+router.get('/getYelpRestaurantsReviews/:id',  restaurants.getYelpRestaurantsReviews);
 
 
 

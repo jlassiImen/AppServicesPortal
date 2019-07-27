@@ -1,12 +1,6 @@
 <section id="contact" class="section">
     <div class="container" >
 
-        <div class="row" >
-            <!-- Menu Area Start -->
-           
-               
-            
-        </div>
         <div class="main-bg" style="min-height: 10vh;">
             
             <div class="sub-main-w3">
@@ -16,35 +10,37 @@
                             </h2>
                         </div>
               <div class="bg-content-w3pvt" style="max-width: 700px;">
-                    <form [formGroup]="form" (ngSubmit)="onSubmitResto(form.value)" style="width: 100%;">
+                    <form [formGroup]="form" (ngSubmit)="onSubmitResto(form.value)" style="width: 125%;">
                         
                     
                         <div class="container">
                             <div class="row">
-                                <div class="col-sm-9 input" >
+                                    <div class="col-sm-3 select" >
+                                    <select formControlName="typeRestaurant">
+                                            <option value="" disabled>Restaurant type</option>
+                                                     <option  *ngFor="let restaurant of typeRestaurant" > {{restaurant.name}}</option>
+                                                    </select>
+                                                </div>
+                                <div class="col-sm-7 input" >
                                     <input  type="search" id="autocomplete" #autocomplete  formControlName="address" placeholder="Address" style="width: 100%"/>
                                 </div>
-                                <div class="col-sm-3">
-                                    <button type="submit" class="btn btn-singin" style="margin: 28%;">
-                                        search
-                                      </button>
-                                </div>
+                                <div class="col-sm-2" style="margin-top: 4%;">
+                                        <button type="submit" class="btn btn-singin" >
+                                            search
+                                          </button>
+                                    </div>
                             </div>
                         </div>
 
 
-                        <span class="desc" style="float: left;margin: 5px 22px;;font-family: sans-serif;font-size: medium;" (click)="toggle()"> {{buttonName}}</span>
+                        <span class="desc" style="float: left;margin: 5px 22px;;font-family: sans-serif;font-size: medium;font-weight: bolder;" (click)="toggle()"> {{buttonName}}</span>
                     
                     <div class="advance-search" *ngIf="showAdvancedSearch">
-                       <div class="row">
-                            <div class="col-sm-3">
+
+                       
+                        
+                            <div class="row">
                                
-                                    <label>Cuisine</label>
-                                    <label formArrayName="typeRestaurant" *ngFor="let item of form.controls.typeRestaurant.controls; let i = index">
-                                    <input type="checkbox" [formControlName]="i">
-                                    {{typeRestaurant[i].name}}
-                                    </label>     
-                            </div>
                             <div class="col-sm-3">
                                
                                     <label>Price</label>
@@ -72,15 +68,15 @@
                                 </label> 
                                 
                                 </div>
-                            <div class="row third">
-                                <div class="input-field">
-                                    <button class="btn-delete" id="delete">Reset Filter</button>
-                                </div>
+
+                               
                             </div>
+                            
+
                     
                         </div>
                     </div>
-                 </div>
+                 
                 </form>
                 </div>
            </div>
@@ -117,9 +113,9 @@
                                         <br>
                                         <h6>{{restaurant.rating}}</h6>
                                         <div class="prd-bottom">
-                                            <a (click)="router.navigate(['/RestaurantDetails']);" class="social-info">
+                                            <a (click)="goToRestaurantDetails(restaurant)" class="social-info">
                                                 <i class="fa fa-search"></i>
-                                                <p class="mb-0">View restaurant</p>
+                                                <p class="mb-0">View </p>
                                             </a>
                                         </div>
                                     </div>

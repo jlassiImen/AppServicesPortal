@@ -27,27 +27,26 @@ var restaurants = {
     var sort_by = req.body.sort_by;
     var open_at = req.body.open_at;
     var categories = req.body.categories;
-    var alias = req.body.alias;
     var term = req.body.term;
 
 
     var params = "?location=" + location + "&&term=" + term;
 
 
-    if (radius != null && radius != undefined) {
+    if (radius != null && radius != undefined && radius!='') {
       params = params + "&&radius=" + radius;
 
     }
-    if (price != null && price != undefined) {
+    if (price != null && price != undefined && price!='') {
       params = params + "&&price=" + price;
     }
-    if (sort_by != null && sort_by != undefined) {
+    if (sort_by != null && sort_by != undefined && sort_by!='') {
       params = params + "&&sort_by=" + sort_by;
     }
-    if (open_at != null && open_at != undefined) {
+    if (open_at != null && open_at != undefined && open_at!='') {
       params = params + "&&open_at=" + open_at;
     }
-    if (categories != null && categories != undefined) {
+    if (categories != null && categories != undefined && categories!='') {
       params = params + "&&categories=" + categories;
     }
 
@@ -70,7 +69,48 @@ console.log(config.yelpApiUrl + params);
       res.json(JSON.parse(resp.body).businesses);
     });
   },
+  
+  getYelpRestaurantsDetails: function (req, res, next) {
+    var id = req.params.id;
+    request({
+      url: config.yelpRestaurantDetailsUrl + id,
+      method: 'get',
+      headers: {
+        "Authorization": config.yelpToken
+      },
+    }, function (err, resp) {
+      if (err) {
+        log.error('an error has occured :', err);
+        res.json({
+          "status": 500,
+          "message": err.message
+        });
+      }
+      res.json(JSON.parse(resp.body));
+    });
+  },
 
+  getYelpRestaurantsReviews: function (req, res, next) {
+    var id = req.params.id;
+    console.log("zzzzzzzzzzzzzzzzz"+ id);
+    request({
+      url: config.yelpRestaurantDetailsUrl + id + "/reviews",
+      method: 'get',
+      headers: {
+        "Authorization": config.yelpToken
+      },
+    }, function (err, resp) {
+      if (err) {
+        log.error('an error has occured :', err);
+        res.json({
+          "status": 500,
+          "message": err.message
+        });
+      }
+      console.log("ssssssssssssssssss    "+ JSON.stringify(resp.body));
+      res.json(JSON.parse(resp.body));
+    });
+  },
 
   getAllRestaurants: function (req, res, next) {
 

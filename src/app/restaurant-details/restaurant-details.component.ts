@@ -1,6 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from './../services/auth/auth.service';
+import { RestorationService } from './../services/restoration/restoration.service';
+
 
 @Component({
   selector: 'app-restaurant-details',
@@ -10,57 +12,23 @@ import { AuthService } from './../services/auth/auth.service';
 })
 export class RestaurantDetailsComponent implements OnInit {
 
-  constructor(public router: Router, public auth: AuthService) { }
+  restaurantId="";
+  restaurantDetails: any[];
+  restaurantReviews: any[];
 
+  constructor(public router: Router, public auth: AuthService, public restoration: RestorationService, private activatedRoute: ActivatedRoute) { }
+ 
   ngOnInit() {
-  }
+    this. restaurantId = this.activatedRoute.snapshot.queryParamMap.get('restaurantId');
+    console.log("restaurantId   "+this.restaurantId);
+    this.restoration.getYelpRestaurantsDetails(this. restaurantId).subscribe((response) => {
+      this.restaurantDetails = response;
+      console.log("aaaaaaaaaaaaaaa   "+JSON.stringify(response));
+  });
 
-  title = 'App screenshots';
-
-  carouselOptions = {
-    margin: 25,
-    loop: true,
-    autoplay: 1000,
-    nav: true,
-    navText: ["<div class='nav-btn prev-slide'></div>", "<div class='nav-btn next-slide'></div>"],
-    responsiveClass: true,
-    responsive: {
-      0: {
-        items: 1,
-        nav: true
-      },
-      600: {
-        items: 1,
-        nav: true
-      },
-      1000: {
-        items: 2,
-        nav: true
-      },
-      1500: {
-        items: 3,
-        nav: true
-      }
-    }
-  }
-
-  screenshots = [
-    {
-      image: "../../assets/img/restaurant/1.jpg"
-    },
-    {
-      image: "../../assets/img/restaurant/10.jpg"
-    },
-    {
-      image: "../../assets/img/restaurant/11.jpg"
-    },
-    {
-      image: "../../assets/img/restaurant/9.jpg"
-    },
-    {
-      image: "../../assets/img/restaurant/8.jpg"
-    }
-  ]
-
-
+  this.restoration.getYelpRestaurantsReviews(this. restaurantId).subscribe((response) => {
+      this.restaurantReviews = response;
+      console.log("bbbbbbbbbbbbbbbbbbbbbbb   "+JSON.stringify(response));
+  });
+}
 }

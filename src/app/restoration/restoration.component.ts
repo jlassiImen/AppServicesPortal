@@ -113,6 +113,10 @@ export class RestorationComponent implements OnInit {
     {
       name: "japanese",
       id: 10
+    },
+    {
+      name: "fooddeliveryservices",
+      id:11
     }
   ];
   price = [

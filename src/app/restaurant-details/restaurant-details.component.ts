@@ -16,8 +16,46 @@ export class RestaurantDetailsComponent implements OnInit {
   restaurantReviews: any[];
   photos:[];
   curentDay: any;
+
   priceRange='';
-  
+  mondayHours='';
+  tuesdayHours='';
+  wednesdayHours='';
+  thursdayHours='';
+  fridayHours='';
+  saturdayHours='';
+  sundayHours='';
+
+  weekDays=[
+    {
+      id:0,
+      name:"Monday"
+    },
+    {
+      id:1,
+      name:"Tuesday"
+    },
+    {
+      id:2,
+      name:"Wednesday"
+    },
+    {
+      id:3,
+      name:"Thursday"
+    },
+    {
+      id:4,
+      name:"Friday"
+    },
+    {
+      id:5,
+      name:"Saturday"
+    },
+    {
+      id:6,
+      name:"Sunday"
+    },
+  ]
   carouselOptions = {
     margin: 25,
     loop:true,
@@ -60,7 +98,11 @@ export class RestaurantDetailsComponent implements OnInit {
       
       this.photos=response.photos;
       var d = new Date();
-      var n = d.getDay()
+      var n = d.getDay();
+
+    //  for (i=0;i<response.hours[0].open.length;i++){
+
+     // }
       this.curentDay=response.hours[0].open[n];
 
 

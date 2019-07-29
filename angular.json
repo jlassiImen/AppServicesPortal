@@ -22,6 +22,8 @@
             ],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/owl.carousel/dist/assets/owl.carousel.css",
+              "./node_modules/owl.carousel/dist/assets/owl.theme.default.css"  ,
               "src/styles.css",
               "src/assets/css/responsive.css",
               "src/assets/css/animate.css",
@@ -29,8 +31,6 @@
               "src/assets/css/nivo-lightbox.css",
               "src/assets/css/font-awesome.min.css",
               "src/assets/css/login.css",
-              "src/assets/css/owl.carousel.css",
-              "src/assets/css/owl.theme.css",
               "./node_modules/leaflet/dist/leaflet.css"
 
             ],
@@ -40,8 +40,8 @@
               "src/assets/js/jquery.magnific-popup.min.js",
               "src/assets/js/jquery.nav.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "src/assets/js/main.js",
-              "src/assets/js/owl.carousel.js",
+            
+              "./node_modules/owl.carousel/dist/owl.carousel.js",
               "src/assets/js/popper.min.js",
               "src/assets/js/scrolling-nav.js",
               "src/assets/js/nivo-lightbox.js"

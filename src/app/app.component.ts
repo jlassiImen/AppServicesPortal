@@ -31,6 +31,8 @@ export class AppComponent implements OnInit {
 
   carouselOptions = {
     margin: 25,
+    loop:true,
+    autoplay: 1000,
     nav: true,
     navText: ["<div class='nav-btn prev-slide'></div>", "<div class='nav-btn next-slide'></div>"],
     responsiveClass: true,
@@ -45,15 +47,12 @@ export class AppComponent implements OnInit {
       },
       1000: {
         items: 2,
-        nav: true,
-        loop: false
+        nav: true
       },
       1500: {
         items: 3,
-        nav: true,
-        loop: false
+        nav: true
       }
     }
   }
-
 }

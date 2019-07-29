@@ -7,8 +7,7 @@ import { RestorationService } from './../services/restoration/restoration.servic
 @Component({
   selector: 'app-restaurant-details',
   templateUrl: './restaurant-details.component.html',
-  styleUrls: ['./restaurant-details.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./restaurant-details.component.css']
 })
 export class RestaurantDetailsComponent implements OnInit {
 

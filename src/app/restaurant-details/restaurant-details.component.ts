@@ -12,10 +12,12 @@ import { RestorationService } from './../services/restoration/restoration.servic
 export class RestaurantDetailsComponent implements OnInit {
 
   restaurantId="";
-  restaurantDetails: any[];
+  restaurantDetails: any;
   restaurantReviews: any[];
-
-
+  photos:[];
+  curentDay: any;
+  priceRange='';
+  
   carouselOptions = {
     margin: 25,
     loop:true,
@@ -47,41 +49,6 @@ export class RestaurantDetailsComponent implements OnInit {
 
   
 
-  images = [
-    {
-      text: "Everfresh Flowers",
-      image: "../../assets/img/team/01.jpg"
-    },
-    {
-      text: "Festive Deer",
-      image: "../../assets/img/team/02.jpg"
-    },
-    {
-      text: "Morning Greens",
-      image: "../../assets/img/team/03.jpg"
-    },
-    {
-      text: "Bunch of Love",
-      image: "../../assets/img/team/04.jpg"
-    },
-    {
-      text: "Everfresh Flowers",
-      image: "../../assets/img/team/01.jpg"
-    },
-    {
-      text: "Festive Deer",
-      image: "../../assets/img/team/02.jpg"
-    },
-    {
-      text: "Morning Greens",
-      image: "../../assets/img/team/03.jpg"
-    },
-    {
-      text: "Bunch of Love",
-      image: "../../assets/img/team/04.jpg"
-    }
-  ]
-
 
   constructor(public router: Router, public auth: AuthService, public restoration: RestorationService, private activatedRoute: ActivatedRoute) { }
  
@@ -90,12 +57,36 @@ export class RestaurantDetailsComponent implements OnInit {
     console.log("restaurantId   "+this.restaurantId);
     this.restoration.getYelpRestaurantsDetails(this. restaurantId).subscribe((response) => {
       this.restaurantDetails = response;
-      console.log("aaaaaaaaaaaaaaa   "+JSON.stringify(response));
+      
+      this.photos=response.photos;
+      var d = new Date();
+      var n = d.getDay()
+      this.curentDay=response.hours[0].open[n];
+
+
+      if(response.price == '€'){
+        this.priceRange='<10€'
+      }
+      if(response.price == '€€'){
+        this.priceRange='11-20€'
+      }
+      if(response.price == '€€€'){
+        this.priceRange='21-30€'
+      }
+      if(response.price == '€€€€'){
+        this.priceRange='>31€'
+      }
+
+
+
+    //  console.log("aaaaaaaaaaaaaaa   "+JSON.stringify(response));
   });
 
   this.restoration.getYelpRestaurantsReviews(this. restaurantId).subscribe((response) => {
       this.restaurantReviews = response.reviews;
-      console.log("bbbbbbbbbbbbbbbbbbbbbbb   "+JSON.stringify(response));
+
+    //  console.log("bbbbbbbbbbbbbbbbbbbbbbb   "+JSON.stringify(response));
+
   });
 }
 }

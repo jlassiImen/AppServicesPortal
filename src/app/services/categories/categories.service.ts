@@ -12,8 +12,6 @@ export class CategoriesService {
 
   constructor(public http: HttpClient) { }
 
-
-
   public getAllCategories(): Observable<any> {
     const apiURL = '/getCategories';
     return this.http.get(apiURL).map(response => {return response;});

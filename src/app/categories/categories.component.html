@@ -12,12 +12,12 @@
 
       <div class="row"  *ngIf="errorMessage ==''">
         <!-- Start Col -->
-        <div class="col-lg-3 col-md-6 col-xs-12" *ngFor="let category of categoriesList | async |  filter : 'name' : searchString; let i = index"  style="margin-bottom: 2%;">
+        <div class="col-lg-3 col-md-6 col-xs-12" *ngFor="let category of categoriesList  |  filter : 'name' : searchString; let i = index"  style="margin-bottom: 2%;">
         <div class="services-item text-center">
             <div class="icon">
               <i [ngClass]="category.icon"></i>
             </div>
-            <a style="cursor: pointer;"  (onclick)="goToCategory(category.link)">
+            <a style="cursor: pointer;"  (click)="goToCategory(category.link)">
                 <h4>{{category.name}}</h4>
             </a>
             <p>Share processes and data secure lona need to know basis Our team assured your web site is always safe.</p>

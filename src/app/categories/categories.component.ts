@@ -23,7 +23,13 @@ export class CategoriesComponent implements OnInit {
   ngOnInit() {
     this.errorMessage='';
     
-    this.categoriesList=this.categoryService.getAllCategories();
+   
+      this.categoryService.getAllCategories().subscribe((response) => {
+      this.categoriesList = response;
+
+    //  console.log("bbbbbbbbbbbbbbbbbbbbbbb   "+JSON.stringify(response));
+
+  });
     
   }
 

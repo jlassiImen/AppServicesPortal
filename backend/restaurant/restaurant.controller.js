@@ -92,7 +92,7 @@ console.log(config.yelpApiUrl + params);
 
   getYelpRestaurantsReviews: function (req, res, next) {
     var id = req.params.id;
-    console.log("zzzzzzzzzzzzzzzzz"+ id);
+   // console.log("zzzzzzzzzzzzzzzzz"+ id);
     request({
       url: config.yelpRestaurantDetailsUrl + id + "/reviews",
       method: 'get',
@@ -107,7 +107,7 @@ console.log(config.yelpApiUrl + params);
           "message": err.message
         });
       }
-      console.log("ssssssssssssssssss    "+ JSON.stringify(resp.body));
+    //  console.log("ssssssssssssssssss    "+ JSON.stringify(resp.body));
       res.json(JSON.parse(resp.body));
     });
   },

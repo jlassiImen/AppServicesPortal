@@ -1,35 +1,18 @@
 
-<section class="ftco-section ftco-degree-bg" style="margin-top: 15%;">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 ftco-animate">
-            <h2 class="mb-3">10 Tips For The Traveler</h2>
-            <owl-carousel [options]="carouselOptions" [items]="images" [carouselClasses]="['owl-theme', 'row', 'sliding']">
-                <div class="item" *ngFor="let image of images;let i= index">
-                  <img class="slide-image" src="{{image.image}}" >
-                  <div class="slide-text">
-                    <h4>{{image.text}}</h4>
-                  </div>
-                </div>
-              </owl-carousel> <div class="tag-widget post-tag-container mb-5 mt-5">
-              <div class="tagcloud">
-                <a href="#" class="tag-cloud-link">Life</a>
-                <a href="#" class="tag-cloud-link">Sport</a>
-                <a href="#" class="tag-cloud-link">Tech</a>
-                <a href="#" class="tag-cloud-link">Travel</a>
-              </div>
-            </div>
-            
-            <div class="about-author d-flex p-4 bg-light">
-              <div class="bio mr-5">
-                <img src="images/person_1.jpg" alt="Image placeholder" class="img-fluid mb-4">
-              </div>
-              <div class="desc">
-                <h3>George Washington</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
-              </div>
-            </div>
+<section class="ftco-section ftco-degree-bg" style="margin-top: 5%;">
 
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 ftco-animate">
+        <h2 class="mb-3">{{restaurantDetails.name}}</h2>
+        <owl-carousel [options]="carouselOptions" [items]="photos" [carouselClasses]="['owl-theme', 'row', 'sliding']">
+          <div class="item" *ngFor="let image of photos;let i= index">
+            <img class="slide-image" src="{{image}}">
+          </div>
+        </owl-carousel>
+
+        <div class="pt-5 mt-5">
+          <h3 class="mb-5">Reviews</h3>
 <div *ngFor="let review of restaurantReviews" >
               <ul class="comment-list">
                 <li class="comment">
@@ -40,10 +23,69 @@
                     <h3>{{review.user.name}}</h3>
                     <div class="meta">{{review.time_created}}</div>
                     <p>{{review.text}}</p>
-                    <p><a href="#" class="reply">Reply</a></p>
+                    <p>Rating :{{review.rating}}</p>
                   </div>
                 </li>
               </ul>   
             </div>
+          <!-- END comment-list -->
+        </div>
 
-          </div></div></div></section>
+      </div> <!-- .col-md-8 -->
+
+      <div class="col-md-4 sidebar ftco-animate">
+        <div class="sidebar-box ftco-animate">
+          <h3>Details</h3>
+          <div class="block-21 mb-4 d-flex">
+            
+            <div class="text">
+              <div class="meta">
+                <div><label><span class="fa fa-map-marker"></span> Address</label>
+               <label *ngFor="let adrPart of restaurantDetails.location.display_address">{{adrPart}}</label></div>
+                <div><label><span class="fa fa-phone"></span> Phone : {{restaurantDetails.display_phone}}</label></div>
+                <div><label><span class="fa fa-star-half-o"></span> Rating : {{restaurantDetails.rating}}</label></div>
+                <div><label><span class="fa fa-comments"></span>Review Number :
+                    {{restaurantDetails.review_count}}</label></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar-box">
+          <div class="search-form">
+            <label>Today </label>
+
+            <span class="fa fa-clock-o"></span>
+            <label> from {{curentDay.start}} to {{curentDay.end}}</label>
+
+          </div>
+        </div>
+        <div class="sidebar-box ftco-animate">
+          <div class="categories">
+            <h3>Timesheet</h3>
+            <li *ngFor="let day of restaurantDetails.hours[0].open"><label> <span>from </span> {{day.start}} <span>to
+                </span>{{day.end}}</label></li>
+
+          </div>
+        </div>
+        <div class="sidebar-box ftco-animate">
+            <div class="categories">
+              <h3>Price range</h3>
+              <label>{{priceRange}} </label>
+            </div>
+          </div>
+
+<div class="sidebar-box ftco-animate">
+            <div class="categories">
+              <h3>Category</h3>
+  <li *ngFor="let category of restaurantDetails.categories">{{category.title}} </li>
+            </div>
+          </div>
+           
+
+      </div>
+
+    </div>
+  </div>
+</section>
+ <!-- .section -->
+

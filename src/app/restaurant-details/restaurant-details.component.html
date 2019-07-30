@@ -55,15 +55,14 @@
             <label>Today </label>
 
             <span class="fa fa-clock-o"></span>
-            <label> from {{curentDay.start}} to {{curentDay.end}}</label>
+            <label> from {{curentDayStart}} to {{curentDayEnd}}</label>
 
           </div>
         </div>
         <div class="sidebar-box ftco-animate">
           <div class="categories">
             <h3>Timesheet</h3>
-            <li *ngFor="let day of restaurantDetails.hours[0].open"><label> <span>from </span> {{day.start}} <span>to
-                </span>{{day.end}}</label></li>
+            <li *ngFor="let day of weekDays"><label> {{day.name}} {{day.hours}}</label></li>
 
           </div>
         </div>

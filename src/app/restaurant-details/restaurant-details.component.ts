@@ -15,45 +15,47 @@ export class RestaurantDetailsComponent implements OnInit {
   restaurantDetails: any;
   restaurantReviews: any[];
   photos:[];
-  curentDay: any;
+  curentDayStart: any;
+  curentDayEnd: any;
 
   priceRange='';
-  mondayHours='';
-  tuesdayHours='';
-  wednesdayHours='';
-  thursdayHours='';
-  fridayHours='';
-  saturdayHours='';
-  sundayHours='';
+
 
   weekDays=[
     {
       id:0,
-      name:"Monday"
+      name:"Monday",
+      hours:""
     },
     {
       id:1,
-      name:"Tuesday"
+      name:"Tuesday",
+      hours:""
     },
     {
       id:2,
-      name:"Wednesday"
+      name:"Wednesday",
+      hours:""
     },
     {
       id:3,
-      name:"Thursday"
+      name:"Thursday",
+      hours:""
     },
     {
       id:4,
-      name:"Friday"
+      name:"Friday",
+      hours:""
     },
     {
       id:5,
-      name:"Saturday"
+      name:"Saturday",
+      hours:""
     },
     {
       id:6,
-      name:"Sunday"
+      name:"Sunday",
+      hours:""
     },
   ]
   carouselOptions = {
@@ -100,10 +102,27 @@ export class RestaurantDetailsComponent implements OnInit {
       var d = new Date();
       var n = d.getDay();
 
-    //  for (i=0;i<response.hours[0].open.length;i++){
+      for (var i=0;i<response.hours[0].open.length;i++){
+        var j=response.hours[0].open[i].day;
+        var start=response.hours[0].open[i].start;
+        var end=response.hours[0].open[i].end;
+        start=[start.slice(0, 2), ':', start.slice(2)].join('');
+        end=[end.slice(0, 2), ':', end.slice(2)].join('');
+        this.weekDays[j].hours=this.weekDays[j].hours+'from '+start+' to '+end+' ';
 
-     // }
-      this.curentDay=response.hours[0].open[n];
+        if(i==n){
+          this.curentDayStart=start;
+          this.curentDayEnd=end;
+        }
+      }
+
+     
+
+      for (var i=0;i<this.weekDays.length;i++){
+       if(this.weekDays[i].hours =='')
+        this.weekDays[i].hours='closed';
+      }
+
 
 
       if(response.price == '€'){

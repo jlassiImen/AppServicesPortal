@@ -20,7 +20,7 @@
         <div class="input">
           <input type="email" name="email" id="email"
                  placeholder="Your E-mail" formControlName="email" required>
-          <span class="focus-input100"></span>
+          
           <div class="help-block with-errors"
                *ngFor="let validation of validation_messages.email">
             <label for="email" class="bmd-label-floating"
@@ -29,7 +29,7 @@
               {{validation.message}}
             </label>
           </div>
-          <span class="fa fa-envelope"></span>
+          <span class="fa fa-envelope" style=" position: absolute;"></span>
         </div>
         <div class="input">
           <input type="password" name="password" id="password"
@@ -45,7 +45,7 @@
               {{validation.message}}
             </label>
           </div>
-          <span class="fa fa-unlock"></span>
+          <span class="fa fa-unlock"  style=" position: absolute;"></span>
         </div>
        
         <button type="submit" [disabled]="!userDetailsForm.valid" class="btn submit" >

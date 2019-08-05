@@ -1,6 +1,6 @@
 <div class="main-bg" >
-  <div class="sub-main-w3">
-    <div class="bg-content-w3pvt">
+  <div class="sub-main-w3" style="margin: -2.5em 2.5em 2em;">
+    <div class="bg-content-w3pvt" style="margin: 0 auto;">
       <div *ngIf="successMessage !=''" class="alert alert-success" role="alert">
         {{successMessage}}
       </div>
@@ -19,7 +19,7 @@
           </div>
           <input type="text" name="firstName" id="firstName"
                  placeholder="Your first Name" formControlName="firstName" required>
-          <span class="fa fa-user"></span>
+          <span class="fa fa-user"  style=" position: absolute;"></span>
         </div>
         <div class="input">
           <div help-block with-errors *ngFor="let validation of validation_messages.lastName">
@@ -31,12 +31,12 @@
           </div>
           <input type="text" class="form-control" name="lastName" id="lastName"
                  placeholder="Your last Name" formControlName="lastName" required>
-          <span class="fa fa-user"></span>
+          <span class="fa fa-user"  style=" position: absolute;"></span>
         </div>
         <div class="input">
           <input type="email" name="email" id="email"
                  placeholder="Your E-mail" formControlName="email" required>
-          <span class="focus-input100"></span>
+          
           <div class="help-block with-errors"
                *ngFor="let validation of validation_messages.email">
             <label for="email" class="bmd-label-floating"
@@ -45,7 +45,7 @@
               {{validation.message}}
             </label>
           </div>
-          <span class="fa fa-envelope"></span>
+          <span class="fa fa-envelope"  style=" position: absolute;"></span>
         </div>
         <div class="input">
           <input type="password" name="password" id="password"
@@ -58,15 +58,15 @@
               {{validation.message}}
             </label>
           </div>
-          <span class="fa fa-unlock"></span>
+          <span class="fa fa-unlock"  style=" position: absolute;"></span>
         </div>
         <div class="input"> 
           <input type="text" class="form-control" name="adress" id="adress"
                  placeholder="Your adress" formControlName="adress" required>
-          <span class="fa fa-map-marker"></span>
+          <span class="fa fa-map-marker"  style=" position: absolute;"></span>
         </div>
         <button type="submit" [disabled]="!userDetailsForm.valid" class="btn submit">
-          <span class="fa fa-sign-in"></span>
+          <span class="fa fa-sign-in"  style=" position: absolute;"></span>
         </button>
       </form>
     </div>

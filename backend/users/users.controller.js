@@ -26,9 +26,9 @@ var users = {
         var password = req.body.password || '';
 
         if (email == '' || password == '') {
-            res.status(401);
+            res.status(404);
             res.json({
-                "status": 401,
+                "status": 404,
                 "message": "Invalid credentials"
             });
         }
@@ -46,17 +46,18 @@ var users = {
                         "firstName":userFromDB.firstName
                     });
                 } else {
+                    res.status(404);
                     res.json({
-                        "status": 401,
+                        "status": 404,
                         "message": "Invalid credentials"
                     });
                 }
 
             } else {
                 console.log('Result does not exist');
-                res.status(401);
+                res.status(404);
                 res.json({
-                    "status": 401,
+                    "status": 404,
                     "message": "Invalid credentials"
                 });
             }
@@ -88,9 +89,9 @@ var users = {
 
 
         if (email == '' || oldPassword == '' || newPassword == '') {
-            res.status(401);
+            res.status(404);
             res.json({
-                "status": 401,
+                "status": 404,
                 "message": "Invalid credentials"
             });
         }
@@ -124,7 +125,7 @@ var users = {
                             })
                     } else {
                         res.json({
-                            "status": 401,
+                            "status": 404,
                             "message": "Invalid oldPassword"
                         });
                     }
@@ -141,7 +142,7 @@ var users = {
 
         if (firstName == '' || lastName == '' || adress == '') {
             res.json({
-                "status": 401,
+                "status": 404,
                 "message": "Invalid credentials"
             });
         }
@@ -332,9 +333,9 @@ var users = {
         var email = req.body.email || '';
 
         if (email == '') {
-            res.status(401);
+            res.status(404);
             res.json({
-                "status": 401,
+                "status": 404,
                 "message": "Invalid credentials"
             });
         }
@@ -416,9 +417,9 @@ var users = {
             })
             .then(function(resetPassword) {
                 if (!resetPassword) {
-                    res.status(401);
+                    res.status(404);
                     res.json({
-                        "status": 401,
+                        "status": 404,
                         "message": "Invalid or expired reset token."
                     });
 
@@ -467,9 +468,9 @@ var users = {
 
                             )
                     } else {
-                        res.status(401);
+                        res.status(404);
                         res.json({
-                            "status": 401,
+                            "status": 404,
                             "message": "Reset token does not match"
                         });
                     }

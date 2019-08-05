@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
     }, (err) => {
       console.error(err);
       this.successMessage = "";
-      this.errorMessage = "An error has occured,please retry later";
+      this.errorMessage = "Invalid credentials";
     });
   }
 

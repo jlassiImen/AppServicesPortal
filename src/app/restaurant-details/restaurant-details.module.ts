@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { OwlModule } from 'ngx-owl-carousel'
 
-
+import { MyHttpInterceptor } from '../interceptors/MyHttpInterceptor';
 import { RestaurantDetailsRoutingModule } from './restaurant-details-routing.module';
-
+import { RestorationService } from './../services/restoration/restoration.service';
 import { RestaurantDetailsComponent } from './restaurant-details.component';
 
 
@@ -27,6 +27,14 @@ import { RestaurantDetailsComponent } from './restaurant-details.component';
     ReactiveFormsModule,
     HttpModule,
     OwlModule
+  ],
+  providers:[
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MyHttpInterceptor,
+      multi: true,
+    },
+    RestorationService
   ]
 })
 export class RestaurantDetailsModule { }

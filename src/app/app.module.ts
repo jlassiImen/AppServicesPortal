@@ -15,7 +15,6 @@ import { AuthGuardService } from './services/auth/auth-guard.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { MyHttpInterceptor } from './interceptors/MyHttpInterceptor';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderService } from './services/loader/loader-service.service';
 
@@ -40,11 +39,6 @@ import { LoaderService } from './services/loader/loader-service.service';
     AppRoutingModule
   ],
   providers: [
-    {
-    provide: HTTP_INTERCEPTORS,
-    useClass: MyHttpInterceptor,
-    multi: true,
-  },
   AuthService, SimpleLoginService, AuthGuardService,LoaderService
 ],
   bootstrap: [AppComponent]

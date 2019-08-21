@@ -49,9 +49,11 @@ export class LoginComponent implements OnInit {
 
   onSubmitUserDetails(value) {
     this.simpleLogin.authenticate(value).subscribe((response) => {
+    //  console.log("jjjjjjjjjjjwwwwwwwwwwwwwwttttttttttttttt           "+JSON.stringify(response));
       if (response.status == 200) {
         localStorage.setItem('userEmail', response.email);
         localStorage.setItem('firstName', response.firstName);
+        localStorage.setItem('token', response.token);
         this.router.navigateByUrl('/categories');  
       }
       else {

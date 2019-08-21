@@ -5,6 +5,7 @@ const db = require('../_helpers/db');
 var nodemailer = require("nodemailer");
 var crypto = require("crypto");
 var moment = require("moment");
+var jwt = require('jwt-simple');
 const User = db.User;
 const Token = db.Token;
 const ResetPassword = db.ResetPassword;
@@ -39,12 +40,10 @@ var users = {
             if (userFromDB) {
                 //comaper le mot de passe saisie par l'utilisateur et celle de la base de données
                 if (bcrypt.compareSync(password, userFromDB.password)) {
+
+                    
                     res.status(200);
-                    res.json({
-                        "status": 200,
-                        "email": email,
-                        "firstName":userFromDB.firstName
-                    });
+                    res.json(genToken(userFromDB.firstName,email));
                 } else {
                     res.status(404);
                     res.json({
@@ -500,6 +499,26 @@ var users = {
         });
     }  
 
+}
+
+function genToken(firstName,email) {
+    var expires = expiresIn(1);
+    var token = jwt.encode({
+        exp: expires
+    }, require('../_helpers/secret.js')());
+
+    return {
+        "status":200,
+        "token": token,
+        "expires": expires,
+        "email": email,
+        "firstName":firstName
+    };
+}
+
+function expiresIn(numDays) {
+    var dateObj = new Date();
+    return dateObj.setDate(dateObj.getDate() + numDays);
 }
 
 module.exports = users;

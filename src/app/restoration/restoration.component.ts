@@ -345,7 +345,7 @@ export class RestorationComponent implements OnInit {
   }
 
   goToRestaurantDetails(restaurant){
-  console.log("yyyyyyyyyyyyyyy" + restaurant.id);
+ // console.log("yyyyyyyyyyyyyyy" + restaurant.id);
      this.router.navigateByUrl('/restaurantDetails?restaurantId='+restaurant.id); 
   }
 }

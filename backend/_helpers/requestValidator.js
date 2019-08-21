@@ -7,7 +7,7 @@ module.exports = function (req, res, next) {
    
     var token = (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['authorization'];
 
-    process.stdout.write("   ttttttttttttt       "+token);
+  //  process.stdout.write("   ttttttttttttt       "+token);
     if (token) {
        try {
             var decoded = jwt.decode(token, require('./secret.js')());

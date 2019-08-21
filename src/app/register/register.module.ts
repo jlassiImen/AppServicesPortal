@@ -31,7 +31,7 @@ import { RegisterComponent } from './register.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MyHttpInterceptor,
-      multi: true,
+      multi: true
     },
     SimpleLoginService
   ]

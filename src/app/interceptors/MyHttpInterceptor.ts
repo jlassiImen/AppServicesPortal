@@ -10,12 +10,12 @@ export class MyHttpInterceptor implements HttpInterceptor{
     constructor(private loaderService: LoaderService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log("sssssssssssssssssssssssssssssssssssssss");
+       // console.log("sssssssssssssssssssssssssssssssssssssss");
         this.loaderService.show();
        
 
         const idToken = localStorage.getItem("token");
-console.log("saved toekn   "+idToken);
+//console.log("saved toekn   "+idToken);
         if (idToken) {
             const cloned = req.clone({
                 headers: req.headers.set("Authorization",idToken)

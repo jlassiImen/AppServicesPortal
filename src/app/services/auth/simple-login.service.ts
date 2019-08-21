@@ -36,7 +36,9 @@ export class SimpleLoginService {
 
   public logout(): void {
     localStorage.removeItem('userEmail');
-    this.router.navigateByUrl('/api/v1/login');
+    localStorage.removeItem('token');
+    localStorage.removeItem('firstName');
+    this.router.navigateByUrl('/login');
   }
 
   public isLoggedIn() {

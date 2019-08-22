@@ -23,7 +23,6 @@ export class RestorationComponent implements OnInit {
   @Input() q: string;
   @ViewChild('autocomplete') qElementRef: ElementRef;
 
-
   private places: any; //autocomplete adress
 
   //form
@@ -183,7 +182,6 @@ export class RestorationComponent implements OnInit {
   //onsubmit result
   restaurantList: any[];
   p: Number = 1; //pagination
-
 
   public showAdvancedSearch: boolean = false;
   public buttonName: any = 'Advanced Search';

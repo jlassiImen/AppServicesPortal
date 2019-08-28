@@ -6,40 +6,40 @@ var payment = require('../payment/payment.controler.js');
 var categories = require('../categories/category.controller.js');
 var restaurants = require('../restaurant/restaurant.controller.js');
 
-router.post('/authenticate', users.authenticate);
-router.post('/updatePassword', users.updatePassword);
-router.post('/updatePersonnelProfile', users.updatePersonnelProfile);
-router.post('/registerUser',  users.register);  
-router.post('/forgotPassword',  users.forgotPassword );            
-router.post('/resetPassword', users.resetPassword);
-router.get('/userDetails/:email', users.getUser);
-router.post('/confirmRegistration', users.confirmation);
-router.post('/resend', users.resendToken);
-router.delete('/deleteUser', users.deleteUser);
+router.post('/api/v1/authenticate', users.authenticate);
+router.post('/api/v1/updatePassword', users.updatePassword);
+router.post('/api/v1/updatePersonnelProfile', users.updatePersonnelProfile);
+router.post('/api/v1/registerUser',  users.register);  
+router.post('/api/v1/forgotPassword',  users.forgotPassword );            
+router.post('/api/v1/resetPassword', users.resetPassword);
+router.get('/api/v1/userDetails/:email', users.getUser);
+router.post('/api/v1/confirmRegistration', users.confirmation);
+router.post('/api/v1/resend', users.resendToken);
+router.delete('/api/v1/deleteUser', users.deleteUser);
 
-router.get('/getCategories', categories.getAllCategories);
-router.post('/addCategory', categories.addCategory);
-router.delete('/deleteCategory', categories.deleteCategory);
-
-
-
-router.get('/userPayment/:userId', payment.getPayment);
-router.get('/addPay/:creditCartNumber', payment.addPayment);
+router.get('/api/v1/getCategories', categories.getAllCategories);
+router.post('/api/v1/addCategory', categories.addCategory);
+router.delete('/api/v1/deleteCategory', categories.deleteCategory);
 
 
-router.get('/allRestaurant', restaurants.getAllRestaurants);
-router.get('/restaurant/:restaurantId', restaurants.getRestaurant);
-router.post('/addRestaurant',  restaurants.addRestaurant); 
-router.post('/updateDetailsRestaurant',  restaurants.updateDetailsRestaurant); 
-router.delete('/deleteRestaurant',  restaurants.deleteRestaurant); 
-router.get('/getMenuItem',  restaurants.getMenuItem);
-router.post('/addMenuCategory',  restaurants.addMenuCategory);
-router.post('/addMenuItem',  restaurants.addMenuItem);
-router.get('/restaurantDetails/:restaurantId',  restaurants.getRestaurantDetails);
-router.get('/getMenuCategory/:name',  restaurants.getMenuCategory);
-router.post('/getYelpRestaurants',  restaurants.getYelpRestaurants);
-router.get('/getYelpRestaurantsDetails/:id',  restaurants.getYelpRestaurantsDetails);
-router.get('/getYelpRestaurantsReviews/:id',  restaurants.getYelpRestaurantsReviews);
+
+router.get('/api/v1/userPayment/:userId', payment.getPayment);
+router.get('/api/v1/addPay/:creditCartNumber', payment.addPayment);
+
+
+router.get('/api/v1/allRestaurant', restaurants.getAllRestaurants);
+router.get('/api/v1/restaurant/:restaurantId', restaurants.getRestaurant);
+router.post('/api/v1/addRestaurant',  restaurants.addRestaurant); 
+router.post('/api/v1/updateDetailsRestaurant',  restaurants.updateDetailsRestaurant); 
+router.delete('/api/v1/deleteRestaurant',  restaurants.deleteRestaurant); 
+router.get('/api/v1/getMenuItem',  restaurants.getMenuItem);
+router.post('/api/v1/addMenuCategory',  restaurants.addMenuCategory);
+router.post('/api/v1/addMenuItem',  restaurants.addMenuItem);
+router.get('/api/v1/restaurantDetails/:restaurantId',  restaurants.getRestaurantDetails);
+router.get('/api/v1/getMenuCategory/:name',  restaurants.getMenuCategory);
+router.post('/api/v1/getYelpRestaurants',  restaurants.getYelpRestaurants);
+router.get('/api/v1/getYelpRestaurantsDetails/:id',  restaurants.getYelpRestaurantsDetails);
+router.get('/api/v1/getYelpRestaurantsReviews/:id',  restaurants.getYelpRestaurantsReviews);
 
 
 

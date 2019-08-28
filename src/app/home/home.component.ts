@@ -6,8 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./home.component.css']
 
 })
 export class HomeComponent implements OnInit {
@@ -49,42 +48,47 @@ export class HomeComponent implements OnInit {
 
   screenshots = [
     {
-      image: "../../assets/img/scr-img/app-1.jpg"
+      image: "../../assets/img/team/01.jpg"
     },
     {
-      image: "../../assets/img/scr-img/app-2.jpg"
+      image: "../../assets/img/team/02.jpg"
     },
     {
-      image: "../../assets/img/scr-img/app-3.jpg"
+      image: "../../assets/img/team/03.jpg"
     },
     {
-      image: "../../assets/img/scr-img/app-4.jpg"
+      image: "../../assets/img/team/01.jpg"
     },
     {
-      image: "../../assets/img/scr-img/app-5.jpg"
+      image: "../../assets/img/team/02.jpg"
     }
   ]
 
   clients = [
     {
-      image: "../../assets/img/bg-img/client-1.jpg",
-      text: "oooooooooooooo "
-    },
-    {
-      image: "../../assets/img/bg-img/client-2.jpg",
-      text: "aaaaaaaaaaaaa"
+      image: ".../../assets/img/bg-img/client-3.jpg",
+      text: "Highly recommended! ",
+      name:"John"
     },
     {
       image: "../../assets/img/bg-img/client-3.jpg",
-      text: "bbbbbbbbbbbb"
-    },
-    {
-      image: "../../assets/img/bg-img/client-1.jpg",
-      text: "ccccccccccccccc"
+      text: "Hello ,I booked 3 tickets via Service Portal, and I am very satisfied with the site which is complete, competitive, compared to other site.Really TOP and responsive",
+      name:"Alex"
     },
     {
       image: "../../assets/img/bg-img/client-2.jpg",
-      text: "yyyyyyyyyyy"
+      text: "Time saver !",
+      name:"Lina"
+    },
+    {
+      image: "../../assets/img/bg-img/client-3.jpg",
+      text: "Really very practical. I use it very often: fast and efficient.",
+      name:"David"
+    },
+    {
+      image: "../../assets/img/bg-img/client-3.jpg",
+      text: "Very good experience ,Super delivery, very fast, wide choice of restaurants, I recommend",
+      name:"Raph"
     }
   ]
 }

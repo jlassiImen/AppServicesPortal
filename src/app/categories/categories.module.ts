@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 
-
+import { MyHttpInterceptor } from '../interceptors/MyHttpInterceptor';
 
 import { CategoriesRoutingModule } from './categories-routing.module';
 
@@ -28,7 +28,14 @@ import {FilterPipe} from './categoriesFilter.pipe';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers:[CategoriesService],
+  providers:[
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MyHttpInterceptor,
+      multi: true,
+    },
+    CategoriesService
+  ],
   exports:[FilterPipe]
 })
 export class CategoriesModule { }

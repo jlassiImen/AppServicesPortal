@@ -10,6 +10,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import * as places from 'places.js';
 import * as L from 'leaflet';
+import { HttpClient } from '@angular/common/http' ;
 
 
 @Component({
@@ -198,7 +199,7 @@ export class RestorationComponent implements OnInit {
   markers = [];
 
 
-  constructor(public auth: AuthService, public router: Router, public fb: FormBuilder, public restoration: RestorationService, public meteo: MeteoService) {
+  constructor(public auth: AuthService, public router: Router, public fb: FormBuilder, public restoration: RestorationService, public meteo: MeteoService, private httpClient : HttpClient) {
 
     this.form = this.fb.group({
       address: new FormControl('', Validators.compose([
@@ -331,6 +332,7 @@ export class RestorationComponent implements OnInit {
     }
     this.restoration.getYelpRestaurants(req).subscribe((response) => {
       this.restaurantList = response;
+      console.log(this.restaurantList);
       this.markers.forEach(marker => {
         this.removeMarker(marker);
       });
@@ -343,7 +345,7 @@ export class RestorationComponent implements OnInit {
   }
 
   goToRestaurantDetails(restaurant){
-  console.log("yyyyyyyyyyyyyyy" + restaurant.id);
+ // console.log("yyyyyyyyyyyyyyy" + restaurant.id);
      this.router.navigateByUrl('/restaurantDetails?restaurantId='+restaurant.id); 
   }
 }

@@ -14,28 +14,30 @@ export class SimpleLoginService {
   constructor(private http: HttpClient, private router: Router) { }
 
   public register(user: any): Observable<any> {
-    const apiURL = '/registerUser';
+    const apiURL = '/api/v1/registerUser';
     return this.http.post(apiURL, user);
 
   }
 
   public authenticate(user: any): Observable<any> {
-    const apiURL = '/authenticate';
+    const apiURL = '/api/v1/authenticate';
     return this.http.post(apiURL, user);
   }
 
   public updateProfile(user: any): Observable<any> {
-    const apiURL = '/updatePersonnelProfile';
+    const apiURL = '/api/v1/updatePersonnelProfile';
     return this.http.post(apiURL, user);
   }
 
     public updatePassword(user: any): Observable<any> {
-    const apiURL = '/updatePassword';
+    const apiURL = '/api/v1/updatePassword';
     return this.http.post(apiURL, user);
   }
 
   public logout(): void {
     localStorage.removeItem('userEmail');
+    localStorage.removeItem('token');
+    localStorage.removeItem('firstName');
     this.router.navigateByUrl('/login');
   }
 
@@ -50,30 +52,30 @@ export class SimpleLoginService {
   }
 
   public getUser(email: string): Observable<any> {
-    const apiURL = '/userDetails/'+email;
+    const apiURL = '/api/v1/userDetails/'+email;
     return this.http.get(apiURL).map(response => {return response;});
   }
 
   public confirmationRegister(user: any): Observable<any> {
-    const apiURL = '/confirmRegistration';
+    const apiURL = '/api/v1/confirmRegistration';
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
     return this.http.post(apiURL, user, { headers });
 
   }
 
   public resend(user: any): Observable<any> {
-    const apiURL = '/resend';
+    const apiURL = '/api/v1/resend';
     return this.http.post(apiURL, user);
   }
 
   public forgotPassword(user: any): Observable<any> {
-    const apiURL = '/forgotPassword';
+    const apiURL = '/api/v1/forgotPassword';
     return this.http.post(apiURL, user);
 
   }
 
   public resetPassword(user: any): Observable<any> {
-    const apiURL = '/resetPassword';
+    const apiURL = '/api/v1/resetPassword';
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
     return this.http.post(apiURL, user, { headers });
 

@@ -10,6 +10,9 @@ module.exports = function (req, res, next) {
   //  process.stdout.write("   ttttttttttttt       "+token);
     if (token) {
        try {
+        if ( req.url.indexOf('/api/v1/registerUser') >= 0 || req.url.indexOf('/api/v1/authenticate') >= 0) {
+            next(); // To move to next middleware
+        }
             var decoded = jwt.decode(token, require('./secret.js')());
         //  process.stdout.write('ddddddddddddddddddddddddddddddddd  '+decoded.exp+"   nnnnnnnnn"+Date.now());
            var now= Date.now();

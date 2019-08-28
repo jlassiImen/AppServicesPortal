@@ -12,8 +12,6 @@ import { OwlModule } from 'ngx-owl-carousel'
 import { SimpleLoginService } from './services/auth/simple-login.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuardService } from './services/auth/auth-guard.service';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MyHttpInterceptor } from './interceptors/MyHttpInterceptor';
 import { LoaderComponent } from './loader/loader.component';
@@ -24,9 +22,7 @@ import { LoaderService } from './services/loader/loader-service.service';
   declarations: [
     AppComponent,
     HomeComponent,
-    ForgotPasswordComponent,
     CallbackComponent,
-    ConfirmationComponent,
     LoaderComponent
   ],
   imports: [

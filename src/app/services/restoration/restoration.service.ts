@@ -72,10 +72,7 @@ restaurants:any={}
 
  public getYelpRestaurants(request: any): Observable<any> {
     const apiURL = '/api/v1/getYelpRestaurants';
-    return this.http.post(apiURL,request).map(
-    item=>{
-   localStorage.setItem("restaurants",item);
-  });
+    return this.http.post(apiURL,request).map(response => {return response;});
   }
 
   public getYelpRestaurantsDetails(id: string): Observable<any> {

@@ -3,7 +3,7 @@
     "fromEmail":"jasmineapiserviceportal@gmail.com",
     "emailPassword":"Sa225566",
     "tokenExpiry":360,
-    "clientUrl":"http://localhost:8080",
+    "clientUrl":"https://serviceportal.herokuapp.com",
     "NodeGeocoderOptions":{
     	"provider": "locationiq",
     	"apiKey": "f200c59bf3daa0"

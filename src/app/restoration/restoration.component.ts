@@ -179,18 +179,14 @@ export class RestorationComponent implements OnInit {
       id: 40000
     }
   ];
+  public showAdvancedSearch: boolean = false;
+  public buttonName: any = 'Advanced Search';
 
   //onsubmit result
   restaurantList: any[];
   p: Number = 1; //pagination
 
-  public showAdvancedSearch: boolean = false;
-  public buttonName: any = 'Advanced Search';
-
   address = '';
-
-  successMessage = '';
-  errorMessage = '';
 
   mapboxLayer: any;
 
@@ -200,7 +196,6 @@ export class RestorationComponent implements OnInit {
 
 
   constructor(public auth: AuthService, public router: Router, public fb: FormBuilder, public restoration: RestorationService, public meteo: MeteoService, private httpClient : HttpClient) {
-
     this.form = this.fb.group({
       address: new FormControl('', Validators.compose([
         Validators.required
@@ -220,17 +215,39 @@ export class RestorationComponent implements OnInit {
 
 //afficher et desactiver le filtre
  toggle() {
-
     this.showAdvancedSearch = !this.showAdvancedSearch;
-
-    // CHANGE THE NAME OF THE BUTTON.
+// CHANGE THE NAME OF THE BUTTON.
     if (this.showAdvancedSearch)
       this.buttonName = "Hide Filter";
     else
       this.buttonName = "Advanced Search";
   }
 
+  initRestoration (position){
+   
+   var req = {
+      "longitude": position.longitude,
+      "latitude":position.latitude,
+      "term": "restaurant"
+    }
+    this.restoration.getYelpRestaurants(req).subscribe((response) => {
+      this.restaurantList = response;
+     // console.log(this.restaurantList);
+      this.markers.forEach(marker => {
+        this.removeMarker(marker);
+      });
+      this.markers = [];
+      this.restaurantList.forEach(restaurant => {
+        this.addMarker(restaurant);
+      })
+      this.findBestZoom();
+    })
+
+  }
   ngOnInit() {
+     //default restaurants list
+     
+this.meteo.detectLocation(position => this.initRestoration(position));
 
     // address autocomplete
     this.places = places({
@@ -302,17 +319,15 @@ export class RestorationComponent implements OnInit {
   }
 
   onSubmitResto(value) {
-    console.log(JSON.stringify(value));
+  //  console.log(JSON.stringify(value));
     if (this.showAdvancedSearch) {
       this.toggle();
     }
-    const selectedTypeRestaurantByName = this.form.value.typeRestaurant;
-
-     
+    const selectedTypeRestaurantByName = this.form.value.typeRestaurant; 
     const selectedPriceById = this.form.value.price
       .map((v, i) => v ? this.price[i].id : null)
       .filter(v => v !== null);  
-    console.log("rrrrrrrrrrrrrr       "+selectedPriceById);
+    //console.log("rrrrrrrrrrrrrr       "+selectedPriceById);
 
     const selectedSortByById = this.form.value.sort_by
       .map((v, i) => v ? this.sort_by[i].id : null)
@@ -332,7 +347,7 @@ export class RestorationComponent implements OnInit {
     }
     this.restoration.getYelpRestaurants(req).subscribe((response) => {
       this.restaurantList = response;
-      console.log(this.restaurantList);
+     // console.log(this.restaurantList);
       this.markers.forEach(marker => {
         this.removeMarker(marker);
       });

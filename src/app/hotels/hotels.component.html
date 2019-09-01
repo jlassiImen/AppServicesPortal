@@ -1,42 +1,107 @@
 <section id="contact" class="section">
     <div class="container" >
-        <div class="row">
-            <div class="col-lg-7 col-md-12 pl-4">
-                <div *ngFor="let hotel of hotelsList">
-                    <section class="lattest-product-area pb-40 category-list">
-                        <div class="row">
-                            <div class="row single-product">
-                                <div class="col-lg-4">
-                                    <img class="img-fluid" [src]=hotel.image_url alt="">
+        <div class="main-bg" style="min-height: 10vh;">            
+            <div class="sub-main-w3">
+                <div class="contents" style="margin-bottom: 5%;">
+                        <h2>Discover and Book the best hotels at the best price</h2>
+                </div>
+                <div class="bg-content-w3pvt" style="max-width: 700px;">
+                    <form [formGroup]="form" (ngSubmit)="onSubmitResto(form.value)" style="width: 125%;">            
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-3 select" >
+                                    <select formControlName="categoryHotel">
+                                        <option value="" disabled>Hotel Category</option>
+                                    </select>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="product-details">
-                                        <h6>{{hotel.name}}</h6>
-                                        <div class="price">
-                                            <br>
-                                            <h6>Address : </h6> {{hotel.location.display_address}}
-                                            <br>
-                                            <h6> Plan : </h6> {{hotelhotel.categories[0].title}}
-                                            <br>
-                                            <h6>Phone </h6> {{hotel.display_phone}}
-                                                
-                                        </div>
-                                    </div>
+                                <div class="col-sm-7 input" >
+                                     <input  type="search" id="autocomplete" #autocomplete  formControlName="address" placeholder="Address" style="width: 100%"/>
                                 </div>
-                                <div class="col-lg-2">
-                                    <h6>Note</h6>
-                                    <br>
-                                    <h6>{{hotel.rating}}</h6>
-                                    <div class="prd-bottom">
-                                        <a (click)="goToHotelDetails(hotel)" class="social-info">
-                                        <i class="fa fa-search"></i>
-                                        <p class="mb-0">View </p>
-                                         </a>
-                                    </div>
+                                <div class="col-sm-2" style="margin-top: 4%;">
+                                    <button type="submit" class="btn btn-singin" >search</button>
                                 </div>
                             </div>
                         </div>
-                    </section>
+
+                        <span class="desc" style="float: left;margin: 5px 22px;;font-family: sans-serif;font-size: medium;font-weight: bolder;" (click)="toggle()"> {{buttonName}}</span>
+                    
+                        <div class="advance-search" *ngIf="showAdvancedSearch">
+                            <div class="row">
+                                <div class="col-sm-3">
+                               
+                                    <label>Price</label>
+                                    <label formArrayName="price" *ngFor="let item of form.controls.price.controls; let i = index">
+                                    <input type="checkbox" [formControlName]="i">
+                                    {{price[i].name}}
+                                    </label>     
+                                </div>
+                                <div class="col-sm-3">
+                                     <label>Sort by</label>
+                                     <label formArrayName="sort_by" *ngFor="let element of form.controls.sort_by.controls; let i = index">
+                                     <input type="checkbox" [formControlName]="i">{{sort_by[i].name}}
+                                     </label>
+                                </div>
+                                <div class="col-sm-3" style="display: contents;">
+                                <div class="col-sm-3">
+                                 <label > Radius</label>
+                                <label formArrayName="radius" *ngFor="let elmt of form.controls.radius.controls; let i = index">
+                                <input type="checkbox" [formControlName]="i">{{radius[i].name}}
+                                </label> 
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-7 col-md-12 pl-4">
+                <div>
+                    <div *ngFor="let hotel of hotelsList  | paginate: { itemsPerPage: 6, currentPage: p }">
+                        <section class="lattest-product-area pb-40 category-list">
+                            <div class="row">
+                                <div class="row single-product">
+                                    <div class="col-lg-4">
+                                        <img class="img-fluid" [src]=hotel.image_url alt="">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="product-details">
+                                            <h6>{{hotel.name}}</h6>
+                                            <div class="price">
+                                                <br>
+                                                <h6>Address : </h6> {{hotel.location.display_address}}
+                                                <br>
+                                                <h6> Plan : </h6> {{hotel.categories[0].title}}
+                                                <br>
+                                                <h6>Phone </h6> {{hotel.display_phone}}
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <h6>Note</h6>
+                                        <br>
+                                        <h6>{{hotel.rating}}</h6>
+                                        <div class="prd-bottom">
+                                            <a (click)="goToHotelDetails(hotel)" class="social-info">
+                                                <i class="fa fa-search"></i>
+                                                <p class="mb-0">View </p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="text-center">
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12 pl-0 pt-70 pr-5">
+                <div class="contact-img">
+                    <div id="map" class="map"></div>
                 </div>
             </div>
         </div>

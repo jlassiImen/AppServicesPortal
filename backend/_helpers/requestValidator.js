@@ -10,7 +10,9 @@ module.exports = function (req, res, next) {
   //  process.stdout.write("   ttttttttttttt       "+token);
     if (token) {
        try {
-        if ( req.url.indexOf('/api/v1/registerUser') >= 0 || req.url.indexOf('/api/v1/authenticate') >= 0) {
+        if ( req.url.indexOf('/api/v1/registerUser') >= 0 || req.url.indexOf('/api/v1/authenticate') >= 0
+         || req.url.indexOf('/api/v1/confirmRegistration') >= 0  || req.url.indexOf('/api/v1/forgotPassword') >= 0 
+         || req.url.indexOf('/api/v1/resetPassword') >=0) {
             next(); // To move to next middleware
         }
             var decoded = jwt.decode(token, require('./secret.js')());
@@ -28,17 +30,19 @@ module.exports = function (req, res, next) {
             }
             next();
         } catch (err) {
-           log.error('Anexpected error:', err);
+           console.log('Anexpected error:', err);
                        res.status(500);
             res.json({
                 "status": 500,
-                "message": "Oops something went wrong",
+                "message": "Invalid Token",
                 "error": err
             });
         }
     } else {
 
-        if ( req.url.indexOf('/api/v1/registerUser') >= 0 || req.url.indexOf('/api/v1/authenticate') >= 0) {
+        if ( req.url.indexOf('/api/v1/registerUser') >= 0 || req.url.indexOf('/api/v1/authenticate') >= 0
+         || req.url.indexOf('/api/v1/confirmRegistration') >= 0  || req.url.indexOf('/api/v1/forgotPassword') >= 0 
+         || req.url.indexOf('/api/v1/resetPassword') >=0 )  {
             next(); // To move to next middleware
         }
         else{

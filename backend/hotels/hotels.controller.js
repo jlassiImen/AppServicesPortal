@@ -45,7 +45,6 @@ var hotels = {
       params = params + "&&categories=" + categories;
     }
 
-console.log("ssssssssssssssssssssssssssss");
     request({
       url: config.yelpApiUrl + params,
       method: 'get',
@@ -54,13 +53,13 @@ console.log("ssssssssssssssssssssssssssss");
       },
     }, function (err, resp) {
       if (err) {
-        log.error('an error has occured :', err);
+        console.log('an error has occured :', err);
         res.json({
           "status": 500,
           "message": err.message
         });
       }
-
+console.log("yelp resp   "+JSON.stringify(resp));
       res.json(JSON.parse(resp.body).businesses);
     });
   },

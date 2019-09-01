@@ -5,7 +5,7 @@ module.exports = function (req, res, next) {
 // skip the token outh for [OPTIONS] requests.
     if (req.method == 'OPTIONS') next();
    
-    var token = (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['authorization'];
+    var token =  req.headers['authorization'];
 
   //  process.stdout.write("   ttttttttttttt       "+token);
     if (token) {

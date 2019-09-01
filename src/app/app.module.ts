@@ -16,6 +16,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { MyHttpInterceptor } from './interceptors/MyHttpInterceptor';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderService } from './services/loader/loader-service.service';
+import { HotelDetailsComponent } from './hotel-details/hotel-details.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { LoaderService } from './services/loader/loader-service.service';
     AppComponent,
     HomeComponent,
     CallbackComponent,
-    LoaderComponent
+    LoaderComponent,
+    HotelDetailsComponent
   ],
   imports: [
     BrowserModule,

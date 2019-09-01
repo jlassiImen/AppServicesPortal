@@ -1,0 +1,45 @@
+<section id="contact" class="section">
+    <div class="container" >
+        <div class="row">
+            <div class="col-lg-7 col-md-12 pl-4">
+                <div *ngFor="let hotel of hotelsList">
+                    <section class="lattest-product-area pb-40 category-list">
+                        <div class="row">
+                            <div class="row single-product">
+                                <div class="col-lg-4">
+                                    <img class="img-fluid" [src]=hotel.image_url alt="">
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="product-details">
+                                        <h6>{{hotel.name}}</h6>
+                                        <div class="price">
+                                            <br>
+                                            <h6>Address : </h6> {{hotel.location.display_address}}
+                                            <br>
+                                            <h6> Plan : </h6> {{hotelhotel.categories[0].title}}
+                                            <br>
+                                            <h6>Phone </h6> {{hotel.display_phone}}
+                                                
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <h6>Note</h6>
+                                    <br>
+                                    <h6>{{hotel.rating}}</h6>
+                                    <div class="prd-bottom">
+                                        <a (click)="goToHotelDetails(hotel)" class="social-info">
+                                        <i class="fa fa-search"></i>
+                                        <p class="mb-0">View </p>
+                                         </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

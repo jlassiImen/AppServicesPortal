@@ -14,12 +14,7 @@ import { environment } from '../../../environments/environment';
 
 export class RestorationService {
 
-restaurants:any={}
-
-  constructor(public http: HttpClient, public router: Router) { 
-      let dataRestaurants = localStorage.getItem('restaurants');
-
-  }
+  constructor(public http: HttpClient, public router: Router) {}
 
     public getAllRestaurants(): Observable<any[]> {
     const apiURL = '/api/v1/allRestaurant';

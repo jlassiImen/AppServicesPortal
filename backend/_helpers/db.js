@@ -23,7 +23,10 @@ module.exports = {
   
   Restaurant: require('../restaurant/restaurant.model'),
   MenuCategory: require('../restaurant/menuCategory.model'),
-  MenuItem: require('../restaurant/menuItem.model')
+  MenuItem: require('../restaurant/menuItem.model'),
+
+  Hotel: require('../hotels/hotels.model')
+ 
 };
 
 

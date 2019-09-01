@@ -17,6 +17,7 @@ export const routes: Routes = [
   { path: 'callback', component: CallbackComponent },
   { path: 'categories', loadChildren: './categories/categories.module#CategoriesModule'},
   { path: 'restoration', loadChildren: './restoration/restoration.module#RestorationModule'},
+  { path: 'hotels', loadChildren: './hotels/hotels.module#HotelsModule'},
   { path: 'transport', loadChildren: './transport/transport.module#TransportModule' },
   { path: 'restaurantDetails', loadChildren: './restaurant-details/restaurant-details.module#RestaurantDetailsModule' },
   { path: 'login', loadChildren: './login/login.module#LoginModule' },

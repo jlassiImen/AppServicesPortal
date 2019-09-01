@@ -38,6 +38,8 @@ export class SimpleLoginService {
     localStorage.removeItem('userEmail');
     localStorage.removeItem('token');
     localStorage.removeItem('firstName');
+     localStorage.removeItem('token');
+     localStorage.removeItem('restaurantList');
     this.router.navigateByUrl('/login');
   }
 

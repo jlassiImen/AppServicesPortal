@@ -245,9 +245,6 @@ export class RestorationComponent implements OnInit {
 
   }
   ngOnInit() {
-     //default restaurants list
-     
-this.meteo.detectLocation(position => this.initRestoration(position));
 
     // address autocomplete
     this.places = places({
@@ -279,6 +276,24 @@ this.meteo.detectLocation(position => this.initRestoration(position));
     this.places.on('change', (event) => this.setAddress(event));
     this.map.setView(new L.LatLng(0, 0), 1);
     this.map.addLayer(this.mapboxLayer);
+
+
+    
+  if(localStorage.getItem('restaurantList')){
+    this.restaurantList=JSON.parse(localStorage.getItem('restaurantList'));
+     this.markers.forEach(marker => {
+        this.removeMarker(marker);
+      });
+      this.markers = [];
+      this.restaurantList.forEach(restaurant => {
+        this.addMarker(restaurant);
+      })
+      this.findBestZoom();
+  }
+  else{
+     //default restaurants list
+this.meteo.detectLocation(position => this.initRestoration(position));
+}
   }
 
 
@@ -347,6 +362,7 @@ this.meteo.detectLocation(position => this.initRestoration(position));
     }
     this.restoration.getYelpRestaurants(req).subscribe((response) => {
       this.restaurantList = response;
+      localStorage.setItem('restaurantList', JSON.stringify(response));
      // console.log(this.restaurantList);
       this.markers.forEach(marker => {
         this.removeMarker(marker);

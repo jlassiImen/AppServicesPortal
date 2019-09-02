@@ -115,6 +115,29 @@ markers = [];
     });
     this.addCheckboxes();
   }
+
+    initHotels (position){
+   
+   var req = {
+      "longitude": position.longitude,
+      "latitude":position.latitude,
+      "term": "hotel"
+    }
+    this.hotelsService.getYelpHotels(req).subscribe((response) => {
+      this.hotelsList = response;
+      console.log(this.hotelsList);
+      this.markers.forEach(marker => {
+        this.removeMarker(marker);
+      });
+      this.markers = [];
+      this.hotelsList.forEach(hotel => {
+        this.addMarker(hotel);
+      })
+      this.findBestZoom();
+    })
+
+  }
+
     private addCheckboxes() {
     this.price.map((o, i) => {
       const control = new FormControl(''); // if first item set to true, else false
@@ -230,6 +253,21 @@ markers = [];
     this.places.on('change', (event) => this.setAddress(event));
     this.map.setView(new L.LatLng(0, 0), 1);
     this.map.addLayer(this.mapboxLayer);
+
+     if(localStorage.getItem('hotelsList')){
+    this.hotelsList=JSON.parse(localStorage.getItem('hotelsList'));
+     this.markers.forEach(marker => {
+        this.removeMarker(marker);
+      });
+      this.markers = [];
+      this.hotelsList.forEach(hotel => {
+        this.addMarker(hotel);
+      })
+      this.findBestZoom();
+  }
+  else{
+    this.meteo.detectLocation(position => this.initHotels(position));
+}
   }
   }  
 

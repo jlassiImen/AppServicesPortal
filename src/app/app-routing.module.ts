@@ -20,6 +20,7 @@ export const routes: Routes = [
   { path: 'hotels', loadChildren: './hotels/hotels.module#HotelsModule'},
   { path: 'transport', loadChildren: './transport/transport.module#TransportModule' },
   { path: 'restaurantDetails', loadChildren: './restaurant-details/restaurant-details.module#RestaurantDetailsModule' },
+  { path: 'hotelDetails', loadChildren: './hotel-details/hotel-details.module#HotelDetailsModule' },
   { path: 'login', loadChildren: './login/login.module#LoginModule' },
   { path: 'profil', loadChildren: './profil/profil.module#ProfilModule', canActivate: [AuthGuardService] }
 ];

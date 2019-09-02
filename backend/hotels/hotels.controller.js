@@ -13,19 +13,33 @@ Latinise.latin_map={"Á":"A","Ă":"A","Ắ":"A","Ặ":"A","Ằ":"A","Ẳ":"A","�
 var hotels = {
 
   getYelpHotels: function (req, res, next) {
-    var location = req.body.location.replace(/[^A-Za-z0-9\[\] ]/g,
-      function(a){
-        return Latinise.latin_map[a]||a
-      });
+    var location = '';
+    var latitude = req.body.latitude;
+    var longitude = req.body.longitude;
     var radius = req.body.radius;
     var price = req.body.price;
     var sort_by = req.body.sort_by;
     var open_at = req.body.open_at;
     var categories = req.body.categories;
     var term = req.body.term;
+    var params = "";
 
-
-    var params = "?location=" + location + "&&term=" + term;
+    if(req.body.location != null && req.body.location != undefined && req.body.location!=''){
+      location= req.body.location.replace(/[^A-Za-z0-9\[\] ]/g,
+      function(a){
+        return Latinise.latin_map[a]||a
+      });
+      params=params+"?location=" + location + "&&term=" + term;
+    }
+     else if(latitude != null && latitude != undefined && latitude!='' && longitude != null && longitude != undefined && longitude!=''){
+      params=params+"?longitude=" + longitude + "&&latitude=" + latitude + "&&term=" + term
+    }
+    else{
+      res.json({
+          "status": 400,
+          "message": "Missing location or longitude and latitude"
+        });
+    }   
 
 
     if (radius != null && radius != undefined && radius!='') {
@@ -66,15 +80,15 @@ console.log("yelp resp   "+JSON.stringify(resp));
   
   getYelpHotelsDetails: function (req, res, next) {
     var id = req.params.id;
-    request({
-      url: config.yelphotelDetailsUrl + id,
+      request({
+      url: config.yelpRestaurantDetailsUrl + id,
       method: 'get',
       headers: {
         "Authorization": config.yelpToken
       },
     }, function (err, resp) {
       if (err) {
-        log.error('an error has occured :', err);
+        console.log('an error has occured :', err);
         res.json({
           "status": 500,
           "message": err.message

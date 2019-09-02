@@ -84,12 +84,7 @@ export class RestaurantDetailsComponent implements OnInit {
       }
     }
   }
-
   
-
-  
-
-
   constructor(public router: Router, public auth: AuthService, public restoration: RestorationService, private activatedRoute: ActivatedRoute) { }
  
   ngOnInit() {

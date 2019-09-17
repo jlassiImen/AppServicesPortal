@@ -1,0 +1,104 @@
+<section id="contact" class="section">
+    <div class="container" >
+        <div class="main-bg" style="min-height: 10vh;">            
+            <div class="sub-main-w3">
+                <div class="contents" style="margin-bottom: 5%;">
+                        <h2 i18n>Discover Our Cinema !!</h2>
+                </div>
+                <div class="bg-content-w3pvt" style="max-width: 700px;">
+                    <form [formGroup]="form" (ngSubmit)="onSubmitCinema(form.value)" style="width: 125%;">            
+                        <div class="container">
+                            <div class="row">
+                               
+                                <div class="col-sm-7 input" >
+                                     <input  type="search" id="autocomplete" #autocomplete  formControlName="address" placeholder="Address" i18n-placeholder="@@address"style="width: 100%"/>
+                                </div>
+                                <div class="col-sm-2" style="margin-top: 4%;">
+                                    <button type="submit" class="btn btn-singin" i18n >search</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <span class="desc" style="float: left;margin: 5px 22px;;font-family: sans-serif;font-size: medium;font-weight: bolder;" (click)="toggle()"> {{buttonName}}</span>
+                    
+                        <div class="advance-search" *ngIf="showAdvancedSearch">
+                            <div class="row">
+                                <div class="col-sm-3">
+                               
+                                    <label i18n>Price</label>
+                                    <label formArrayName="price" *ngFor="let item of form.controls.price.controls; let i = index">
+                                    <input type="checkbox" [formControlName]="i">
+                                    {{price[i].name}}
+                                    </label>     
+                                </div>
+                                <div class="col-sm-3">
+                                     <label i18n>Sort by</label>
+                                     <label formArrayName="sort_by" *ngFor="let element of form.controls.sort_by.controls; let i = index">
+                                     <input type="checkbox" [formControlName]="i">{{sort_by[i].name}}
+                                     </label>
+                                </div>
+                                <div class="col-sm-3" style="display: contents;">
+                                <div class="col-sm-3">
+                                 <label i18n > Radius</label>
+                                <label formArrayName="radius" *ngFor="let elmt of form.controls.radius.controls; let i = index">
+                                <input type="checkbox" [formControlName]="i">{{radius[i].name}}
+                                </label> 
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-7 col-md-12 pl-4">
+                <div>
+                    <div *ngFor="let cinema of cinemaList  | paginate: { itemsPerPage: 6, currentPage: p }">
+                        <section class="lattest-product-area pb-40 category-list">
+                            <div class="row">
+                                <div class="row single-product">
+                                    <div class="col-lg-4">
+                                        <img class="img-fluid" [src]=cinema.image_url alt="">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="product-details">
+                                            <h6>{{cinema.name}}</h6>
+                                            <div class="price">
+                                                <br>
+                                                <h6>Address : </h6> {{cinema.location.display_address}}
+                                                <br>
+                                                <h6>Phone </h6> {{cinema.display_phone}}
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <h6 i18n>Note</h6>
+                                        <br>
+                                        <h6>{{cinema.rating}}</h6>
+                                        <div class="prd-bottom">
+                                            <!-- <a (click)="goToCinemaDetails(cinema)" class="social-info"> -->
+                                                <a href="" class="social-info"> 
+                                                <i class="fa fa-search"></i>
+                                                <p class="mb-0" i18n>View </p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="text-center">
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12 pl-0 pt-70 pr-5">
+                <div class="contact-img">
+                    <div id="map" class="map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

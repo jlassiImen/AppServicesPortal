@@ -22,7 +22,8 @@ export const routes: Routes = [
   { path: 'restaurantDetails', loadChildren: './restaurant-details/restaurant-details.module#RestaurantDetailsModule' },
   { path: 'hotelDetails', loadChildren: './hotel-details/hotel-details.module#HotelDetailsModule' },
   { path: 'login', loadChildren: './login/login.module#LoginModule' },
-  { path: 'profil', loadChildren: './profil/profil.module#ProfilModule', canActivate: [AuthGuardService] }
+  { path: 'profil', loadChildren: './profil/profil.module#ProfilModule', canActivate: [AuthGuardService] },
+  { path: 'cinemas', loadChildren: './cinema/cinemas.module#CinemasModule', canActivate: [AuthGuardService] }
 ];
 
 

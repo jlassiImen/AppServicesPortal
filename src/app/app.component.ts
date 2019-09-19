@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
 
   useLanguage(language: string) {
     this.translate.use(language);
-}
+  }
 
   ngOnInit() {
     if (this.auth.isAuthenticated()) {

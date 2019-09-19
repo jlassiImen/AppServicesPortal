@@ -5,6 +5,7 @@ import { AuthService } from './../services/auth/auth.service';
 import { SimpleLoginService } from './../services/auth/simple-login.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +13,9 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public auth: AuthService, public router: Router, private fb: FormBuilder, public simpleLogin: SimpleLoginService) { }
+  constructor(public auth: AuthService, public router: Router, private fb: FormBuilder, public simpleLogin: SimpleLoginService) {
+    
+   }
   userDetailsForm: FormGroup;
   successMessage = '';
   errorMessage = '';

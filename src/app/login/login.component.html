@@ -14,7 +14,7 @@
         {{errorMessage}}
       </div>
       <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)">
-        <p class="legend">Welcome</p>
+        <p class="legend">{{'welcome' | translate}}</p>
 
         
         <div class="input">

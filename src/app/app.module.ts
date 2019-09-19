@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule,HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from './services/auth/auth.service';
@@ -16,11 +16,13 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { MyHttpInterceptor } from './interceptors/MyHttpInterceptor';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderService } from './services/loader/loader-service.service';
-
+import { HttpClientModule,HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 // import ngx-translate and the http loader
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
+import {CoreModule} from './core.module'
+import { core } from '@angular/compiler';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,13 +39,15 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
     OwlModule,
     NgxSpinnerModule,
     AppRoutingModule,
-    TranslateModule.forRoot({
-      loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-      }
-  })
+  TranslateModule.forRoot({
+    loader: {
+      provide: TranslateLoader,
+      useFactory: HttpLoaderFactory,
+      deps: [HttpClient]
+    },
+    isolate : false
+  }),
+  CoreModule.forRoot()
   ],
   providers: [
     {

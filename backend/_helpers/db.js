@@ -13,6 +13,7 @@ mongoose.connect
 mongoose.Promise = global.Promise;
 
 module.exports = {
+   
   User: require('../users/user.model'),
   ResetPassword: require('../users/resetPassword.model'),
   Token: require('../users/tokenVerification.model'),
@@ -25,7 +26,9 @@ module.exports = {
   MenuCategory: require('../restaurant/menuCategory.model'),
   MenuItem: require('../restaurant/menuItem.model'),
 
-  Hotel: require('../hotels/hotels.model')
+  Hotel: require('../hotels/hotels.model'),
+
+  Museums: require('../museums/museums.model') 
  
 };
 

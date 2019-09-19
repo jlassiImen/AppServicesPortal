@@ -17,7 +17,6 @@ import { MyHttpInterceptor } from './interceptors/MyHttpInterceptor';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderService } from './services/loader/loader-service.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,

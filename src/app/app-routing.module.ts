@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { CallbackComponent } from './callback/callback.component';
 import { AuthGuardService } from './services/auth/auth-guard.service';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 export const routes: Routes = [
@@ -23,10 +22,10 @@ export const routes: Routes = [
   { path: 'hotelDetails', loadChildren: './hotel-details/hotel-details.module#HotelDetailsModule' },
   { path: 'login', loadChildren: './login/login.module#LoginModule' },
   { path: 'profil', loadChildren: './profil/profil.module#ProfilModule', canActivate: [AuthGuardService] },
-  { path: 'cinemas', loadChildren: './cinema/cinemas.module#CinemasModule', canActivate: [AuthGuardService] }
+  { path: 'cinemas', loadChildren: './cinema/cinemas.module#CinemasModule', canActivate: [AuthGuardService] },
+  { path: 'cinemaDetails', loadChildren: './cinema-details/cinema-details.module#CinemaDetailsModule' },
+  { path: 'museums', loadChildren: './museums/museums.module#MuseumsModule' }
 ];
-
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

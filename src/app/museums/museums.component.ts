@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { MeteoService } from '../services/meteoServices/meteo.service';
 import { environment } from '../../environments/environment';
-import { CinemasService } from '../services/cinemas/cinemas.service';
+import { MuseumsService } from '../services/museums/museums.service';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -15,11 +15,11 @@ import { HttpClient } from '@angular/common/http' ;
 
 
 @Component({
-  selector: 'app-cinemas',
-  templateUrl: './cinemas.component.html',
-  styleUrls: ['./cinemas.component.css']
+  selector: 'app-museums',
+  templateUrl: './museums.component.html',
+  styleUrls: ['./museums.component.css']
 })
-export class CinemasComponent implements OnInit {
+export class MuseumsComponent implements OnInit {
 
      
   form: FormGroup;
@@ -87,7 +87,7 @@ export class CinemasComponent implements OnInit {
   public showAdvancedSearch: boolean = false;
   public buttonName: any = 'Advanced Search';
   
-  cinemaList: any[];
+  museumsList: any[];
   
   p: Number = 1; //pagination
   
@@ -102,7 +102,7 @@ export class CinemasComponent implements OnInit {
   markers = [];
   
   
-    constructor(public auth: AuthService, public router: Router, public fb: FormBuilder, public cinemaService: CinemasService, public meteo: MeteoService, private httpClient : HttpClient) { 
+    constructor(public auth: AuthService, public router: Router, public fb: FormBuilder, public museumsService: MuseumsService, public meteo: MeteoService, private httpClient : HttpClient) { 
        this.form = this.fb.group({
         address: new FormControl('', Validators.compose([
           Validators.required
@@ -117,7 +117,7 @@ export class CinemasComponent implements OnInit {
       this.addCheckboxes();
     }
   
-      initCinema(position){
+      initMuseums(position){
        var language='en_US';
      const locale = localStorage.getItem('locale');
      if(locale == 'fr'){
@@ -126,18 +126,18 @@ export class CinemasComponent implements OnInit {
      var req = {
         "longitude": position.longitude,
         "latitude":position.latitude,
-        "term": "cinema",
+        "term": "museums",
         "locale":language
       }
-      this.cinemaService.getYelpCinema(req).subscribe((response) => {
-        this.cinemaList = response;
-        console.log(this.cinemaList);
+      this.museumsService.getYelpMuseums(req).subscribe((response) => {
+        this.museumsList = response;
+        console.log(this.museumsList);
         this.markers.forEach(marker => {
           this.removeMarker(marker);
         });
         this.markers = [];
-        this.cinemaList.forEach(cinema => {
-          this.addMarker(cinema);
+        this.museumsList.forEach(museums => {
+          this.addMarker(museums);
         })
         this.findBestZoom();
       })
@@ -173,10 +173,10 @@ export class CinemasComponent implements OnInit {
       this.address = event.suggestion.value;
     }
   
-    addMarker(cinema) {
-      var marker = L.marker([cinema.coordinates.latitude, cinema.coordinates.longitude], { icon: this.myIcon });
+    addMarker(museums) {
+      var marker = L.marker([museums.coordinates.latitude, museums.coordinates.longitude], { icon: this.myIcon });
       marker.addTo(this.map);
-      marker.bindPopup(cinema.name).openPopup();
+      marker.bindPopup(museums.name).openPopup();
       this.markers.push(marker);
     }
   
@@ -188,7 +188,7 @@ export class CinemasComponent implements OnInit {
       var featureGroup = L.featureGroup(this.markers);
       this.map.fitBounds(featureGroup.getBounds().pad(0.5), { animate: false });
     }
-    onSubmitCinema(value) {
+    onSubmitMuseums(value) {
     console.log(JSON.stringify(value));
       if (this.showAdvancedSearch) {
         this.toggle();
@@ -212,28 +212,28 @@ export class CinemasComponent implements OnInit {
      }      
       var req = {
         "location": this.address,
-        "term": "cinema",
+        "term": "museums",
         "price": selectedPriceById,
         "sort_by": selectedSortByById,
         "radius":selectedRadiusById,
         "locale":language
       }
-      this.cinemaService.getYelpCinema(req).subscribe((response) => {
-        this.cinemaList = response;
-       // console.log(this.cinemaList);
+      this.museumsService.getYelpMuseums(req).subscribe((response) => {
+        this.museumsList = response;
+       // console.log(this.museumsList);
         this.markers.forEach(marker => {
           this.removeMarker(marker);
         });
         this.markers = [];
-        this.cinemaList.forEach(cinema => {
-          this.addMarker(cinema);
+        this.museumsList.forEach(museums => {
+          this.addMarker(museums);
         })
         this.findBestZoom();
       })
     }
     
-    goToCinemaDetails(cinema){
-      this.router.navigateByUrl('/cinemaDetails?cinemaId='+cinema.id); 
+    goToMuseumsDetails(museums){
+      this.router.navigateByUrl('/museumsDetails?museumsId='+museums.id); 
     }
     ngOnInit() {
   
@@ -267,19 +267,19 @@ export class CinemasComponent implements OnInit {
       this.map.setView(new L.LatLng(0, 0), 1);
       this.map.addLayer(this.mapboxLayer);
   
-       if(localStorage.getItem('cinemaList')){
-      this.cinemaList=JSON.parse(localStorage.getItem('cinemaList'));
+       if(localStorage.getItem('museumsList')){
+      this.museumsList=JSON.parse(localStorage.getItem('museumsList'));
        this.markers.forEach(marker => {
           this.removeMarker(marker);
         });
         this.markers = [];
-        this.cinemaList.forEach(cinema => {
-          this.addMarker(cinema);
+        this.museumsList.forEach(museums => {
+          this.addMarker(museums);
         })
         this.findBestZoom();
     }
     else{
-      this.meteo.detectLocation(position => this.initCinema(position));
+      this.meteo.detectLocation(position => this.initMuseums(position));
   }
     }
 }  

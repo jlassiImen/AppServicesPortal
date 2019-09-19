@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MyHttpInterceptor } from '../interceptors/MyHttpInterceptor';
 import { SimpleLoginService } from './../services/auth/simple-login.service';
@@ -11,7 +10,8 @@ import { AuthService } from './../services/auth/auth.service';
 import { LoginRoutingModule } from './login-routing.module';
 
 import { LoginComponent } from './login.component';
-
+import { HttpClientModule,HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {CoreModule} from '../core.module'
 
 
 
@@ -25,7 +25,8 @@ import { LoginComponent } from './login.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    CoreModule
   ],
   providers:[
     {
@@ -38,6 +39,5 @@ import { LoginComponent } from './login.component';
   ]
 })
 export class LoginModule { }
-
 
 

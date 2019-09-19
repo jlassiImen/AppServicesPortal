@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth/auth.service';
 import { Router } from '@angular/router';
 import { SimpleLoginService } from './services/auth/simple-login.service';
-
+import {TranslateService} from '@ngx-translate/core';
+import defaultLanguage from "./../assets/i18n/en.json";
 
 @Component({
   selector: 'app-root',
@@ -13,8 +14,14 @@ export class AppComponent implements OnInit {
 
   navbarOpen = false;
   userName='';
-  constructor(public auth: AuthService, public router: Router, public simpleLogin: SimpleLoginService) {
+  constructor(public auth: AuthService, public router: Router, public simpleLogin: SimpleLoginService,private translate: TranslateService) {
     auth.handleAuthentication();
+    translate.setTranslation('en', defaultLanguage);
+    translate.setDefaultLang('en');
+  }
+
+  useLanguage(language: string) {
+    this.translate.use(language);
   }
 
   ngOnInit() {

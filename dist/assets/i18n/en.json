@@ -1,3 +1,11 @@
 {
-    "welcome":"Welcome"
+    "welcome":"Welcome",
+	"Your-E-mail":"Your E-mail",
+	"password": "Your password",
+	"auth0":"Autho0 Login",
+	"Fpassword":"Forgot Password ?",
+	"member":"Not a member?",
+	"sign":"Sign up now",
+	"Or":"Or",
+	"text":"By logging in, you agree to our Terms of Service, Privacy Policy, Community Guidelines and Cookie Policy."
 }

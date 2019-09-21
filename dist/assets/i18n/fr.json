@@ -1,3 +1,11 @@
 {
-    "welcome":"Bienvenue"
+    "welcome":"Bienvenue",
+	"Your-E-mail":"Votre E-mail",
+	"password": "Votre mot de passe",
+	"auth0": "Auth0 Connexion",
+	"Fpassword":"Mot de passe oublié ?",
+	"member":"Pas un membre?",
+	"sign":"S'inscrire maintenant",
+	"Or":"Ou",
+	"text":"En vous connectant, vous acceptez nos Conditions d'utilisation, notre Politique de confidentialité, les Règles de la communauté et notre Politique de cookie."
 }

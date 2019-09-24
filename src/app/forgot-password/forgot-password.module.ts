@@ -11,7 +11,7 @@ import { AuthService } from './../services/auth/auth.service';
 import { ForgotPasswordRoutingModule } from './forgot-password-routing.module';
 
 import { ForgotPasswordComponent } from './forgot-password.component';
-
+import {CoreModule} from '../core.module'
 
 
 
@@ -25,7 +25,8 @@ import { ForgotPasswordComponent } from './forgot-password.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    CoreModule
   ],
   providers:[
     {

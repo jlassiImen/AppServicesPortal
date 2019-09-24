@@ -19,7 +19,7 @@
         
         <div class="input">
           <input type="email" name="email" id="email"
-                 placeholder="Your E-mail" formControlName="email" required>
+                 placeholder="{{'Your-E-mail' | translate}}" formControlName="email" required>
           
           <div class="help-block with-errors"
                *ngFor="let validation of validation_messages.email">
@@ -33,9 +33,9 @@
         </div>
         <div class="input">
           <input type="password" name="password" id="password"
-                 placeholder="Your password" formControlName="password" required>
+                 placeholder="{{'password' | translate}}" formControlName="password" required>
           <a a (click)="router.navigate(['/forgotPassword']);" style="float: left;">
-            Forgot Password ?
+            {{'Fpassword' | translate}}
           </a>
           <div class="help-block with-errors"
                *ngFor="let validation of validation_messages.password">
@@ -56,23 +56,23 @@
         <div class="row">
           <div class="col-lg-5"> <hr style="height: 2px; border-top: 1px solid #000;" /></div>
        
-          <div class="col-lg-2"><p>Or</p></div>
+          <div class="col-lg-2"><p>{{'Or' | translate}}</p></div>
         <div class="col-lg-4"><hr style="height: 2px;  border-top: 1px solid #000;" />  </div></div>
-          <h4 style="font-size: 16px;font-weight: bolder;"><a (click)="auth.login()" >Autho0 Login</a> </h4>
+          <h4 style="font-size: 16px;font-weight: bolder;"><a (click)="auth.login()" >{{'auth0' | translate}}</a> </h4>
          
         </div>
 
 
       </form>
       <span>
-        Not a member?
+        {{'member' | translate}}
       </span>
       <a (click)="router.navigate(['/register']);">
-        Sign up now
+        {{'sign' | translate}}
       </a>
       <div class="copyright">
         <h2 style="font-size: smaller;">
-          By logging in, you agree to our Terms of Service, Privacy Policy, Community Guidelines and Cookie Policy.
+          {{'text' | translate}}
         </h2>
       </div>
     </div>

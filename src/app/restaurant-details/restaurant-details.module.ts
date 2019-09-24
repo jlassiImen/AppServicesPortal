@@ -11,9 +11,7 @@ import { MyHttpInterceptor } from '../interceptors/MyHttpInterceptor';
 import { RestaurantDetailsRoutingModule } from './restaurant-details-routing.module';
 import { RestorationService } from './../services/restoration/restoration.service';
 import { RestaurantDetailsComponent } from './restaurant-details.component';
-
-
-
+import {CoreModule} from '../core.module'
 
 @NgModule({
   declarations: [
@@ -26,7 +24,8 @@ import { RestaurantDetailsComponent } from './restaurant-details.component';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    OwlModule
+    OwlModule,
+    CoreModule
   ],
   providers:[
     {

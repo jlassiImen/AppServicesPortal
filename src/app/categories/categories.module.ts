@@ -13,6 +13,7 @@ import { CategoriesRoutingModule } from './categories-routing.module';
 import { CategoriesComponent } from './categories.component';
 import {CategoriesService} from './../services/categories/categories.service'
 import {FilterPipe} from './categoriesFilter.pipe';
+import {CoreModule} from '../core.module'
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {FilterPipe} from './categoriesFilter.pipe';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    CoreModule
   ],
   providers:[
     {

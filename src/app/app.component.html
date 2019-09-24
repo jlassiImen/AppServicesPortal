@@ -18,10 +18,10 @@
       <div class="collapse navbar-collapse" id="navbarCollapse" [ngClass]="{ 'show': navbarOpen }">
         <ul class="navbar-nav mr-auto w-100 justify-content-end">
           <li class="nav-item">
-            <a class="nav-link " href="#">Home</a>
+            <a class="nav-link " href="home">{{'home' | translate}}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " style="cursor: pointer;" (click)="router.navigate(['/categories']);">Services</a>
+            <a class="nav-link " style="cursor: pointer;" (click)="router.navigate(['/categories']);">{{'services' | translate}}</a>
           </li> 
 
           <li class="nav-item">
@@ -35,7 +35,7 @@
 
           <li class="nav-item">
             <a class="btn btn-singin" *ngIf="!(auth.isAuthenticated() || simpleLogin.isLoggedIn())"
-              (click)="router.navigate(['/login']);">Log in</a>
+              (click)="router.navigate(['/login']);">{{'cnx' | translate}}</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
@@ -43,8 +43,8 @@
               {{userName}}
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" (click)="router.navigate(['/profil']);">My profile</a></li>
-              <li><a class="dropdown-item" (click)="simpleLogin.logout();">LOG OUT</a></li>
+              <li><a class="dropdown-item" (click)="router.navigate(['/profil']);">{{'profil' | translate}}</a></li>
+              <li><a class="dropdown-item" (click)="simpleLogin.logout();">{{'dcnx' | translate}}</a></li>
             </ul>
         </li>
         </ul>
@@ -55,11 +55,11 @@
     <div class="row space-100">
       <div class="col-lg-6 col-md-12 col-xs-12">
         <div class="contents">
-          <h2 class="head-title">Service Portal </h2>
-          <h4 style="font-family: 'Rubik', sans-serif;color: white">All what you need in one application !</h4>
+          <h2 class="head-title">{{'title' | translate}} </h2>
+          <h4 style="font-family: 'Rubik', sans-serif;color: white">{{'title1' | translate}} </h4>
           <div class="header-button">
-            <a (click)="router.navigate(['/register']);"  class="btn btn-border-filled">Get Started</a>
-            <a href="#contact" class="btn btn-border page-scroll">Contact Us</a>
+            <a (click)="router.navigate(['/register']);"  class="btn btn-border-filled">{{'a11' | translate}}</a>
+            <a href="#contact" class="btn btn-border page-scroll">{{'a12' | translate}}</a>
           </div>
         </div>
       </div>
@@ -96,11 +96,11 @@
         <!-- Start Col -->
         <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-mb-12">
           <div class="widget">
-            <h3 class="block-title">Company</h3>
+            <h3 class="block-title">{{'fh3' | translate}}</h3>
             <ul class="menu">
-              <li><a href="#"> - About Us</a></li>
-              <li><a href="#">- Career</a></li>
-              <li><a href="#">- Press</a></li>
+              <li><a href="#">{{'fli1' | translate}} </a></li>
+              <li><a href="#">{{'fli2' | translate}}</a></li>
+              <li><a href="#">{{'fli3' | translate}}</a></li>
             </ul>
           </div>
         </div>
@@ -108,13 +108,13 @@
         <!-- Start Col -->
         <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-mb-12">
           <div class="widget">
-            <h3 class="block-title">Product</h3>
+            <h3 class="block-title">{{'Product' | translate}}</h3>
             <ul class="menu">
-              <li><a href="#"> - Customer Service</a></li>
-              <li><a href="#">- Enterprise</a></li>
-              <li><a href="#">- Price</a></li>
-              <li><a href="#">- Scurity</a></li>
-              <li><a href="#">- Why Service Portal?</a></li>
+              <li><a href="#">{{'fli4' | translate}} </a></li>
+              <li><a href="#">{{'fli5' | translate}}</a></li>
+              <li><a href="#">{{'fli6' | translate}}</a></li>
+              <li><a href="#">{{'fli7' | translate}}</a></li>
+              <li><a href="#">{{'fli8' | translate}}</a></li>
             </ul>
           </div>
         </div>
@@ -122,13 +122,13 @@
         <!-- Start Col -->
         <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-mb-12">
           <div class="widget">
-            <h3 class="block-title">Download App</h3>
+            <h3 class="block-title">{{'fh31' | translate}}</h3>
             <ul class="menu">
-              <li><a href="#"> - Android App</a></li>
-              <li><a href="#">- IOS App</a></li>
-              <li><a href="#">- Windows App</a></li>
-              <li><a href="#">- Play Store</a></li>
-              <li><a href="#">- IOS Store</a></li>
+              <li><a href="#">{{'fli9' | translate}} </a></li>
+              <li><a href="#">{{'fli10' | translate}}</a></li>
+              <li><a href="#">{{'fli11' | translate}}</a></li>
+              <li><a href="#">{{'fli12' | translate}}</a></li>
+              <li><a href="#">{{'fli13' | translate}}- IOS Store</a></li>
             </ul>
           </div>
         </div>
@@ -136,8 +136,8 @@
         <!-- Start Col -->
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
           <div class="widget">
-            <h3 class="block-title">Subscribe Now</h3>
-            <p>Appropriately implement calysts for change visa wireless catalysts for change. </p>
+            <h3 class="block-title">{{'fh32' | translate}}</h3>
+            <p>{{'fp1' | translate}} </p>
             <div class="subscribe-area">
               <input type="email" class="form-control" placeholder="Enter Email">
               <span><i class="lni-chevron-right"></i></span>
@@ -156,7 +156,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="site-info text-center">
-              <p>Created by <a href="http://jasmineconseil.com" rel="nofollow">Jasmine Conseil</a></p>
+              <p>{{'Created' | translate}} <a href="http://jasmineconseil.com" rel="nofollow">Jasmine Conseil</a></p>
             </div>
 
           </div>

@@ -11,7 +11,7 @@ import { SimpleLoginService } from './../services/auth/simple-login.service';
 import { ProfilRoutingModule } from './profil-routing.module';
 
 import { ProfilComponent } from './profil.component';
-
+import {CoreModule} from '../core.module'
 
 
 
@@ -25,7 +25,8 @@ import { ProfilComponent } from './profil.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    CoreModule
   ],
   providers:[
     {

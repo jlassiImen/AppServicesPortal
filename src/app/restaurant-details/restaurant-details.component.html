@@ -12,7 +12,7 @@
         </owl-carousel>
 
         <div class="pt-5 mt-5">
-          <h3 class="mb-5">Reviews</h3>
+          <h3 class="mb-5">{{'reviews' | translate}}</h3>
 <div *ngFor="let review of restaurantReviews" >
               <ul class="comment-list">
                 <li class="comment">
@@ -23,7 +23,7 @@
                     <h3>{{review.user.name}}</h3>
                     <div class="meta">{{review.time_created}}</div>
                     <p>{{review.text}}</p>
-                    <p>Rating :{{review.rating}}</p>
+                    <p>{{'rating' | translate}}{{review.rating}}</p>
                   </div>
                 </li>
               </ul>   
@@ -35,16 +35,16 @@
 
       <div class="col-md-4 sidebar ftco-animate">
         <div class="sidebar-box ftco-animate">
-          <h3>Details</h3>
+          <h3>{{'details' | translate}}</h3>
           <div class="block-21 mb-4 d-flex">
             
             <div class="text">
               <div class="meta">
-                <div><label><span class="fa fa-map-marker"></span> Address</label>
+                <div><label><span class="fa fa-map-marker"></span> {{'adr' | translate}}</label>
                <label *ngFor="let adrPart of restaurantDetails.location.display_address">{{adrPart}}</label></div>
-                <div><label><span class="fa fa-phone"></span> Phone : {{restaurantDetails.display_phone}}</label></div>
-                <div><label><span class="fa fa-star-half-o"></span> Rating : {{restaurantDetails.rating}}</label></div>
-                <div><label><span class="fa fa-comments"></span>Review Number :
+                <div><label><span class="fa fa-phone"></span> {{'phone' | translate}}  {{restaurantDetails.display_phone}}</label></div>
+                <div><label><span class="fa fa-star-half-o"></span>{{'rating' | translate}}{{restaurantDetails.rating}}</label></div>
+                <div><label><span class="fa fa-comments"></span>{{'Rnumber' | translate}}
                     {{restaurantDetails.review_count}}</label></div>
               </div>
             </div>
@@ -52,30 +52,30 @@
         </div>
         <div class="sidebar-box">
           <div class="search-form">
-            <label>Today </label>
+            <label>{{'today' | translate}}  </label>
 
             <span class="fa fa-clock-o"></span>
-            <label> from {{curentDayStart}} to {{curentDayEnd}}</label>
+            <label> {{'from' | translate}}  {{curentDayStart}} {{'to' | translate}}  {{curentDayEnd}}</label>
 
           </div>
         </div>
         <div class="sidebar-box ftco-animate">
           <div class="categories">
-            <h3>Timesheet</h3>
+            <h3>{{'time' | translate}}</h3>
             <li *ngFor="let day of weekDays"><label> {{day.name}} {{day.hours}}</label></li>
 
           </div>
         </div>
         <div class="sidebar-box ftco-animate">
             <div class="categories">
-              <h3>Price range</h3>
+              <h3>{{'prixM' | translate}}</h3>
               <label>{{priceRange}} </label>
             </div>
           </div>
 
 <div class="sidebar-box ftco-animate">
             <div class="categories">
-              <h3>Category</h3>
+              <h3>{{'cat' | translate}}</h3>
   <li *ngFor="let category of restaurantDetails.categories">{{category.title}} </li>
             </div>
           </div>

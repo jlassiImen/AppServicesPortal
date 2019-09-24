@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-lg-1"></div>
   <div class="col-lg-2">
-  <h4 style="font-size: 18px;">Acount Setting</h4>
+  <h4 style="font-size: 18px;">{{'h4Profil' | translate}}</h4>
 </div>
 <div class="col-lg-1"></div>
 <div class="col-lg-4">
@@ -14,7 +14,7 @@
         {{errorMessage}}
       </div>
   <form [formGroup]="userDetailsFormAcount" (ngSubmit)="onSubmitUpdatePassword(userDetailsFormAcount.value)">
-    <label>Your email</label>
+    <label>{{'email' | translate}}</label>
     <div class="input">
       <input type="email" name="email" id="email"
              formControlName="email" [(ngModel)]="email"  required>
@@ -22,14 +22,14 @@
     
       <span class="fa fa-envelope"  style=" position: absolute;"></span>
     </div>
-    <label>Old password</label>
+    <label>{{'password' | translate}}</label>
     <div class="input">
       <input type="password" name="oldPassword" id="oldPassword"
              formControlName="oldPassword" required>
   
       <span class="fa fa-unlock"  style=" position: absolute;"></span>
     </div>
-    <label>New password </label>
+    <label>{{'Npassword' | translate}} </label>
     <div class="input">
       <input type="password" name="newPassword" id="newPassword"
              formControlName="newPassword" required>
@@ -40,7 +40,7 @@
       <div class="business-item-info">
       
 
-<button type="submit" [disabled]="!userDetailsFormAcount.valid"  class="btn btn-success">save changes</button>
+<button type="submit" [disabled]="!userDetailsFormAcount.valid"  class="btn btn-success">{{'changes' | translate}}</button>
       </div>
     </div>
   </form>
@@ -54,7 +54,7 @@
 <div class="row" style="margin-bottom: 5%;">
   <div class="col-lg-1"></div>
   <div class="col-lg-2">
-    <h4 style="font-size: 18px;">Profile Setting</h4>
+    <h4 style="font-size: 18px;">{{'setting' | translate}}</h4>
   </div>
 <div class="col-lg-1"></div>
 <div class="col-lg-4">
@@ -68,24 +68,24 @@
   <form [formGroup]="userDetailsFormProfile" (ngSubmit)="onSubmitPersonnelProfil(userDetailsFormProfile.value)">
     <div class="input">    
       <input type="text" name="firstName" id="firstName"
-             placeholder="Your first Name" formControlName="firstName" 
+            placeholder="{{'Fname' | translate}}" formControlName="firstName" 
              [(ngModel)]="firstName" required>
       <span class="fa fa-user"  style=" position: absolute;"></span>
     </div>
     <div class="input">      
       <input type="text" class="form-control" name="lastName" id="lastName"
-             placeholder="Your last Name" formControlName="lastName" [(ngModel)]="lastName"  required>
+             placeholder="{{'Lname' | translate}}" formControlName="lastName" [(ngModel)]="lastName"  required>
       <span class="fa fa-user"  style=" position: absolute;"></span>
     </div>
     <div class="input">     
       <input type="text" class="form-control" name="adress"
-             placeholder="Address" formControlName="adress" [(ngModel)]="adress"  required>
+             placeholder="{{'adresse' | translate}}" formControlName="adress" [(ngModel)]="adress"  required>
       <span class="fa fa-user"  style=" position: absolute;"></span>
     </div>
     <div class="col-lg-6 col-md-12 pl-4">
       <div class="business-item-info">
         
-        <button type="submit" [disabled]="!userDetailsFormProfile.valid"  class="btn btn-success">save changes</button>
+        <button type="submit" [disabled]="!userDetailsFormProfile.valid"  class="btn btn-success">{{'changes' | translate}}</button>
       </div>
     </div>
 </form>

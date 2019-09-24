@@ -11,7 +11,7 @@ import { AuthService } from './../services/auth/auth.service';
 import { ConfirmationRoutingModule } from './confirmation-routing.module';
 
 import { ConfirmationComponent } from './confirmation.component';
-
+import {CoreModule} from '../core.module'
 
 
 
@@ -25,7 +25,8 @@ import { ConfirmationComponent } from './confirmation.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    CoreModule
   ],
   providers:[
     {

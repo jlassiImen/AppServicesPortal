@@ -8,7 +8,7 @@
         {{errorMessage}}
       </div>
       <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)">
-        <p class="legend">Register</p>
+        <p class="legend">{{'register' | translate}}</p>
         <div class="input">
           <div help-block with-errors *ngFor="let validation of validation_messages.firstName">
             <label for="firstName" class="bmd-label-floating"
@@ -18,7 +18,7 @@
             </label>
           </div>
           <input type="text" name="firstName" id="firstName"
-                 placeholder="Your first Name" formControlName="firstName" required>
+                 placeholder="{{'Fname' | translate}}" formControlName="firstName" required>
           <span class="fa fa-user"  style=" position: absolute;"></span>
         </div>
         <div class="input">
@@ -30,12 +30,12 @@
             </label>
           </div>
           <input type="text" class="form-control" name="lastName" id="lastName"
-                 placeholder="Your last Name" formControlName="lastName" required>
+                 placeholder="{{'Lname' | translate}}" formControlName="lastName" required>
           <span class="fa fa-user"  style=" position: absolute;"></span>
         </div>
         <div class="input">
           <input type="email" name="email" id="email"
-                 placeholder="Your E-mail" formControlName="email" required>
+                 placeholder="{{'email' | translate}}" formControlName="email" required>
           
           <div class="help-block with-errors"
                *ngFor="let validation of validation_messages.email">
@@ -49,7 +49,7 @@
         </div>
         <div class="input">
           <input type="password" name="password" id="password"
-                 placeholder="Your password" formControlName="password" required>
+                 placeholder="{{'mdp' | translate}}" formControlName="password" required>
           <div class="help-block with-errors"
                *ngFor="let validation of validation_messages.password">
             <label for="password" class="bmd-label-floating"
@@ -62,7 +62,7 @@
         </div>
         <div class="input"> 
           <input type="text" class="form-control" name="adress" id="adress"
-                 placeholder="Your adress" formControlName="adress" required>
+                 placeholder="{{'adresse' | translate}}" formControlName="adress" required>
           <span class="fa fa-map-marker"  style=" position: absolute;"></span>
         </div>
         <button type="submit" [disabled]="!userDetailsForm.valid" class="btn submit">

@@ -7,7 +7,7 @@
 </div>
 
  <div class="input">
-          <input type="text" class="form-control" name="searchString" placeholder="Type to search..." [(ngModel)]="searchString"/>
+          <input type="text" class="form-control" name="searchString" placeholder="{{'category' | translate}}" [(ngModel)]="searchString"/>
 </div>
 
       <div class="row"  *ngIf="errorMessage ==''">
@@ -20,7 +20,7 @@
             <a style="cursor: pointer;"  (click)="goToCategory(category.link)">
                 <h4>{{category.name}}</h4>
             </a>
-            <p>Share processes and data secure lona need to know basis Our team assured your web site is always safe.</p>
+            <p> {{'pCategory' | translate}}</p>
           </div>
       </div>
 

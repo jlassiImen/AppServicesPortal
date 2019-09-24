@@ -11,6 +11,7 @@ import { SimpleLoginService } from './../services/auth/simple-login.service';
 import { RegisterRoutingModule } from './register-routing.module';
 
 import { RegisterComponent } from './register.component';
+import {CoreModule} from '../core.module'
 
 
 
@@ -25,7 +26,8 @@ import { RegisterComponent } from './register.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    CoreModule
   ],
   providers:[
     {

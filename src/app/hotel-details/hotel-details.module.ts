@@ -11,6 +11,7 @@ import { MeteoService } from './../services/meteoServices/meteo.service';
 import { HotelsService } from './../services/hotels/hotels.service';
 import { OwlModule } from 'ngx-owl-carousel'
 import { MyHttpInterceptor } from '../interceptors/MyHttpInterceptor';
+import {CoreModule} from '../core.module'
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MyHttpInterceptor } from '../interceptors/MyHttpInterceptor';
     ReactiveFormsModule,
     NgxPaginationModule,
     HttpModule,
-    OwlModule
+    OwlModule,
+    CoreModule
   ],
   providers:[
     {

@@ -233,7 +233,7 @@ export class CinemasComponent implements OnInit {
     }
     
     goToCinemaDetails(cinema){
-      this.router.navigateByUrl('/cinemaDetails?cinemalId='+cinema.id); 
+      this.router.navigateByUrl('/cinemaDetails?cinemaId='+cinema.id); 
     }
     ngOnInit() {
   

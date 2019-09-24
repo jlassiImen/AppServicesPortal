@@ -23,6 +23,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 import {CoreModule} from './core.module'
 import { core } from '@angular/compiler';
+
 @NgModule({
   declarations: [
     AppComponent,

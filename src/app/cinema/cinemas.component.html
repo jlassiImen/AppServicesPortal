@@ -3,7 +3,7 @@
         <div class="main-bg" style="min-height: 10vh;">            
             <div class="sub-main-w3">
                 <div class="contents" style="margin-bottom: 5%;">
-                        <h2 i18n>Discover Our Cinema !!</h2>
+                        <h2>{{'titreCinema' | translate}}</h2>
                 </div>
                 <div class="bg-content-w3pvt" style="max-width: 700px;">
                     <form [formGroup]="form" (ngSubmit)="onSubmitCinema(form.value)" style="width: 125%;">            
@@ -14,7 +14,7 @@
                                      <input  type="search" id="autocomplete" #autocomplete  formControlName="address" placeholder="Address" i18n-placeholder="@@address"style="width: 100%"/>
                                 </div>
                                 <div class="col-sm-2" style="margin-top: 4%;">
-                                    <button type="submit" class="btn btn-singin" i18n >search</button>
+                                    <button type="submit" class="btn btn-singin" i18n >{{'search' | translate}}</button>
                                 </div>
                             </div>
                         </div>
@@ -25,21 +25,21 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                
-                                    <label i18n>Price</label>
+                                    <label i18n>{{'price' | translate}}</label>
                                     <label formArrayName="price" *ngFor="let item of form.controls.price.controls; let i = index">
                                     <input type="checkbox" [formControlName]="i">
                                     {{price[i].name}}
                                     </label>     
                                 </div>
                                 <div class="col-sm-3">
-                                     <label i18n>Sort by</label>
+                                     <label i18n>{{'sortBy' | translate}}</label>
                                      <label formArrayName="sort_by" *ngFor="let element of form.controls.sort_by.controls; let i = index">
                                      <input type="checkbox" [formControlName]="i">{{sort_by[i].name}}
                                      </label>
                                 </div>
                                 <div class="col-sm-3" style="display: contents;">
                                 <div class="col-sm-3">
-                                 <label i18n > Radius</label>
+                                 <label i18n > {{'radius' | translate}} </label>
                                 <label formArrayName="radius" *ngFor="let elmt of form.controls.radius.controls; let i = index">
                                 <input type="checkbox" [formControlName]="i">{{radius[i].name}}
                                 </label> 
@@ -66,22 +66,22 @@
                                             <h6>{{cinema.name}}</h6>
                                             <div class="price">
                                                 <br>
-                                                <h6>Address : </h6> {{cinema.location.display_address}}
+                                                <h6>{{'address' | translate}}</h6> {{cinema.location.display_address}}
                                                 <br>
-                                                <h6>Phone </h6> {{cinema.display_phone}}
+                                                <h6>{{'phone' | translate}} </h6> {{cinema.display_phone}}
                                                 
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-2">
-                                        <h6 i18n>Note</h6>
+                                        <h6 >{{'note' | translate}}</h6>
                                         <br>
                                         <h6>{{cinema.rating}}</h6>
                                         <div class="prd-bottom">
-                                            <!-- <a (click)="goToCinemaDetails(cinema)" class="social-info"> -->
-                                                <a href="" class="social-info"> 
+                                            <a (click)="goToCinemaDetails(cinema)" class="social-info"> 
+                                                
                                                 <i class="fa fa-search"></i>
-                                                <p class="mb-0" i18n>View </p>
+                                                <p class="mb-0" >{{'view' | translate}} </p>
                                             </a>
                                         </div>
                                     </div>

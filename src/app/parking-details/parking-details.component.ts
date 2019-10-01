@@ -1,19 +1,19 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from './../services/auth/auth.service';
-import { RestorationService } from './../services/restoration/restoration.service';
+import { ParkingService } from './../services/parking/parking.service';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-restaurant-details',
-  templateUrl: './restaurant-details.component.html',
-  styleUrls: ['./restaurant-details.component.css']
+  selector: 'app-parking-details',
+  templateUrl: './parking-details.component.html',
+  styleUrls: ['./parking-details.component.css']
 })
-export class RestaurantDetailsComponent implements OnInit {
+export class ParkingDetailsComponent implements OnInit {
 
-  restaurantId="";
-  restaurantDetails: any;
-  restaurantReviews: any[];
+  parkingId="";
+  parkingDetails: any;
+  parkingReviews: any[];
   photos:[];
   curentDayStart: any;
   curentDayEnd: any;
@@ -84,19 +84,19 @@ export class RestaurantDetailsComponent implements OnInit {
       }
     }
   }
+
+  constructor(public router: Router, public auth: AuthService, public parkingService: ParkingService, private activatedRoute: ActivatedRoute, private _location: Location) { }
   
-  constructor(public router: Router, public auth: AuthService, public restoration: RestorationService, private activatedRoute: ActivatedRoute, private _location: Location) { }
- 
- backClicked() {
+  backClicked() {
     this._location.back();
   }
 
   ngOnInit() {
-    this. restaurantId = this.activatedRoute.snapshot.queryParamMap.get('restaurantId');
-    console.log("restaurantId   "+this.restaurantId);
-    this.restoration.getYelpRestaurantsDetails(this. restaurantId).subscribe((response) => {
-      this.restaurantDetails = response;
-      
+    this. parkingId = this.activatedRoute.snapshot.queryParamMap.get('parkingId');
+    console.log("parkingId   "+this.parkingId);
+    this.parkingService.getYelpParkingDetails(this. parkingId).subscribe((response) => {
+      this.parkingDetails = response;
+     
       this.photos=response.photos;
       var d = new Date();
       var n = d.getDay();
@@ -142,8 +142,8 @@ export class RestaurantDetailsComponent implements OnInit {
     //  console.log("aaaaaaaaaaaaaaa   "+JSON.stringify(response));
   });
 
-  this.restoration.getYelpRestaurantsReviews(this. restaurantId).subscribe((response) => {
-      this.restaurantReviews = response.reviews;
+  this.parkingService.getYelpParkingReviews(this. parkingId).subscribe((response) => {
+      this.parkingReviews = response.reviews;
 
     //  console.log("bbbbbbbbbbbbbbbbbbbbbbb   "+JSON.stringify(response));
 

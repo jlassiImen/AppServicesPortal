@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from './../services/auth/auth.service';
 import { HotelsService } from './../services/hotels/hotels.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-hotel-details',
@@ -84,8 +85,12 @@ export class HotelDetailsComponent implements OnInit {
     }
   }
 
-  constructor(public router: Router, public auth: AuthService, public hotelsService: HotelsService, private activatedRoute: ActivatedRoute) { }
+  constructor(public router: Router, public auth: AuthService, public hotelsService: HotelsService, private activatedRoute: ActivatedRoute, private _location: Location) { }
  
+ backClicked() {
+    this._location.back();
+  }
+  
   ngOnInit() {
     this. hotelId = this.activatedRoute.snapshot.queryParamMap.get('hotelId');
     console.log("hotelId   "+this.hotelId);

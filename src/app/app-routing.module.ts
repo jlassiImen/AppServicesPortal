@@ -25,7 +25,10 @@ export const routes: Routes = [
   { path: 'cinemas', loadChildren: './cinema/cinemas.module#CinemasModule', canActivate: [AuthGuardService] },
   { path: 'cinemaDetails', loadChildren: './cinema-details/cinema-details.module#CinemaDetailsModule' },
   { path: 'museums', loadChildren: './museums/museums.module#MuseumsModule' },
-  { path: '', pathMatch: 'full', redirectTo: '/home'}
+  { path: '', pathMatch: 'full', redirectTo: '/home'},
+  { path: 'museumsDetails', loadChildren: './museums-details/museums-details.module#MuseumsDetailsModule' },
+  { path: 'parking', loadChildren: './parking/parking.module#ParkingModule' },
+  { path: 'parkingDetails', loadChildren: './parking-details/parking-details.module#ParkingDetailsModule' }
 ];
 
 @NgModule({

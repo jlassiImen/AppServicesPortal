@@ -4,6 +4,9 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 ftco-animate">
+        <a  (click)="backClicked()" style="color: blue">
+                  <-Back
+                </a>
         <h2 class="mb-3">{{restaurantDetails.name}}</h2>
         <owl-carousel [options]="carouselOptions" [items]="photos" [carouselClasses]="['owl-theme', 'row', 'sliding']">
           <div class="item" *ngFor="let image of photos;let i= index">

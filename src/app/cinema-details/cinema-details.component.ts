@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from './../services/auth/auth.service';
 import { CinemasService } from './../services/cinemas/cinemas.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-cinema-details',
@@ -10,6 +11,7 @@ import { CinemasService } from './../services/cinemas/cinemas.service';
 })
 export class CinemaDetailsComponent implements OnInit {
 
+  
   cinemaId="";
   cinemaDetails: any;
   cinemaReviews: any[];
@@ -84,8 +86,12 @@ export class CinemaDetailsComponent implements OnInit {
     }
   }
 
-  constructor(public router: Router, public auth: AuthService, public cinemaService: CinemasService, private activatedRoute: ActivatedRoute) { }
- 
+  constructor(public router: Router, public auth: AuthService, public cinemaService: CinemasService, private activatedRoute: ActivatedRoute, private _location: Location) { }
+  
+  backClicked() {
+    this._location.back();
+  }
+
   ngOnInit() {
     this.cinemaId = this.activatedRoute.snapshot.queryParamMap.get('cinemaId');
     console.log("cinemaId   "+this.cinemaId);

@@ -28,7 +28,9 @@ module.exports = {
 
   Hotel: require('../hotels/hotels.model'),
 
-  Museums: require('../museums/museums.model') 
+  Museums: require('../museums/museums.model'),
+
+  Parking: require('../parking/parking.model')
  
 };
 

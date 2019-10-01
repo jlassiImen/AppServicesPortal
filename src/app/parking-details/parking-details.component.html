@@ -2,10 +2,10 @@
     <div class="container">
         <div class="row">
              <div class="col-md-8 ftco-animate">
-                <a  (click)="backClicked()" style="color: blue">
+             	 <a  (click)="backClicked()" style="color: blue">
                   <-Back
-                </a>
-                 <h2 class="mb-3">{{hotelDetails.name}}</h2>
+                 </a>
+                 <h2 class="mb-3">{{parkingDetails.name}}</h2>
                  <owl-carousel [options]="carouselOptions" [items]="photos" [carouselClasses]="['owl-theme', 'row', 'sliding']">
                  <div class="item" *ngFor="let image of photos;let i= index">
                      <img class="slide-image" src="{{image}}">
@@ -13,7 +13,7 @@
                  </owl-carousel>
              <div class="pt-5 mt-5">
                  <h3 class="mb-5">{{'reviews' | translate}}</h3>
-                 <div *ngFor="let review of hotelReviews" >
+                 <div *ngFor="let review of parkingReviews" >
                      <ul class="comment-list">
                          <li class="comment">
                              <div class="vcard bio">
@@ -26,10 +26,10 @@
                                  <p>{{'rating' | translate}}{{review.rating}}</p>
                              </div>
                          </li>
-                     </ul>   
+                     </ul>  
                  </div>
              </div>
-             </div> 
+             </div>
          <div class="col-md-4 sidebar ftco-animate">
              <div class="sidebar-box ftco-animate">
                  <h3>{{'details' | translate}}</h3>
@@ -37,18 +37,18 @@
                  <div class="text">
                      <div class="meta">
                          <div>
-                         	 <label><span class="fa fa-map-marker"></span> {{'adr' | translate}}</label>
-                             <label *ngFor="let adrPart of hotelDetails.location.display_address">{{adrPart}}</label>
+                          <label><span class="fa fa-map-marker"></span> {{'adr' | translate}}</label>
+                             <label *ngFor="let adrPart of parkingDetails.location.display_address">{{adrPart}}</label>
                          </div>
                          <div>
-                         	<label><span class="fa fa-phone"></span>{{'phone' | translate}}  {{hotelDetails.display_phone}}</label>
+                          <label><span class="fa fa-phone"></span>{{'phone' | translate}}  {{parkingDetails.display_phone}}</label>
                          </div>
                          <div>
-                         	<label><span class="fa fa-star-half-o"></span> {{'rating' | translate}}{{hotelDetails.rating}}</label>
+                          <label><span class="fa fa-star-half-o"></span> {{'rating' | translate}}{{parkingDetails.rating}}</label>
                          </div>
                          <div>
-                         	<label><span class="fa fa-comments"></span>{{'Rnumber' | translate}}
-                             {{hotelDetails.review_count}}</label>
+                          <label><span class="fa fa-comments"></span>{{'Rnumber' | translate}}
+                             {{parkingDetails.review_count}}</label>
                          </div>
                      </div>
                  </div>
@@ -76,7 +76,7 @@
          <div class="sidebar-box ftco-animate">
              <div class="categories">
                  <h3>{{'cat' | translate}}</h3>
-                 <li *ngFor="let category of hotelDetails.categories">{{category.title}} </li>
+                 <li *ngFor="let category of parkingDetails.categories">{{category.title}} </li>
             </div>
          </div>
          </div>
@@ -84,5 +84,3 @@
      </div>
 </section>
  <!-- .section -->
-
-

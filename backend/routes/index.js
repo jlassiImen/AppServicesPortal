@@ -8,6 +8,7 @@ var restaurants = require('../restaurant/restaurant.controller.js');
 var hotels = require('../hotels/hotels.controller.js');
 var cinema = require('../cinema/cinema.controller.js');
 var museums = require('../museums/museums.controller.js');
+var parking = require('../parking/parking.controller.js');
 
 //Users
 router.post('/api/v1/authenticate', users.authenticate);
@@ -59,5 +60,10 @@ router.get('/api/v1/getYelpCinemaReviews/:id',  cinema.getYelpCinemaReviews);
 router.post('/api/v1/getYelpMuseums',  museums.getYelpMuseums);
 router.get('/api/v1/getYelpMuseumsDetails/:id',  museums.getYelpMuseumsDetails);
 router.get('/api/v1/getYelpMuseumsReviews/:id',  museums.getYelpMuseumsReviews);
+
+//parking
+router.post('/api/v1/getYelpParking',  parking.getYelpParking);
+router.get('/api/v1/getYelpParkingDetails/:id',  parking.getYelpParkingDetails);
+router.get('/api/v1/getYelpParkingReviews/:id',  parking.getYelpParkingReviews);
 
 module.exports = router;

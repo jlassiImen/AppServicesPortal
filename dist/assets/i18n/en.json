@@ -117,6 +117,14 @@
 	"time":"Timesheet",
 	"prixM":"Price range",
 	"cat":"Category",
-	"titreParking":"PARKING !!"
-
+	"titreParking":"PARKING !!",
+	"titreEducation":"Éducation",
+	"titreTransport":"Réservez votre taxi en ligne!",
+	"phone":"Your phone",
+	"adrs":"Address",
+	"adrsFrom":"From destination",
+	"adrsTo":"To destination",
+	"BTNR":"Make reservation",
+	"titreTransport":"All you need in Transport!!",
+	"titreFestivals":"All Festivals!!"
 }

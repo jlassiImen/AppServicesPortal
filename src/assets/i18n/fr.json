@@ -116,7 +116,16 @@
 	"time":"Emploi du temps",
 	"prixM":"Prix moyen",
 	"cat":"Categorie",
-	"titreParking":"PARKING !!"
+	"titreParking":"PARKING !!",
+	"titreEducation":"Éducation!!",
+	"titreTransport":"Book Your Texi Online!",
+	"phone":"Votre Téléphone",
+	"adrs":"Adresse",
+	"adrsFrom":"À partir de",
+	"adrsTo":"À", 
+	"BTNR":"Faire une réservation",
+	"titreTransport":"Tout ce dont vous avez besoin du transport!!",
+	"titreFestivals":"Tous Festivals!!"
 
 }
 

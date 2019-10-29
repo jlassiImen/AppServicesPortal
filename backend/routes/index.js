@@ -9,6 +9,9 @@ var hotels = require('../hotels/hotels.controller.js');
 var cinema = require('../cinema/cinema.controller.js');
 var museums = require('../museums/museums.controller.js');
 var parking = require('../parking/parking.controller.js');
+var education = require('../education/education.controller.js');
+var transport = require('../transport/transport.controller.js');
+var festivals = require('../festivals/festivals.controller.js');
 
 //Users
 router.post('/api/v1/authenticate', users.authenticate);
@@ -65,5 +68,21 @@ router.get('/api/v1/getYelpMuseumsReviews/:id',  museums.getYelpMuseumsReviews);
 router.post('/api/v1/getYelpParking',  parking.getYelpParking);
 router.get('/api/v1/getYelpParkingDetails/:id',  parking.getYelpParkingDetails);
 router.get('/api/v1/getYelpParkingReviews/:id',  parking.getYelpParkingReviews);
+
+//education
+
+router.post('/api/v1/getYelpEducation',  education.getYelpEducation);
+router.get('/api/v1/getYelpEducationDetails/:id',  education.getYelpEducationDetails);
+router.get('/api/v1/getYelpEducationReviews/:id',  education.getYelpEducationReviews);
+
+//transport
+router.post('/api/v1/getYelpTransport',  transport.getYelpTransport);
+router.get('/api/v1/getYelpTransportDetails/:id',  transport.getYelpTransportDetails);
+router.get('/api/v1/getYelpTransportReviews/:id',  transport.getYelpTransportReviews);
+
+//festivals
+router.post('/api/v1/getYelpFestivals',  festivals.getYelpFestivals);
+router.get('/api/v1/getYelpFestivalsDetails/:id',  festivals.getYelpFestivalsDetails);
+router.get('/api/v1/getYelpFestivalsReviews/:id',  festivals.getYelpFestivalsReviews);
 
 module.exports = router;

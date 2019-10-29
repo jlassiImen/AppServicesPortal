@@ -30,7 +30,13 @@ module.exports = {
 
   Museums: require('../museums/museums.model'),
 
-  Parking: require('../parking/parking.model')
+  Parking: require('../parking/parking.model'),
+
+  Education: require('../education/education.model'),
+
+  Transport: require('../transport/transport.model'),
+
+  Festivals: require('../festivals/festivals.model')
  
 };
 

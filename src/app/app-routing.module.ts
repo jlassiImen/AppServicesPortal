@@ -28,7 +28,12 @@ export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home'},
   { path: 'museumsDetails', loadChildren: './museums-details/museums-details.module#MuseumsDetailsModule' },
   { path: 'parking', loadChildren: './parking/parking.module#ParkingModule' },
-  { path: 'parkingDetails', loadChildren: './parking-details/parking-details.module#ParkingDetailsModule' }
+  { path: 'parkingDetails', loadChildren: './parking-details/parking-details.module#ParkingDetailsModule' },
+  { path: 'education', loadChildren: './education/education.module#EducationModule' },
+  { path: 'educationDetails', loadChildren: './education-details/education-details.module#EducationDetailsModule' },
+  { path: 'transport', loadChildren: './transport/transport.module#TransportModule' },
+  { path: 'transportDetails', loadChildren: './transport-details/transport-details.module#TransportDetailsModule' },
+  { path: 'festivals', loadChildren: './festivals/festivals.module#FestivalsModule' }
 ];
 
 @NgModule({

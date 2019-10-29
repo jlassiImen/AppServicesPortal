@@ -1,19 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { MeteoService } from '../services/meteoServices/meteo.service';
-import { MyHttpInterceptor } from '../interceptors/MyHttpInterceptor';
-
+import { FormBuilder, FormGroup, FormArray, FormControl , Validators, ReactiveFormsModule } from '@angular/forms';
+import {NgxPaginationModule} from 'ngx-pagination';
 import { TransportRoutingModule } from './transport-routing.module';
-
 import { TransportComponent } from './transport.component';
-
-
-
+import { TransportService } from './../services/transport/transport.service';
+import { MeteoService } from './../services/meteoServices/meteo.service';
+import { OwlModule } from 'ngx-owl-carousel'
+import { MyHttpInterceptor } from '../interceptors/MyHttpInterceptor';
+import {CoreModule} from '../core.module'
 
 @NgModule({
   declarations: [
@@ -25,7 +23,10 @@ import { TransportComponent } from './transport.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    NgxPaginationModule,
+    HttpModule,
+    OwlModule,
+    CoreModule
   ],
   providers:[
     {
@@ -33,10 +34,7 @@ import { TransportComponent } from './transport.component';
       useClass: MyHttpInterceptor,
       multi: true,
     },
-    MeteoService
+    TransportService,MeteoService
   ]
 })
 export class TransportModule { }
-
-
-

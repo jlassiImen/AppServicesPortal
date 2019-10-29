@@ -1,0 +1,93 @@
+
+<section class="ftco-section ftco-degree-bg" style="margin-top: 5%;">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 ftco-animate">
+        <a  (click)="backClicked()" style="color: blue">
+                  <-Back
+                </a>
+        <h2 class="mb-3">{{educationDetails.name}}</h2>
+        <owl-carousel [options]="carouselOptions" [items]="photos" [carouselClasses]="['owl-theme', 'row', 'sliding']">
+          <div class="item" *ngFor="let image of photos;let i= index">
+            <img class="slide-image" src="{{image}}">
+          </div>
+        </owl-carousel>
+
+        <div class="pt-5 mt-5">
+          <h3 class="mb-5">{{'reviews' | translate}}</h3>
+<div *ngFor="let review of educationReviews" >
+              <ul class="comment-list">
+                <li class="comment">
+                  <div class="vcard bio">
+                    <img class="img-fluid" [src]=review.user.image_url alt="">
+                  </div>
+                  <div class="comment-body">
+                    <h3>{{review.user.name}}</h3>
+                    <div class="meta">{{review.time_created}}</div>
+                    <p>{{review.text}}</p>
+                    <p>{{'rating' | translate}}{{review.rating}}</p>
+                  </div>
+                </li>
+              </ul>   
+            </div>
+          <!-- END comment-list -->
+        </div>
+
+      </div> <!-- .col-md-8 -->
+
+      <div class="col-md-4 sidebar ftco-animate">
+        <div class="sidebar-box ftco-animate">
+          <h3>{{'details' | translate}}</h3>
+          <div class="block-21 mb-4 d-flex">
+            
+            <div class="text">
+              <div class="meta">
+                <div><label><span class="fa fa-map-marker"></span> {{'adr' | translate}}</label>
+               <label *ngFor="let adrPart of educationDetails.location.display_address">{{adrPart}}</label></div>
+                <div><label><span class="fa fa-phone"></span> {{'phone' | translate}}  {{educationDetails.display_phone}}</label></div>
+                <div><label><span class="fa fa-star-half-o"></span>{{'rating' | translate}}{{educationDetails.rating}}</label></div>
+                <div><label><span class="fa fa-comments"></span>{{'Rnumber' | translate}}
+                    {{educationDetails.review_count}}</label></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar-box">
+          <div class="search-form">
+            <label>{{'today' | translate}}  </label>
+
+            <span class="fa fa-clock-o"></span>
+            <label> {{'from' | translate}}  {{curentDayStart}} {{'to' | translate}}  {{curentDayEnd}}</label>
+
+          </div>
+        </div>
+        <div class="sidebar-box ftco-animate">
+          <div class="categories">
+            <h3>{{'time' | translate}}</h3>
+            <li *ngFor="let day of weekDays"><label> {{day.name}} {{day.hours}}</label></li>
+
+          </div>
+        </div>
+        <div class="sidebar-box ftco-animate">
+            <div class="categories">
+              <h3>{{'prixM' | translate}}</h3>
+              <label>{{priceRange}} </label>
+            </div>
+          </div>
+
+<div class="sidebar-box ftco-animate">
+            <div class="categories">
+              <h3>{{'cat' | translate}}</h3>
+  <li *ngFor="let category of educationDetails.categories">{{category.title}} </li>
+            </div>
+          </div>
+           
+
+      </div>
+
+    </div>
+  </div>
+</section>
+ <!-- .section -->
+
